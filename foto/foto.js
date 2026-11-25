@@ -380,6 +380,122 @@ window.FOTO={
  "Plaża w Czołpinie przy Czerwonej Szopie": {
   "src": "rozrywka-plaza-czolpino.jpg",
   "credit": "Fot. Koefbac, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Groty Mechowskie w Mechowie": {
+  "src": "atrakcje-groty-mechowskie.jpg",
+  "credit": "Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół Apostołów Piotra i Pawła w Rowach": {
+  "src": "atrakcje-kosciol-rowy.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół NMP Gwiazdy Morza w Osiekach Lęborskich": {
+  "src": "atrakcje-kosciol-osieki-leborskie.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół Niepokalanego Serca NMP w Trzebielinie": {
+  "src": "atrakcje-kosciol-trzebielino.jpg",
+  "credit": "Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Zmartwychwstania Pańskiego w Kościerzynie": {
+  "src": "atrakcje-kosciol-zmartwychwstania-koscierzyna.jpg",
+  "credit": "Fot. AsalmZNC, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Andrzeja Boboli w Pietrzykowie": {
+  "src": "atrakcje-kosciol-pietrzykowo.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Franciszka z Asyżu w Wytownie": {
+  "src": "atrakcje-kosciol-wytowno.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Józefa Oblubieńca w Charbrowie": {
+  "src": "atrakcje-kosciol-charbrowo.jpg",
+  "credit": "Fot. Ciacho5, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Marcina w Borzyszkowach": {
+  "src": "atrakcje-kosciol-borzyszkowy.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Michała Archanioła w Lipuszu": {
+  "src": "atrakcje-kosciol-lipusz.jpg",
+  "credit": "Fot. Reptar, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Mikołaja w Szemudzie": {
+  "src": "atrakcje-kosciol-szemud.jpg",
+  "credit": "Fot. Gdaniec, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Stanisława w Dobieszewie": {
+  "src": "atrakcje-kosciol-dobieszewo.jpg",
+  "credit": "Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kładka obrotowa w porcie w Ustce": {
+  "src": "atrakcje-kladka-obrotowa-ustka.jpg",
+  "credit": "Fot. Romazur, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Młyn wodny w Lipuszu": {
+  "src": "atrakcje-mlyn-lipusz.jpg",
+  "credit": "Fot. Jan Burnewicz, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Pałac (Zamek) w Nowęcinie": {
+  "src": "atrakcje-palac-nowecin.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Pałac w Godętowie": {
+  "src": "atrakcje-palac-godetowo.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Port i spichlerze w Ustce": {
+  "src": "atrakcje-spichlerz-port-ustka.jpg",
+  "credit": "Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Punkt widokowy na Złotej Górze koło Brodnicy Górnej": {
+  "src": "atrakcje-zlota-gora-widok.jpg",
+  "credit": "Fot. Hanc Tomasz, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Rezerwat Darżlubskie Buki koło Mechowa": {
+  "src": "atrakcje-rezerwat-darzlubskie-buki.jpg",
+  "credit": "Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Rezerwat Wydma Lubiatowska": {
+  "src": "atrakcje-wydma-lubiatowska.jpg",
+  "credit": "Fot. Lena Barańska, CC BY 3.0, Wikimedia Commons"
+ },
+ "Sanktuarium Królowej Kaszub w Sianowie": {
+  "src": "atrakcje-sanktuarium-sianowo.jpg",
+  "credit": "Fot. t.przechlewski, CC BY 3.0, Wikimedia Commons"
+ },
+ "Ścieżka edukacyjna przy zespole pałacowo-parkowym w Warcinie": {
+  "src": "atrakcje-sciezka-warcino.jpg",
+  "credit": "Fot. Fajna Asia, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Muzeum Piśmiennictwa i Muzyki Kaszubsko-Pomorskiej w Wejherowie": {
+  "src": "deszcz-muzeum-pismiennictwa-wejherowo.jpg",
+  "credit": "Fot. Szczebel07, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Muzeum Wsi Słowińskiej w Klukach": {
+  "src": "deszcz-muzeum-wsi-slowinskiej-kluki.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Skansen Zagroda Gburska i Rybacka w Nadolu": {
+  "src": "deszcz-skansen-nadole.jpg",
+  "credit": "Fot. Paweł 'pbm' Szubert, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Czarne Wesele w Klukach": {
+  "src": "imprezy-czarne-wesele-kluki.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Jezioro Sarbsko – windsurfing i kitesurfing": {
+  "src": "rozrywka-jezioro-sarbsko.jpg",
+  "credit": "Fot. Olek Remesz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kąpielisko nad Jeziorem Wielkim w Strudze": {
+  "src": "rozrywka-kapielisko-struga.jpg",
+  "credit": "Fot. PiotrMig, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Plaża w Rowach": {
+  "src": "rozrywka-plaza-rowy.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
  }
 };
 

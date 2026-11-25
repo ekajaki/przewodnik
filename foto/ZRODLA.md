@@ -203,3 +203,33 @@ Wszystkie zdjęcia poglądowe (brak wolnych zdjęć dokładnie tych sklepów/sta
 | imprezy-skansen-kluki.jpg | Imprezy plenerowe w skansenie w Klukach | https://commons.wikimedia.org/wiki/File:Kluki_Skansen_(1).jpg | Fot. Radosław Botev & Sylwia Botev, CC BY 3.0 PL, Wikimedia Commons |
 | rozrywka-kapielisko-lednik-miastko.jpg | Kąpielisko nad jeziorem Lednik w Miastku | https://commons.wikimedia.org/wiki/File:Miastko_-_Jezioro_Lednik.JPG | Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons |
 | rozrywka-plaza-czolpino.jpg | Plaża w Czołpinie przy Czerwonej Szopie | https://commons.wikimedia.org/wiki/File:Czerwona_Szopa_przy_Czo%C5%82pinie_-_sierpie%C5%84_2017.jpg | Fot. Koefbac, CC BY-SA 4.0, Wikimedia Commons |
+
+| atrakcje-groty-mechowskie.jpg | Groty Mechowskie w Mechowie | https://commons.wikimedia.org/wiki/File:Groty_Mechowskie_1.jpg | Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons |
+| atrakcje-kosciol-rowy.jpg | Kościół Apostołów Piotra i Pawła w Rowach | https://commons.wikimedia.org/wiki/File:Rowy_-_Church_01.jpg | Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-osieki-leborskie.jpg | Kościół NMP Gwiazdy Morza w Osiekach Lęborskich | https://commons.wikimedia.org/wiki/File:Osieki_L%C4%99borskie_-_Church_01.jpg | Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-trzebielino.jpg | Kościół Niepokalanego Serca NMP w Trzebielinie | https://commons.wikimedia.org/wiki/File:Trzebielino_pomorskie_ko%C5%9Bci%C3%B3%C5%82_Niepokalanego_Serca_NMP_A_169_%282%29.jpg | Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-kosciol-zmartwychwstania-koscierzyna.jpg | Kościół Zmartwychwstania Pańskiego w Kościerzynie | https://commons.wikimedia.org/wiki/File:Ko%C5%9Bci%C3%B3%C5%82_Zmartwychwsta%C5%84c%C3%B3w_w_Ko%C5%9Bcierzynie.jpg | Fot. AsalmZNC, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-pietrzykowo.jpg | Kościół św. Andrzeja Boboli w Pietrzykowie | https://commons.wikimedia.org/wiki/File:Pietrzykowo%2C_ko%C5%9Bci%C3%B3%C5%82_1426.jpg | Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-kosciol-wytowno.jpg | Kościół św. Franciszka z Asyżu w Wytownie | https://commons.wikimedia.org/wiki/File:Wytowno_-_Church_01.jpg | Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-charbrowo.jpg | Kościół św. Józefa Oblubieńca w Charbrowie | https://commons.wikimedia.org/wiki/File:Charbrowo19.JPG | Fot. Ciacho5, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-borzyszkowy.jpg | Kościół św. Marcina w Borzyszkowach | https://commons.wikimedia.org/wiki/File:B%C3%B2rz%C3%ABszk%C3%B2w%C3%AB_-_k%C3%B2sc%C3%B3%C5%82_%281%29.jpg | Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-lipusz.jpg | Kościół św. Michała Archanioła w Lipuszu | https://commons.wikimedia.org/wiki/File:Saint_Michael_church_in_Lipusz.jpg | Fot. Reptar, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-szemud.jpg | Kościół św. Mikołaja w Szemudzie | https://commons.wikimedia.org/wiki/File:Szem%C3%B4%C5%82d_-_k%C3%B2sc%C3%B3%C5%82.JPG | Fot. Gdaniec, CC BY 3.0, Wikimedia Commons |
+| atrakcje-kosciol-dobieszewo.jpg | Kościół św. Stanisława w Dobieszewie | https://commons.wikimedia.org/wiki/File:Dobieszewo_%285%29.jpg | Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons |
+| atrakcje-kladka-obrotowa-ustka.jpg | Kładka obrotowa w porcie w Ustce | https://commons.wikimedia.org/wiki/File:River_mouth_swing_bridge_in_Ustka.jpg | Fot. Romazur, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-mlyn-lipusz.jpg | Młyn wodny w Lipuszu | https://commons.wikimedia.org/wiki/File:2004_Lipusz%2C_m%C5%82yn_wodny_1.PNG | Fot. Jan Burnewicz, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-palac-nowecin.jpg | Pałac (Zamek) w Nowęcinie | https://commons.wikimedia.org/wiki/File:Now%C4%99cin_-_Castle_01.jpg | Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-palac-godetowo.jpg | Pałac w Godętowie | https://commons.wikimedia.org/wiki/File:God%C4%99towo_-_Palace_01.jpg | Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-spichlerz-port-ustka.jpg | Port i spichlerze w Ustce | https://commons.wikimedia.org/wiki/File:Ustka%2C_Bulwar_Portowy_6_-_spichlerz.jpg | Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons |
+| atrakcje-zlota-gora-widok.jpg | Punkt widokowy na Złotej Górze koło Brodnicy Górnej | https://commons.wikimedia.org/wiki/File:Jezioro_Brodno_Wielkie_-_panoramio.jpg | Fot. Hanc Tomasz, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-rezerwat-darzlubskie-buki.jpg | Rezerwat Darżlubskie Buki koło Mechowa | https://commons.wikimedia.org/wiki/File:Dar%C5%BClubskie_Buki_1.JPG | Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons |
+| atrakcje-wydma-lubiatowska.jpg | Rezerwat Wydma Lubiatowska | https://commons.wikimedia.org/wiki/File:Wydma_Lubiatowska_-_widok_na_morze.jpg | Fot. Lena Barańska, CC BY 3.0, Wikimedia Commons |
+| atrakcje-sanktuarium-sianowo.jpg | Sanktuarium Królowej Kaszub w Sianowie | https://commons.wikimedia.org/wiki/File:Sianowo%2C_Sanktuarium_MB_Sianowskiej_%28Panoramio_15849641%29.jpg | Fot. t.przechlewski, CC BY 3.0, Wikimedia Commons |
+| atrakcje-sciezka-warcino.jpg | Ścieżka edukacyjna przy zespole pałacowo-parkowym w Warcinie | https://commons.wikimedia.org/wiki/File:Pa%C5%82ac_Bismarcka_w_Warcinie.JPG | Fot. Fajna Asia, CC BY-SA 3.0 pl, Wikimedia Commons |
+| deszcz-muzeum-pismiennictwa-wejherowo.jpg | Muzeum Piśmiennictwa i Muzyki Kaszubsko-Pomorskiej w Wejherowie | https://commons.wikimedia.org/wiki/File:Muzeum_Pi%C5%9Bmiennictwa_i_Muzyki_Kaszubsko-Pomorskiej.JPG | Fot. Szczebel07, CC BY-SA 3.0 pl, Wikimedia Commons |
+| deszcz-muzeum-wsi-slowinskiej-kluki.jpg | Muzeum Wsi Słowińskiej w Klukach | https://commons.wikimedia.org/wiki/File:Kluki_Skansen_01.jpg | Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons |
+| deszcz-skansen-nadole.jpg | Skansen Zagroda Gburska i Rybacka w Nadolu | https://commons.wikimedia.org/wiki/File:Nadole_-_museum_01.jpg | Fot. Paweł 'pbm' Szubert, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-czarne-wesele-kluki.jpg | Czarne Wesele w Klukach | https://commons.wikimedia.org/wiki/File:Kluki_-_Skansen_28.jpg | Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons |
+| rozrywka-jezioro-sarbsko.jpg | Jezioro Sarbsko – windsurfing i kitesurfing | https://commons.wikimedia.org/wiki/File:Jezioro_Sarbsko_1.jpg | Fot. Olek Remesz, CC BY-SA 4.0, Wikimedia Commons |
+| rozrywka-kapielisko-struga.jpg | Kąpielisko nad Jeziorem Wielkim w Strudze | https://commons.wikimedia.org/wiki/File:Jezioro_Wielkie%2C_Struga.jpg | Fot. PiotrMig, CC BY-SA 4.0, Wikimedia Commons |
+| rozrywka-plaza-rowy.jpg | Plaża w Rowach | https://commons.wikimedia.org/wiki/File:Rowy%2C_pla%C5%BCa_%28HB1%29.jpg | Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons |
