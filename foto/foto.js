@@ -732,6 +732,134 @@ window.FOTO={
  "Stanica żeglarska w Gowidlinie": {
   "src": "rozrywka-stanica-gowidlino.jpg",
   "credit": "Fot. Gdaniec, CC BY 4.0, Wikimedia Commons"
+ },
+ "Dąb Wybickiego w Będominie": {
+  "src": "atrakcje-dab-wybickiego-bedomin.jpg",
+  "credit": "Fot. Tomek Pikuła, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kalwaria Wejherowska": {
+  "src": "atrakcje-kalwaria-wejherowska.jpg",
+  "credit": "Fot. Zala, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Klasztor benedyktynek i kościół Zwiastowania Pańskiego w Żarnowcu": {
+  "src": "atrakcje-klasztor-zarnowiec.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Mariacki w Słupsku": {
+  "src": "atrakcje-kosciol-mariacki-slupsk.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół NMP Wspomożenia Wiernych w Miastku": {
+  "src": "atrakcje-kosciol-miastko.jpg",
+  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół Najświętszego Zbawiciela w Ustce": {
+  "src": "atrakcje-kosciol-zbawiciela-ustka.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Trójcy Świętej i Wszystkich Świętych w Goręczynie": {
+  "src": "atrakcje-kosciol-goreczyno.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Anny w Barcinie": {
+  "src": "atrakcje-kosciol-barcino.jpg",
+  "credit": "Fot. Matthias v.d. Elbe, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Jakuba Apostoła w Lęborku": {
+  "src": "atrakcje-kosciol-sw-jakuba-lebork.jpg",
+  "credit": "Fot. Zala, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Józefa w Pomieczynie": {
+  "src": "atrakcje-kosciol-pomieczyno.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Marii Magdaleny w Ugoszczy": {
+  "src": "atrakcje-kosciol-ugoszcz.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Mikołaja w Zimowiskach": {
+  "src": "atrakcje-kosciol-zimowiska.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Wawrzyńca w Luzinie": {
+  "src": "atrakcje-kosciol-luzino.jpg",
+  "credit": "Fot. Bolszewski Wikipedysta, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Latarnia Morska Stilo w Osetniku": {
+  "src": "atrakcje-latarnia-stilo.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Młyn zamkowy i Spichrz solny w Lęborku": {
+  "src": "atrakcje-mlyn-spichrz-lebork.jpg",
+  "credit": "Fot. Ciacho5, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Pałac i park w Damnicy": {
+  "src": "atrakcje-palac-damnica.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Pałac w Niepoględziu": {
+  "src": "atrakcje-palac-niepogledzie.jpg",
+  "credit": "Fot. Torrosbak, CC BY 3.0, Wikimedia Commons"
+ },
+ "Pomnik wojny palikowej w Borowym Młynie": {
+  "src": "atrakcje-pomnik-wojny-palikowej.jpg",
+  "credit": "Fot. YazJazz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Promenada nadmorska i Park Zdrojowy w Ustce": {
+  "src": "atrakcje-promenada-ustka.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Ratusz w Lęborku": {
+  "src": "atrakcje-ratusz-lebork.jpg",
+  "credit": "Fot. Zala, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Rezerwat przyrody Orle nad Jeziorem Dużym": {
+  "src": "atrakcje-rezerwat-orle.jpg",
+  "credit": "Fot. Gdaniec, CC BY 3.0, Wikimedia Commons"
+ },
+ "Ruiny kościoła św. Mikołaja w Łebie": {
+  "src": "atrakcje-ruiny-kosciola-leba.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Syrenka i falochron wschodni w Ustce": {
+  "src": "atrakcje-syrenka-ustka.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Wzgórze Sobótka z wiatrakiem w Ręboszewie": {
+  "src": "atrakcje-wzgorze-sobotka-reboszewo.jpg",
+  "credit": "Fot. Pinkpiksi, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Bałtycka Galeria Sztuki Współczesnej w Słupsku": {
+  "src": "deszcz-baltycka-galeria-slupsk.jpg",
+  "credit": "Fot. Maria Golinski, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Muzeum Hymnu Narodowego w Będominie": {
+  "src": "deszcz-muzeum-hymnu-bedomin.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Muzeum Ziemi Usteckiej": {
+  "src": "deszcz-muzeum-ziemi-usteckiej.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Jarmark Cysterski w Żarnowcu": {
+  "src": "imprezy-jarmark-cysterski-zarnowiec.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Misterium Męki Pańskiej na Kalwarii Wejherowskiej": {
+  "src": "imprezy-misterium-kalwaria-wejherowo.jpg",
+  "credit": "Fot. Panek, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Ośrodek jeździecki Pałac Runowo": {
+  "src": "rozrywka-palac-runowo.jpg",
+  "credit": "Fot. Marek Zapart, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Plaża i ujście Orzechowej w Orzechowie": {
+  "src": "rozrywka-plaza-orzechowo.jpg",
+  "credit": "Fot. Antekbojar, CC0, Wikimedia Commons"
+ },
+ "Plaża wschodnia w Ustce": {
+  "src": "rozrywka-plaza-wschodnia-ustka.jpg",
+  "credit": "Fot. Klapka paradaja, CC BY-SA 4.0, Wikimedia Commons"
  }
 };
 
