@@ -122,7 +122,7 @@ window.FOTO={
   "credit": "Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons"
  },
  "Elektrownia wodna Strzegomino": {
-  "src": "atrakcje-zalew-konradowo.jpg",
+  "src": "atrakcje-elektrownia-strzegomino-kanal.jpg",
   "credit": "Fot. Leszek Adamczyk, CC BY 3.0, Wikimedia Commons"
  },
  "Elektrownia wodna Krzynia": {
@@ -222,8 +222,8 @@ window.FOTO={
   "credit": "Fot. Tydsonn, CC BY-SA 4.0, Wikimedia Commons"
  },
  "Jarmark Regionów – Kaszubska Sobota": {
-  "src": "imprezy-jarmark-regionow-bytow.jpg",
-  "credit": "Fot. Bogusław Linette, CC BY-SA 3.0 pl, Wikimedia Commons"
+  "src": "imprezy-rynek-bytow-zima.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
  },
  "Bytów Musical Festival": {
   "src": "imprezy-musical-zamek-bytow.jpg",
@@ -264,6 +264,18 @@ window.FOTO={
  "Kąpielisko Jeleń": {
   "src": "rozrywka-kapielisko-jelen.jpg",
   "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "BytOFFsky Festival": {
+  "src": "imprezy-rynek-bytow-zima.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Koncert kolęd i pastorałek w Parchowie": {
+  "src": "imprezy-koledy-gok-parchowo.jpg",
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "AQUA Centrum Kościerzyna": {
+  "src": "rozrywka-aqua-centrum-koscierzyna.jpg",
+  "credit": "Fot. Almondox, CC BY 3.0, Wikimedia Commons"
  }
 };
 

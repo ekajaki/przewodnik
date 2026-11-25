@@ -170,3 +170,9 @@ Wszystkie zdjęcia poglądowe (brak wolnych zdjęć dokładnie tych sklepów/sta
 | imprezy-dozynki-kolczyglowy-kosciol.jpg | Dożynki Gminy Kołczygłowy | https://commons.wikimedia.org/wiki/File:Kołczygłowy_pomorskie_kościół_Chrystusa_Króla_A_228.jpg | Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons |
 | imprezy-swieto-niepodleglosci-rynek-bytow.jpg | Święto Niepodległości w Bytowie | https://commons.wikimedia.org/wiki/File:BYTÓW_15.JPG | Fot. Antekbojar, CC BY-SA 3.0, Wikimedia Commons |
 | rozrywka-kapielisko-jelen.jpg | Kąpielisko Jeleń | https://commons.wikimedia.org/wiki/File:Bytów_jezioro_Jeleń_01.01.10_p3.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |
+
+| atrakcje-elektrownia-strzegomino-kanal.jpg | Elektrownia wodna Strzegomino | https://commons.wikimedia.org/wiki/File:Konradowo_2013_-_panoramio_(6).jpg | Fot. Leszek Adamczyk, CC BY 3.0, Wikimedia Commons |
+| imprezy-rynek-bytow-zima.jpg | Jarmark Regionów – Kaszubska Sobota | https://commons.wikimedia.org/wiki/File:Market_square_in_Bytow_(2).jpg | Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-rynek-bytow-zima.jpg | BytOFFsky Festival | https://commons.wikimedia.org/wiki/File:Market_square_in_Bytow_(2).jpg | Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-koledy-gok-parchowo.jpg | Koncert kolęd i pastorałek w Parchowie | https://commons.wikimedia.org/wiki/File:GOK_Parchowo_06.07.10_p.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |
+| rozrywka-aqua-centrum-koscierzyna.jpg | AQUA Centrum Kościerzyna | https://commons.wikimedia.org/wiki/File:Ko%C5%9Bcierzyna,_Aqua_Centrum_-_panoramio_(2).jpg | Fot. Almondox, CC BY 3.0, Wikimedia Commons |
