@@ -3,7 +3,7 @@
    - Leaflet i fonty: z pamięci,
    - kafelki mapy OSM: raz obejrzane zostają w pamięci (limit 1500),
    - pogoda i baza wpisów: sieć, a bez zasięgu ostatnia kopia. */
-var V="przewodnik-20261125f", CORE=["./","index.html","app.js","dane.js","i18n.js","i18n-dane.js","szukaj-dane.js","mapa/mapa-region-800.webp","mapa/mapa-region-1600.webp","icons.js","config.js","manifest.webmanifest","vendor/leaflet.js","rozeta.svg","haft.svg","ornament.svg","wzor.svg","rozeta-linia.svg","vendor/leaflet.css","vendor/images/layers.png","vendor/images/layers-2x.png"];
+var V="przewodnik-20261125g", CORE=["./","index.html","app.js","dane.js","i18n.js","i18n-dane.js","szukaj-dane.js","mapa/mapa-region-800.webp","mapa/mapa-region-1600.webp","icons.js","config.js","manifest.webmanifest","vendor/leaflet.js","rozeta.svg","haft.svg","ornament.svg","wzor.svg","rozeta-linia.svg","vendor/leaflet.css","vendor/images/layers.png","vendor/images/layers-2x.png"];
 self.addEventListener("install",function(e){e.waitUntil(caches.open(V).then(function(c){return c.addAll(CORE)}).then(function(){return self.skipWaiting()}));});
 self.addEventListener("activate",function(e){e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return k.indexOf("przewodnik-")===0&&k!==V&&k!=="przewodnik-tiles"&&k!=="przewodnik-ext"}).map(function(k){return caches.delete(k)}))}).then(function(){return self.clients.claim()}));});
 function trim(name,max){caches.open(name).then(function(c){c.keys().then(function(k){if(k.length>max)Promise.all(k.slice(0,k.length-max).map(function(r){return c.delete(r)}));});});}

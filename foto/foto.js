@@ -496,6 +496,126 @@ window.FOTO={
  "Plaża w Rowach": {
   "src": "rozrywka-plaza-rowy.jpg",
   "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Cmentarz leśników na Bukowej Górze koło Pyszna": {
+  "src": "atrakcje-cmentarz-lesnikow-bukowa-gora.jpg",
+  "credit": "Fot. Singdrossel, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Elektrownia Wodna Żarnowiec w Czymanowie": {
+  "src": "atrakcje-elektrownia-zarnowiec.jpg",
+  "credit": "Fot. Joanna Karnat, CC BY 3.0, Wikimedia Commons"
+ },
+ "Jezioro Dołgie Wielkie": {
+  "src": "atrakcje-jezioro-dolgie-wielkie.jpg",
+  "credit": "Fot. Szczureq, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kaplica św. Jerzego w Słupsku": {
+  "src": "atrakcje-kaplica-sw-jerzego-slupsk.jpg",
+  "credit": "Fot. KH-10101, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Matki Bożej Wspomożenia Wiernych w Zębowie": {
+  "src": "atrakcje-kosciol-zebowo.jpg",
+  "credit": "Fot. Maria Golinski, CC BY 2.5, Wikimedia Commons"
+ },
+ "Kościół Najświętszego Serca Pana Jezusa w Kramarzynach": {
+  "src": "atrakcje-kosciol-kramarzyny.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Niepokalanego Poczęcia NMP w Kwakowie": {
+  "src": "atrakcje-kosciol-kwakowo.jpg",
+  "credit": "Fot. Zentyg45, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Wniebowzięcia NMP w Łebie": {
+  "src": "atrakcje-kosciol-wniebowziecia-leba.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Andrzeja Apostoła w Garczynie": {
+  "src": "atrakcje-kosciol-garczyn.jpg",
+  "credit": "Fot. Gdaniec, CC BY 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Apostołów Piotra i Pawła w Chmielnie": {
+  "src": "atrakcje-kosciol-chmielno.jpg",
+  "credit": "Fot. Polimerek, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Judy Tadeusza w Lizakach": {
+  "src": "atrakcje-kosciol-lizaki.jpg",
+  "credit": "Fot. Ciacho5, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Katarzyny Aleksandryjskiej w Stężycy": {
+  "src": "atrakcje-kosciol-stezyca.jpg",
+  "credit": "Fot. Łukasz Niemiec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Michała Archanioła w Kiełpinie": {
+  "src": "atrakcje-kosciol-kielpino.jpg",
+  "credit": "Fot. Yusek, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół św. Mikołaja w Starznie": {
+  "src": "atrakcje-kosciol-starzno.jpg",
+  "credit": "Fot. Agata.Jung, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół św. Stanisława Kostki w Wałdowie": {
+  "src": "atrakcje-kosciol-waldowo.jpg",
+  "credit": "Fot. Krzysztof Masloch, domena publiczna, Wikimedia Commons"
+ },
+ "Mury obronne i Baszta Bluszczowa w Lęborku": {
+  "src": "atrakcje-baszta-bluszczowa-lebork.jpg",
+  "credit": "Fot. Tomasz Górny (Nemo5576), CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Pałac w Ciekocinku": {
+  "src": "atrakcje-palac-ciekocinko.jpg",
+  "credit": "Fot. GringoPL, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Pomost widokowy nad Łebskiem w Gaci": {
+  "src": "atrakcje-pomost-gac.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Rezerwat Jar Rzeki Raduni": {
+  "src": "atrakcje-jar-raduni.jpg",
+  "credit": "Fot. Jakub Miler, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Rezerwat Mierzeja Sarbska": {
+  "src": "atrakcje-mierzeja-sarbska.jpg",
+  "credit": "Fot. Karel Frydrýšek (Fry72), CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Rezerwat „Jezioro Orle” koło Przęsina": {
+  "src": "atrakcje-jezioro-orle.jpg",
+  "credit": "Fot. paciana, CC BY 3.0, Wikimedia Commons"
+ },
+ "Samolot Lim-5 w Miastku": {
+  "src": "atrakcje-samolot-lim5-miastko.jpg",
+  "credit": "Fot. Tomasz Sienicki, CC BY 2.5, Wikimedia Commons"
+ },
+ "Wiatrak holenderski w Zdrzewnie": {
+  "src": "atrakcje-wiatrak-zdrzewno.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Wydma Czołpińska": {
+  "src": "atrakcje-wydma-czolpinska.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Dwór Wybickich w Sikorzynie": {
+  "src": "deszcz-dwor-wybickich-sikorzyno.jpg",
+  "credit": "Fot. Bazie, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Izba Pamięci Ziemi Miasteckiej w Miastku": {
+  "src": "deszcz-izba-pamieci-miastko.jpg",
+  "credit": "Fot. Antekbojar, CC0, Wikimedia Commons"
+ },
+ "Muzeum Chleba w Ustce": {
+  "src": "deszcz-muzeum-chleba-ustka.jpg",
+  "credit": "Fot. Antekbojar, CC0, Wikimedia Commons"
+ },
+ "Muzeum Piaśnickie w Wejherowie": {
+  "src": "deszcz-muzeum-piasnickie.jpg",
+  "credit": "Fot. Bolszewski Wikipedysta, CC0, Wikimedia Commons"
+ },
+ "Dożynki Gminno-Parafialne w Lipuszu": {
+  "src": "imprezy-dozynki-lipusz-kosciol.jpg",
+  "credit": "Fot. Reptar, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Inscenizacja bitwy pod Świecinem": {
+  "src": "imprezy-bitwa-swiecino-pomnik.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
  }
 };
 
