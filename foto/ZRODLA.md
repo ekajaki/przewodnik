@@ -155,3 +155,18 @@ Wszystkie zdjęcia poglądowe (brak wolnych zdjęć dokładnie tych sklepów/sta
 
 
 - rozrywka-kapielisko-pomost-lato.jpg – karta „Kąpielisko Jeleń” (zdjęcie poglądowe: pomost nad Jeziorem Dąbrowskim w Gołubiu, 7.07.2010) – https://commons.wikimedia.org/wiki/File:Go%C5%82ubie_Jezioro_D%C4%85browskie_pomost_07.07.10_p.jpg – Przykuta – CC BY-SA 3.0
+
+
+# Zdjęcia z weryfikacji 25.11.2026 (tylko zdjęcia przedstawiające dane miejsce)
+
+| Plik | Karta | Strona pliku | Podpis |
+|---|---|---|---|
+| deszcz-muzeum-ziemi-koscierskiej.jpg | Muzeum Ziemi Kościerskiej i Muzeum Akordeonu | https://commons.wikimedia.org/wiki/File:Ko%C5%9Bcierzyna,_ratusz.jpg | Fot. PiotrMig, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-koledowanie-bytow.jpg | Bytowskie Kolędowanie | https://commons.wikimedia.org/wiki/File:KB_Ko%C5%9Bci%C3%B3%C5%82_ewangelicki_%C5%9Bw._El%C5%BCbiety,_ob._ko%C5%9Bci%C3%B3%C5%82_parafialny_%C5%9Bw._Katarzyny_Aleksandryjskiej.jpg | Fot. Poconaco, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-skotawskie-laki.jpg | Rezerwat „Skotawskie Łąki” | https://commons.wikimedia.org/wiki/File:Rezerwat_przyrody_Skotawskie_%C5%81%C4%85ki_(17).jpg | Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons |
+| imprezy-gckib-parchowo.jpg | Mikołajki „Jak z bajki” w Parchowie | https://commons.wikimedia.org/wiki/File:GOK_Parchowo_06.07.10_p.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |
+| imprezy-gckib-parchowo.jpg | Zabawa andrzejkowa w Parchowie | https://commons.wikimedia.org/wiki/File:GOK_Parchowo_06.07.10_p.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-gora-siemierzycka.jpg | Góra Siemierzycka | https://commons.wikimedia.org/wiki/File:Siemierzyckagora.jpg | Fot. Danka Agnieszka, CC BY-SA 3.0, Wikimedia Commons |
+| imprezy-dozynki-kolczyglowy-kosciol.jpg | Dożynki Gminy Kołczygłowy | https://commons.wikimedia.org/wiki/File:Kołczygłowy_pomorskie_kościół_Chrystusa_Króla_A_228.jpg | Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-swieto-niepodleglosci-rynek-bytow.jpg | Święto Niepodległości w Bytowie | https://commons.wikimedia.org/wiki/File:BYTÓW_15.JPG | Fot. Antekbojar, CC BY-SA 3.0, Wikimedia Commons |
+| rozrywka-kapielisko-jelen.jpg | Kąpielisko Jeleń | https://commons.wikimedia.org/wiki/File:Bytów_jezioro_Jeleń_01.01.10_p3.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |

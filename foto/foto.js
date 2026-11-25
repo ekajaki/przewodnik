@@ -10,7 +10,7 @@ window.FOTO={
   "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
  },
  "Rezerwat „Skotawskie Łąki”": {
-  "src": "skotawskie-laki.jpg",
+  "src": "atrakcje-skotawskie-laki.jpg",
   "credit": "Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons"
  },
  "Kościół Bożego Ciała w Jasieniu": {
@@ -89,10 +89,6 @@ window.FOTO={
   "src": "muzeum-zachodniokaszubskie-2.jpg",
   "credit": "Fot. Pleple2000, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Sobótka w Jasieniu": {
-  "src": "jasien-sobotka.jpg",
-  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Ścieżka „Szlakiem pięciu jezior”": {
   "src": "atrakcje-jezioro-pomyskie.jpg",
   "credit": "Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons"
@@ -123,10 +119,6 @@ window.FOTO={
  },
  "Elektrownia wodna Gałąźnia Mała": {
   "src": "atrakcje-galeznia-zamek-wodny.jpg",
-  "credit": "Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons"
- },
- "Ścieżka przyrodnicza „Gałęźnia Mała”": {
-  "src": "atrakcje-galeznia-kanal.jpg",
   "credit": "Fot. Mariusz Bąk, CC BY 3.0, Wikimedia Commons"
  },
  "Elektrownia wodna Strzegomino": {
@@ -240,8 +232,41 @@ window.FOTO={
  "Odsiecz Wiedeńska – widowisko historyczne": {
   "src": "imprezy-brzezno-kaszubi-pod-wiedniem.jpg",
   "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Muzeum Ziemi Kościerskiej i Muzeum Akordeonu": {
+  "src": "deszcz-muzeum-ziemi-koscierskiej.jpg",
+  "credit": "Fot. PiotrMig, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Bytowskie Kolędowanie": {
+  "src": "imprezy-koledowanie-bytow.jpg",
+  "credit": "Fot. Poconaco, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Mikołajki „Jak z bajki” w Parchowie": {
+  "src": "imprezy-gckib-parchowo.jpg",
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Zabawa andrzejkowa w Parchowie": {
+  "src": "imprezy-gckib-parchowo.jpg",
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Góra Siemierzycka": {
+  "src": "atrakcje-gora-siemierzycka.jpg",
+  "credit": "Fot. Danka Agnieszka, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Dożynki Gminy Kołczygłowy": {
+  "src": "imprezy-dozynki-kolczyglowy-kosciol.jpg",
+  "credit": "Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Święto Niepodległości w Bytowie": {
+  "src": "imprezy-swieto-niepodleglosci-rynek-bytow.jpg",
+  "credit": "Fot. Antekbojar, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kąpielisko Jeleń": {
+  "src": "rozrywka-kapielisko-jelen.jpg",
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
  }
 };
+
 window.FOTO_KAT={
  "start": {
   "src": "kat-start-jasien.jpg",
