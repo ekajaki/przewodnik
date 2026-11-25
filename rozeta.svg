@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 24 24">
+<!-- Rozeta kaszubska – znacznik koncepcji D -->
+<g fill="#1d4f91"><ellipse rx="2.5" ry="5.3" cy="-6.4"/><ellipse rx="2.5" ry="5.3" cy="-6.4" transform="rotate(45)"/><ellipse rx="2.5" ry="5.3" cy="-6.4" transform="rotate(90)"/><ellipse rx="2.5" ry="5.3" cy="-6.4" transform="rotate(135)"/><ellipse rx="2.5" ry="5.3" cy="-6.4" transform="rotate(180)"/><ellipse rx="2.5" ry="5.3" cy="-6.4" transform="rotate(225)"/><ellipse rx="2.5" ry="5.3" cy="-6.4" transform="rotate(270)"/><ellipse rx="2.5" ry="5.3" cy="-6.4" transform="rotate(315)"/></g>
+<g fill="#4f8fd4"><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(22.5)"/><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(67.5)"/><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(112.5)"/><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(157.5)"/><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(202.5)"/><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(247.5)"/><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(292.5)"/><ellipse rx="1.8" ry="3.7" cy="-4.4" transform="rotate(337.5)"/></g>
+<circle r="3.5" fill="#9fd0f2"/><circle r="2" fill="#f2c230"/><circle r=".9" fill="#c8262f"/>
+</svg>

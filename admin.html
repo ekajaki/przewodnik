@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel przewodnika</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Panel zarządzania przewodnikiem: pulpit, treści, historia zmian, uprawnienia */
+:root{--bg:#f6f3ec;--card:#fff;--ink:#1d2a2a;--muted:#5b6b6a;--line:#e3ddd0;--teal:#1e4f96;--teal-soft:#e4edf9;--coral:#c62f3b;--warn:#8a5d00;--warn-soft:#fff3d6;--red:#b3261e;--red-soft:#fde7e5;--ok:#2e7d32;--ok-soft:#e6f2e6;--focus:#f2c230}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121817;--card:#1b2322;--ink:#e8eeec;--muted:#a3b2af;--line:#2c3735;--teal:#8cc4ea;--teal-soft:#1d3433;--coral:#e8866a;--warn:#f2c230;--warn-soft:#3a2f17;--red:#ff8a80;--red-soft:#3a1c1c;--ok:#8cc490;--ok-soft:#173022;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121817;--card:#1b2322;--ink:#e8eeec;--muted:#a3b2af;--line:#2c3735;--teal:#8cc4ea;--teal-soft:#1d3433;--coral:#e8866a;--warn:#f2c230;--warn-soft:#3a2f17;--red:#ff8a80;--red-soft:#3a1c1c;--ok:#8cc490;--ok-soft:#173022;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 48px}
+header{background:#1b3566;color:#fff;padding:14px 0}
+header .wrap{padding-bottom:0;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+header h1{font-size:1.2rem;margin:0}
+header a{color:#fff}
+h2{font-size:1.12rem;margin:0 0 10px}
+h3{font-size:1rem;margin:16px 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+label{display:block;font-size:.85rem;font-weight:600;margin:10px 0 4px}
+input[type=text],input[type=email],input[type=password],input[type=number],input[type=url],input[type=tel],input[type=date],input[type=search],textarea,select{width:100%;min-height:42px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:620px){.row,.row3{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .9rem system-ui,sans-serif;cursor:pointer;text-decoration:none}
+.btn.pri{background:var(--teal);border-color:var(--teal);color:var(--card)}
+.btn.del{color:var(--red)}
+.btn.sm{min-height:34px;padding:5px 10px;font-size:.82rem}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,.chip:focus-visible,.tab:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.chip{flex:0 0 auto;min-height:36px;padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .85rem system-ui,sans-serif;cursor:pointer}
+.chip.on{background:var(--teal);border-color:var(--teal);color:var(--card)}
+.chip small{font-weight:500;opacity:.75;margin-left:4px}
+.checks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:4px}
+.checks label{display:flex;align-items:center;gap:6px;font-weight:500;margin:0}
+.item{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.item b{display:block}
+.item small{color:var(--muted)}
+.item .acts{margin:0;flex:0 0 auto;justify-content:flex-end}
+@media (max-width:620px){.item{flex-direction:column}.item .acts{justify-content:flex-start}}
+.badge{display:inline-block;font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--teal-soft);color:var(--teal);margin:0 0 0 6px;vertical-align:middle;white-space:nowrap}
+.badge.hid,.badge.warn{background:var(--warn-soft);color:var(--warn)}
+.badge.red{background:var(--red-soft);color:var(--red)}
+.badge.ok{background:var(--ok-soft);color:var(--ok)}
+.muted{color:var(--muted);font-size:.88rem}
+.msg{padding:10px 12px;border-radius:10px;margin:10px 0;font-size:.9rem}
+.msg.err{background:var(--red-soft);color:var(--red)}
+.msg.ok{background:var(--ok-soft);color:var(--ok)}
+#flash{position:sticky;top:8px;z-index:50}
+#pickmap{height:280px;border-radius:10px;border:1px solid var(--line);margin-top:6px}
+details summary{cursor:pointer;font-weight:600}
+[hidden]{display:none!important}
+/* zakładki panelu */
+.tabs{display:flex;gap:4px;overflow-x:auto;margin:14px 0 12px;border-bottom:2px solid var(--line)}
+.tab{flex:0 0 auto;min-height:44px;padding:10px 14px;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;background:none;color:var(--muted);font:600 .95rem system-ui,sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--teal)}
+/* pulpit */
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.stat b{display:block;font-size:1.5rem;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat span{font-size:.8rem;color:var(--muted)}
+.stat.warn b{color:var(--warn)}.stat.red b{color:var(--red)}.stat.ok b{color:var(--ok)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:820px){.grid2{grid-template-columns:1fr}}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.bar input[type=search]{flex:1 1 240px;min-width:0}
+.bar select{flex:0 1 240px;width:auto}
+.roles{width:100%;border-collapse:collapse;font-size:.88rem;table-layout:fixed;overflow-wrap:anywhere}@media (max-width:520px){.roles{font-size:.76rem}.roles th,.roles td{padding:6px 3px}}code{overflow-wrap:anywhere}
+.roles th,.roles td{border-top:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+.roles th{font-weight:600}
+.roles td.y{color:var(--ok);font-weight:700}.roles td.n{color:var(--muted)}
+.diff{font-size:.82rem;margin:4px 0 0;padding:0;list-style:none}
+.diff li{margin:2px 0}
+.diff del{color:var(--red)}.diff ins{color:var(--ok);text-decoration:none}
+.user{border-top:1px solid var(--line);padding:12px 0}
+.user:first-child{border-top:0}
+.user .head{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.secbox{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}
+.secbox label{display:flex;align-items:center;gap:5px;font-weight:500;margin:0;font-size:.85rem}
+.more{display:block;margin:12px auto 0}
+.hint{font-size:.82rem;color:var(--muted);margin:4px 0 0}
+.prev{display:flex;gap:10px;align-items:center;margin-top:8px}
+.prev img{width:96px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>🛠 Panel przewodnika</h1><a href="./">← Zobacz przewodnik</a></div></header>
+<main class="wrap">
+
+<div id="flash" role="status" aria-live="polite"></div>
+
+<section id="s-config" class="card" hidden>
+  <h2>Połączenie z bazą</h2>
+  <p class="muted">Adres projektu Supabase i klucz „anon public”. Zwykle są już zapisane w pliku config.js i ta sekcja się nie pokazuje.</p>
+  <label for="c-url">Adres projektu</label><input id="c-url" type="url" placeholder="https://TWOJ-PROJEKT.supabase.co">
+  <label for="c-key">Klucz „anon public” (nigdy service_role!)</label><input id="c-key" type="text">
+  <div class="acts"><button class="btn pri" id="c-save">Zapisz</button></div>
+</section>
+
+<section id="s-login" class="card" hidden style="max-width:480px;margin:20px auto">
+  <h2>Zaloguj się</h2>
+  <p class="muted">Panel jest dla osób dodanych przez administratora.</p>
+  <label for="l-email">E-mail</label><input id="l-email" type="email" autocomplete="username">
+  <label for="l-pass">Hasło</label><input id="l-pass" type="password" autocomplete="current-password">
+  <div class="acts"><button class="btn pri" id="l-go">Zaloguj</button><button class="btn" id="l-signup">Pierwszy raz? Załóż konto</button></div>
+  <p class="muted" id="signup-help" hidden>Wpisz e-mail, który podałeś administratorowi, i wymyśl hasło (min. 8 znaków), potem kliknij jeszcze raz „Załóż konto”. Supabase wyśle e-mail z linkiem potwierdzającym. Jeśli nie dotrze, poproś administratora o „Potwierdź konto”.</p>
+</section>
+
+<section id="s-panel" hidden>
+  <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
+    <span class="muted">Zalogowano: <b id="who"></b></span>
+    <span class="acts" style="margin:0"><button class="btn sm pri" id="new">➕ Nowe miejsce</button><button class="btn sm" id="logout">Wyloguj</button></span>
+  </div>
+  <div class="msg err" id="not-editor" hidden>To konto nie ma jeszcze uprawnień w panelu. Poproś administratora (ekajaki@gmail.com), żeby dodał Twój adres w zakładce „Uprawnienia”.</div>
+
+  <nav class="tabs" role="tablist" aria-label="Sekcje panelu">
+    <button class="tab" role="tab" data-tab="pulpit" aria-selected="true">📊 Pulpit</button>
+    <button class="tab" role="tab" data-tab="tresci" aria-selected="false">📝 Treści</button>
+    <button class="tab" role="tab" data-tab="historia" aria-selected="false">🕓 Historia zmian</button>
+    <button class="tab" role="tab" data-tab="uprawnienia" aria-selected="false" hidden id="tab-upr">👥 Uprawnienia</button>
+  </nav>
+
+  <!-- PULPIT -->
+  <div data-pane="pulpit">
+    <div class="stats" id="stats"></div>
+    <div class="grid2">
+      <div class="card"><h2>📅 Imprezy w najbliższych 30 dniach</h2><div id="d-events"></div></div>
+      <div class="card"><h2>✏️ Do uzupełnienia</h2><p class="muted">Imprezy, które zwykle odbywają się w dwóch kolejnych miesiącach, a nie mają jeszcze ogłoszonej daty.</p><div id="d-todo"></div></div>
+    </div>
+    <div class="card"><h2>🕓 Ostatnie zmiany</h2><div id="d-hist"></div></div>
+  </div>
+
+  <!-- TREŚCI -->
+  <div data-pane="tresci" hidden>
+    <div class="chips" id="sec-chips" role="group" aria-label="Dział"></div>
+    <div class="bar">
+      <input id="q" type="search" placeholder="Szukaj: nazwa, miejscowość, opis…" aria-label="Szukaj">
+      <select id="flt" aria-label="Filtr">
+        <option value="">Wszystkie pozycje</option>
+        <option value="chk">Sprawdź przed wizytą</option>
+        <option value="mod">Poprawione w panelu</option>
+        <option value="own">Dodane w panelu</option>
+        <option value="hid">Ukryte</option>
+        <option value="draft">Szkice</option>
+        <option value="nowe">Dodane w listopadzie 2026</option>
+        <option value="noll">Bez położenia na mapie</option>
+        <option value="noen">Bez tłumaczenia EN/DE</option>
+        <option value="nofoto">Bez zdjęcia</option>
+      </select>
+      <span class="muted" id="cnt"></span>
+    </div>
+
+    <div class="card" id="form-card" hidden>
+      <h2 id="form-title">Nowe miejsce</h2>
+      <p class="muted" id="form-repl" hidden></p>
+      <div class="row">
+        <div><label for="f-sek">Dział *</label><select id="f-sek"></select></div>
+        <div><label for="f-nazwa">Nazwa (po polsku) *</label><input id="f-nazwa" type="text" required></div>
+      </div>
+      <div data-not-plan>
+        <label for="f-miejsce">Miejscowość i adres</label><input id="f-miejsce" type="text" placeholder="np. Sulęczyno, ul. Kościelna 1">
+        <label for="f-opis">Opis (2–3 zdania: co tam jest, dlaczego warto, praktyczna wskazówka)</label><textarea id="f-opis"></textarea>
+        <div data-event hidden>
+          <div class="row3">
+            <div><label for="f-typ">Rodzaj imprezy</label><select id="f-typ"><option value="festyn">Festyn</option><option value="dni">Dni miasta / gminy</option><option value="jarmark">Jarmark</option><option value="kultura">Kultura</option><option value="sport">Sport</option><option value="swieto">Święto</option><option value="inne">Inne</option></select></div>
+            <div><label for="f-od">Data od</label><input id="f-od" type="date"></div>
+            <div><label for="f-do">Data do</label><input id="f-do" type="date"></div>
+          </div>
+          <div class="row">
+            <div><label for="f-mies">Miesiąc, w którym zwykle się odbywa</label><select id="f-mies"><option value="">—</option><option value="1">styczeń</option><option value="2">luty</option><option value="3">marzec</option><option value="4">kwiecień</option><option value="5">maj</option><option value="6">czerwiec</option><option value="7">lipiec</option><option value="8">sierpień</option><option value="9">wrzesień</option><option value="10">październik</option><option value="11">listopad</option><option value="12">grudzień</option></select></div>
+            <div><label for="f-ost">Ostatnia edycja</label><input id="f-ost" type="text" placeholder="np. 2026: 27–28 czerwca"></div>
+          </div>
+        </div>
+        <label data-kat-label>Kategorie</label><div class="checks" id="f-kat"></div>
+        <div class="row">
+          <div><label for="f-godz">Godziny i ceny (dla ludzi)</label><input id="f-godz" type="text" placeholder="np. wt–nd 10:00–16:00, bilet 20 zł"></div>
+          <div><label for="f-oh">Godziny do „Teraz otwarte”</label><input id="f-oh" type="text" placeholder="Mo-Fr 08:00-16:00; Sa 09:00-14:00"><p class="hint">Dni: Mo Tu We Th Fr Sa Su. Puste, gdy godziny są nieregularne.</p></div>
+        </div>
+        <div class="row">
+          <div><label for="f-tel">Telefon</label><input id="f-tel" type="tel" placeholder="+48 …"></div>
+          <div><label for="f-www">Strona www</label><input id="f-www" type="url" placeholder="https://…"></div>
+        </div>
+        <div class="row">
+          <div><label for="f-dostep">Dostęp</label><select id="f-dostep"><option value="">bez ograniczeń</option><option value="umow">zwiedzanie po umówieniu</option><option value="prywatny">teren prywatny – oglądać z drogi</option><option value="zakaz">zakaz wstępu – obserwować z daleka</option></select></div>
+          <div><label for="f-kol">Kolejność (mniejsza = wyżej)</label><input id="f-kol" type="number" value="0"></div>
+        </div>
+        <details style="margin-top:12px"><summary>🌍 Wersja angielska i niemiecka</summary>
+          <div class="row"><div><label for="f-nazwa-en">Nazwa EN</label><input id="f-nazwa-en" type="text"></div><div><label for="f-nazwa-de">Nazwa DE</label><input id="f-nazwa-de" type="text"></div></div>
+          <label for="f-opis-en">Opis EN</label><textarea id="f-opis-en"></textarea>
+          <label for="f-opis-de">Opis DE</label><textarea id="f-opis-de"></textarea>
+          <p class="hint">Puste pola = gość zagraniczny zobaczy tekst po polsku.</p>
+        </details>
+        <details style="margin-top:12px"><summary>📷 Zdjęcie</summary>
+          <label for="f-foto">Adres zdjęcia (https://…)</label><input id="f-foto" type="url" placeholder="https://…/zdjecie.jpg">
+          <label for="f-foto-autor">Podpis: autor i licencja</label><input id="f-foto-autor" type="text" placeholder="np. Fot. Jan Kowalski, CC BY-SA 4.0">
+          <div class="prev" id="f-foto-prev" hidden><img alt="Podgląd zdjęcia"><span class="muted">Podgląd</span></div>
+          <p class="hint">Wstawiaj tylko własne zdjęcia albo takie z licencją (np. Wikimedia Commons) i zawsze podpisuj autora.</p>
+        </details>
+        <label style="margin-top:14px">Położenie: dotknij mapy, żeby postawić punkt</label>
+        <div id="pickmap"></div>
+        <div class="row3">
+          <div><label for="f-lat">Szer. geogr.</label><input id="f-lat" type="number" step="any"></div>
+          <div><label for="f-lng">Dł. geogr.</label><input id="f-lng" type="number" step="any"></div>
+          <div><label for="f-km">…albo km od Łupawska</label><input id="f-km" type="number" step="0.1" min="0"></div>
+        </div>
+        <div class="checks" style="margin-top:12px">
+          <label><input type="checkbox" id="f-pol"> 💡 Poleca gospodarz (wyróżnij)</label>
+          <label><input type="checkbox" id="f-chk"> Plakietka „sprawdź przed wizytą”</label>
+          <label><input type="checkbox" id="f-ukr"> Szkic (nie pokazuj gościom)</label>
+        </div>
+      </div>
+      <div data-plan hidden>
+        <label for="f-kroki">Kroki planu: każdy w nowej linii</label>
+        <textarea id="f-kroki" style="min-height:140px" placeholder="Rano: …&#10;Obiad: …&#10;Po południu: …"></textarea>
+      </div>
+      <div class="acts"><button class="btn pri" id="f-save">💾 Zapisz</button><button class="btn" id="f-cancel">Anuluj</button></div>
+    </div>
+
+    <div class="card"><div id="list"></div><button class="btn more" id="more" hidden>Pokaż więcej</button></div>
+  </div>
+
+  <!-- HISTORIA -->
+  <div data-pane="historia" hidden>
+    <div class="card">
+      <h2>Historia zmian</h2>
+      <p class="muted">Każde zapisanie, ukrycie i usunięcie w panelu: kto, kiedy i co zmienił. Administrator może przywrócić poprzednią wersję.</p>
+      <div id="hist"></div>
+      <button class="btn more" id="hist-more" hidden>Starsze zmiany</button>
+    </div>
+  </div>
+
+  <!-- UPRAWNIENIA -->
+  <div data-pane="uprawnienia" hidden>
+    <div class="card">
+      <h2>Dodaj osobę</h2>
+      <div class="row">
+        <div><label for="r-email">E-mail</label><input id="r-email" type="email" placeholder="imie@example.com"></div>
+        <div><label for="r-rola">Rola</label><select id="r-rola"><option value="redaktor">Redaktor – edytuje treści</option><option value="admin">Administrator – wszystko</option></select></div>
+      </div>
+      <label>Działy, które może edytować redaktor <span class="muted">(nic nie zaznaczone = wszystkie)</span></label>
+      <div class="secbox" id="r-sek"></div>
+      <label for="r-not">Notatka (np. „Gmina Parchowo – imprezy”)</label><input id="r-not" type="text">
+      <div class="acts"><button class="btn pri" id="r-add">Dodaj</button></div>
+      <p class="hint">Potem wyślij tej osobie link do panelu: <code id="panel-link"></code>. Przy pierwszym wejściu klika „Załóż konto” i ustawia hasło.</p>
+    </div>
+    <div class="card"><h2>Osoby z dostępem</h2><div id="r-list"></div></div>
+    <div class="card">
+      <h2>Co może każda rola</h2>
+      <table class="roles">
+        <thead><tr><th>Uprawnienie</th><th>Administrator</th><th>Redaktor</th></tr></thead>
+        <tbody>
+          <tr><td>Dodawanie, poprawianie, ukrywanie miejsc</td><td class="y">tak, wszędzie</td><td class="y">tak, w swoich działach</td></tr>
+          <tr><td>Szkice i plakietka „sprawdź przed wizytą”</td><td class="y">tak</td><td class="y">tak</td></tr>
+          <tr><td>Podgląd historii zmian</td><td class="y">tak</td><td class="y">tak</td></tr>
+          <tr><td>Przywracanie poprzednich wersji</td><td class="y">tak</td><td class="n">nie</td></tr>
+          <tr><td>Zarządzanie osobami i rolami</td><td class="y">tak</td><td class="n">nie</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Uprawnienia pilnuje baza danych, nie tylko ten ekran: redaktor nie zapisze zmian poza swoimi działami, nawet gdyby próbował obejść panel.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="config.js"></script>
+<script src="dane.js"></script>
+<script src="i18n-dane.js"></script>
+<script src="foto/foto.js"></script>
+<script>
+(function(){
+"use strict";
+var CONFIG_KEY="ekajaki.supabase.config", SESSION_KEY="ekajaki.supabase.session", TABLE="przewodnik_wpisy";
+var SECTIONS=[
+ {id:"atrakcje",name:"🌲 Atrakcje",data:ATTR,kat:[["przyroda","Przyroda"],["woda","Woda i szlaki"],["zabytki","Zabytki"],["nietypowe","Nietypowe"],["deszcz","Pod dachem"]]},
+ {id:"rozrywka",name:"🎢 Rozrywka",data:FUN,one:true,kat:[["aquapark","Aquaparki i baseny"],["park","Parki rozrywki"],["zoo","Zoo i zwierzęta"],["aktywnie","Aktywnie"],["woda","Kąpieliska i sprzęt"],["kregle","Kręgle i kino"]]},
+ {id:"deszcz",name:"🌧️ Gdy pada",data:RAIN,kat:[]},
+ {id:"imprezy",name:"🎉 Imprezy",data:EVENTS,kat:[],event:true},
+ {id:"jedzenie",name:"🍽️ Jedzenie",data:FOOD,kat:[["blisko","Blisko Łupawska"],["bytow","Bytów"]]},
+ {id:"sklepy",name:"🛒 Sklepy i usługi",data:SHOPS,kat:[["spozywczy","Spożywczy"],["market","Market"],["piekarnia","Piekarnia"],["lokalne","Lokalne produkty"],["drogeria","Drogeria"],["apteka","Apteka"],["poczta","Poczta"],["zdrowie","Zdrowie"],["bankomat","Bankomat"],["wedkarski","Wędkarski"],["sport","Sport i rowery"],["niedziela","Otwarte w niedziele"]]},
+ {id:"paliwo",name:"⛽ Stacje paliw",data:FUEL,kat:[["24h","Całodobowa"],["lpg","LPG"],["sklep","Sklep"],["myjnia","Myjnia"],["adblue","AdBlue"],["ev","Ładowarka EV"]]},
+ {id:"noclegi",name:"🛏️ Noclegi",data:SLEEP,kat:[]},
+ {id:"it",name:"ℹ️ Informacja tur.",data:IT,kat:[]},
+ {id:"plany",name:"🗺️ Plany dnia",data:PLANS,plan:true},
+ {id:"plany_deszcz",name:"☔ Plany na deszcz",data:RAINPLANS,plan:true}
+];
+var SECN={};SECTIONS.forEach(function(s){SECN[s.id]=s;});
+var cfg=null, sess=null, rows=[], hist=[], sec="", page=1, PER=50, editing=null, replacing=null, formSec="atrakcje", pmap=null, pmark=null, myRole=null, mySek=null, histOff=0;
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function flash(t,ok){$("flash").innerHTML='<div class="msg '+(ok?"ok":"err")+'">'+esc(t)+'</div>';clearTimeout(flash._t);flash._t=setTimeout(function(){$("flash").innerHTML=""},ok?4000:9000);}
+function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||"null");if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v));}catch(e){return null}}
+function dt(s){try{return new Date(s).toLocaleString("pl-PL",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch(e){return s}}
+function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function loadCfg(){var c=window.PRZEWODNIK_SUPABASE;if(c&&c.url&&c.key)return {url:c.url.replace(/\/+$/,""),key:c.key};var l=ls(CONFIG_KEY);return l&&l.url&&l.key?l:null;}
+
+/* ---------- logowanie i zapytania ---------- */
+function authReq(grant,body){
+  return fetch(cfg.url+"/auth/v1/token?grant_type="+grant,{method:"POST",headers:{apikey:cfg.key,"Content-Type":"application/json"},body:JSON.stringify(body)})
+   .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error_description||j.msg||j.message||("Błąd "+r.status));return j;});})
+   .then(function(j){var s={access_token:j.access_token,refresh_token:j.refresh_token,expires_at:Date.now()+(j.expires_in||3600)*1000,email:(j.user&&j.user.email)||body.email||(sess&&sess.email)||""};ls(SESSION_KEY,s);sess=s;return s;});
+}
+function token(){
+  if(!sess)return Promise.reject(new Error("Nie zalogowano"));
+  if(sess.expires_at-Date.now()>60000)return Promise.resolve(sess.access_token);
+  return authReq("refresh_token",{refresh_token:sess.refresh_token}).then(function(s){return s.access_token});
+}
+function api(method,path,body){
+  return token().then(function(t){
+    return fetch(cfg.url+"/rest/v1/"+path,{method:method,headers:{apikey:cfg.key,Authorization:"Bearer "+t,"Content-Type":"application/json",Prefer:"return=representation"},body:body?JSON.stringify(body):undefined});
+  }).then(function(r){
+    if(r.status===204)return null;
+    return r.text().then(function(tx){var j=tx?JSON.parse(tx):null;if(!r.ok){var m=(j&&(j.message||j.hint))||("Błąd "+r.status);
+      if(/row-level security/i.test(m))m="Brak uprawnień do tego działu. Poproś administratora o dostęp.";
+      throw new Error(m);}return j;});
+  });
+}
+
+/* ---------- start ---------- */
+function show(){
+  cfg=loadCfg(); sess=ls(SESSION_KEY);
+  $("s-config").hidden=!!cfg; $("s-login").hidden=!cfg||!!sess; $("s-panel").hidden=!cfg||!sess;
+  if(cfg&&sess){$("who").textContent=sess.email||"";$("panel-link").textContent=location.href.split(/[?#]/)[0];checkRole();}
+}
+function checkRole(){
+  api("GET","przewodnik_redaktorzy?select=rola,sekcje&email=eq."+encodeURIComponent((sess.email||"").toLowerCase()))
+   .then(function(j){
+     myRole=j&&j[0]?j[0].rola:null; mySek=j&&j[0]&&j[0].sekcje&&j[0].sekcje.length?j[0].sekcje:null;
+     $("not-editor").hidden=!!myRole; $("new").hidden=!canAny();
+     $("who").textContent=(sess.email||"")+" · "+({admin:"administrator",redaktor:"redaktor"+(mySek?" ("+mySek.map(function(s){return SECN[s]?SECN[s].name.replace(/^\S+\s/,""):s}).join(", ")+")":""),moderator:"moderator"}[myRole]||"bez uprawnień");
+     $("tab-upr").hidden=myRole!=="admin";
+     loadAll();
+   }).catch(function(e){if(/JWT|token|Nie zalogowano/i.test(e.message)){ls(SESSION_KEY,null);sess=null;show();flash("Sesja wygasła, zaloguj się ponownie.");}else flash(e.message);});
+}
+function can(s){return myRole==="admin"||(myRole==="redaktor"&&(!mySek||mySek.indexOf(s)>=0));}
+function canAny(){return myRole==="admin"||myRole==="redaktor";}
+function loadAll(){
+  return Promise.all([
+    api("GET",TABLE+"?select=*&order=kolejnosc.asc,created_at.asc").then(function(j){rows=j||[];}),
+    api("GET","przewodnik_historia?select=*&order=kiedy.desc&limit=50").then(function(j){hist=j||[];histOff=hist.length;}).catch(function(){hist=[];})
+  ]).then(function(){renderAll();}).catch(function(e){flash(e.message)});
+}
+function renderAll(){buildItems();renderStats();renderChips();renderList();renderHist();if(myRole==="admin")loadUsers();}
+
+/* ---------- model: dane wbudowane + wpisy z panelu ---------- */
+var ITEMS=[];
+function tr(L,n){return window.DANE_I18N&&DANE_I18N[L]&&DANE_I18N[L][n]||null}
+function buildItems(){
+  ITEMS=[];
+  SECTIONS.forEach(function(s){
+    var mine=rows.filter(function(r){return r.sekcja===s.id}), hide={}, repl={};
+    mine.forEach(function(r){if(r.zastepuje){if(r.ukryty&&!r.opis&&!r.miejsce)hide[r.zastepuje]=r;else repl[r.zastepuje]=r;}});
+    s.data.forEach(function(o){var k=o.n||o.t;
+      ITEMS.push({sec:s.id,key:k,o:o,row:repl[k]||null,hideRow:hide[k]||null,builtin:true});});
+    mine.forEach(function(r){if(!r.zastepuje)ITEMS.push({sec:s.id,key:r.nazwa,o:null,row:r,builtin:false});});
+  });
+}
+function view(it){ /* aktualna postać pozycji (wpis z panelu ma pierwszeństwo) */
+  var r=it.row,o=it.o||{};
+  if(!r)return {n:o.n||o.t,p:o.p||"",d:o.d||(o.steps?o.steps.join(" · "):""),ll:o.ll,chk:!!o.chk,en:!!tr("en",o.n||o.t),foto:!!(window.FOTO||{})[o.n],nowe:o.nowe,od:o.od,mies:o.mies,ost:o.ost,draft:false};
+  return {n:r.nazwa,p:r.miejsce||"",d:r.opis||r.kroki||"",ll:r.lat!=null?[r.lat,r.lng]:null,chk:!!r.sprawdz,en:!!(r.opis_en||tr("en",it.key)),foto:!!(r.zdjecie_url||(window.FOTO||{})[it.key]),nowe:o.nowe,od:r.data_od,mies:r.miesiac,ost:r.ostatnio||o.ost,draft:!!r.ukryty};
+}
+function status(it){
+  if(it.hideRow)return '<span class="badge hid">ukryte</span>';
+  var v=view(it),b="";
+  if(!it.builtin)b+='<span class="badge ok">dodane w panelu</span>';else if(it.row)b+='<span class="badge">poprawione</span>';
+  if(v.draft)b+='<span class="badge hid">szkic</span>';
+  if(v.chk)b+='<span class="badge warn">sprawdź</span>';
+  if(!v.ll&&!SECN[it.sec].plan)b+='<span class="badge red">brak na mapie</span>';
+  return b;
+}
+
+/* ---------- pulpit ---------- */
+function count(f){return ITEMS.filter(f).length}
+function renderStats(){
+  var vis=count(function(it){return !it.hideRow&&!view(it).draft}),
+      chk=count(function(it){return !it.hideRow&&view(it).chk}),
+      noen=count(function(it){return !it.hideRow&&!SECN[it.sec].plan&&!view(it).en}),
+      noll=count(function(it){return !it.hideRow&&!SECN[it.sec].plan&&!view(it).ll}),
+      hid=count(function(it){return !!it.hideRow}),
+      draft=count(function(it){return !it.hideRow&&view(it).draft}),
+      mod=count(function(it){return !!it.row&&!it.hideRow}),
+      nowe=count(function(it){return view(it).nowe}),
+      nofoto=count(function(it){return !it.hideRow&&!SECN[it.sec].plan&&!view(it).foto});
+  var S=[[vis,"miejsc widocznych dla gości","",""],[nowe,"dodanych w listopadzie 2026","ok","nowe"],[mod,"poprawionych lub dodanych w panelu","","mod"],[chk,"z plakietką „sprawdź”","warn","chk"],
+         [noen,"bez tłumaczenia EN/DE","warn","noen"],[noll,"bez położenia na mapie","red","noll"],[nofoto,"bez zdjęcia","","nofoto"],[hid,"ukrytych","","hid"],[draft,"szkiców","","draft"]];
+  $("stats").innerHTML=S.map(function(s){return '<button type="button" class="stat '+s[2]+'" data-goflt="'+s[3]+'"><b>'+s[0]+'</b><span>'+s[1]+'</span></button>'}).join("");
+  var t=today(), in30=new Date(Date.now()+30*864e5).toISOString().slice(0,10), m=(new Date().getMonth()+1)%12+1, m2=m%12+1; /* dwa najbliższe miesiące */
+  var ev=ITEMS.filter(function(it){if(it.sec!=="imprezy"||it.hideRow)return false;var v=view(it);return v.od&&v.od<=in30&&(v.od>=t||(it.row?it.row.data_do:it.o.do)>=t);})
+    .sort(function(a,b){return view(a).od<view(b).od?-1:1});
+  $("d-events").innerHTML=ev.length?ev.map(function(it){var v=view(it);return '<div class="item"><div><b>'+esc(v.n)+'</b><small>'+esc(v.od)+' · '+esc(v.p)+'</small></div><div class="acts"><button class="btn sm" data-open="'+esc(it.sec+"|"+it.key)+'">Otwórz</button></div></div>'}).join(""):'<p class="muted">Brak imprez z datą w najbliższych 30 dniach.</p>';
+  var todo=ITEMS.filter(function(it){if(it.sec!=="imprezy"||it.hideRow)return false;var v=view(it);return (v.mies===m||v.mies===m2)&&!(v.od&&v.od>=t);});
+  $("d-todo").innerHTML=todo.length?todo.map(function(it){var v=view(it);return '<div class="item"><div><b>'+esc(v.n)+'</b><small>zwykle: '+["","styczeń","luty","marzec","kwiecień","maj","czerwiec","lipiec","sierpień","wrzesień","październik","listopad","grudzień"][v.mies]+(v.ost?' · ostatnio '+esc(v.ost):'')+'</small></div><div class="acts">'+(can("imprezy")?'<button class="btn sm" data-edit="'+esc(it.sec+"|"+it.key)+'">Dodaj datę</button>':'')+'</div></div>'}).join(""):'<p class="muted">Wszystko uzupełnione.</p>';
+  $("d-hist").innerHTML=hist.length?hist.slice(0,6).map(histRow).join(""):'<p class="muted">Jeszcze nic nie zmieniano w panelu.</p>';
+}
+
+/* ---------- lista treści ---------- */
+function renderChips(){
+  var c={};ITEMS.forEach(function(it){c[it.sec]=(c[it.sec]||0)+1});
+  $("sec-chips").innerHTML='<button class="chip'+(!sec?" on":"")+'" data-s="">Wszystkie<small>'+ITEMS.length+'</small></button>'+
+    SECTIONS.map(function(s){return '<button class="chip'+(s.id===sec?" on":"")+'" data-s="'+s.id+'">'+s.name+'<small>'+(c[s.id]||0)+'</small></button>'}).join("");
+}
+function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/ł/g,"l")}
+function filtered(){
+  var q=norm($("q").value.trim()), f=$("flt").value;
+  return ITEMS.filter(function(it){
+    if(sec&&it.sec!==sec)return false;
+    var v=view(it), plan=SECN[it.sec].plan;
+    if(f==="chk"&&!(v.chk&&!it.hideRow))return false;
+    if(f==="mod"&&!(it.builtin&&it.row))return false;
+    if(f==="own"&&it.builtin)return false;
+    if(f==="hid"&&!it.hideRow)return false;
+    if(f==="draft"&&!(v.draft&&!it.hideRow))return false;
+    if(f==="nowe"&&!v.nowe)return false;
+    if(f==="noll"&&(plan||v.ll||it.hideRow))return false;
+    if(f==="noen"&&(plan||v.en||it.hideRow))return false;
+    if(f==="nofoto"&&(plan||v.foto||it.hideRow))return false;
+    if(q&&norm(v.n+" "+v.p+" "+v.d).indexOf(q)<0)return false;
+    return true;});
+}
+function renderList(){
+  var L=filtered(), shown=L.slice(0,page*PER);
+  $("cnt").textContent=L.length+" "+(L.length===1?"pozycja":"pozycji");
+  $("list").innerHTML=shown.length?shown.map(function(it){
+    var v=view(it), id=esc(it.sec+"|"+it.key), ok=can(it.sec);
+    var acts;
+    if(it.hideRow)acts=ok?'<button class="btn sm" data-restore="'+esc(it.hideRow.id)+'">Przywróć</button>':'';
+    else acts=(ok?'<button class="btn sm" data-edit="'+id+'">Edytuj</button>':'')+
+      (ok&&it.builtin&&it.row?'<button class="btn sm" data-undo="'+esc(it.row.id)+'" title="Wróć do wersji z pliku dane.js">Cofnij poprawki</button>':'')+
+      (ok?(it.builtin?'<button class="btn sm del" data-hide="'+id+'">Ukryj</button>':'<button class="btn sm del" data-del="'+esc(it.row.id)+'">Usuń</button>'):'');
+    return '<div class="item"><div style="min-width:0"><b>'+esc(v.n)+status(it)+'</b><small>'+esc(SECN[it.sec].name)+(v.p?' · '+esc(v.p):'')+'</small></div><div class="acts">'+acts+'</div></div>';
+  }).join(""):'<p class="muted">Nic nie pasuje do wyszukiwania i filtra.</p>';
+  $("more").hidden=L.length<=shown.length;
+}
+function findItem(id){var p=id.split("|"),s=p.shift(),k=p.join("|");return ITEMS.filter(function(it){return it.sec===s&&it.key===k})[0];}
+
+/* ---------- formularz ---------- */
+function itemToRow(o,s){
+  if(o.steps)return {sekcja:s,nazwa:o.t,kroki:o.steps.join("\n")};
+  var en=tr("en",o.n)||{}, de=tr("de",o.n)||{};
+  var r={sekcja:s,nazwa:o.n,miejsce:o.p,opis:o.d,kategorie:o.kat?[o.kat]:(o.c||[]),telefon:o.t,www:o.w,adres:o.adr,godziny:o.h,
+    lat:o.ll?o.ll[0]:null,lng:o.ll?o.ll[1]:null,km:o.ll?null:(o.km==null?null:o.km),sprawdz:!!o.chk,polecane:!!o.pol,godziny_oh:o.oh||null,dostep:o.acc||null,
+    nazwa_en:en.n||null,nazwa_de:de.n||null,opis_en:en.d||null,opis_de:de.d||null};
+  if(s==="imprezy"){r.typ=o.typ;r.data_od=o.od||null;r.data_do=o.do||null;r.miesiac=o.mies||null;r.ostatnio=o.ost||null;}
+  return r;
+}
+function fillSek(){
+  $("f-sek").innerHTML=SECTIONS.filter(function(s){return can(s.id)}).map(function(s){return '<option value="'+s.id+'">'+s.name+'</option>'}).join("");
+}
+function openForm(r,orig,s){
+  formSec=s||(r&&r.sekcja)||sec||(mySek?mySek[0]:"atrakcje"); if(!can(formSec))formSec=(SECTIONS.filter(function(x){return can(x.id)})[0]||{}).id;
+  editing=r&&r.id?r:null; replacing=orig?(orig.n||orig.t):(r&&r.zastepuje)||null;
+  fillSek(); $("f-sek").value=formSec; $("f-sek").disabled=!!(editing||replacing);
+  $("form-title").textContent=editing?"Edytuj":(orig?"Popraw pozycję":"Nowe miejsce");
+  $("form-repl").hidden=!replacing; $("form-repl").textContent=replacing?"Zmiany zastąpią w przewodniku pozycję „"+replacing+"”. Oryginał zostaje w pliku i można do niego wrócić przyciskiem „Cofnij poprawki”.":"";
+  r=r||{}; setFormSec();
+  var V=function(id,v){$(id).value=v==null?"":v};
+  V("f-nazwa",r.nazwa);V("f-miejsce",r.miejsce);V("f-opis",r.opis);V("f-tel",r.telefon);V("f-www",r.www);V("f-godz",r.godziny);V("f-oh",r.godziny_oh);
+  V("f-lat",r.lat);V("f-lng",r.lng);V("f-km",r.km);V("f-kroki",r.kroki);V("f-kol",r.kolejnosc||0);V("f-dostep",r.dostep);
+  V("f-nazwa-en",r.nazwa_en);V("f-nazwa-de",r.nazwa_de);V("f-opis-en",r.opis_en);V("f-opis-de",r.opis_de);V("f-foto",r.zdjecie_url);V("f-foto-autor",r.zdjecie_autor);
+  V("f-typ",r.typ||"festyn");V("f-od",r.data_od);V("f-do",r.data_do);V("f-mies",r.miesiac);V("f-ost",r.ostatnio);
+  $("f-pol").checked=!!r.polecane;$("f-chk").checked=!!r.sprawdz;$("f-ukr").checked=!!(r.ukryty&&editing);
+  renderKat(r.kategorie||[]); fotoPrev();
+  setTab("tresci"); $("form-card").hidden=false; $("form-card").scrollIntoView({behavior:"smooth",block:"start"}); $("f-nazwa").focus({preventScroll:true});
+  if(!SECN[formSec].plan)setTimeout(initPick,80);
+}
+function setFormSec(){var s=SECN[formSec];
+  document.querySelector("[data-plan]").hidden=!s.plan; document.querySelector("[data-not-plan]").hidden=!!s.plan;
+  document.querySelector("[data-event]").hidden=!s.event; document.querySelector("[data-kat-label]").hidden=!(s.kat&&s.kat.length); $("f-kat").hidden=!(s.kat&&s.kat.length);}
+function renderKat(sel){var s=SECN[formSec];
+  $("f-kat").innerHTML=(s.kat||[]).map(function(k){return '<label><input type="'+(s.one?"radio":"checkbox")+'" name="kat" value="'+k[0]+'"'+(sel.indexOf(k[0])>=0?" checked":"")+'> '+k[1]+'</label>'}).join("");}
+$("f-sek").onchange=function(){formSec=this.value;setFormSec();renderKat([]);if(!SECN[formSec].plan)setTimeout(initPick,80);};
+function closeForm(){$("form-card").hidden=true;editing=null;replacing=null;}
+function fotoPrev(){var u=$("f-foto").value.trim(),p=$("f-foto-prev");if(/^https:\/\//.test(u)){p.hidden=false;p.querySelector("img").src=u;}else p.hidden=true;}
+$("f-foto").addEventListener("change",fotoPrev);
+function initPick(){
+  if(typeof L==="undefined")return;
+  if(!pmap){
+    pmap=L.map("pickmap").setView(HOME,10);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap"}).addTo(pmap);
+    L.circleMarker(HOME,{radius:7,color:"#fff",weight:2,fillColor:"#c9603f",fillOpacity:1}).bindTooltip("Łupawsko").addTo(pmap);
+    pmap.on("click",function(e){$("f-lat").value=e.latlng.lat.toFixed(5);$("f-lng").value=e.latlng.lng.toFixed(5);setPin();});
+  }
+  pmap.invalidateSize(); setPin(true);
+}
+function setPin(center){
+  var la=parseFloat($("f-lat").value), lo=parseFloat($("f-lng").value);
+  if(pmark){pmap.removeLayer(pmark);pmark=null;}
+  if(isFinite(la)&&isFinite(lo)){pmark=L.marker([la,lo]).addTo(pmap);if(center)pmap.setView([la,lo],13);}else if(center)pmap.setView(HOME,10);
+}
+["f-lat","f-lng"].forEach(function(id){$(id).addEventListener("change",function(){pmap&&setPin(true)})});
+function num(v){v=String(v).trim().replace(",",".");return v===""?null:(isFinite(+v)?+v:null)}
+function val(id){var v=$(id).value.trim();return v||null}
+$("f-save").onclick=function(){
+  var s=SECN[formSec], nazwa=$("f-nazwa").value.trim();
+  if(!nazwa)return flash("Podaj nazwę.");
+  if(!can(formSec))return flash("Nie masz uprawnień do tego działu.");
+  var body={sekcja:formSec,nazwa:nazwa,ukryty:$("f-ukr").checked,kolejnosc:parseInt($("f-kol").value,10)||0,zastepuje:replacing,updated_at:new Date().toISOString()};
+  if(s.plan){body.kroki=$("f-kroki").value.trim();if(!body.kroki)return flash("Wpisz przynajmniej jeden krok planu.");}
+  else{
+    var www=$("f-www").value.trim(); if(www&&!/^https?:\/\//i.test(www))www="https://"+www;
+    var foto=$("f-foto").value.trim(); if(foto&&!/^https:\/\//.test(foto))return flash("Adres zdjęcia musi zaczynać się od https://");
+    body.miejsce=val("f-miejsce");body.opis=val("f-opis");body.telefon=val("f-tel");body.www=www||null;body.godziny=val("f-godz");
+    body.kategorie=[].map.call($("f-kat").querySelectorAll("input:checked"),function(i){return i.value});
+    body.lat=num($("f-lat").value);body.lng=num($("f-lng").value);body.km=num($("f-km").value);
+    if((body.lat==null)!==(body.lng==null))return flash("Podaj obie współrzędne albo żadnej.");
+    body.polecane=$("f-pol").checked;body.sprawdz=$("f-chk").checked;body.dostep=val("f-dostep");
+    body.nazwa_en=val("f-nazwa-en");body.nazwa_de=val("f-nazwa-de");body.opis_en=val("f-opis-en");body.opis_de=val("f-opis-de");
+    body.zdjecie_url=foto||null;body.zdjecie_autor=val("f-foto-autor");
+    var oh=$("f-oh").value.trim(); if(oh&&!/^(Mo|Tu|We|Th|Fr|Sa|Su)[A-Za-z,\-]*\s+(off|\d{1,2}:\d{2}-\d{1,2}:\d{2})/.test(oh))return flash("Godziny w złym formacie. Przykład: Mo-Fr 08:00-16:00; Sa 09:00-14:00");
+    body.godziny_oh=oh||null;
+    if(s.event){body.typ=$("f-typ").value;body.data_od=$("f-od").value||null;body.data_do=$("f-do").value||null;body.miesiac=$("f-mies").value?+$("f-mies").value:null;body.ostatnio=val("f-ost");
+      if(!body.data_od&&!body.miesiac)return flash("Podaj datę albo przynajmniej miesiąc imprezy.");
+      if(body.data_do&&body.data_od&&body.data_do<body.data_od)return flash("Data „do” jest wcześniejsza niż „od”.");}
+  }
+  $("f-save").disabled=true;
+  var p=editing?api("PATCH",TABLE+"?id=eq."+encodeURIComponent(editing.id),body):api("POST",TABLE,body);
+  p.then(function(){flash("Zapisano. Goście zobaczą zmianę po odświeżeniu przewodnika.",true);closeForm();return loadAll();})
+   .catch(function(e){flash(e.message)}).then(function(){$("f-save").disabled=false;});
+};
+$("f-cancel").onclick=closeForm;
+$("new").onclick=function(){openForm(null,null,sec&&can(sec)?sec:null)};
+
+/* ---------- historia ---------- */
+var SKIP={id:1,created_at:1,updated_at:1,zmienil:1};
+var FN={nazwa:"nazwa",miejsce:"miejsce",opis:"opis",kategorie:"kategorie",lat:"szer.",lng:"dł.",km:"km",telefon:"telefon",www:"www",godziny:"godziny",godziny_oh:"godziny (format)",polecane:"poleca gospodarz",sprawdz:"„sprawdź”",ukryty:"ukryte/szkic",kolejnosc:"kolejność",typ:"rodzaj imprezy",data_od:"data od",data_do:"data do",miesiac:"miesiąc",opis_en:"opis EN",opis_de:"opis DE",nazwa_en:"nazwa EN",nazwa_de:"nazwa DE",dostep:"dostęp",zdjecie_url:"zdjęcie",zdjecie_autor:"podpis zdjęcia",ostatnio:"ostatnia edycja",kroki:"kroki",zastepuje:"zastępuje",sekcja:"dział",adres:"adres"};
+function short(v){if(v==null||v==="")return "—";v=Array.isArray(v)?v.join(", "):String(v);return v.length>70?v.slice(0,70)+"…":v}
+function histRow(h){
+  var lab={dodanie:"dodał(a)",zmiana:"zmienił(a)",usuniecie:"usunął/usunęła"}[h.akcja]||h.akcja;
+  var hideOp=h.akcja==="dodanie"&&h.nowe&&h.nowe.ukryty&&h.nowe.zastepuje&&!h.nowe.opis;
+  var diff="";
+  if(h.akcja==="zmiana"&&h.stare&&h.nowe){diff='<ul class="diff">'+Object.keys(h.nowe).filter(function(k){return !SKIP[k]&&JSON.stringify(h.stare[k])!==JSON.stringify(h.nowe[k])})
+    .map(function(k){return '<li>'+esc(FN[k]||k)+': <del>'+esc(short(h.stare[k]))+'</del> → <ins>'+esc(short(h.nowe[k]))+'</ins></li>'}).join("")+'</ul>';}
+  var act="";
+  if(myRole==="admin"){
+    if(h.akcja==="zmiana")act='<button class="btn sm" data-rev="'+h.id+'">Przywróć wersję sprzed zmiany</button>';
+    else if(h.akcja==="usuniecie")act='<button class="btn sm" data-rev="'+h.id+'">Przywróć</button>';
+  }
+  return '<div class="item"><div style="min-width:0"><b>'+esc(h.nazwa||"")+' <span class="badge">'+esc(SECN[h.sekcja]?SECN[h.sekcja].name:h.sekcja)+'</span></b><small>'+esc(dt(h.kiedy))+' · '+esc(h.kto||"")+' '+(hideOp?"ukrył(a) pozycję":lab)+'</small>'+diff+'</div><div class="acts">'+act+'</div></div>';
+}
+function renderHist(){$("hist").innerHTML=hist.length?hist.map(histRow).join(""):'<p class="muted">Jeszcze nic nie zmieniano w panelu.</p>';$("hist-more").hidden=hist.length<histOff||hist.length%50!==0||!hist.length;}
+$("hist-more").onclick=function(){api("GET","przewodnik_historia?select=*&order=kiedy.desc&limit=50&offset="+histOff).then(function(j){hist=hist.concat(j||[]);histOff+=(j||[]).length;renderHist();if(!(j||[]).length)$("hist-more").hidden=true;}).catch(function(e){flash(e.message)})};
+function revert(h){
+  var st=h.stare,body={};Object.keys(st).forEach(function(k){if(k!=="created_at"&&k!=="zmienil")body[k]=st[k];});
+  body.updated_at=new Date().toISOString();
+  if(h.akcja==="zmiana"){delete body.id;return api("PATCH",TABLE+"?id=eq."+encodeURIComponent(h.wpis_id),body);}
+  return api("POST",TABLE,body);
+}
+
+/* ---------- uprawnienia ---------- */
+function secBoxes(sel,dis){return SECTIONS.map(function(s){return '<label><input type="checkbox" value="'+s.id+'"'+((sel||[]).indexOf(s.id)>=0?" checked":"")+(dis?" disabled":"")+'> '+esc(s.name)+'</label>'}).join("")}
+$("r-sek").innerHTML=secBoxes([]);
+$("r-rola").onchange=function(){[].forEach.call($("r-sek").querySelectorAll("input"),function(i){i.disabled=$("r-rola").value!=="redaktor";});};
+function loadUsers(){
+  api("POST","rpc/przewodnik_konta",{}).then(function(j){
+    var me=(sess.email||"").toLowerCase();
+    $("r-list").innerHTML=(j||[]).map(function(r){
+      var st=!r.ma_konto?'<span class="badge hid">nie założył(a) konta</span>':r.potwierdzone?'<span class="badge ok">konto aktywne</span>':'<span class="badge hid">czeka na potwierdzenie</span>';
+      var self=r.email===me, e=esc(r.email);
+      return '<div class="user" data-u="'+e+'"><div class="head"><div><b>'+e+'</b>'+st+(self?'<span class="badge">to Ty</span>':'')+
+        '<div class="muted">'+(r.ostatnie_logowanie?'ostatnio zalogowany: '+esc(dt(r.ostatnie_logowanie)):'jeszcze się nie logował(a)')+(r.notatka?' · '+esc(r.notatka):'')+'</div></div>'+
+        (self?'':'<div class="acts" style="margin:0">'+(r.ma_konto&&!r.potwierdzone?'<button class="btn sm" data-uconf="'+e+'">Potwierdź konto</button>':'')+'<button class="btn sm del" data-udel="'+e+'">Usuń dostęp</button></div>')+'</div>'+
+        (self?'<p class="muted">Rola: '+esc(r.rola)+' (swojej roli nie możesz zmienić)</p>':
+        '<div class="row" style="margin-top:6px"><div><label>Rola</label><select data-urola><option value="redaktor"'+(r.rola==="redaktor"?" selected":"")+'>Redaktor</option>'+(r.rola==="moderator"?'<option value="moderator" selected>Moderator</option>':'')+'<option value="admin"'+(r.rola==="admin"?" selected":"")+'>Administrator</option></select></div>'+
+        '<div><label>Notatka</label><input type="text" data-unot value="'+esc(r.notatka||"")+'"></div></div>'+
+        '<label>Działy (nic = wszystkie)</label><div class="secbox" data-usek>'+secBoxes(r.sekcje,r.rola!=="redaktor")+'</div>'+
+        '<div class="acts"><button class="btn sm pri" data-usave="'+e+'">Zapisz zmiany</button></div>')+'</div>';
+    }).join("")||'<p class="muted">Brak osób.</p>';
+  }).catch(function(e){$("r-list").innerHTML='<p class="muted">'+esc(e.message)+'</p>';});
+}
+$("r-add").onclick=function(){
+  var e=$("r-email").value.trim().toLowerCase(), rola=$("r-rola").value;
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e))return flash("Podaj poprawny adres e-mail.");
+  var sk=rola==="redaktor"?[].map.call($("r-sek").querySelectorAll("input:checked"),function(i){return i.value}):[];
+  api("POST","przewodnik_redaktorzy",{email:e,rola:rola,sekcje:sk.length?sk:null,notatka:val("r-not")})
+   .then(function(){$("r-email").value="";$("r-not").value="";$("r-sek").innerHTML=secBoxes([]);flash("Dodano "+e+". Wyślij tej osobie link do panelu.",true);loadUsers();})
+   .catch(function(er){flash(/duplicate|unique/i.test(er.message)?"Ten adres już jest na liście.":er.message)});
+};
+
+/* ---------- zakładki i kliknięcia ---------- */
+function setTab(t){
+  [].forEach.call(document.querySelectorAll(".tab"),function(b){b.setAttribute("aria-selected",b.dataset.tab===t)});
+  [].forEach.call(document.querySelectorAll("[data-pane]"),function(p){p.hidden=p.dataset.pane!==t});
+  try{history.replaceState(null,"","#"+t)}catch(e){}
+}
+document.addEventListener("click",function(e){
+  var t=e.target.closest("button"); if(!t)return; var d=t.dataset;
+  if(d.tab){setTab(d.tab);return;}
+  if(d.goflt!==undefined&&t.classList.contains("stat")){sec="";page=1;$("flt").value=d.goflt;$("q").value="";renderChips();renderList();setTab("tresci");return;}
+  if(d.s!==undefined&&t.classList.contains("chip")){sec=d.s;page=1;renderChips();renderList();return;}
+  if(d.open){var it0=findItem(d.open);if(it0){sec=it0.sec;$("q").value=it0.key;$("flt").value="";page=1;renderChips();renderList();setTab("tresci");}return;}
+  if(d.edit){var it=findItem(d.edit);if(!it)return; if(it.row)openForm(it.row,it.builtin?it.o:null); else openForm(itemToRow(it.o,it.sec),it.o,it.sec); return;}
+  if(d.hide){var ih=findItem(d.hide); if(!confirm("Ukryć „"+ih.key+"” przed gośćmi? Można to cofnąć przyciskiem „Przywróć”."))return;
+    var go=ih.row?api("DELETE",TABLE+"?id=eq."+encodeURIComponent(ih.row.id)):Promise.resolve();
+    go.then(function(){return api("POST",TABLE,{sekcja:ih.sec,nazwa:ih.key,zastepuje:ih.key,ukryty:true});}).then(function(){flash("Ukryto.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
+  if(d.restore){api("DELETE",TABLE+"?id=eq."+encodeURIComponent(d.restore)).then(function(){flash("Przywrócono.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
+  if(d.undo){if(!confirm("Cofnąć poprawki i wrócić do oryginalnej wersji z przewodnika?"))return;
+    api("DELETE",TABLE+"?id=eq."+encodeURIComponent(d.undo)).then(function(){flash("Przywrócono wersję oryginalną.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
+  if(d.del){if(!confirm("Usunąć ten wpis? Zostanie w historii zmian i administrator może go przywrócić."))return;
+    api("DELETE",TABLE+"?id=eq."+encodeURIComponent(d.del)).then(function(){flash("Usunięto.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
+  if(d.rev){var h=hist.filter(function(x){return String(x.id)===d.rev})[0];if(!h||!confirm("Przywrócić „"+h.nazwa+"” do wersji sprzed tej zmiany?"))return;
+    revert(h).then(function(){flash("Przywrócono.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
+  if(d.usave){var box=t.closest(".user"), rola=box.querySelector("[data-urola]").value;
+    var sk=[].map.call(box.querySelectorAll("[data-usek] input:checked"),function(i){return i.value});
+    api("PATCH","przewodnik_redaktorzy?email=eq."+encodeURIComponent(d.usave),{rola:rola,sekcje:rola==="redaktor"&&sk.length?sk:null,notatka:(box.querySelector("[data-unot]").value.trim()||null)})
+     .then(function(){flash("Zapisano uprawnienia "+d.usave+".",true);loadUsers();}).catch(function(er){flash(er.message)});return;}
+  if(d.udel){if(!confirm("Odebrać dostęp "+d.udel+"? Jego wpisy zostają."))return;
+    api("DELETE","przewodnik_redaktorzy?email=eq."+encodeURIComponent(d.udel)).then(function(){flash("Odebrano dostęp.",true);loadUsers();}).catch(function(er){flash(er.message)});return;}
+  if(d.uconf){if(!confirm("Potwierdzić konto "+d.uconf+"? Zrób to tylko, gdy ta osoba potwierdziła Ci, że założyła konto."))return;
+    api("POST","rpc/przewodnik_potwierdz_konto",{p_email:d.uconf}).then(function(){flash("Konto potwierdzone.",true);loadUsers();}).catch(function(er){flash(er.message)});return;}
+});
+document.addEventListener("change",function(e){var s=e.target.closest("[data-urola]");if(s){var box=s.closest(".user");[].forEach.call(box.querySelectorAll("[data-usek] input"),function(i){i.disabled=s.value!=="redaktor";});}});
+$("q").addEventListener("input",function(){page=1;renderList();});
+$("flt").addEventListener("change",function(){page=1;renderList();});
+$("more").onclick=function(){page++;renderList();};
+
+/* ---------- logowanie: przyciski ---------- */
+$("c-save").onclick=function(){var u=$("c-url").value.trim().replace(/\/+$/,""),k=$("c-key").value.trim();if(!/^https:\/\/.+/.test(u)||k.length<20)return flash("Podaj adres https://… i klucz anon.");ls(CONFIG_KEY,{url:u,key:k});show();};
+$("l-go").onclick=function(){
+  authReq("password",{email:$("l-email").value.trim(),password:$("l-pass").value})
+   .then(function(){$("l-pass").value="";show();}).catch(function(e){var m=e.message;if(/not confirmed/i.test(m))m="konto nie jest jeszcze potwierdzone. Kliknij link z e-maila albo poproś administratora o potwierdzenie.";else if(/invalid login/i.test(m))m="zły e-mail lub hasło.";flash("Logowanie nieudane: "+m)});
+};
+$("l-pass").addEventListener("keydown",function(e){if(e.key==="Enter")$("l-go").click();});
+$("l-signup").onclick=function(){
+  var em=$("l-email").value.trim(), pw=$("l-pass").value;
+  if(!em||pw.length<8){$("signup-help").hidden=false;return flash("Wpisz e-mail i hasło (co najmniej 8 znaków), potem kliknij „Załóż konto”.");}
+  fetch(cfg.url+"/auth/v1/signup?redirect_to="+encodeURIComponent(location.href.split(/[?#]/)[0]),{method:"POST",headers:{apikey:cfg.key,"Content-Type":"application/json"},body:JSON.stringify({email:em,password:pw})})
+   .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.msg||j.error_description||j.message||("Błąd "+r.status));return j;});})
+   .then(function(j){$("signup-help").hidden=false;
+     if(j&&j.access_token){authReq("password",{email:em,password:pw}).then(function(){$("l-pass").value="";show();});return;}
+     flash("Konto założone. Kliknij link w e-mailu od Supabase, potem zaloguj się tutaj.",true);
+   }).catch(function(e){flash("Nie udało się założyć konta: "+e.message)});
+};
+$("logout").onclick=function(){ls(SESSION_KEY,null);sess=null;show();};
+var h0=(location.hash||"").slice(1); if(["pulpit","tresci","historia","uprawnienia"].indexOf(h0)>=0)setTab(h0);
+show();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Łupawsko i okolice – przewodnik</title>
+<meta name="description" content="Kieszonkowy przewodnik dla gości w Łupawsku: atrakcje Jeziora Jasień, doliny Łupawy i Bytowa, gdzie zjeść, co robić w deszczu, informacja turystyczna i numery alarmowe.">
+<meta name="theme-color" content="#0f2a52">
+<link rel="canonical" href="https://przewodnik.lupawsko.com/">
+<link rel="alternate" hreflang="pl" href="https://przewodnik.lupawsko.com/?lang=pl">
+<link rel="alternate" hreflang="en" href="https://przewodnik.lupawsko.com/?lang=en">
+<link rel="alternate" hreflang="de" href="https://przewodnik.lupawsko.com/?lang=de">
+<link rel="alternate" hreflang="x-default" href="https://przewodnik.lupawsko.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Łupawsko i okolice – przewodnik turystyczny">
+<meta property="og:description" content="Jezioro Jasień, dolina Łupawy, Bytów: atrakcje, rozrywka, jedzenie, imprezy, sklepy i plan na deszcz. PL · EN · DE">
+<meta property="og:url" content="https://przewodnik.lupawsko.com/">
+<meta property="og:image" content="https://przewodnik.lupawsko.com/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="rozeta.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Łupawsko i Jezioro Jasień","description":"Wieś nad Jeziorem Jasień w Parku Krajobrazowym Dolina Słupi, gmina Czarna Dąbrówka, powiat bytowski.","geo":{"@type":"GeoCoordinates","latitude":54.2769,"longitude":17.5897},"containedInPlace":{"@type":"AdministrativeArea","name":"Kaszuby, województwo pomorskie"},"publisher":{"@type":"Organization","name":"ekajaki.pl","url":"https://ekajaki.pl","telephone":"+48510808333"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261125a">
+<style>
+/* ============ Koncepcja D „Portal regionu” ============ */
+:root{
+  --bg:#ffffff; --bg2:#f3f6fa; --card:#ffffff; --ink:#0f2342; --muted:#4a5a72; --line:#e1e7ef;
+  --blue:#1d5aa6; --on-blue:#ffffff; --navy:#0f2a52; --sky:#9fd0f2; --sky-soft:#e6f1fb;
+  --yellow:#f2c230; --yellow-soft:#fdf3d3; --green:#2b7a30; --green-soft:#e5f2e5;
+  --red:#b81f2a; --red-soft:#fbe8e9; --brown:#6b4226; --gold:#7d5700; --gold-soft:#fbf0d4;
+  --shadow:0 1px 2px rgba(15,35,66,.06),0 10px 28px -8px rgba(15,35,66,.14);
+  --map-land:#f5f1e6; --map-forest:#dcebd3; --map-tree:#7fae78; --map-water:#9fd0f2; --map-water-line:#5c9fd6; --map-road:#c9b89a;
+  --k1:#1d4f91; --k2:#4f8fd4; --k3:#9fd0f2; --ky:#f2c230; --kg:#3d8b3d; --kr:#c8262f; --kb:#5b3a24;
+  --serif:Fraunces,"Iowan Old Style",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1322; --bg2:#0f1a2e; --card:#14203a; --ink:#e9eff8; --muted:#aab7cc; --line:#25334f;
+    --blue:#8cc4ea; --on-blue:#0b1a30; --navy:#081326; --sky-soft:#17294a;
+    --yellow-soft:#3a3115; --green:#8ad18e; --green-soft:#15301b; --red:#ff8d93; --red-soft:#3a1c24; --brown:#e0b48e; --gold:#f2c230; --gold-soft:#3a3115;
+    --shadow:0 1px 0 rgba(255,255,255,.03),0 10px 28px -10px rgba(0,0,0,.6);
+    --map-land:#15213a; --map-forest:#1a3329; --map-tree:#3f7a4f; --map-water:#3f7fbf; --map-water-line:#9fd0f2; --map-road:#4a5674;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+    --bg:#0b1322; --bg2:#0f1a2e; --card:#14203a; --ink:#e9eff8; --muted:#aab7cc; --line:#25334f;
+    --blue:#8cc4ea; --on-blue:#0b1a30; --navy:#081326; --sky-soft:#17294a;
+    --yellow-soft:#3a3115; --green:#8ad18e; --green-soft:#15301b; --red:#ff8d93; --red-soft:#3a1c24; --brown:#e0b48e; --gold:#f2c230; --gold-soft:#3a3115;
+    --shadow:0 1px 0 rgba(255,255,255,.03),0 10px 28px -10px rgba(0,0,0,.6);
+    --map-land:#15213a; --map-forest:#1a3329; --map-tree:#3f7a4f; --map-water:#3f7fbf; --map-water-line:#9fd0f2; --map-road:#4a5674;
+    color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans);padding-bottom:calc(70px + env(safe-area-inset-bottom));overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0;font-weight:600;letter-spacing:-.01em}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+.ic{display:inline-flex;vertical-align:-.17em;line-height:0}
+.ic svg{width:1.15em;height:1.15em}
+:focus-visible{outline:3px solid var(--ky);outline-offset:2px}
+
+/* ---------- Nagłówek (nad zdjęciem) ---------- */
+header.top{position:absolute;top:0;left:0;right:0;z-index:30;color:#fff;padding:calc(10px + env(safe-area-inset-top)) 0 0;pointer-events:none}
+header.top .wrap{display:flex;align-items:center;gap:10px;min-height:48px}
+header.top .wrap>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:9px;min-width:0;flex:1}
+.brand .mark{flex:0 0 34px;height:34px;border-radius:50%;background:#fff url(rozeta.svg) center/26px no-repeat;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.brand .bt{min-width:0}
+header.top h1{font-size:1.16rem;font-weight:600;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 6px rgba(0,0,0,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.langs{display:flex;gap:2px;padding:3px;border-radius:99px;background:rgba(8,20,40,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22)}
+.langs button{min-width:40px;min-height:40px;border-radius:99px;border:0;background:transparent;color:#fff;font:700 .74rem var(--sans);letter-spacing:.04em;cursor:pointer}
+.langs button.on{background:#fff;color:var(--navy)}
+
+/* ---------- Widoki i baner sekcji ---------- */
+.view{display:none;padding:0 0 12px}
+.view.on{display:block}
+.vhead{position:relative;margin:0 -16px;min-height:236px;padding:96px 20px 22px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:var(--navy) center/cover no-repeat;overflow:hidden}
+.vhead::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,16,34,.62) 0%,rgba(6,16,34,.08) 38%,rgba(6,16,34,.18) 55%,rgba(6,16,34,.82) 100%)}
+.vhead>*{position:relative}
+.vhead h2{font-size:2rem;font-weight:600;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.35);display:flex;align-items:center;gap:12px}
+.vhead .badge{margin-bottom:12px;flex:0 0 46px;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:var(--k1);box-shadow:0 0 0 3px rgba(255,255,255,.35),0 0 0 4px var(--ky)}
+.vhead .badge .ic svg{width:26px;height:26px}
+.vhead .cr,.shero .cr,.tile .cr{position:absolute;right:10px;bottom:6px;font:500 .62rem/1.2 var(--sans);color:rgba(255,255,255,.92);text-shadow:0 1px 3px rgba(0,0,0,.8);max-width:70%;text-align:right}
+.vhead .cr{bottom:6px}
+.haft{height:30px;margin:0 -16px 18px;background:var(--card) url(haft.svg) center/auto 30px repeat-x;border-bottom:1px solid var(--line)}
+.lead{display:none}
+#shop-lead{display:block;color:var(--muted);font-size:.86rem;margin:0 0 12px}
+.sh{font-size:1.5rem;margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+.sh::before{content:"";flex:0 0 24px;height:24px;background:url(rozeta.svg) center/contain no-repeat}
+.kick{display:block;font:700 .7rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin:30px 0 6px}
+.kick+.sh{margin-top:0}
+
+/* ---------- Start: hero ---------- */
+.shero{position:relative;margin:0 -16px;min-height:min(70svh,600px);padding:110px 20px 24px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:#24476e center 60%/cover no-repeat}
+.shero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,16,34,.6) 0%,rgba(6,16,34,0) 26%,rgba(6,16,34,0) 42%,rgba(6,16,34,.55) 70%,rgba(6,16,34,.86) 100%)}
+.shero>*{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:italic 500 1.05rem/1.2 var(--serif);color:#ffe28a;margin-bottom:8px}
+.eyebrow::before{content:"";width:22px;height:22px;background:url(rozeta.svg) center/contain no-repeat;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+.shero h2{font-size:clamp(2.2rem,10.5vw,3.1rem);line-height:1.02;font-weight:600;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 18px rgba(0,0,0,.35);margin:0 0 14px;max-width:12ch}
+.orn{display:block;width:150px;height:18px;margin:0 0 18px}
+.shero .gsearch{margin:0 0 18px;border:0;box-shadow:0 10px 30px -6px rgba(0,0,0,.45)}
+.search{width:100%;min-height:52px;padding:12px 16px 12px 46px;border-radius:99px;border:1px solid var(--line);background:var(--card) no-repeat 16px 50%/20px;color:var(--ink);font:500 1rem var(--sans);margin-bottom:12px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='%231d5aa6'%3E%3Cpath d='M380-320q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z'/%3E%3C/svg%3E")}
+.search::placeholder{color:var(--muted);opacity:1}
+.shero .cr{bottom:8px}
+.quick{display:flex;gap:8px;flex-wrap:wrap}
+.quick a{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;font:600 .86rem var(--sans);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.quick a .ic svg{width:18px;height:18px}
+.szideas{margin:-4px 0 14px}.szh{display:flex;align-items:center;gap:6px;margin:0 0 8px;font:700 .72rem/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase}.szh .ic svg{width:16px;height:16px}.shero .szh{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}.shero .szh .ic{color:#f2c230}.szrow{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;margin:0 -2px 6px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}.szrow::-webkit-scrollbar{display:none}.szi{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;color:#fff}.szi .ic svg{width:19px;height:19px;fill:currentColor}.sznow{flex:0 0 auto;scroll-snap-align:start;display:flex;align-items:center;gap:10px;width:212px;min-height:62px;padding:10px 12px;border-radius:16px;border:0;background:#fff;color:#0f2342;text-decoration:none;text-align:left;font:inherit;cursor:pointer;box-shadow:0 6px 18px -8px rgba(0,0,0,.55)}.sznow .szi{width:40px;height:40px;border-radius:12px}.szt{display:flex;flex-direction:column;min-width:0}.szt b{font:600 .86rem/1.2 var(--sans);color:#0f2342;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.szt small{font:500 .72rem/1.3 var(--sans);color:#5a6478;margin-top:2px}.sztile{flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:7px;width:86px;min-height:92px;padding:11px 6px 9px;border-radius:16px;border:0;background:#fff;color:#0f2342;font:600 .74rem/1.15 var(--sans);text-align:center;cursor:pointer;box-shadow:0 6px 18px -8px rgba(0,0,0,.55)}.sztile .szi{width:40px;height:40px}.szl{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.sznow:active,.sztile:active{transform:scale(.97)}.sznow:focus-visible,.sztile:focus-visible,.szchip:focus-visible{outline:3px solid #f2c230;outline-offset:2px}.szchip{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:5px 14px 5px 5px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .88rem var(--sans);cursor:pointer;white-space:nowrap}.szchip .szi{width:32px;height:32px}.szchip.on{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}#search-res .szrow{flex-wrap:wrap;overflow:visible;margin:0}#search-res .szh{color:var(--muted);margin-top:4px}#search-res .sztile,#search-res .sznow{background:var(--card);color:var(--ink)}.szg{display:flex;align-items:center;gap:8px;margin:20px 0 8px;font-size:1.1rem}.szg>span:not(.ic){font:600 .75rem var(--sans);background:var(--bg2,#eef2f7);color:var(--muted);border-radius:99px;padding:2px 8px}.szg.szhost{color:var(--red)}.szg.szhost .ic svg{width:20px;height:20px}.szmore{display:block;width:100%;min-height:44px;margin:4px 0 8px;border-radius:12px;border:1px dashed var(--line);background:transparent;color:var(--blue);font:600 .9rem var(--sans);cursor:pointer}
+#search-res{margin:14px 0}
+
+/* ---------- Kafle kategorii ---------- */
+.tiles{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:6px;min-height:156px;padding:14px;border-radius:18px;overflow:hidden;border:0;color:#fff;background:var(--navy);text-decoration:none;text-align:left;font:inherit;cursor:pointer;box-shadow:var(--shadow);isolation:isolate}
+.tile .tph{position:absolute;inset:0;z-index:-2;background:center/cover no-repeat;transition:transform .5s}
+.tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,16,34,.5) 0%,rgba(6,16,34,0) 24%,rgba(6,16,34,.08) 45%,rgba(6,16,34,.88) 100%)}
+.tile:active .tph{transform:scale(1.04)}
+.tile .ico{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:#fff;color:var(--k1);box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.tile .ico .ic svg{width:24px;height:24px}
+.tile b{font:600 1.16rem/1.15 var(--serif);text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.tile>span:not(.ico):not(.tph):not(.num){display:none}
+.tile .cr{top:8px;bottom:auto;right:10px;font-size:.58rem;max-width:80%}
+.tiles .tile:first-child{grid-column:1/-1;min-height:208px}
+.tiles .tile:first-child b{font-size:1.5rem}
+.tiles .tile:first-child>span:not(.ico):not(.tph){display:block;font-size:.86rem;color:rgba(255,255,255,.92)}
+.tile[data-go="jedzenie"] .ico{color:var(--kr)} .tile[data-go="rozrywka"] .ico{color:var(--kg)}
+.tile[data-go="imprezy"] .ico{color:#a8282f} .tile[data-go="sklepy"] .ico{color:var(--kb)} .tile[data-go="deszcz"] .ico{color:var(--k2)}
+.tile.sos{background:linear-gradient(150deg,#c42733,#8e1520);justify-content:space-between}
+.tile.sos::before{background:url(rozeta.svg) right -26px top -26px/110px no-repeat;opacity:.22}
+.tile.sos .num{font:700 2.6rem/1 var(--serif);color:#fff}
+.tiles>.tile.sos>span:last-child:not(.num){display:block;font-size:.78rem;color:#fff;opacity:.95}
+
+/* ---------- Karty ---------- */
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:0 0 14px;box-shadow:var(--shadow)}
+.card h3{font-size:1.18rem;margin-bottom:3px}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.meta{color:var(--muted);font-size:.84rem;margin:0 0 6px}
+.meta .ic{color:var(--kr)}
+:root[data-theme="dark"] .meta .ic{color:var(--red)}
+.card p{margin:6px 0}
+.card>p:not([class]){color:var(--ink);font-size:.93rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card.open>p:not([class]){display:block;-webkit-line-clamp:unset}
+.card>.info,.card>.report{display:none}
+.card.open>.info{display:block}.card.open>.report{display:inline-flex}
+.card.stay>.info{display:block}
+.more{display:inline-flex;align-items:center;gap:4px;min-height:40px;padding:0 2px;border:0;background:none;color:var(--blue);font:600 .84rem var(--sans);cursor:pointer;margin:-2px 0 -4px}
+.more .ic svg{width:18px;height:18px;transition:transform .2s}
+.card.open .more .ic svg{transform:rotate(180deg)}
+.has-ph .ph{margin:-14px -16px 12px;border-radius:18px 18px 0 0;overflow:hidden;position:relative;aspect-ratio:16/9;background:var(--bg2)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph figcaption{position:absolute;left:8px;bottom:6px;font-size:.6rem;line-height:1.3;color:#fff;background:rgba(6,16,34,.58);padding:2px 7px;border-radius:6px;max-width:calc(100% - 16px)}
+.has-ph>.ch .fav{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.94);border-color:transparent;box-shadow:0 2px 8px rgba(0,0,0,.2);color:#7d5700}
+.has-ph>.ch .fav.on{background:var(--ky);color:#3d2a00}
+.fav{flex:0 0 auto;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--gold);cursor:pointer;line-height:0;display:flex;align-items:center;justify-content:center}
+.fav .ic svg{width:22px;height:22px}
+.fav.on{background:var(--gold-soft);border-color:var(--ky)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--sky-soft);color:var(--blue)}
+.tag .ic svg{width:14px;height:14px}
+.tag.przyroda{background:var(--green-soft);color:var(--green)}
+.tag.zabytki{background:var(--gold-soft);color:var(--gold)}
+.tag.woda,.tag.deszcz{background:var(--sky-soft);color:var(--blue)}
+.tag.nietypowe{background:var(--red-soft);color:var(--red)}
+.tag.chk{background:var(--yellow-soft);color:var(--gold)}
+.card.feat{border:2px solid var(--blue);box-shadow:0 14px 34px -14px rgba(29,90,166,.55)}.card.feat::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;border-radius:16px 16px 0 0;z-index:2;background:linear-gradient(90deg,#1d5aa6 0 20%,#9fd0f2 20% 40%,#f2c230 40% 60%,#2b7a30 60% 80%,#b81f2a 80%)}
+.cennik{margin:10px 0 4px;padding:10px 12px;border-radius:12px;background:var(--bg2,#eef2f7)}.cennik>b{display:block;font:600 .8rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.cennik ul{list-style:none;margin:0;padding:0}.cennik li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--line)}.cennik li:first-child{border-top:0}.cennik .cn{display:flex;flex-direction:column;font-weight:600;font-size:.92rem}.cennik .cn small{font-weight:400;color:var(--muted);font-size:.78rem;line-height:1.35;margin-top:2px}.cennik .cp{flex:0 0 auto;font:700 1rem var(--sans);color:var(--blue);white-space:nowrap}
+.tag.pol{background:var(--red);color:#fff}
+:root[data-theme="dark"] .tag.pol{color:#2a0b0e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag.pol{color:#2a0b0e}}
+.info{font-size:.88rem;margin:8px 0 0;padding-left:0;list-style:none}
+.info li{margin:3px 0}
+.info b{font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);text-decoration:none;font:600 .88rem var(--sans);cursor:pointer}
+.btn .ic svg{width:18px;height:18px}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+.btn.ghost{min-width:44px;padding:8px 10px}
+.report{align-items:center;min-height:40px;margin-top:4px;font-size:.78rem;color:var(--muted)}
+.oh{font-size:.84rem;font-weight:600;margin:2px 0 4px}
+.oh.open{color:var(--green)} .oh.shut{color:var(--red)}
+.when{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.82rem;color:var(--red);background:var(--red-soft);padding:4px 10px;border-radius:99px;margin:4px 0 6px}
+.when.soft{color:var(--muted);background:var(--bg2);font-weight:600}
+.card.hl{outline:3px solid var(--ky);outline-offset:2px;transition:outline .3s}
+.small{font-size:.8rem;color:var(--muted)}
+.empty{color:var(--muted);text-align:center;padding:20px}
+.note{background:var(--yellow-soft);color:var(--ink);border-radius:14px;padding:12px 14px;font-size:.86rem;margin:0 0 14px;border-left:4px solid var(--ky)}
+
+/* ---------- Karuzele ---------- */
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 14px;scroll-padding:0 16px;scrollbar-width:none;overscroll-behavior-x:contain}
+.rail::-webkit-scrollbar{display:none}
+.rail>.card{flex:0 0 min(84%,340px);scroll-snap-align:start;margin:0}
+.rail>.empty{flex:1}
+.rail>.card:not(.plan){display:flex;flex-direction:column}
+.rail .card h3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.rail .card>.meta{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.rail .acts{margin-top:auto;padding-top:12px;flex-wrap:nowrap}
+.rail .acts .btn:not(.pri){font-size:0;gap:0;min-width:44px;padding:8px 12px}
+.all{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:10px 18px;border-radius:99px;border:1.5px solid var(--blue);color:var(--blue);text-decoration:none;font:600 .9rem var(--sans);margin:4px 0 0}
+
+/* ---------- Plany dnia ---------- */
+.plan{overflow:hidden;padding-top:16px}
+.plan h3{display:flex;align-items:center;gap:10px;font-size:1.12rem;padding-bottom:10px;margin-bottom:8px;border-bottom:1px dashed var(--line)}
+.plan h3 .ic{flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:var(--sky-soft);color:var(--k1);align-items:center;justify-content:center}
+.plan h3 .ic svg{width:24px;height:24px}
+:root[data-theme="dark"] .plan h3 .ic{color:var(--blue)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .plan h3 .ic{color:var(--blue)}}
+.rail .plan h3{display:flex;-webkit-line-clamp:unset}
+.plan ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.plan ol li{position:relative;padding:0 0 0 30px;margin:0 0 8px;font-size:.88rem;counter-increment:s;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.plan.open ol li{display:block}
+.plan ol li::before{content:counter(s);position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:var(--k1);color:#fff;font:700 .7rem/21px var(--sans);text-align:center}
+.plan ol li:nth-child(2)::before{background:var(--kr)} .plan ol li:nth-child(3)::before{background:var(--kg)} .plan ol li:nth-child(4)::before{background:#8a6100}
+.plan.rain h3 .ic{background:var(--sky-soft)}
+
+/* ---------- Pogoda ---------- */
+#wx{padding:14px 16px}
+#wx h3{font:700 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}
+#wx h3 .ic{color:var(--k2)}
+.wxrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.wxd{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;background:var(--bg2);border-radius:14px;padding:10px 12px;font-size:.78rem;color:var(--muted)}
+.wxd .wxi{grid-row:span 4;line-height:0}
+.wxd .wxi svg{width:38px;height:38px}
+.wxd b{color:var(--ink);font-size:.82rem}
+.wxd>span:nth-of-type(2){font:600 1.12rem var(--serif);color:var(--ink)}
+.ic-wx-sun,.ic-wx-partly{color:#d99a00} .ic-wx-cloud,.ic-wx-fog{color:#7f8ea6} .ic-wx-drizzle,.ic-wx-rain,.ic-wx-storm,.ic-drop{color:var(--k2)} .ic-wx-snow{color:#6aa9d8}
+#wx>.small{margin:8px 0 0}
+.wxtips{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.84rem;margin:8px 0 0}
+
+/* ---------- Twój pobyt / SOS ---------- */
+.card.stay{background:var(--navy);color:#fff;border:0;overflow:hidden;padding-top:40px}
+.card.stay::before{content:"";position:absolute;left:0;right:0;top:0;height:26px;background:#fff url(haft.svg) center/auto 26px repeat-x}
+.card.stay::after{content:"";position:absolute;right:-46px;bottom:-46px;width:180px;height:180px;background:url(rozeta-linia.svg) center/contain no-repeat;opacity:.3;pointer-events:none}
+.card.stay h3{color:#fff;font-size:1.3rem;display:flex;align-items:center;gap:8px}
+.card.stay h3 .ic{color:var(--ky)}
+.card.stay .meta{color:rgba(255,255,255,.82)}
+.card.stay .info{color:#fff}
+.card.stay .btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff;position:relative;z-index:1}
+.card.stay .btn.pri{background:var(--ky);border-color:var(--ky);color:#1d1600}
+.card.sos{background:var(--red-soft);border:0;border-left:5px solid var(--kr)}
+.card.sos h3{color:var(--red);display:flex;align-items:center;gap:8px}
+.card.sos .small{color:var(--ink)}
+.card.sos .btn.pri{background:var(--kr);border-color:var(--kr);color:#fff}
+.sos .num{font:700 1.6rem var(--serif);color:var(--red)}
+.posout{margin-top:10px;font-size:.95rem}
+
+/* ---------- Mapa ilustrowana ---------- */
+.gmeta{margin:8px 2px 0;font-size:.9rem}.gmeta a{color:var(--blue);font-weight:600}.gtitle{margin:14px 2px 6px;font-weight:600;color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em}.mapill{position:relative;display:block;width:100%;padding:0;margin:0;border:0;border-radius:18px;overflow:hidden;background:#f3ead4;box-shadow:var(--shadow);cursor:zoom-in}.mapill img{display:block;width:100%;height:auto}.mapill-hint{position:absolute;right:12px;bottom:12px;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:6px 14px 6px 8px;border-radius:99px;background:rgba(58,44,32,.88);color:#fff;font:600 .85rem var(--sans);box-shadow:0 4px 14px rgba(0,0,0,.3)}.mapill-ic{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#fff;color:#3a2c20}.mapill:focus-visible{outline:3px solid #f2c230;outline-offset:3px}.maphow{display:flex;gap:12px;align-items:flex-start;margin:10px 0 0;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}.maphow p{margin:0;font-size:.92rem;line-height:1.45}.maphow b{display:block;margin-bottom:2px}.maphow-ic{flex:0 0 auto;font-size:1.4rem;line-height:1}.mapcredit{margin:6px 2px 0;font-size:.72rem;color:var(--muted)}.mapfs-map{background:#f3ead4}#mapfs .leaflet-control-attribution{font-size:.62rem;line-height:1.3;max-width:70%;background:rgba(243,234,212,.85)}.mfs-sheet[hidden],.mfs-hint[hidden]{display:none!important}#mapfs .poi-pin{width:28px;height:28px;border-width:2px}#mapfs .poi-pin .poi-ic{width:15px;height:15px}.mfs-wrap{position:relative;flex:1;min-height:0;display:flex}.mfs-wrap .bikefs-map{flex:1}.mfs-chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--line)}.mfs-chips::-webkit-scrollbar{display:none}.mfs-chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--muted);font:600 .82rem var(--sans);cursor:pointer}.mfs-chip.on,.mfs-chip[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}.mfs-cd{width:12px;height:12px;border-radius:50%;opacity:.35}.mfs-chip.on .mfs-cd{opacity:1}.mfs-hint{position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:900;margin:0;max-width:min(86%,420px);padding:8px 14px;border-radius:12px;background:rgba(58,44,32,.9);color:#fff;font:500 .82rem/1.35 var(--sans);text-align:center;pointer-events:none}.mfs-ctl{display:flex;flex-direction:column}.mfs-ctl .bk-loc+.bk-loc{border-top:1px solid #ccc}.mfs-sheet{position:absolute;left:0;right:0;bottom:0;z-index:1000;max-height:52%;display:flex;flex-direction:column;background:var(--card);color:var(--ink);border-radius:18px 18px 0 0;box-shadow:0 -10px 30px -10px rgba(0,0,0,.45);padding-bottom:env(safe-area-inset-bottom)}.mfs-sh-h{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px 16px 8px;border-bottom:1px solid var(--line)}.mfs-sh-t{display:flex;flex-direction:column;min-width:0}.mfs-sh-t b{font:600 1.05rem/1.25 var(--serif)}.mfs-sh-t small{color:var(--muted);font-size:.8rem}.mfs-x{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;cursor:pointer}.mfs-list{overflow-y:auto;padding:6px 8px 10px}.mfs-row{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px;border:0;border-radius:12px;background:transparent;color:var(--ink);text-align:left;font:inherit;cursor:pointer}.mfs-row:hover,.mfs-row:focus-visible{background:var(--bg2,#eef2f7)}.mfs-dot{flex:0 0 auto;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;color:#fff}.mfs-dot .ic svg{width:19px;height:19px;fill:currentColor}.mfs-tx{flex:1;min-width:0;display:flex;flex-direction:column}.mfs-tx b{font:600 .92rem/1.25 var(--sans)}.mfs-tx small{color:var(--muted);font-size:.78rem}.mfs-row.hl{background:var(--bg2,#eef2f7);box-shadow:inset 3px 0 0 #a8462e}.mfs-row>.ic{flex:0 0 auto;transform:rotate(-90deg);opacity:.5}@media (min-width:900px){.mfs-sheet{left:auto;top:12px;right:12px;bottom:12px;width:380px;max-height:none;border-radius:18px}}
+.gchips{display:flex;flex-wrap:wrap;gap:8px}.gchip{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:500}.gchip:active{transform:scale(.97)}
+.mapbox{margin:0 0 6px;border-radius:18px;box-shadow:var(--shadow);background:var(--map-land);line-height:0}
+.mapa{display:block;width:100%;height:auto}
+.mapa .m-land{fill:var(--map-land)}
+.mapa .m-forest{fill:var(--map-forest)}
+.mapa .m-tree{fill:var(--map-tree)}
+.mapa .m-water{fill:var(--map-water);stroke:var(--map-water-line);stroke-width:1.2}
+.mapa .m-island{fill:var(--map-forest)}
+.mapa .m-river{fill:none;stroke:var(--map-water-line);stroke-width:3;stroke-linecap:round}
+.mapa .m-river2{stroke-width:2}
+.mapa .m-road{fill:none;stroke:var(--map-road);stroke-width:2.6;stroke-dasharray:7 4;stroke-linecap:round}
+.mapa .m-road2{stroke-width:1.6;stroke-dasharray:4 4}
+.mapa .m-rl{font:italic 600 10px var(--serif);fill:var(--map-water-line);letter-spacing:.08em;paint-order:stroke;stroke:var(--map-land);stroke-width:3px;stroke-linejoin:round}
+.mapa .m-pl{font:600 9.5px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--map-land);stroke-width:3px;stroke-linejoin:round}
+.mapa .m-dot{fill:var(--ink)}
+.mapa .m-lab{font:600 11px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--map-land);stroke-width:3.5px;stroke-linejoin:round}
+.mapa .m-big{font:700 14px var(--serif)}
+.mapa .m-town{font:600 11.5px var(--serif)}
+.mapa .m-lake{font:italic 600 10.5px var(--serif);fill:var(--blue);paint-order:stroke;stroke:var(--map-land);stroke-width:3px;stroke-linejoin:round}
+.mapa .g-wall{fill:#fffaf0;stroke:#7a4a2a;stroke-width:1.1;stroke-linejoin:round}
+.mapa .g-roof{fill:#c8262f;stroke:#7a4a2a;stroke-width:1;stroke-linejoin:round}
+.mapa .g-win{fill:#1d4f91}
+.mapa .g-tim{fill:none;stroke:#7a4a2a;stroke-width:.9}
+.mapa .m-pin{stroke:#fff;stroke-width:2.2}
+.mapa .p-woda{fill:#1d5aa6}.mapa .p-przyroda{fill:#2b7a30}.mapa .p-zabytki{fill:#7d5700}.mapa .p-nietypowe{fill:#b81f2a}
+.mapa .m-pinsh{fill:rgba(6,16,34,.25)}
+.mapa .m-pi{fill:#fff}
+.mapa .m-hit{fill:transparent}
+.mapa .m-a{cursor:pointer}
+.mapa .m-a:focus{outline:none}
+.mapa .m-a:focus-visible .m-hit{stroke:var(--ky);stroke-width:3}
+.mapa .m-halo{fill:#fff;stroke:var(--ky);stroke-width:2.5}
+.mapa .m-halo2{fill:#fff;stroke:var(--ky);stroke-width:1.5}
+.mapa .m-comp .m-n{fill:var(--ink);paint-order:stroke;stroke:var(--map-land);stroke-width:3px}
+.mapa .r1{fill:#1d4f91}.mapa .r2{fill:#4f8fd4}
+.mapa .c1{fill:#1d4f91}.mapa .c2{fill:#4f8fd4}.mapa .c3{fill:#c8262f}
+.mapa .m-n{font:700 9px var(--sans);fill:var(--ink)}
+.mapa .m-scale text{font:600 9.5px var(--sans);fill:var(--ink)}
+.mapa .sc0,.mapa .sc1{stroke:var(--ink);stroke-width:3;fill:none}.mapa .sc0{stroke-width:1.2}.mapa .sc2{stroke:var(--map-land);stroke-width:1.6}
+.mapa .m-frame{fill:none;stroke:var(--line)}
+.maplegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 2px 0;font-size:.78rem;color:var(--muted)}
+.maplegend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:1.5px solid #fff;box-shadow:0 0 0 1px var(--line)}
+
+/* ---------- Pozostałe elementy ---------- */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 16px 12px;margin:0 -16px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .86rem var(--sans);cursor:pointer}
+.chip .ic svg{width:18px;height:18px;color:var(--k1)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.on .ic svg{color:var(--ky)}
+:root[data-theme="dark"] .chip.on{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+:root[data-theme="dark"] .chip.on .ic svg{color:var(--on-blue)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.on{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}:root:not([data-theme="light"]) .chip.on .ic svg{color:var(--on-blue)}:root:not([data-theme="light"]) .chip .ic svg{color:var(--blue)}}
+:root[data-theme="dark"] .chip .ic svg{color:var(--blue)}
+.chip.sm{min-height:40px;padding:6px 12px;font-size:.8rem}
+.toggle{display:flex;gap:4px;margin-bottom:12px;padding:4px;background:var(--bg2);border-radius:99px;border:1px solid var(--line)}
+.toggle .chip{flex:1;border:0;background:transparent}
+.toggle .chip.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(15,35,66,.16)}
+:root[data-theme="dark"] .toggle .chip.on{background:var(--card);color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .toggle .chip.on{background:var(--card);color:var(--ink)}}
+.origin{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 10px;font-size:.8rem;color:var(--muted)}
+.month{font-family:var(--serif);font-size:1.12rem;margin:22px 0 10px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.month .ic{color:var(--kr)}
+h3.month::before{content:"";flex:0 0 18px;height:18px;background:url(rozeta.svg) center/contain no-repeat}
+#map{height:62vh;min-height:320px;border-radius:18px;border:1px solid var(--line);margin-bottom:12px;z-index:0}
+.leaflet-control-layers{font:500 .8rem var(--sans)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+td{padding:8px 4px;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{font-weight:600;white-space:nowrap;padding-right:10px}
+td a{display:inline-block;min-height:24px}
+details{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:4px 16px;margin-bottom:14px}
+summary{font-weight:600;cursor:pointer;min-height:44px;display:flex;align-items:center}
+details[open]{padding-bottom:12px}
+.sosbox .card.sos table a{font-weight:700}
+footer{padding:8px 0 24px;color:var(--muted);font-size:.8rem}
+footer ul{padding-left:18px}
+.endorn{display:block;margin:34px auto 8px;width:220px;height:auto}
+.colophon{text-align:center;color:var(--muted);font-size:.76rem;margin:0 0 12px}
+.colophon b{font-family:var(--serif);color:var(--ink);font-size:.95rem;font-weight:600}
+
+/* ---------- Dolne menu ---------- */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -6px 20px -10px rgba(15,35,66,.25)}
+nav.tabs .wrap{display:flex;padding:0 2px}
+nav.tabs button{flex:1 1 0;min-width:0;background:none;border:0;color:var(--muted);font:600 .64rem/1.1 var(--sans);letter-spacing:-.015em;padding:7px 0 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:62px;white-space:nowrap}
+nav.tabs button>span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+nav.tabs .i{display:flex;align-items:center;justify-content:center;width:48px;height:30px;border-radius:99px;transition:background .2s}
+nav.tabs .i .ic svg{width:23px;height:23px}
+nav.tabs button.on{color:var(--blue)}
+nav.tabs button.on .i{background:var(--sky-soft);color:var(--k1)}
+:root[data-theme="dark"] nav.tabs button.on .i{color:var(--blue)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) nav.tabs button.on .i{color:var(--blue)}}
+nav.tabs::before{content:"";position:absolute;left:0;right:0;top:-4px;height:3px;background:linear-gradient(90deg,var(--k1) 0 16.6%,var(--k2) 0 33.3%,var(--k3) 0 50%,var(--ky) 0 66.6%,var(--kg) 0 83.3%,var(--kr) 0)}
+@media (max-width:380px){nav.tabs .wrap{padding:0}nav.tabs button{font-size:.585rem;letter-spacing:-.035em}nav.tabs .i{width:40px}header.top h1{font-size:1rem;white-space:normal;line-height:1.1}.langs button{min-width:40px}}
+@media (min-width:700px){.tiles{grid-template-columns:1fr 1fr 1fr}.tiles .tile:first-child{grid-column:span 2}}
+
+/* ---------- Runda 2: ilustracje kart, kroki planów, styk hero ---------- */
+.shero+.haft,.shero~.haft{margin-top:0}
+.haft.st{margin-bottom:6px;border-bottom:0;box-shadow:0 8px 16px -12px rgba(15,35,66,.35)}
+.ill{position:relative;margin:-14px -16px 12px;height:86px;border-radius:18px 18px 0 0;overflow:hidden;display:flex;align-items:center;gap:12px;padding:0 64px 0 16px;color:#fff;
+  background:url(wzor.svg) 0 0/80px 80px repeat,linear-gradient(135deg,var(--c),var(--c2,var(--c)))}
+.ill::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--k1) 0 16.6%,var(--k2) 0 33.3%,var(--k3) 0 50%,var(--ky) 0 66.6%,var(--kg) 0 83.3%,var(--kr) 0);opacity:.9}
+.ill .ii{flex:0 0 50px;height:50px;border-radius:50%;background:#fff;color:var(--c);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(255,255,255,.3)}
+.ill .ii .ic svg{width:28px;height:28px}
+.ill .it{font:600 1.3rem/1.05 var(--serif);text-shadow:0 1px 6px rgba(0,0,0,.25);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ill .it small{display:block;font:700 .62rem/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.92;margin-bottom:3px}
+.has-ill>.ch .fav{position:absolute;top:21px;right:12px;background:rgba(255,255,255,.94);border-color:transparent;box-shadow:0 2px 8px rgba(0,0,0,.2);color:#7d5700}
+.has-ill>.ch .fav.on{background:var(--ky);color:#3d2a00}
+.card:not(.has-ph):not(.has-ill)>.ch .fav{position:absolute;top:10px;right:10px}
+.card:not(.has-ph):not(.has-ill)>.ch h3{padding-right:46px}
+.card>.ch{min-height:0}
+.rail .ill{height:74px}.rail .ill .ii{flex-basis:44px;height:44px}.rail .ill .it{font-size:1.12rem}
+.psteps{list-style:none;margin:2px 0 4px;padding:0;display:flex;flex-direction:column;gap:8px}
+.psteps li{display:flex;align-items:center;gap:10px;font:600 .9rem/1.25 var(--sans);color:var(--ink)}
+.psteps .pi{flex:0 0 34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--k1)}
+.psteps li:nth-child(2) .pi{background:var(--kr)}.psteps li:nth-child(3) .pi{background:var(--kg)}
+.psteps .pi .ic svg{width:19px;height:19px}
+.psteps small{display:block;font:700 .62rem/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
+.plan>ol{display:none}
+.plan.open>ol{display:block}.plan.open>.psteps{display:none}
+.plan ol li{-webkit-line-clamp:unset;display:block}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Mapa trasy rowerowej (podgląd + pełny ekran) */
+.zone{font-family:var(--serif,Georgia,serif);font-size:1.15rem;margin:22px 0 2px;display:flex;align-items:center;gap:8px}
+.zone .zn{font:600 .75rem var(--sans,sans-serif);background:var(--bg2,#eef2f7);color:var(--muted);border-radius:99px;padding:2px 8px}
+.zone-l{margin:0 0 10px;color:var(--muted);font-size:.85rem}
+.tag.acc-zakaz{background:#fde7e7;color:#a11a1a}
+.tag.acc-umow,.tag.acc-prywatny{background:#fff3d0;color:#7a5200}
+.poi{background:none;border:0}
+.poi-pin{position:relative;display:grid;place-items:center;width:36px;height:36px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--c);border:2.5px solid #fff;box-shadow:0 2px 6px rgba(10,20,40,.35)}
+.poi-pin.big{width:44px;height:44px}
+.poi-ic{transform:rotate(45deg);display:grid;place-items:center;color:#fff;width:20px;height:20px}
+.poi-pin.big .poi-ic{width:24px;height:24px}
+.poi-ic svg,.lay-ic svg{width:100%;height:100%;fill:currentColor}
+.lay-ic{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;padding:3px;vertical-align:-5px;margin-right:2px}
+.bikemap{height:260px;border-radius:12px;border:1px solid var(--line);margin:8px 0;z-index:0}
+.bikewrap{position:relative}
+.bikeopen{position:absolute;inset:8px 0;display:flex;align-items:flex-end;justify-content:center;padding:0 0 14px;background:transparent;border:0;cursor:pointer;border-radius:12px;z-index:500}
+.bikeopen .btn{box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.bikefs{position:fixed;inset:0;z-index:3000;background:var(--bg);display:flex;flex-direction:column}
+.bikefs[hidden]{display:none!important}
+.bikefs-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(8px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));background:var(--card);border-bottom:1px solid var(--line)}
+.bikefs-bar b{font-size:.95rem;min-width:0}
+.bikefs-map{flex:1;min-height:0}
+.bk-loc{width:36px;height:36px;background:#fff;border:2px solid rgba(0,0,0,.2);border-radius:6px;cursor:pointer;font-size:1.1rem;display:grid;place-items:center;color:#1b3566}
+.bk-loc.busy{opacity:.5}
+html.noscroll,html.noscroll body{overflow:hidden}
+.bikeleg{display:flex;flex-wrap:wrap;gap:4px 14px;list-style:none;padding:0;margin:4px 0;font-size:.82rem}
+.bikeleg .sw{display:inline-block;width:18px;height:5px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.bk-tip{font:600 .72rem var(--sans);padding:1px 6px}
+
+h2[tabindex="-1"]:focus{outline:none}
+.chips>:first-child,.szrow>:first-child{margin-left:auto}.chips>:last-child,.szrow>:last-child{margin-right:auto}
+.gchips,#search-res .szrow,.quick,.origin{justify-content:center}
+p:has(>a.all:only-child){text-align:center}
+/* ===== Komputer: pełny układ zamiast wąskiej kolumny telefonu ===== */
+@media (min-width:1024px){
+html,body{overflow-x:clip}
+.wrap{max-width:1180px;padding:0 32px}
+.shero,.vhead,.haft{--hw:calc(50vw - var(--sbw,0px)/2);margin-left:calc(50% - var(--hw));margin-right:calc(50% - var(--hw));padding-left:calc(var(--hw) - 50% + 32px);padding-right:calc(var(--hw) - 50% + 32px)}
+.haft{padding:0}
+.shero{min-height:min(76vh,640px);padding-top:120px;padding-bottom:36px}
+.shero>*{max-width:820px}
+.shero h2{font-size:3.7rem}
+.shero .lead{font-size:1.1rem;max-width:640px}
+.shero>.szideas{max-width:none}.shero .szrow:not(.sztiles){display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));overflow:visible;margin-right:0}.shero .szrow:not(.sztiles)>:nth-child(n+5){display:none}.shero .szrow:not(.sztiles)>*{margin:0}.shero .sznow{width:auto}.shero .sztiles{overflow:visible;margin-right:0}.shero .sztile{flex:1 1 0;min-width:0;width:auto}
+.vhead{min-height:300px;padding-top:120px;padding-bottom:30px}
+.tiles{grid-template-columns:repeat(4,1fr);gap:16px}
+.tiles .tile:first-child{grid-column:span 2;min-height:236px}
+.tiles .tile{min-height:236px}
+#it-list:not([hidden]),#attr-list:not([hidden]),#fun-list:not([hidden]),#food-list:not([hidden]),#sleep-list:not([hidden]),#ev-next:not([hidden]),#ev-cal:not([hidden]),#shop-list:not([hidden]),#rain-list:not([hidden]),#search-res:not([hidden]),#fav-list:not([hidden]),#next-events:not([hidden]),#plans:not([hidden]),#rain-plans:not([hidden]){display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,360px));justify-content:center;gap:18px;align-items:start;overflow:visible;margin-left:0;margin-right:0;padding:0 0 14px}
+#it-list>*,#attr-list>*,#fun-list>*,#food-list>*,#sleep-list>*,#ev-next>*,#ev-cal>*,#shop-list>*,#rain-list>*,#search-res>*,.rail>*{grid-column:1/-1;margin:0}
+#it-list>.card,#attr-list>.card,#fun-list>.card,#food-list>.card,#sleep-list>.card,#ev-next>.card,#ev-cal>.card,#shop-list>.card,#rain-list>.card,#search-res>.card,.rail>.card{grid-column:auto;flex:none;width:auto;margin:0}
+.rail>.card:not(.plan){height:100%}
+.rail .acts .btn:not(.pri){font-size:.9rem;gap:6px}
+
+#map{height:70vh}
+#v-info.on{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+#v-info>*{grid-column:1/-1;margin:0}
+#v-info>.card{grid-column:auto}
+#v-info>.card.sos{grid-column:1/-1}
+.zone,.month,.szg{margin-top:26px}
+}
+</style>
+<script>
+/* Koncepcja D: ogranicznik zapytań pogody (Open-Meteo) – najwyżej 1 próba na 20 min, błąd HTTP nie psuje widoku. */
+(function(){var f=window.fetch;if(!f)return;
+function empty(){return Promise.resolve(new Response("{}",{headers:{"Content-Type":"application/json"}}));}
+window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))){var k="przewodnik.d.meteo",n=Date.now(),l=0;
+ try{l=+(localStorage.getItem(k)||0);}catch(e){}
+ if(n-l<20*60e3)return empty();
+ try{localStorage.setItem(k,String(n));}catch(e){}
+ return f.apply(this,arguments).then(function(r){return r.ok?r:empty();},function(){return empty();});}}catch(e){}
+ return f.apply(this,arguments);};})();
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="mark" aria-hidden="true"></span><div class="bt">
+      <h1 data-i18n="hdr.t">Łupawsko i okolice</h1>
+      <p data-i18n="hdr.s">Kieszonkowy przewodnik: Jezioro Jasień, dolina Łupawy, Bytów</p>
+    </div></div>
+    <div class="langs" role="group" aria-label="Język / Language / Sprache"><button data-lang="pl">PL</button><button data-lang="en">EN</button><button data-lang="de">DE</button></div>
+  </div>
+</header>
+
+<script>(function(){function f(){document.documentElement.style.setProperty("--sbw",(window.innerWidth-document.documentElement.clientWidth)+"px")}f();addEventListener("resize",f);addEventListener("load",f);})();</script>
+<main class="wrap">
+
+<!-- ===================== START ===================== -->
+<section class="view on" id="v-start">
+  <div class="shero" data-ph="start">
+    <span class="eyebrow" lang="csb">Witôjta na Kaszëbach</span>
+    <h2 data-i18n="st.h">Witaj w Łupawsku!</h2>
+    <p data-i18n="st.l" class="lead">Mieszkasz nad Jeziorem Jasień, w granicach Parku Krajobrazowego „Dolina Słupi”. Poniżej masz to, co najważniejsze. Resztę znajdziesz w dolnym menu.</p>
+    <input class="search gsearch" id="gsearch" type="search" placeholder="Czego szukasz? np. coś dla dzieci, zamek, gdy pada…" aria-label="Szukaj w całym przewodniku" data-i18n-ph="st.q">
+    <div id="sz-ideas" class="szideas"></div>
+    <div class="quick"><a href="#start" data-jump="mapa-okolicy"><i data-ic="pin"></i> <span data-d="map">Mapa okolicy</span></a><a href="tel:112"><i data-ic="sos"></i> 112</a></div>
+  </div>
+  <div class="haft st" aria-hidden="true"></div>
+  <div id="search-res" hidden aria-live="polite"></div>
+
+  <span class="kick" data-d="kick1">Odkryj region</span>
+  <div class="tiles hero">
+    <button class="tile" data-go="atrakcje"><span class="ico"><i data-ic="sights"></i></span><b data-i18n="t1.b">Co zobaczyć</b><span data-i18n="t1.s">Atrakcje według odległości</span></button>
+    <button class="tile" data-go="jedzenie"><span class="ico"><i data-ic="food"></i></span><b data-i18n="t2.b">Gdzie zjeść</b><span data-i18n="t2.s">Jasień, Czarna Dąbrówka, Bytów</span></button>
+    <button class="tile" data-go="rozrywka"><span class="ico"><i data-ic="fun"></i></span><b data-i18n="t3.b">Rozrywka</b><span data-i18n="t3.s">Aquaparki, zoo, parki, kąpieliska</span></button>
+    <button class="tile" data-go="imprezy"><span class="ico"><i data-ic="events"></i></span><b data-i18n="t4.b">Imprezy</b><span data-i18n="t4.s">Festyny, dni miast, koncerty</span></button>
+    <button class="tile" data-go="sklepy"><span class="ico"><i data-ic="shops"></i></span><b data-i18n="t5.b">Sklepy i paliwo</b><span data-i18n="t5.s">Najbliższe zakupy i stacje</span></button>
+    <button class="tile" data-go="deszcz"><span class="ico"><i data-ic="rain"></i></span><b data-i18n="t6.b">Gdy pada</b><span data-i18n="t6.s">Plan B pod dachem</span></button>
+    <a class="tile sos" href="tel:112"><span class="num">112</span><b data-i18n="t7.b">Numer alarmowy</b><span data-i18n="t7.s">Nad wodą: 601 100 100</span></a>
+  </div>
+
+  <div class="card" id="wx" hidden aria-live="polite" style="margin-top:14px"></div>
+
+  <div id="fav-wrap" hidden>
+    <h2 data-i18n="st.fav" class="sh">Mój plan</h2>
+    <p class="lead" data-i18n="st.favl">Miejsca oznaczone gwiazdką <i data-ic="star"></i>. Zapisują się tylko na tym telefonie.</p>
+    <div id="fav-list" class="rail"></div>
+  </div>
+
+  <span class="kick" data-d="kick2" id="mapa-okolicy">Jezioro Jasień · Łupawa · Bytów</span>
+  <h2 class="sh" data-d="map2">Odkryj okolicę</h2>
+  <button type="button" class="mapill" data-mapfs aria-label="Powiększ mapę okolicy"><img src="mapa/mapa-region-1600.webp" srcset="mapa/mapa-region-800.webp 800w, mapa/mapa-region-1600.webp 1600w" sizes="(min-width:1024px) 1116px, 100vw" width="1600" height="1582" loading="lazy" decoding="async" alt="Ilustrowana mapa regionu: Łupawsko, Bytów, Słupsk, Lębork, Łeba, Kartuzy, Kościerzyna i Miastko, z jeziorami, rzekami, lasami, drogami i szlakami"><span class="mapill-hint"><span class="mapill-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span><span data-d="mzoom">Otwórz mapę</span></span></button><div class="maphow"><span class="maphow-ic" aria-hidden="true">👆</span><p data-d="mhow"><b>Jak znaleźć miejsca na mapie?</b> Otwórz mapę i dotknij dowolnego miejsca, np. miejscowości albo jeziora. Pokażemy listę atrakcji, jedzenia, sklepów i innych ciekawych miejsc w promieniu kilku kilometrów, a na mapie zaznaczymy je małymi kropkami.</p></div><p class="mapcredit" data-d="mcred">Mapa: eKajaki.pl · dane © autorzy OpenStreetMap (ODbL), OpenMapTiles, OpenFreeMap</p><p class="gmeta"><a id="gmap-open" href="https://www.google.com/maps/search/?api=1&amp;query=54.2755,17.58905" target="_blank" rel="noopener" data-d="gopen">Otwórz w Google Maps</a></p><p class="gtitle" data-d="gplaces">Ciekawe miejsca w okolicy</p><div class="gchips"><a href="#atrakcje/zamek-krzyzacki-i-muzeum-zachodniokaszubskie" data-go="atrakcje/zamek-krzyzacki-i-muzeum-zachodniokaszubskie" class="gchip">Bytów – zamek krzyżacki</a><a href="#atrakcje/kosciol-bozego-ciala-w-jasieniu" data-go="atrakcje/kosciol-bozego-ciala-w-jasieniu" class="gchip">Jasień – kościół szachulcowy</a><a href="#atrakcje/ruiny-mostow-kolejowych-w-kozinie" data-go="atrakcje/ruiny-mostow-kolejowych-w-kozinie" class="gchip">Kozin – ruiny mostów kolejowych</a><a href="#atrakcje/jezioro-jasien" data-go="atrakcje/jezioro-jasien" class="gchip">Jezioro Jasień</a><a href="#rozrywka/splywy-kajakami-ekajaki-pl" data-go="rozrywka/splywy-kajakami-ekajaki-pl" class="gchip">Szlak kajakowy Łupawy</a><a href="#atrakcje/rezerwat-skotawskie-laki" data-go="atrakcje/rezerwat-skotawskie-laki" class="gchip">Rezerwat „Skotawskie Łąki”</a><a href="#atrakcje/rezerwat-jeziora-sitna" data-go="atrakcje/rezerwat-jeziora-sitna" class="gchip">Rezerwat „Jeziora Sitna”</a><a href="#atrakcje/kosciol-sw-antoniego-padewskiego-w-nozynie" data-go="atrakcje/kosciol-sw-antoniego-padewskiego-w-nozynie" class="gchip">Nożyno nad Skotawą</a><a href="#atrakcje/kosciol-niepokalanego-serca-nmp-w-pomysku-wielkim" data-go="atrakcje/kosciol-niepokalanego-serca-nmp-w-pomysku-wielkim" class="gchip">Kościół w Pomysku Wielkim</a><a href="#atrakcje/kosciol-sw-andrzeja-boboli-w-rokitach" data-go="atrakcje/kosciol-sw-andrzeja-boboli-w-rokitach" class="gchip">Rokity – kościół z 1908 r.</a><a href="#atrakcje/elektrownia-wodna-struga" data-go="atrakcje/elektrownia-wodna-struga" class="gchip">Elektrownia wodna Struga</a><a href="#atrakcje/palac-w-kartkowie" data-go="atrakcje/palac-w-kartkowie" class="gchip">Kartkowo – zespół pałacowo-parkowy</a></div>
+  
+
+  <span class="kick" data-d="kick3">Kalendarz</span>
+  <h2 data-i18n="st.ev" class="sh">Najbliższe imprezy</h2>
+  <div id="next-events" class="rail"></div>
+  <p><a data-i18n="st.evall" href="#imprezy" data-go="imprezy" class="all">Wszystkie imprezy i kalendarz roku →</a></p>
+
+  <span class="kick" data-d="kick4">Inspiracje</span>
+  <h2 data-i18n="st.pl" class="sh">Pomysły na dzień</h2>
+  <p data-i18n="st.pll" class="lead">Gotowe plany, które łączą miejsca z przewodnika.</p>
+  <div id="plans" class="rail"></div>
+
+  <div class="card stay" id="stay" style="margin-top:18px"></div>
+
+  <div class="card sos">
+    <h3 data-i18n="sos.h">W razie wypadku</h3>
+    <p class="small" data-i18n="sos.l">Na wodzie i w lesie często nie ma adresu. Odczytaj swoją pozycję i podaj ją dyspozytorowi 112.</p>
+    <button class="btn pri" data-mypos data-i18n="sos.b"><i data-ic="pin"></i> Pokaż moją pozycję</button>
+    <div class="posout" hidden aria-live="polite"></div>
+  </div>
+
+  <span class="kick" data-d="kick5">Na miejscu</span>
+  <h2 data-i18n="st.it" class="sh">Informacja turystyczna</h2>
+  <p data-i18n="st.itl" class="lead">Mapy, ulotki, pamiątki i odpowiedzi na pytania na miejscu.</p>
+  <div id="it-list"></div>
+  <details>
+    <summary data-i18n="st.oth">Pozostałe punkty w powiecie bytowskim</summary>
+    <p data-i18n="st.othl" class="small">Dane z wykazu Starostwa Powiatowego w Bytowie, mogą być nieaktualne. Przed wizytą zadzwoń.</p>
+    <table>
+      <tr><td>Parchowo</td><td>Gminne Centrum Informacji, ul. Krótka 2, <a href="tel:+48598214822">59 821 48 22</a></td></tr>
+      <tr><td>Kołczygłowy</td><td>Biuro Promocji UG, ul. Słupska 56, <a href="tel:+48598213231">59 821 32 31</a></td></tr>
+      <tr><td>Tuchomie</td><td>Centrum Międzynarodowych Spotkań, ul. Szkolna 4, <a href="tel:+48598215689">59 821 56 89</a></td></tr>
+      <tr><td>Borzytuchom</td><td>GOK, ul. 40-lecia 2, <a href="tel:+48598211384">59 821 13 84</a></td></tr>
+      <tr><td>Studzienice</td><td>Biuro Promocji UG, ul. Kaszubska 9, <a href="tel:+48598216593">59 821 65 93</a></td></tr>
+      <tr><td>Miastko</td><td>Punkt IT, ul. Armii Krajowej, <a href="tel:+48598573383">59 857 33 83</a></td></tr>
+    </table>
+  </details>
+  <img class="endorn" src="ornament.svg" alt="" width="220" height="77" loading="lazy">
+  <p class="colophon"><b>Łupawsko i okolice</b><br>ekajaki.pl · Łupawsko 12A · <span data-d="photos">zdjęcia: Wikimedia Commons, autorzy podpisani na zdjęciach</span></p>
+</section>
+
+<!-- ===================== ATRAKCJE ===================== -->
+<section class="view" id="v-atrakcje">
+  <div class="vhead" data-ph="atrakcje"><h2 data-i18n="at.h">Co zobaczyć</h2></div>
+  <div class="haft" aria-hidden="true"></div>
+  <p data-i18n="at.l" class="lead">Lista jest posortowana od najbliższych. Odległości liczone są w linii prostej od Łupawska, a drogą jest zwykle o 20–40% dalej.</p>
+  <div class="toggle"><button data-i18n="at.list" class="chip on" data-mode="lista">Lista</button><button data-i18n="at.map" class="chip" data-mode="mapa">Mapa</button></div>
+  <div class="origin-slot"></div>
+  <input class="search" id="q" type="search" placeholder="Szukaj: jezioro, kościół, Kozin…" aria-label="Szukaj atrakcji" data-i18n-ph="at.q">
+  <div class="chips" id="cat-chips"></div>
+  <div id="map" hidden></div>
+  <div id="attr-list"></div>
+</section>
+
+<!-- ===================== ROZRYWKA ===================== -->
+<section class="view" id="v-rozrywka">
+  <div class="vhead" data-ph="rozrywka"><h2 data-i18n="fu.h">Rozrywka i rekreacja</h2></div>
+  <div class="haft" aria-hidden="true"></div>
+  <p data-i18n="fu.l" class="lead">Aquaparki, parki rozrywki, zwierzęta, aktywne atrakcje i kąpieliska w zasięgu jednodniowej wycieczki, posortowane od najbliższych. Ceny i godziny sprawdź na stronie obiektu przed wyjazdem.</p>
+  <div class="origin-slot"></div>
+  <div class="chips" id="fun-chips"></div>
+  <div id="fun-list"></div>
+</section>
+
+<!-- ===================== JEDZENIE ===================== -->
+<section class="view" id="v-jedzenie">
+  <div class="vhead" data-ph="jedzenie"><h2 data-i18n="fo.h">Gdzie zjeść</h2></div>
+  <div class="haft" aria-hidden="true"></div>
+  <p data-i18n="fo.l" class="lead">Najbliżej jest Jasień (smażalnia nad jeziorem) i Czarna Dąbrówka. Największy wybór ma Bytów, ok. 15 km drogą. Na wsi wiele lokali działa sezonowo, więc poza wakacjami najpierw zadzwoń.</p>
+  <div class="origin-slot"></div>
+  <div class="chips" id="food-chips"></div>
+  <div id="food-list"></div>
+  <p data-i18n="fo.note" class="note"><b>Uwaga:</b> restauracja „Młyn” w Bytowie (ul. Wolności 15) spłonęła 25.10.2026 i jest nieczynna.</p>
+
+  <h2 data-i18n="sl.h" class="sh">Noclegi w Łupawsku</h2>
+  <p data-i18n="sl.l" class="lead">Wszystkie obiekty leżą nad Jeziorem Jasień, kilka minut pieszo od siebie.</p>
+  <div id="sleep-list"></div>
+</section>
+
+<!-- ===================== IMPREZY ===================== -->
+<section class="view" id="v-imprezy">
+  <div class="vhead" data-ph="imprezy"><h2 data-i18n="ev.h">Imprezy i festyny</h2></div>
+  <div class="haft" aria-hidden="true"></div>
+  <p data-i18n="ev.l" class="lead">Najpierw imprezy z ogłoszonym terminem, niżej kalendarz roku: kiedy zwykle odbywa się każda impreza. Terminy letnich imprez gminy zwykle ogłaszają wiosną, dlatego przed wyjazdem sprawdź stronę organizatora.</p>
+  <div class="chips" id="ev-chips"></div>
+  <h3 data-i18n="ev.next" class="month"><i data-ic="date"></i> Najbliższe terminy</h3>
+  <div id="ev-next"></div>
+  <h3 data-i18n="ev.cal" class="month"><i data-ic="calendar"></i> Kalendarz roku</h3>
+  <div id="ev-cal"></div>
+  <p data-i18n="ev.src" class="small">Aktualne terminy: <a href="https://czarnadabrowka.pl/kalendarz-wydarzen/" target="_blank" rel="noopener">kalendarz gminy Czarna Dąbrówka</a>, <a href="https://bck-bytow.pl/" target="_blank" rel="noopener">Bytowskie Centrum Kultury</a>, <a href="https://kurierbytowski.com.pl/wydarzenia-imprezy" target="_blank" rel="noopener">Kurier Bytowski</a>.</p>
+</section>
+
+<!-- ===================== SKLEPY I PALIWO ===================== -->
+<section class="view" id="v-sklepy">
+  <div class="vhead" data-ph="sklepy"><h2 data-i18n="sh.h">Sklepy i stacje paliw</h2></div>
+  <div class="haft" aria-hidden="true"></div>
+  <div class="toggle" id="shop-toggle"><button data-i18n="sh.s" class="chip on" data-k="sklepy"><i data-ic="shop"></i> Sklepy</button><button data-i18n="sh.f" class="chip" data-k="paliwo"><i data-ic="fuel"></i> Stacje paliw</button></div>
+  <div class="origin-slot"></div>
+  <p class="lead" id="shop-lead"></p>
+  <div id="shop-list"></div>
+</section>
+
+<!-- ===================== DESZCZ ===================== -->
+<section class="view" id="v-deszcz">
+  <div class="vhead" data-ph="deszcz"><h2 data-i18n="ra.h">Gdy pada deszcz</h2></div>
+  <div class="haft" aria-hidden="true"></div>
+  <p data-i18n="ra.l" class="lead">Bytów jest tylko ok. 20 minut autem, a tam są muzea, basen i kawiarnie. Poniżej gotowe plany i lista miejsc pod dachem.</p>
+  <div id="rain-plans" class="rail"></div>
+  <h2 data-i18n="ra.in" class="sh">Pod dachem w okolicy</h2>
+  <div class="origin-slot"></div>
+  <div id="rain-list"></div>
+  <div class="card open">
+    <h3 data-i18n="ra.out">Lekki deszcz? Działaj na zewnątrz</h3>
+    <ul data-i18n="ra.outl" class="info">
+      <li><i data-ic="kayak"></i> <b>Spływ kajakowy w mżawce</b> jest zupełnie w porządku: weź pelerynę i suche ubranie w worku. W czasie burzy zawsze zejdź z wody.</li>
+      <li><i data-ic="mushroom"></i> <b>Grzyby po deszczu.</b> Lasy zajmują ponad 60% gminy Czarna Dąbrówka, więc dzień po opadach to najlepszy czas na grzybobranie (sezon: sierpień–październik). Nie wchodź do rezerwatów.</li>
+      <li><i data-ic="car"></i> <b>Przejażdżka szlakiem kościołów szachulcowych:</b> Jasień (1699 r.) i Mikorowo (XVIII w.). Większość podziwiasz z zewnątrz, z parasolem, a między nimi siedzisz w aucie.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== INFO ===================== -->
+<section class="view" id="v-info">
+  <div class="vhead" data-ph="info"><h2 data-i18n="in.h">Praktyczne</h2></div>
+  <div class="haft" aria-hidden="true"></div>
+  <div class="card sos open">
+    <h3 data-i18n="in.sos">Numery alarmowe</h3>
+    <table data-i18n="in.sost">
+      <tr><td><a href="tel:112">112</a></td><td>numer alarmowy (wszystkie służby)</td></tr>
+      <tr><td><a href="tel:999">999</a></td><td>pogotowie ratunkowe</td></tr>
+      <tr><td><a href="tel:998">998</a></td><td>straż pożarna</td></tr>
+      <tr><td><a href="tel:997">997</a></td><td>policja</td></tr>
+      <tr><td><a href="tel:+48601100100">601 100 100</a></td><td>ratownictwo wodne (WOPR)</td></tr>
+    </table>
+    <button class="btn pri" data-mypos data-i18n="sos.b2" style="margin-top:10px"><i data-ic="pin"></i> Pokaż moją pozycję</button>
+    <div class="posout" hidden aria-live="polite"></div>
+  </div>
+
+  <div class="card open">
+    <h3 data-i18n="in.hos">Szpital i policja</h3>
+    <ul data-i18n="in.hosl" class="info">
+      <li><b>Szpital Powiatu Bytowskiego</b> (izba przyjęć całą dobę): Bytów, ul. Lęborska 13, centrala <a href="tel:+48598228500">59 822 85 00</a>. W nagłym wypadku dzwoń na 112.</li>
+      <li><b>Komenda Powiatowa Policji:</b> Bytów, ul. Styp-Rekowskiego 2, <a href="tel:+48477438300">47 74 38 300</a></li>
+      <li><b>Posterunek Policji:</b> Czarna Dąbrówka, ul. Słupska 5, <a href="tel:+48477438441">47 74 38 441</a>. Nie działa całą dobę, poza godzinami dzwoń do KPP Bytów.</li>
+    </ul>
+  </div>
+
+  <div class="card open">
+    <h3 data-i18n="in.ph">Apteki</h3>
+    <p data-i18n="in.phn" class="small">Godziny otwarcia sprawdź przed wyjazdem. Dyżury nocne są w Bytowie.</p>
+    <ul data-i18n="in.phl" class="info">
+      <li><b>Czarna Dąbrówka, „Centrum Zdrowia”</b> (najbliżej, ok. 10 km): ul. Lęborska 9, <a href="tel:+48598212369">59 821 23 69</a></li>
+      <li><b>Bytów, „Rodzinna”</b> (przy szpitalu): ul. Lęborska 11, <a href="tel:+48598227202">59 822 72 02</a></li>
+      <li><b>Bytów, „Centrum Zdrowia”:</b> ul. Ks. B. Sychty 3, <a href="tel:+48598226645">59 822 66 45</a></li>
+      <li><b>Bytów, „Pod Aniołem”:</b> ul. Jana Pawła II 5/1, <a href="tel:+48598224343">59 822 43 43</a></li>
+      <li><b>Bytów, „Helios”:</b> ul. Wojska Polskiego 36E, <a href="tel:+48598226668">59 822 66 68</a></li>
+    </ul>
+  </div>
+
+  <div class="card open">
+    <h3 data-i18n="in.tr">Dojazd i poruszanie się</h3>
+    <ul data-i18n="in.trl" class="info">
+      <li><i data-ic="car"></i> Okolicę najwygodniej zwiedzać <b>autem lub rowerem</b>. Do Bytowa jest ok. 15 km.</li>
+      <li><i data-ic="train"></i> <b>Do Bytowa nie kursują obecnie pociągi pasażerskie.</b> PKP PLK odbudowuje linię Kościerzyna–Lipusz–Bytów, a powrót pociągów zapowiedziano na grudzień 2027 r. Najbliższe stacje to Słupsk i Lębork.</li>
+      <li><i data-ic="bus"></i> Dworzec autobusowy w Bytowie: <a href="tel:+48598222238">59 822 22 38</a> (numer z wykazu gminy, sprawdź aktualność).</li>
+      <li><i data-ic="bike"></i> Rowery i trasy GPX znajdziesz na <a href="https://kaszubskierowery.pl" target="_blank" rel="noopener">kaszubskierowery.pl</a>.</li>
+    </ul>
+  </div>
+
+  <div class="card open">
+    <h3 data-i18n="in.ru">Zasady w okolicy</h3>
+    <ul data-i18n="in.rul" class="info">
+      <li><i data-ic="leaf"></i> Łupawsko leży w <b>Parku Krajobrazowym „Dolina Słupi”</b> i obok obszaru Natura 2000 „Dolina Łupawy”.</li>
+      <li><i data-ic="eagle"></i> Do rezerwatu <b>„Gniazda orła bielika”</b> obowiązuje zakaz wstępu (ochrona ścisła). Bieliki najlepiej obserwować z wody, z dystansu.</li>
+      <li><i data-ic="quiet"></i> <b>Na wyspach Jasienia gnieżdżą się ptaki wodne,</b> m.in. gągoły. Wiosną i na początku lata nie dobijaj do wysp i zachowaj ciszę.</li>
+      <li><i data-ic="sail"></i> Pod mostem w cieśninie między Jasieniem Północnym a Południowym jest tylko ok. 1 m prześwitu: żaglówki muszą położyć maszt.</li>
+    </ul>
+  </div>
+
+  <footer data-i18n="in.foot">
+    <p><b>Stan danych: listopad 2026.</b> Informacje zebrano z oficjalnych stron gmin, powiatu bytowskiego, Muzeum Zachodniokaszubskiego, pomorskie.travel, kajaki.pomorskie.eu, RDOŚ Gdańsk, Wikipedii oraz stron i profili samych lokali. Pozycje z żółtym znaczkiem „sprawdź przed wizytą” potwierdzono tylko w jednym lub starszym źródle. Godziny i ceny mogą się zmienić.</p>
+    <p>Przewodnik przygotował <a href="https://ekajaki.pl" target="_blank" rel="noopener">ekajaki.pl</a>, Łupawsko 12A. Znalazłeś błąd? Zadzwoń: <a href="tel:+48510808333">510 808 333</a>.</p>
+    <p><a href="admin.html" rel="nofollow">Panel gospodarza</a></p>
+  </footer>
+  <img class="endorn" src="ornament.svg" alt="" width="220" height="77" loading="lazy">
+</section>
+</main>
+
+<nav class="tabs" aria-label="Menu">
+  <div class="wrap">
+    <button data-go="start" class="on"><span class="i"><i data-ic="home"></i></span><span data-i18n="nav.start">Start</span></button>
+    <button data-go="atrakcje"><span class="i"><i data-ic="sights"></i></span><span data-i18n="nav.atrakcje">Atrakcje</span></button>
+    <button data-go="rozrywka"><span class="i"><i data-ic="fun"></i></span><span data-i18n="nav.rozrywka">Rozrywka</span></button>
+    <button data-go="jedzenie"><span class="i"><i data-ic="food"></i></span><span data-i18n="nav.jedzenie">Jedzenie</span></button>
+    <button data-go="imprezy"><span class="i"><i data-ic="events"></i></span><span data-i18n="nav.imprezy">Imprezy</span></button>
+    <button data-go="sklepy"><span class="i"><i data-ic="shops"></i></span><span data-i18n="nav.sklepy">Sklepy</span></button>
+    <button data-go="deszcz"><span class="i"><i data-ic="rain"></i></span><span data-i18n="nav.deszcz">Deszcz</span></button>
+    <button data-go="info"><span class="i"><i data-ic="info"></i></span><span data-i18n="nav.info">Info</span></button>
+  </div>
+</nav>
+
+<script src="vendor/leaflet.js?v=20261125a"></script>
+<script src="config.js?v=20261125a"></script>
+<script src="dane.js?v=20261125a"></script>
+<script src="icons.js?v=20261125a"></script>
+<script src="foto/foto.js?v=20261125a" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261125a"></script>
+<script src="i18n-dane.js?v=20261125a"></script>
+<script src="szukaj-dane.js?v=20261125a"></script>
+<script src="app.js?v=20261125a"></script>
+<script>
+/* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
+(function(){
+"use strict";
+var D={
+ pl:{kick1:"Odkryj region",kick2:"Jezioro Jasień · Łupawa · Bytów",map:"Mapa okolicy",map2:"Odkryj okolicę",kick3:"Kalendarz",kick4:"Inspiracje",kick5:"Na miejscu",lg1:"woda",lg2:"przyroda",lg3:"zabytki",lg4:"nietypowe",gopen:"Otwórz w Google Maps",mzoom:"Otwórz mapę",mhow:"<b>Jak znaleźć miejsca na mapie?</b> Otwórz mapę i dotknij dowolnego miejsca, np. miejscowości albo jeziora. Pokażemy listę atrakcji, jedzenia, sklepów i innych ciekawych miejsc w promieniu kilku kilometrów, a na mapie zaznaczymy je małymi kropkami.",mcred:"Mapa: eKajaki.pl · dane © autorzy OpenStreetMap (ODbL), OpenMapTiles, OpenFreeMap",mfs:"Mapa okolicy",mclose:"Zamknij",mme:"Pokaż mnie",mout:"Jesteś poza obszarem mapy.",gplaces:"Ciekawe miejsca w okolicy",more:"Więcej",less:"Mniej",ph:"Czego szukasz? np. dla dzieci, zamek, gdy pada",venue:"Miejsce:",photos:"zdjęcia: Wikimedia Commons, autorzy podpisani na zdjęciach"},
+ en:{kick1:"Explore the region",kick2:"Lake Jasień · Łupawa · Bytów",map:"Area map",map2:"Discover the area",kick3:"Calendar",kick4:"Inspiration",kick5:"On site",lg1:"water",lg2:"nature",lg3:"heritage",lg4:"unusual",gopen:"Open in Google Maps",mzoom:"Open the map",mhow:"<b>How to find places on the map?</b> Open the map and tap anywhere, e.g. a village or a lake. We will list sights, food, shops and other interesting places within a few kilometres and mark them on the map with small dots.",mcred:"Map: eKajaki.pl · data © OpenStreetMap contributors (ODbL), OpenMapTiles, OpenFreeMap",mfs:"Area map",mclose:"Close",mme:"Show me",mout:"You are outside the map area.",gplaces:"Places worth a visit",more:"More",less:"Less",ph:"Search, e.g. kids, castle, rainy day",venue:"Venue:",photos:"photos: Wikimedia Commons, authors credited on each photo"},
+ de:{kick1:"Region entdecken",kick2:"Jasień-See · Łupawa · Bytów",map:"Umgebungskarte",map2:"Umgebung entdecken",kick3:"Kalender",kick4:"Inspiration",kick5:"Vor Ort",lg1:"Wasser",lg2:"Natur",lg3:"Kulturerbe",lg4:"Ungewöhnlich",gopen:"In Google Maps öffnen",mzoom:"Karte öffnen",mhow:"<b>Wie finde ich Orte auf der Karte?</b> Öffnen Sie die Karte und tippen Sie auf eine beliebige Stelle, z. B. ein Dorf oder einen See. Wir listen Sehenswertes, Essen, Läden und andere interessante Orte im Umkreis von wenigen Kilometern auf und markieren sie mit kleinen Punkten auf der Karte.",mcred:"Karte: eKajaki.pl · Daten © OpenStreetMap-Mitwirkende (ODbL), OpenMapTiles, OpenFreeMap",mfs:"Umgebungskarte",mclose:"Schließen",mme:"Mein Standort",mout:"Sie sind außerhalb des Kartenbereichs.",gplaces:"Sehenswertes in der Umgebung",more:"Mehr",less:"Weniger",ph:"Suche, z. B. Kinder, Burg, Regen",venue:"Ort:",photos:"Fotos: Wikimedia Commons, Urheber auf jedem Foto genannt"}
+};
+function tx(k){var L=D[window.LANG]||D.pl;return L[k]!=null?L[k]:D.pl[k];}
+function applyD(){
+  document.querySelectorAll("[data-d]").forEach(function(el){var k=el.getAttribute("data-d");if(k==="mhow")el.innerHTML=tx(k);else el.textContent=tx(k);});
+  document.querySelectorAll(".more").forEach(function(b){setMore(b,b.closest(".card").classList.contains("open"));});
+  var g=document.getElementById("gsearch"); if(g)g.placeholder=tx("ph");
+  document.querySelectorAll(".gchip").forEach(function(c){var g=c.getAttribute("data-go").split("/");var h=document.querySelector("#v-"+g[0]+' [data-id="'+g[1]+'"] h3');if(h)c.textContent=h.textContent;});
+  /* link do panelu z folderu konkursowego (tłumaczona stopka podaje ścieżkę względną) */
+  document.querySelectorAll('a[href="admin.html"]').forEach(function(a){a.setAttribute("href","admin.html");});
+}
+var origApply=window.applyLang;
+window.applyLang=function(l){origApply(l);applyD();};
+
+/* Zdjęcia: kafle, baner Startu i banery działów (FOTO_KAT) – z widocznym podpisem autora */
+var K=window.FOTO_KAT||{}, B=window.FOTO_BASE||"";
+function short(c,t){c=String(c||"").replace(/,\s*Wikimedia Commons$/,"");return t?c.replace(/^Fot\.\s*/,""):c;}
+function photo(el,k){var f=K[k]; if(!f)return;
+  var tgt=el.querySelector(".tph")||el; tgt.style.backgroundImage='url("'+B+f.src+'")';
+  var cr=document.createElement("small"); cr.className="cr"; cr.textContent=short(f.credit,el.classList.contains("tile")); el.appendChild(cr);}
+K=Object.assign({},K);var FF=window.FOTO||{};if(FF["Jezioro Jasień"])K.start=FF["Jezioro Jasień"]; /* kadr bez linii energetycznej */
+/* tylko kadry z okolicy i letnie: Łupawa (rozrywka/aktywnie), Sobótka nad Jasieniem (imprezy), kamienice przy wieży św. Katarzyny (sklepy) */
+if(FF["Szlak kajakowy Łupawy"])K.rozrywka=FF["Szlak kajakowy Łupawy"];
+if(FF["Sobótka w Jasieniu"])K.imprezy=FF["Sobótka w Jasieniu"];
+if(FF["Gotycka Wieża św. Katarzyny"])K.sklepy=FF["Gotycka Wieża św. Katarzyny"];
+document.querySelectorAll(".tiles .tile[data-go]").forEach(function(t){var s=document.createElement("span");s.className="tph";s.setAttribute("aria-hidden","true");t.insertBefore(s,t.firstChild);photo(t,t.dataset.go);});
+document.querySelectorAll("[data-ph]").forEach(function(el){photo(el,el.dataset.ph);});
+/* odznaka z piktogramem działu w banerze */
+var BADGE={atrakcje:"sights",rozrywka:"fun",jedzenie:"food",imprezy:"events",sklepy:"shops",deszcz:"rain",info:"info"};
+document.querySelectorAll(".vhead h2").forEach(function(h){var k=h.parentNode.dataset.ph;var s=document.createElement("span");s.className="badge";s.setAttribute("aria-hidden","true");s.innerHTML=window.ic(BADGE[k]);h.parentNode.insertBefore(s,h);
+  h.parentNode.classList.add("wb");});
+
+/* Rozwijanie kart: opis przycięty do 2 linii, szczegóły po dotknięciu */
+function setMore(b,open){b.setAttribute("aria-expanded",open);b.innerHTML=tx(open?"less":"more")+" "+window.ic("chev");}
+window.ICONS.chev='<svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 15.4c-.3 0-.5-.1-.7-.3l-4.6-4.6a1 1 0 0 1 1.4-1.4l3.9 3.9 3.9-3.9a1 1 0 0 1 1.4 1.4l-4.6 4.6c-.2.2-.4.3-.7.3Z"/></svg>';
+/* Ilustracje kart bez zdjęcia, krótki adres, kroki planów jako etykiety z ikoną */
+var PAL=[["#1d4f91","#2a64a8"],["#2b6b2e","#357d38"],["#a81d27","#bf2630"],["#5b3a24","#6e4a30"],["#1a5e94","#2468a3"],["#7d5200","#8f5f00"]];
+function hsh(t){var h=0;for(var i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))|0;return Math.abs(h);}
+var SECIC={"food-list":"food","sleep-list":"stay","ev-next":"events","ev-cal":"events","next-events":"events","shop-list":"shop","fun-list":"fun","rain-list":"s-museum","attr-list":"sights","it-list":"info"};
+var SECKIND={pl:{food:"Gdzie zjeść",stay:"Nocleg",events:"Impreza",shop:"Zakupy",fuel:"Stacja paliw",fun:"Rozrywka","s-museum":"Pod dachem",sights:"Atrakcja",info:"Informacja"},
+ en:{food:"Eat",stay:"Stay",events:"Event",shop:"Shopping",fuel:"Fuel",fun:"Fun","s-museum":"Indoors",sights:"Sight",info:"Tourist info"},
+ de:{food:"Essen",stay:"Unterkunft",events:"Event",shop:"Einkaufen",fuel:"Tankstelle",fun:"Freizeit","s-museum":"Drinnen",sights:"Sehenswert",info:"Touristinfo"}};
+function enrich(c){
+  if(c.classList.contains("plan")){planSteps(c);return;}
+  var list=c.parentNode&&c.parentNode.id; if(!SECIC[list])return;
+  var meta=c.querySelector(":scope>.meta");
+  /* zimowy kadr rynku przy letnich pozycjach → letnie kamienice przy wieży */
+  var im=c.querySelector(".ph img");
+  if(im&&/\/rynek-bytow\.jpg$/.test(im.getAttribute("src")||"")&&FF["Gotycka Wieża św. Katarzyny"]){var w=FF["Gotycka Wieża św. Katarzyny"];im.src=B+w.src;var fc=c.querySelector(".ph figcaption");if(fc)fc.textContent=w.credit;}
+  if(im&&/\/jezioro-jelen-bytow\.jpg$/.test(im.getAttribute("src")||"")){var fg=c.querySelector(":scope>.ph");if(fg)fg.remove();c.classList.remove("has-ph");}
+  var place="",km="";
+  if(meta){var t=meta.textContent.trim(),ix=t.lastIndexOf(" · ");if(ix>0&&/km/.test(t.slice(ix))){place=t.slice(0,ix);km=t.slice(ix+3);}else place=t;
+    var short=place.split(/[,:(]/)[0].trim();
+    if(short&&short!==place){
+      var ico=meta.querySelector(".ic");meta.textContent="";if(ico)meta.appendChild(ico);meta.appendChild(document.createTextNode(" "+short+(km?" · "+km:"")));
+      var ul=c.querySelector(":scope>.info");if(!ul){ul=document.createElement("ul");ul.className="info";var a=c.querySelector(":scope>.acts");c.insertBefore(ul,a);}
+      var li=document.createElement("li");li.innerHTML="<b></b> ";li.firstChild.textContent=tx("venue");li.appendChild(document.createTextNode(place));ul.insertBefore(li,ul.firstChild);
+    }
+    place=short||place;
+  }
+  if(c.querySelector(":scope>.ph"))return;
+  var k=SECIC[list];
+  if(list==="shop-list"){var on=document.querySelector("#shop-toggle .chip.on");if(on&&on.dataset.k==="paliwo")k="fuel";}
+  if(list==="fun-list"){var fi=c.querySelector(".tag .ic");if(fi){var m=/ic-(fun-[a-z]+)/.exec(fi.className);if(m)k=m[1];}}
+  var town=(place||"").replace(/\s+\d.*$/,"").trim();
+  var pal=PAL[hsh(town)%PAL.length];
+  var d=document.createElement("div");d.className="ill";d.setAttribute("aria-hidden","true");d.style.setProperty("--c",pal[0]);d.style.setProperty("--c2",pal[1]);
+  var L=SECKIND[window.LANG]||SECKIND.pl,kn=L[k]||L[SECIC[list]]||"";
+  d.innerHTML='<span class="ii">'+window.ic(k)+'</span><span class="it"><small></small><span></span></span>';
+  d.querySelector("small").textContent=kn;d.querySelector(".it>span").textContent=town;
+  c.insertBefore(d,c.firstChild);c.classList.add("has-ill");
+}
+var PLL={"Rano: mała pętla ście":[["Rano","Szlak pięciu jezior","s-hike"],["Obiad","Ryba w „Rybakówce”","s-food"],["Po południu","Kościół z 1699 r.","s-church"]],
+ "Spływ Łupawą odcinkie":[["Rano","Spływ Obrowo–Kozin","s-kayak"],["Kozin","Ruiny mostów i dwór","s-castle"],["Dla ambitnych","Wrak kutra na Jasieniu","sail"]],
+ "10:00 zamek krzyżacki":[["10:00","Zamek i muzeum","s-castle"],["Potem","Wieża św. Katarzyny","s-church"],["Po obiedzie","Drezyna rowerowa","bike"]],
+ "Mikorowo: 500-letni d":[["Mikorowo","Dąb „Wojsław”","s-tree"],["Łupawa","Kamienne kręgi","s-stone"],["Karwno","Karwieńskie Uroczyska","s-hike"]],
+ "10:00 zamek w Bytowie":[["10:00","Zamek w Bytowie","s-castle"],["Obiad","Pierogi u Alutki","s-food"],["Po południu","Basen „Nimfa”","s-swim"]],
+ "Rano Muzeum Szkoły Po":[["Rano","Muzeum w Płotowie","s-museum"],["Potem","Wieża św. Katarzyny","s-church"],["Na koniec","Kawiarnia Pauza","s-cafe"]]};
+var PLX={en:{"Morning: the short loop": [["Morning", "Five Lakes Trail", "s-hike"], ["Lunch", "Fish at “Rybakówka”", "s-food"], ["Afternoon", "Church from 1699", "s-church"]], "Kayak the Łupawa": [["Morning", "Kayak Obrowo–Kozin", "s-kayak"], ["Kozin", "Bridge ruins & manor", "s-castle"], ["For the ambitious", "Fishing-boat wreck", "sail"]], "10:00 Teutonic": [["10:00", "Castle & museum", "s-castle"], ["Then", "St Catherine’s Tower", "s-church"], ["After lunch", "Rail bike ride", "bike"]], "Mikorowo: the 500": [["Mikorowo", "Oak “Wojsław”", "s-tree"], ["Łupawa", "Stone circles", "s-stone"], ["Karwno", "Karwieńskie Uroczyska", "s-hike"]], "10:00 Bytów castle": [["10:00", "Bytów castle", "s-castle"], ["Lunch", "Pierogi at Alutka’s", "s-food"], ["Afternoon", "“Nimfa” pool", "s-swim"]], "Morning: the Polish School": [["Morning", "School museum, Płotowo", "s-museum"], ["Then", "St Catherine’s Tower", "s-church"], ["Finally", "Kawiarnia Pauza", "s-cafe"]]},de:{"Vormittags: die kleine": [["Vormittags", "Fünf-Seen-Weg", "s-hike"], ["Mittag", "Fisch in der „Rybakówka“", "s-food"], ["Nachmittags", "Kirche von 1699", "s-church"]], "Kajaktour auf der Łupawa": [["Vormittags", "Kajak Obrowo–Kozin", "s-kayak"], ["Kozin", "Brückenruinen & Gutshaus", "s-castle"], ["Für Ehrgeizige", "Wrack eines Fischkutters", "sail"]], "10:00 Burg des Deutschen": [["10:00", "Burg und Museum", "s-castle"], ["Danach", "Katharinenturm", "s-church"], ["Nach dem Essen", "Fahrraddraisine", "bike"]], "Mikorowo: die 500": [["Mikorowo", "Eiche „Wojsław“", "s-tree"], ["Łupawa", "Steinkreise", "s-stone"], ["Karwno", "Karwieńskie Uroczyska", "s-hike"]], "10:00 Burg in Bytów": [["10:00", "Burg in Bytów", "s-castle"], ["Mittag", "Piroggen bei Alutka", "s-food"], ["Nachmittags", "Schwimmbad „Nimfa“", "s-swim"]], "Vormittags das Museum": [["Vormittags", "Schulmuseum Płotowo", "s-museum"], ["Danach", "Katharinenturm", "s-church"], ["Zum Schluss", "Café Pauza", "s-cafe"]]}};
+function pick(D,t){if(!D)return null;for(var k in D)if(t.indexOf(k)===0)return D[k];return null;}
+var KW=[[/zam(ek|ku)|castle|schloss|burg/i,"s-castle"],[/muze|museum/i,"s-museum"],[/kości|cerkiew|church|kirche/i,"s-church"],[/kajak|spływ|kayak|paddel/i,"s-kayak"],
+ [/kaw|coffee|kaffee|café|cafe/i,"s-cafe"],[/basen|kąpiel|pool|swim|schwimm|bad\b|baden/i,"s-swim"],[/obiad|ryb|pierog|lunch|fish|fisch|mittag|restaur|essen|dinner/i,"s-food"],
+ [/dąb|oak|eiche|las\b|forest|wald/i,"s-tree"],[/megalit|kamien|stone|stein|głaz/i,"s-stone"],[/szlak|ścież|pętl|trail|loop|wander|weg\b|rundweg/i,"s-hike"],[/zakup|shop|einkauf/i,"s-shop"],[/drezyn|rower|bike|rad/i,"bike"],[/wrak|żagl|wreck|wrack/i,"sail"]];
+function shortStep(t){var lab="",r=t;var m=/^([^:]{2,22}):\s*(.+)$/.exec(t)||/^(\d{1,2}[:.]\d{2})\s+(.+)$/.exec(t);if(m){lab=m[1];r=m[2];}
+  r=r.split(/[,(;.–]| - /)[0].trim();if(r.length>28){var w=r.split(" "),o="";for(var i=0;i<w.length;i++){if((o+" "+w[i]).trim().length>28)break;o=(o+" "+w[i]).trim();}r=o.replace(/\s+(of|the|on|at|in|a|an|to|and|auf|der|des|die|das|von|im|am|zu|und|w|z|na|i|do|od)$/i,"");}
+  var ic="pin";for(var j=0;j<KW.length;j++)if(KW[j][0].test(t)){ic=KW[j][1];break;}
+  return [lab,r.charAt(0).toUpperCase()+r.slice(1),ic];}
+function planSteps(c){
+  if(c.querySelector(":scope>.psteps"))return;
+  var lis=[].slice.call(c.querySelectorAll(":scope>ol>li")).map(function(l){return l.textContent;});if(!lis.length)return;
+  var LG=window.LANG||"pl",st=pick(LG==="pl"?PLL:PLX[LG],lis[0])||lis.slice(0,3).map(shortStep);
+  var ul=document.createElement("ul");ul.className="psteps";
+  st.forEach(function(x){var li=document.createElement("li");li.innerHTML='<span class="pi">'+window.ic(x[2])+'</span><span><small></small><span class="pt"></span></span>';
+    li.querySelector("small").textContent=x[0];if(!x[0])li.querySelector("small").remove();li.querySelector(".pt").textContent=x[1];ul.appendChild(li);});
+  c.insertBefore(ul,c.querySelector(":scope>ol"));
+}
+function prep(root){
+  (root.querySelectorAll?root:document).querySelectorAll(".card:not([data-dx])").forEach(function(c){
+    c.setAttribute("data-dx","1");
+    if(c.id==="stay"||c.id==="wx")return;
+    enrich(c);
+    if(c.classList.contains("open"))return;
+    var d=c.querySelector(":scope>p:not([class])"), inf=c.querySelector(":scope>.info"), pl=c.classList.contains("plan");
+    if(!d&&!inf&&!pl)return;
+    if(pl){var lis=c.querySelectorAll("li");if(!lis.length)return;}
+    var b=document.createElement("button");b.type="button";b.className="more";setMore(b,false);
+    var acts=c.querySelector(":scope>.acts");
+    if(acts)c.insertBefore(b,acts);else c.appendChild(b);
+  });
+}
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".more");
+  if(!b){var p=e.target.closest(".card>p:not([class])");if(p)b=p.parentNode.querySelector(":scope>.more");}
+  if(!b)return;
+  var c=b.closest(".card"),o=!c.classList.contains("open");c.classList.toggle("open",o);setMore(b,o);
+});
+var mo=new MutationObserver(function(){prep(document);});
+mo.observe(document.querySelector("main"),{childList:true,subtree:true});
+prep(document);
+/* skok do mapy z banera */
+document.addEventListener("click",function(e){var a=e.target.closest("[data-jump]");if(!a)return;e.preventDefault();
+  var t=document.getElementById(a.dataset.jump);if(t)t.scrollIntoView({behavior:"smooth",block:"start"});});
+applyD();
+})();
+</script>
+</body>
+</html>

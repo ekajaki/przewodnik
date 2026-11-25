@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+<!-- Wzór tła ilustracji kart – koncepcja D: rozeta, tulipan i liście haftu kaszubskiego (biały, półprzezroczysty). -->
+<g fill="#fff" fill-opacity=".17">
+<g transform="translate(20 20)"><ellipse rx="2.6" ry="6" cy="-7"/><ellipse rx="2.6" ry="6" cy="-7" transform="rotate(45)"/><ellipse rx="2.6" ry="6" cy="-7" transform="rotate(90)"/><ellipse rx="2.6" ry="6" cy="-7" transform="rotate(135)"/><ellipse rx="2.6" ry="6" cy="-7" transform="rotate(180)"/><ellipse rx="2.6" ry="6" cy="-7" transform="rotate(225)"/><ellipse rx="2.6" ry="6" cy="-7" transform="rotate(270)"/><ellipse rx="2.6" ry="6" cy="-7" transform="rotate(315)"/><circle r="2.6"/></g>
+<g transform="translate(60 62)"><path d="M0 12V2"/><path d="M-.8 12h1.6V1h-1.6z"/><path d="M0 9c-3.4 0-7-2-8.6-6 3.8-.2 7.2 1.9 8.6 6ZM0 9c3.4 0 7-2 8.6-6-3.8-.2-7.2 1.9-8.6 6Z"/><path d="M0 1c-5 0-8.2-3.9-7.8-10.2 2.7 1.5 5.2 3.7 6.6 6.9ZM0 1c5 0 8.2-3.9 7.8-10.2-2.7 1.5-5.2 3.7-6.6 6.9Z"/><path d="M0 .3c-3-2.4-3.7-7 0-12.6 3.7 5.6 3 10.2 0 12.6Z"/></g>
+<circle cx="60" cy="20" r="2"/><circle cx="20" cy="60" r="2"/><circle cx="40" cy="40" r="1.4"/><circle cx="0" cy="40" r="1.4"/><circle cx="80" cy="40" r="1.4"/><circle cx="40" cy="0" r="1.4"/><circle cx="40" cy="80" r="1.4"/>
+</g>
+</svg>
