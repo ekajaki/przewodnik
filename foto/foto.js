@@ -276,6 +276,110 @@ window.FOTO={
  "AQUA Centrum Kościerzyna": {
   "src": "rozrywka-aqua-centrum-koscierzyna.jpg",
   "credit": "Fot. Almondox, CC BY 3.0, Wikimedia Commons"
+ },
+ "Jezioro Dołgie Małe": {
+  "src": "atrakcje-jezioro-dolgie-male.jpg",
+  "credit": "Fot. LoMit, CC BY 4.0, Wikimedia Commons"
+ },
+ "Kolegiata Świętej Trójcy w Wejherowie": {
+  "src": "atrakcje-kolegiata-wejherowo.jpg",
+  "credit": "Fot. geo573, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kościół Matki Boskiej Królowej Polski w Sominach": {
+  "src": "atrakcje-kosciol-sominy.jpg",
+  "credit": "Fot. Bartosz Czarnecki, CC BY-SA 3.0 PL, Wikimedia Commons"
+ },
+ "Kościół Najświętszego Serca Pana Jezusa w Kobylnicy": {
+  "src": "atrakcje-kosciol-kobylnica.jpg",
+  "credit": "Fot. Runita, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Nawiedzenia NMP w Gardnej Wielkiej": {
+  "src": "atrakcje-kosciol-gardna-wielka.jpg",
+  "credit": "Fot. Wladyslaw Golinski, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Świętych Apostołów Piotra i Pawła w Półcznie": {
+  "src": "atrakcje-kosciol-polczno.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Antoniego w Strzelinie": {
+  "src": "atrakcje-kosciol-strzelino.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Jana Chrzciciela w Dębnicy Kaszubskiej": {
+  "src": "atrakcje-kosciol-debnica-kaszubska.jpg",
+  "credit": "Fot. Gdaniec, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Katarzyny Aleksandryjskiej i św. Jana Chrzciciela w Bytowie": {
+  "src": "atrakcje-kosciol-sw-katarzyny-bytow.jpg",
+  "credit": "Fot. Poconaco, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Michała Archanioła i folwark w Starzynie": {
+  "src": "atrakcje-kosciol-starzyno.jpg",
+  "credit": "Fot. Piotr Widerski, CC BY-SA 3.0 PL, Wikimedia Commons"
+ },
+ "Kościół św. Stanisława Kostki w Czarnej Dąbrówce": {
+  "src": "atrakcje-kosciol-czarna-dabrowka.jpg",
+  "credit": "Fot. Gdaniec, CC BY 4.0, Wikimedia Commons"
+ },
+ "Miejsce Pamięci w Piaśnicy": {
+  "src": "atrakcje-piasnica.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Pałac w Charbrowie": {
+  "src": "atrakcje-palac-charbrowo.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Platforma widokowa nad jeziorem Lipno koło Kloca": {
+  "src": "atrakcje-platforma-lipno.jpg",
+  "credit": "Fot. Leinad, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Punkt widokowy Jastrzębia Góra w Ostrzycach": {
+  "src": "atrakcje-jastrzebia-gora-ostrzyce.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Rezerwat Buczyna nad Słupią w Ustce": {
+  "src": "atrakcje-rezerwat-buczyna-ustka.jpg",
+  "credit": "Fot. Maria Golinski, CC BY 2.5, Wikimedia Commons"
+ },
+ "Rezerwat Lubygość z jeziorem": {
+  "src": "atrakcje-rezerwat-lubygosc.jpg",
+  "credit": "Fot. Morphik, CC BY-SA 2.5, Wikimedia Commons"
+ },
+ "Rezerwat Szczelina Lechicka": {
+  "src": "atrakcje-rezerwat-szczelina-lechicka.jpg",
+  "credit": "Fot. Oruniak, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Ruiny zamku krzyżackiego w Zamku Kiszewskim": {
+  "src": "atrakcje-zamek-kiszewski.jpg",
+  "credit": "Fot. PiotrMig, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Ulica Staromiejska i Plac Pokoju w Lęborku": {
+  "src": "atrakcje-staromiejska-lebork.jpg",
+  "credit": "Fot. Tomasz Górny (Nemo5576), CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Zamek w Krokowej z parkiem": {
+  "src": "atrakcje-zamek-krokowa.jpg",
+  "credit": "Fot. Bazie, CC BY-SA 3.0 PL, Wikimedia Commons"
+ },
+ "Ścieżka „Gardnieńskie Łęgi” w Gardnej Wielkiej": {
+  "src": "atrakcje-gardnienskie-legi.jpg",
+  "credit": "Fot. Terrus38, CC0, Wikimedia Commons"
+ },
+ "Muzeum Ceramiki Kaszubskiej Neclów w Chmielnie": {
+  "src": "deszcz-muzeum-neclow-chmielno.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Imprezy plenerowe w skansenie w Klukach": {
+  "src": "imprezy-skansen-kluki.jpg",
+  "credit": "Fot. Radosław Botev & Sylwia Botev, CC BY 3.0 PL, Wikimedia Commons"
+ },
+ "Kąpielisko nad jeziorem Lednik w Miastku": {
+  "src": "rozrywka-kapielisko-lednik-miastko.jpg",
+  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Plaża w Czołpinie przy Czerwonej Szopie": {
+  "src": "rozrywka-plaza-czolpino.jpg",
+  "credit": "Fot. Koefbac, CC BY-SA 4.0, Wikimedia Commons"
  }
 };
 
