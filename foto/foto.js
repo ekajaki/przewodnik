@@ -860,6 +860,138 @@ window.FOTO={
  "Plaża wschodnia w Ustce": {
   "src": "rozrywka-plaza-wschodnia-ustka.jpg",
   "credit": "Fot. Klapka paradaja, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Brzeg Łebska w Izbicy": {
+  "src": "atrakcje-izbica-lebsko.jpg",
+  "credit": "Fot. Patrycja Makowska, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Dąb Świętopełk koło Krępkowic": {
+  "src": "atrakcje-dab-swietopelk.jpg",
+  "credit": "Fot. rpogrebniak, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kamienne Kręgi w Trątkownicy": {
+  "src": "atrakcje-kregi-tratkownica.jpg",
+  "credit": "Fot. Krzysztof Rakowski, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kolegiata Wniebowzięcia NMP w Kartuzach": {
+  "src": "atrakcje-kolegiata-kartuzy.jpg",
+  "credit": "Fot. Krzysztof Rakowski, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół Matki Boskiej Częstochowskiej w Objeździe": {
+  "src": "atrakcje-kosciol-objazda.jpg",
+  "credit": "Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Najświętszego Serca Pana Jezusa w Chocielewku": {
+  "src": "atrakcje-kosciol-chocielewko.jpg",
+  "credit": "Fot. Hyponos, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół Trójcy Świętej w Smołdzinie": {
+  "src": "atrakcje-kosciol-smoldzino.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Świętej Trójcy w Sulęczynie": {
+  "src": "atrakcje-kosciol-suleczyno.jpg",
+  "credit": "Fot. Michał Winiarski, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół św. Antoniego Padewskiego w Łubnie": {
+  "src": "atrakcje-kosciol-lubno.jpg",
+  "credit": "Fot. Torrosbak, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Jakuba i św. Mikołaja w Mechowie": {
+  "src": "atrakcje-kosciol-mechowo.jpg",
+  "credit": "Fot. 1bumer, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół św. Józefa w Wygodzie Łączyńskiej": {
+  "src": "atrakcje-kosciol-wygoda-laczynska.jpg",
+  "credit": "Fot. Mmotlaw, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Mateusza Apostoła w Górze": {
+  "src": "atrakcje-kosciol-gora.jpg",
+  "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Michała Archanioła w Łebuni": {
+  "src": "atrakcje-kosciol-lebunia.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Stanisława Biskupa w Stowięcinie": {
+  "src": "atrakcje-kosciol-stowiecino.jpg",
+  "credit": "Fot. Kenraiz, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół-pomnik i cmentarz ofiar marszu śmierci w Nawczu": {
+  "src": "atrakcje-kosciol-pomnik-nawcz.jpg",
+  "credit": "Fot. SzymSzy, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Latarnia morska w Ustce": {
+  "src": "atrakcje-latarnia-ustka.jpg",
+  "credit": "Fot. MichalPL, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Nowa Brama w Słupsku": {
+  "src": "atrakcje-nowa-brama-slupsk.jpg",
+  "credit": "Fot. Feljan3, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Pałac i park w Łebuni": {
+  "src": "atrakcje-palac-lebunia.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Pałac w Sasinie": {
+  "src": "atrakcje-palac-sasino.jpg",
+  "credit": "Fot. ShaunTheSheep, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Pomnik „Upokorzony” w Słupsku": {
+  "src": "atrakcje-pomnik-upokorzony-slupsk.jpg",
+  "credit": "Fot. Nemo5576, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Ratusz z wieżą widokową w Słupsku": {
+  "src": "atrakcje-ratusz-slupsk.jpg",
+  "credit": "Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Rezerwat przyrody Pełcznica": {
+  "src": "atrakcje-rezerwat-pelcznica.jpg",
+  "credit": "Fot. pzdziarski, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Zamek krzyżacki w Lęborku": {
+  "src": "atrakcje-zamek-lebork.jpg",
+  "credit": "Fot. Bornholm, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Bunkry Blüchera w Ustce": {
+  "src": "deszcz-bunkry-bluchera-ustka.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Galeria Refektarz w Kartuzach": {
+  "src": "deszcz-galeria-refektarz-kartuzy.jpg",
+  "credit": "Fot. Sławek Zawadzki, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Muzeum Motyli w Łebie": {
+  "src": "deszcz-muzeum-motyli-leba.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Młyn Zamkowy w Słupsku": {
+  "src": "deszcz-mlyn-zamkowy-slupsk.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Jarmark Wdzydzki w skansenie we Wdzydzach": {
+  "src": "imprezy-jarmark-wdzydzki-skansen.jpg",
+  "credit": "Fot. 7alaskan, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Międzynarodowy Festiwal Akordeonowy w Sulęczynie": {
+  "src": "imprezy-festiwal-akordeonowy-suleczyno.jpg",
+  "credit": "Fot. Michał Winiarski, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Tuchomskie Spotkania Organowe": {
+  "src": "imprezy-spotkania-organowe-tuchomie.jpg",
+  "credit": "Fot. Przykuta, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kąpielisko i przystań w Lubkowie": {
+  "src": "rozrywka-kapielisko-lubkowo.jpg",
+  "credit": "Fot. geo573, CC BY 3.0, Wikimedia Commons"
+ },
+ "Park Kultury i Wypoczynku w Słupsku": {
+  "src": "rozrywka-park-kultury-slupsk.jpg",
+  "credit": "Fot. Michał Słupczewski, Attribution, Wikimedia Commons"
+ },
+ "Port jachtowy w Łebie": {
+  "src": "rozrywka-port-jachtowy-leba.jpg",
+  "credit": "Fot. tadeo5, CC BY 3.0, Wikimedia Commons"
  }
 };
 
