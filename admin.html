@@ -110,8 +110,16 @@ details summary{cursor:pointer;font-weight:600}
   <p class="muted">Panel jest dla osób dodanych przez administratora.</p>
   <label for="l-email">E-mail</label><input id="l-email" type="email" autocomplete="username">
   <label for="l-pass">Hasło</label><input id="l-pass" type="password" autocomplete="current-password">
-  <div class="acts"><button class="btn pri" id="l-go">Zaloguj</button><button class="btn" id="l-signup">Pierwszy raz? Załóż konto</button></div>
+  <div class="acts"><button class="btn pri" id="l-go">Zaloguj</button><button class="btn" id="l-signup">Pierwszy raz? Załóż konto</button><button class="btn" id="l-forgot">Nie pamiętam hasła</button></div>
   <p class="muted" id="signup-help" hidden>Wpisz e-mail, który podałeś administratorowi, i wymyśl hasło (min. 8 znaków), potem kliknij jeszcze raz „Załóż konto”. Supabase wyśle e-mail z linkiem potwierdzającym. Jeśli nie dotrze, poproś administratora o „Potwierdź konto”.</p>
+</section>
+
+<section id="s-reset" class="card" hidden style="max-width:480px;margin:20px auto">
+  <h2>Ustaw nowe hasło</h2>
+  <p class="muted">Wpisz nowe hasło (co najmniej 8 znaków). Zmieni się ono też w innych aplikacjach eKajaki, w których logujesz się tym samym kontem.</p>
+  <label for="n-pass">Nowe hasło</label><input id="n-pass" type="password" autocomplete="new-password">
+  <label for="n-pass2">Powtórz hasło</label><input id="n-pass2" type="password" autocomplete="new-password">
+  <div class="acts"><button class="btn pri" id="n-go">Zapisz hasło i zaloguj</button></div>
 </section>
 
 <section id="s-panel" hidden>
@@ -640,8 +648,34 @@ $("l-signup").onclick=function(){
    }).catch(function(e){flash("Nie udało się założyć konta: "+e.message)});
 };
 $("logout").onclick=function(){ls(SESSION_KEY,null);sess=null;show();};
+/* ---------- reset hasła: link z e-maila wraca tu z tokenem w adresie ---------- */
+var REC=null;
+(function(){var h=(location.hash||"").slice(1);if(!/access_token=|error_description=/.test(h))return;
+  var q={};h.split("&").forEach(function(kv){var i=kv.indexOf("=");if(i>0)q[decodeURIComponent(kv.slice(0,i))]=decodeURIComponent(kv.slice(i+1).replace(/\+/g," "));});
+  try{history.replaceState(null,"",location.pathname);}catch(e){}
+  if(q.error_description){setTimeout(function(){flash("Link nie zadziałał: "+q.error_description+". Poproś o nowy przyciskiem „Nie pamiętam hasła”.");},50);return;}
+  REC=q;})();
+$("l-forgot").onclick=function(){
+  var em=$("l-email").value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))return flash("Wpisz najpierw swój e-mail w polu powyżej, potem kliknij „Nie pamiętam hasła”.");
+  fetch(cfg.url+"/auth/v1/recover?redirect_to="+encodeURIComponent(location.href.split(/[?#]/)[0]),{method:"POST",headers:{apikey:cfg.key,"Content-Type":"application/json"},body:JSON.stringify({email:em})})
+   .then(function(r){if(!r.ok)return r.json().then(function(j){throw new Error(j.msg||j.message||("Błąd "+r.status));});
+     flash("Wysłaliśmy e-mail z linkiem do ustawienia nowego hasła na "+em+". Sprawdź też folder Spam. Link otwórz na tym urządzeniu.",true);})
+   .catch(function(e){flash("Nie udało się wysłać e-maila: "+e.message)});
+};
+$("n-go").onclick=function(){
+  var a=$("n-pass").value,b=$("n-pass2").value;
+  if(a.length<8)return flash("Hasło musi mieć co najmniej 8 znaków.");
+  if(a!==b)return flash("Hasła się różnią.");
+  fetch(cfg.url+"/auth/v1/user",{method:"PUT",headers:{apikey:cfg.key,Authorization:"Bearer "+REC.access_token,"Content-Type":"application/json"},body:JSON.stringify({password:a})})
+   .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.msg||j.message||("Błąd "+r.status));return j;});})
+   .then(function(u){sess={access_token:REC.access_token,refresh_token:REC.refresh_token,expires_at:Date.now()+(+REC.expires_in||3600)*1000,email:(u&&u.email)||""};ls(SESSION_KEY,sess);REC=null;
+     $("s-reset").hidden=true;flash("Nowe hasło zapisane. Jesteś zalogowany.",true);show();})
+   .catch(function(e){flash("Nie udało się zmienić hasła: "+e.message)});
+};
 var h0=(location.hash||"").slice(1); if(["pulpit","tresci","historia","uprawnienia"].indexOf(h0)>=0)setTab(h0);
-show();
+if(REC&&REC.access_token){cfg=loadCfg();$("s-reset").hidden=false;$("s-login").hidden=true;$("s-panel").hidden=true;$("s-config").hidden=true;}
+else show();
 })();
 </script>
 </body>
