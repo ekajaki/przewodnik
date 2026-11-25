@@ -616,6 +616,122 @@ window.FOTO={
  "Inscenizacja bitwy pod Świecinem": {
   "src": "imprezy-bitwa-swiecino-pomnik.jpg",
   "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Brama Młyńska w Słupsku": {
+  "src": "atrakcje-brama-mlynska-slupsk.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Gołubieński Ogród Botaniczny w Gołubiu": {
+  "src": "atrakcje-ogrod-botaniczny-golubie.jpg",
+  "credit": "Fot. Krzysztof Ziarnek, Kenraiz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Groty Mirachowskie": {
+  "src": "atrakcje-groty-mirachowskie.jpg",
+  "credit": "Fot. Happa, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kościół NMP Królowej Polski w Budowie": {
+  "src": "atrakcje-kosciol-budowo.jpg",
+  "credit": "Fot. Torrosbak, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół Najświętszego Zbawiciela w Cetyniu": {
+  "src": "atrakcje-kosciol-cetyn.jpg",
+  "credit": "Fot. Asas22222, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół Znalezienia Krzyża Świętego w Charnowie": {
+  "src": "atrakcje-kosciol-charnowo.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Anny i klasztor franciszkanów w Wejherowie": {
+  "src": "atrakcje-kosciol-sw-anny-wejherowo.jpg",
+  "credit": "Fot. Dawid Galus, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół św. Jacka w Słupsku": {
+  "src": "atrakcje-kosciol-sw-jacka-slupsk.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Marcina w Starej Kiszewie": {
+  "src": "atrakcje-kosciol-stara-kiszewa.jpg",
+  "credit": "Fot. PiotrMig, CC BY 4.0, Wikimedia Commons"
+ },
+ "Kościół św. Michała Archanioła w Miłocicach": {
+  "src": "atrakcje-kosciol-milocice.jpg",
+  "credit": "Fot. Maciej Orłowski, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Kościół św. Mikołaja w Słupsku (Miejska Biblioteka Publiczna)": {
+  "src": "atrakcje-kosciol-sw-mikolaja-slupsk.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Latarnia Morska Czołpino": {
+  "src": "atrakcje-latarnia-czolpino.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Młyn wodny w Poganicach": {
+  "src": "atrakcje-mlyn-poganice.jpg",
+  "credit": "Fot. Tomasz Górny (Nemo5576), CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Pałac Bismarcka i park w Warcinie": {
+  "src": "atrakcje-palac-warcino.jpg",
+  "credit": "Fot. Cezarde62, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Pałac w Kłaninie z parkiem": {
+  "src": "atrakcje-palac-klanino.jpg",
+  "credit": "Fot. Zala, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Pomnik ks. Bernarda Sychty w Sierakowicach": {
+  "src": "atrakcje-pomnik-sychty-sierakowice.jpg",
+  "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Port rybacki w Rowach": {
+  "src": "atrakcje-port-rowy.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Punkt widokowy nad Łebskiem w Rąbce": {
+  "src": "atrakcje-punkt-widokowy-rabka.jpg",
+  "credit": "Fot. Yuiren0, CC BY 3.0, Wikimedia Commons"
+ },
+ "Rowokół z wieżą widokową": {
+  "src": "atrakcje-rowokol.jpg",
+  "credit": "Fot. Remik82, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Stary Cmentarz w Słupsku": {
+  "src": "atrakcje-stary-cmentarz-slupsk.jpg",
+  "credit": "Fot. Panek, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Wieża widokowa Kaszubskie Oko w Gniewinie": {
+  "src": "atrakcje-kaszubskie-oko-gniewino.jpg",
+  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Wzgórze Kukówka i dawny kościół ewangelicki w Luzinie": {
+  "src": "atrakcje-kukowka-luzino.jpg",
+  "credit": "Fot. Tommy Jantarek, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Źródło Brdy i rezerwat „Jezioro Smołowe” koło Przęsina": {
+  "src": "atrakcje-zrodlo-brdy.jpg",
+  "credit": "Fot. TGietkowski, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kaszubski Park Etnograficzny we Wdzydzach Kiszewskich": {
+  "src": "deszcz-skansen-wdzydze.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Muzeum Regionalne w Krokowej": {
+  "src": "deszcz-muzeum-krokowa.jpg",
+  "credit": "Fot. Bazie, CC BY-SA 3.0 pl, Wikimedia Commons"
+ },
+ "Muzeum Wyrzutni Rakiet w Rąbce": {
+  "src": "deszcz-wyrzutnia-rakiet-rabka.jpg",
+  "credit": "Fot. Koefbac, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Spichlerz Richtera w Słupsku": {
+  "src": "deszcz-spichlerz-richtera-slupsk.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Plaża w Łebie": {
+  "src": "rozrywka-plaza-leba.jpg",
+  "credit": "Fot. MARELBU, CC BY 3.0, Wikimedia Commons"
+ },
+ "Stanica żeglarska w Gowidlinie": {
+  "src": "rozrywka-stanica-gowidlino.jpg",
+  "credit": "Fot. Gdaniec, CC BY 4.0, Wikimedia Commons"
  }
 };
 
