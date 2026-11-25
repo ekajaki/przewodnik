@@ -116,16 +116,16 @@ details summary{cursor:pointer;font-weight:600}
 
 <section id="s-reset" class="card" hidden style="max-width:480px;margin:20px auto">
   <h2>Ustaw nowe hasło</h2>
-  <p class="muted">Wpisz nowe hasło (co najmniej 8 znaków). Zmieni się ono też w innych aplikacjach eKajaki, w których logujesz się tym samym kontem.</p>
+  <p class="muted" id="n-info">Wpisz nowe hasło (co najmniej 8 znaków). Zmieni się ono też w innych aplikacjach eKajaki, w których logujesz się tym samym kontem.</p>
   <label for="n-pass">Nowe hasło</label><input id="n-pass" type="password" autocomplete="new-password">
   <label for="n-pass2">Powtórz hasło</label><input id="n-pass2" type="password" autocomplete="new-password">
-  <div class="acts"><button class="btn pri" id="n-go">Zapisz hasło i zaloguj</button></div>
+  <div class="acts"><button class="btn pri" id="n-go">Zapisz hasło</button><button class="btn" id="n-cancel" hidden>Anuluj</button></div>
 </section>
 
 <section id="s-panel" hidden>
   <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
     <span class="muted">Zalogowano: <b id="who"></b></span>
-    <span class="acts" style="margin:0"><button class="btn sm pri" id="new">➕ Nowe miejsce</button><button class="btn sm" id="logout">Wyloguj</button></span>
+    <span class="acts" style="margin:0"><button class="btn sm pri" id="new">➕ Nowe miejsce</button><button class="btn sm" id="chpass">Zmień hasło</button><button class="btn sm" id="logout">Wyloguj</button></span>
   </div>
   <div class="msg err" id="not-editor" hidden>To konto nie ma jeszcze uprawnień w panelu. Poproś administratora (ekajaki@gmail.com), żeby dodał Twój adres w zakładce „Uprawnienia”.</div>
 
@@ -667,12 +667,16 @@ $("n-go").onclick=function(){
   var a=$("n-pass").value,b=$("n-pass2").value;
   if(a.length<8)return flash("Hasło musi mieć co najmniej 8 znaków.");
   if(a!==b)return flash("Hasła się różnią.");
-  fetch(cfg.url+"/auth/v1/user",{method:"PUT",headers:{apikey:cfg.key,Authorization:"Bearer "+REC.access_token,"Content-Type":"application/json"},body:JSON.stringify({password:a})})
+  var tk=REC?Promise.resolve(REC.access_token):token();
+  tk.then(function(t){return fetch(cfg.url+"/auth/v1/user",{method:"PUT",headers:{apikey:cfg.key,Authorization:"Bearer "+t,"Content-Type":"application/json"},body:JSON.stringify({password:a})});})
    .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.msg||j.message||("Błąd "+r.status));return j;});})
-   .then(function(u){sess={access_token:REC.access_token,refresh_token:REC.refresh_token,expires_at:Date.now()+(+REC.expires_in||3600)*1000,email:(u&&u.email)||""};ls(SESSION_KEY,sess);REC=null;
+   .then(function(u){if(!REC){$("n-pass").value=$("n-pass2").value="";$("s-reset").hidden=true;$("s-panel").hidden=false;flash("Hasło zmienione.",true);return;}
+     sess={access_token:REC.access_token,refresh_token:REC.refresh_token,expires_at:Date.now()+(+REC.expires_in||3600)*1000,email:(u&&u.email)||""};ls(SESSION_KEY,sess);REC=null;
      $("s-reset").hidden=true;flash("Nowe hasło zapisane. Jesteś zalogowany.",true);show();})
    .catch(function(e){flash("Nie udało się zmienić hasła: "+e.message)});
 };
+$("chpass").onclick=function(){$("s-panel").hidden=true;$("s-reset").hidden=false;$("n-cancel").hidden=false;$("n-pass").focus();};
+$("n-cancel").onclick=function(){$("s-reset").hidden=true;$("s-panel").hidden=false;};
 var h0=(location.hash||"").slice(1); if(["pulpit","tresci","historia","uprawnienia"].indexOf(h0)>=0)setTab(h0);
 if(REC&&REC.access_token){cfg=loadCfg();$("s-reset").hidden=false;$("s-login").hidden=true;$("s-panel").hidden=true;$("s-config").hidden=true;}
 else show();
