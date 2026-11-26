@@ -1021,10 +1021,6 @@ window.FOTO={
   "src": "atrakcje-oltarz-papieski-sierakowice-2.jpg",
   "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Rezerwat przyrody Szczyt Wieżyca": {
-  "src": "atrakcje-rezerwat-wiezyca.jpg",
-  "credit": "Fot. Mef.ellingen, CC BY 3.0, Wikimedia Commons"
- },
  "Dni Morza w Ustce": {
   "src": "atrakcje-promenada-ustka.jpg",
   "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
@@ -1072,6 +1068,22 @@ window.FOTO={
  "Strefa 360 Park Redzikowo": {
   "src": "rozrywka-strefa-360-redzikowo.jpg",
   "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Wydma Łącka w Słowińskim Parku Narodowym": {
+  "src": "atrakcje-wydma-lacka.jpg",
+  "credit": "Fot. Klaus-Dieter Keller, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Muzeum Techniki Wojskowej GRYF w Dąbrówce": {
+  "src": "deszcz-muzeum-gryf-dabrowka.jpg",
+  "credit": "Fot. Uaz, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Dożynki Rybne – Święto Ustki": {
+  "src": "imprezy-dozynki-rybne-ustka.jpg",
+  "credit": "Fot. Wladyslaw Golinski, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Finał WOŚP w Bytowie": {
+  "src": "imprezy-wosp-bytow.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
  }
 };
 
