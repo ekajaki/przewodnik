@@ -261,10 +261,6 @@ window.FOTO={
   "src": "imprezy-swieto-niepodleglosci-rynek-bytow.jpg",
   "credit": "Fot. Antekbojar, CC BY-SA 3.0, Wikimedia Commons"
  },
- "Kąpielisko Jeleń": {
-  "src": "rozrywka-kapielisko-jelen.jpg",
-  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
- },
  "BytOFFsky Festival": {
   "src": "imprezy-rynek-bytow-zima.jpg",
   "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
