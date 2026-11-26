@@ -1005,27 +1005,19 @@ window.FOTO_KAT={
   "credit": "Fot. Aneta Pawska, CC BY-SA 4.0, Wikimedia Commons"
  },
  "rozrywka": {
-  "src": "imprezy-kat-rozrywka-zjezdzalnie.jpg",
-  "credit": "Zdjęcie poglądowe · Fot. Poolifes, CC BY-SA 4.0, Wikimedia Commons"
+  "src": "rzeka-lupawa.jpg",
+  "credit": "Fot. Maria Golinski, CC BY 2.5, Wikimedia Commons"
  },
  "jedzenie": {
-  "src": "imprezy-kat-jedzenie-zupa-rybna.jpg",
-  "credit": "Zdjęcie poglądowe · Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+  "src": "kat-start-jasien.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
  },
  "imprezy": {
-  "src": "imprezy-kat-imprezy-zespol-kaszubski.jpg",
-  "credit": "Zdjęcie poglądowe · Fot. Bogusław Linette, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
- "sklepy": {
-  "src": "imprezy-kat-sklepy-stragany.jpg",
-  "credit": "Zdjęcie poglądowe · Fot. Bahnfrend, CC BY-SA 4.0, Wikimedia Commons"
+  "src": "atrakcje-rynek-bytow.jpg",
+  "credit": "Fot. Antekbojar, CC BY-SA 3.0, Wikimedia Commons"
  },
  "deszcz": {
   "src": "muzeum-zachodniokaszubskie-2.jpg",
   "credit": "Fot. Pleple2000, CC BY-SA 4.0, Wikimedia Commons"
- },
- "info": {
-  "src": "imprezy-kat-info-tablica.jpg",
-  "credit": "Zdjęcie poglądowe · Fot. Scotch Mist, CC BY-SA 4.0, Wikimedia Commons"
  }
 };
