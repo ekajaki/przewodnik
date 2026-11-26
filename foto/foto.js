@@ -1016,6 +1016,42 @@ window.FOTO={
  "Restauracja Hotelu Kiston w Kistowie": {
   "src": "jedzenie-kiston-kistowo.jpg",
   "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Ołtarz Papieski w Sierakowicach": {
+  "src": "atrakcje-oltarz-papieski-sierakowice-2.jpg",
+  "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Rezerwat przyrody Szczyt Wieżyca": {
+  "src": "atrakcje-rezerwat-wiezyca.jpg",
+  "credit": "Fot. Mef.ellingen, CC BY 3.0, Wikimedia Commons"
+ },
+ "Dni Morza w Ustce": {
+  "src": "atrakcje-promenada-ustka.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Grand Lubicz Festiwal Uzdrowiska w Ustce": {
+  "src": "atrakcje-promenada-ustka.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Plaża nad Jeziorem Wiejskim w Łąkiem": {
+  "src": "rozrywka-plaza-lakie.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Cmentarzysko kurhanowe w Lewinie": {
+  "src": "atrakcje-kurhany-lewino.jpg",
+  "credit": "Fot. Titës, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Jezioro Głębokie koło Ciemina": {
+  "src": "atrakcje-jezioro-glebokie-ciemino.jpg",
+  "credit": "Fot. Krzysztof Masloch, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Wieża widokowa we Wdzydzach": {
+  "src": "atrakcje-wieza-widokowa-wdzydze.jpg",
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Bytowska Watra – festiwal kultury ukraińskiej w Udorpiu": {
+  "src": "imprezy-bytowska-watra.jpg",
+  "credit": "Fot. Baqtrian, CC BY-SA 4.0, Wikimedia Commons"
  }
 };
 

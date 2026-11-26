@@ -368,3 +368,13 @@ Wszystkie zdjęcia poglądowe (brak wolnych zdjęć dokładnie tych sklepów/sta
 | atrakcje-jezioro-rzuno-dziemiany.jpg | Ścieżka przyrodnicza wokół jeziora Rzuno w Dziemianach | https://commons.wikimedia.org/wiki/File:Jezioro_Rzujno_01.JPG | Fot. Leinad, CC BY-SA 3.0, Wikimedia Commons |
 | deszcz-muzeum-sierakowice.jpg | Ekspozycja muzealna „Z Kaszebsczi wse” w Sierakowicach | https://commons.wikimedia.org/wiki/File:Sierakowice_GOK_o6.07.10_p.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |
 | jedzenie-kiston-kistowo.jpg | Restauracja Hotelu Kiston w Kistowie | https://commons.wikimedia.org/wiki/File:Kistowo,_Kiston_(1).jpg | Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons |
+
+| atrakcje-oltarz-papieski-sierakowice-2.jpg | Ołtarz Papieski w Sierakowicach | https://commons.wikimedia.org/wiki/File:Sierakowice,_oltarz_papieski_2.jpg | Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-rezerwat-wiezyca.jpg | Rezerwat przyrody Szczyt Wieżyca | https://commons.wikimedia.org/wiki/File:Wiezyca.JPG | Fot. Mef.ellingen, CC BY 3.0, Wikimedia Commons |
+| atrakcje-promenada-ustka.jpg | Dni Morza w Ustce | https://commons.wikimedia.org/wiki/File:Ustka,_Promenada_Nadmorska_(HB1).jpg | Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-promenada-ustka.jpg | Grand Lubicz Festiwal Uzdrowiska w Ustce | https://commons.wikimedia.org/wiki/File:Ustka,_Promenada_Nadmorska_(HB1).jpg | Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons |
+| rozrywka-plaza-lakie.jpg | Plaża nad Jeziorem Wiejskim w Łąkiem | https://commons.wikimedia.org/wiki/File:Łąkie,_jezioro_Wiejskie_1345.jpg | Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-kurhany-lewino.jpg | Cmentarzysko kurhanowe w Lewinie | https://commons.wikimedia.org/wiki/File:K%C3%B9rhan2.JPG | Fot. Titës, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-jezioro-glebokie-ciemino.jpg | Jezioro Głębokie koło Ciemina | https://commons.wikimedia.org/wiki/File:Jezioro_G%C5%82%C4%99bokie_(Pietrzykowskie)_w_%C5%9Awieszynie.JPG | Fot. Krzysztof Masloch, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-wieza-widokowa-wdzydze.jpg | Wieża widokowa we Wdzydzach | https://commons.wikimedia.org/wiki/File:Wdzydze_Kisz._View_tower_(2).JPG | Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-bytowska-watra.jpg | Bytowska Watra – festiwal kultury ukraińskiej w Udorpiu | https://commons.wikimedia.org/wiki/File:Jezioro_Watra_po%C5%82udniowa.jpg | Fot. Baqtrian, CC BY-SA 4.0, Wikimedia Commons |
