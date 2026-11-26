@@ -1052,6 +1052,26 @@ window.FOTO={
  "Bytowska Watra – festiwal kultury ukraińskiej w Udorpiu": {
   "src": "imprezy-bytowska-watra.jpg",
   "credit": "Fot. Baqtrian, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Szlak Wdzydzki (czarny) z Gołunia do Wiela": {
+  "src": "atrakcje-szlak-wdzydzki-golun-2.jpg",
+  "credit": "Fot. Rajczek, CC BY 3.0, Wikimedia Commons"
+ },
+ "Ścieżka „Szlakiem bytowskich jezior lobeliowych” w Pomyskim Młynie": {
+  "src": "atrakcje-sciezka-jezior-lobeliowych.jpg",
+  "credit": "Fot. S.Czachorowski, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Dzień Mieszkańca Gminy Redzikowo": {
+  "src": "imprezy-dzien-mieszkanca-redzikowo.jpg",
+  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Festiwal Muzyki Organowej i Kameralnej w Ustce": {
+  "src": "imprezy-festiwal-organowy-ustka-2.jpg",
+  "credit": "Fot. Henryk Bielamowicz, CC BY 3.0, Wikimedia Commons"
+ },
+ "Strefa 360 Park Redzikowo": {
+  "src": "rozrywka-strefa-360-redzikowo.jpg",
+  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
  }
 };
 

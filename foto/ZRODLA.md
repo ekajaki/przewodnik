@@ -378,3 +378,9 @@ Wszystkie zdjęcia poglądowe (brak wolnych zdjęć dokładnie tych sklepów/sta
 | atrakcje-jezioro-glebokie-ciemino.jpg | Jezioro Głębokie koło Ciemina | https://commons.wikimedia.org/wiki/File:Jezioro_G%C5%82%C4%99bokie_(Pietrzykowskie)_w_%C5%9Awieszynie.JPG | Fot. Krzysztof Masloch, CC BY-SA 3.0, Wikimedia Commons |
 | atrakcje-wieza-widokowa-wdzydze.jpg | Wieża widokowa we Wdzydzach | https://commons.wikimedia.org/wiki/File:Wdzydze_Kisz._View_tower_(2).JPG | Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons |
 | imprezy-bytowska-watra.jpg | Bytowska Watra – festiwal kultury ukraińskiej w Udorpiu | https://commons.wikimedia.org/wiki/File:Jezioro_Watra_po%C5%82udniowa.jpg | Fot. Baqtrian, CC BY-SA 4.0, Wikimedia Commons |
+
+| atrakcje-szlak-wdzydzki-golun-2.jpg | Szlak Wdzydzki (czarny) z Gołunia do Wiela | https://commons.wikimedia.org/wiki/File:Golun.jpg | Fot. Rajczek, CC BY 3.0, Wikimedia Commons |
+| atrakcje-sciezka-jezior-lobeliowych.jpg | Ścieżka „Szlakiem bytowskich jezior lobeliowych” w Pomyskim Młynie | https://commons.wikimedia.org/wiki/File:Jezioro_Stary_Staw1.JPG | Fot. S.Czachorowski, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-dzien-mieszkanca-redzikowo.jpg | Dzień Mieszkańca Gminy Redzikowo | https://commons.wikimedia.org/wiki/File:Redzikowo_-_Park_wodny.JPG | Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons |
+| imprezy-festiwal-organowy-ustka-2.jpg | Festiwal Muzyki Organowej i Kameralnej w Ustce | https://commons.wikimedia.org/wiki/File:Ustka,_dawny_kościół_ewangelicki_(HB2).jpg | Fot. Henryk Bielamowicz, CC BY 3.0, Wikimedia Commons |
+| rozrywka-strefa-360-redzikowo.jpg | Strefa 360 Park Redzikowo | https://commons.wikimedia.org/wiki/File:Redzikowo_-_Park_wodny.JPG | Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons |
