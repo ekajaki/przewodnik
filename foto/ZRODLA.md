@@ -389,3 +389,15 @@ Wszystkie zdjęcia poglądowe (brak wolnych zdjęć dokładnie tych sklepów/sta
 | deszcz-muzeum-gryf-dabrowka.jpg | Muzeum Techniki Wojskowej GRYF w Dąbrówce | https://commons.wikimedia.org/wiki/File:Muzeum_Techniki_Wojskowej_GRYF.jpg | Fot. Uaz, CC BY-SA 3.0, Wikimedia Commons |
 | imprezy-dozynki-rybne-ustka.jpg | Dożynki Rybne – Święto Ustki | https://commons.wikimedia.org/wiki/File:POL_Ustka_port_rybacki_2.jpg | Fot. Wladyslaw Golinski, CC BY-SA 4.0, Wikimedia Commons |
 | imprezy-wosp-bytow.jpg | Finał WOŚP w Bytowie | https://commons.wikimedia.org/wiki/File:Market_square_in_Bytow_(2).jpg | Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons |
+
+| atrakcje-cmentarz-jawory.jpg | Cmentarz ewangelicki z lapidarium w Jaworach | https://commons.wikimedia.org/wiki/File:Cmentarz_ewangelicki_w_Jaworach_2.jpg | Fot. Torrosbak, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-figura-retnika-linia.jpg | Figura Rétnika w Lini – szlak „Poczuj kaszubskiego ducha” | https://commons.wikimedia.org/wiki/File:Lëniô2.JPG | Fot. Titës, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-trojcy-koscierzyna.jpg | Kościół Świętej Trójcy w Kościerzynie | https://commons.wikimedia.org/wiki/File:Kościerzyna_kościół_farny.jpg | Fot. AsalmZNC, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-pomnik-studzienice.jpg | Pomnik Pamięci Ofiar Faszyzmu w Studzienicach | https://commons.wikimedia.org/wiki/File:Studzienice,_memorial_stone.jpg | Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-rezerwat-dolina-kulawy.jpg | Rezerwat Dolina Kulawy | https://commons.wikimedia.org/wiki/File:ZPK_Kulawa_04.07.10_p.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-jezioro-gleboczko.jpg | Rezerwat „Jezioro Głęboczko” koło Pomyska Wielkiego | https://commons.wikimedia.org/wiki/File:Jez_Głeboczek.JPG | Fot. S. Czachorowski, CC BY-SA 4.0, Wikimedia Commons |
+| imprezy-cassubia-cantat-gok-tuchomie.jpg | Festiwal Cassubia Cantat | https://commons.wikimedia.org/wiki/File:Gminny_Ośrodek_Kultury_w_Tuchomiu_2009_ubt.JPG | Fot. Tomasz Sienicki, CC BY-SA 3.0, Wikimedia Commons |
+| imprezy-festiwal-pianistyki-filharmonia.jpg | Festiwal Pianistyki Polskiej w Słupsku | https://commons.wikimedia.org/wiki/File:Teatr_slupsk.JPG | Fot. M. P., CC BY-SA 3.0, Wikimedia Commons |
+| rozrywka-hotel-kiston-kistowo.jpg | Kręgielnia i basen w Hotelu Kiston w Kistowie | https://commons.wikimedia.org/wiki/File:Kistowo,_Kiston_(1).jpg | Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons |
+| rozrywka-klodno-chmielno.jpg | Kąpielisko nad jeziorem Kłodno w Chmielnie | https://commons.wikimedia.org/wiki/File:Klodno_2.jpg | Fot. Polimerek, CC BY-SA 3.0, Wikimedia Commons |
+| rozrywka-plaza-lubiatowo.jpg | Plaża w Lubiatowie i Kopalinie (wejścia 38–39) | https://commons.wikimedia.org/wiki/File:Lubiatowo_brzeg.jpg | Fot. Jan Jerszyński, CC BY-SA 2.5, Wikimedia Commons |

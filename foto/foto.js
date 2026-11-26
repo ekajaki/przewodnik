@@ -1084,6 +1084,50 @@ window.FOTO={
  "Finał WOŚP w Bytowie": {
   "src": "imprezy-wosp-bytow.jpg",
   "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Cmentarz ewangelicki z lapidarium w Jaworach": {
+  "src": "atrakcje-cmentarz-jawory.jpg",
+  "credit": "Fot. Torrosbak, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Figura Rétnika w Lini – szlak „Poczuj kaszubskiego ducha”": {
+  "src": "atrakcje-figura-retnika-linia.jpg",
+  "credit": "Fot. Titës, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół Świętej Trójcy w Kościerzynie": {
+  "src": "atrakcje-kosciol-trojcy-koscierzyna.jpg",
+  "credit": "Fot. AsalmZNC, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Pomnik Pamięci Ofiar Faszyzmu w Studzienicach": {
+  "src": "atrakcje-pomnik-studzienice.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Rezerwat Dolina Kulawy": {
+  "src": "atrakcje-rezerwat-dolina-kulawy.jpg",
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Rezerwat „Jezioro Głęboczko” koło Pomyska Wielkiego": {
+  "src": "atrakcje-jezioro-gleboczko.jpg",
+  "credit": "Fot. S. Czachorowski, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Festiwal Cassubia Cantat": {
+  "src": "imprezy-cassubia-cantat-gok-tuchomie.jpg",
+  "credit": "Fot. Tomasz Sienicki, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Festiwal Pianistyki Polskiej w Słupsku": {
+  "src": "imprezy-festiwal-pianistyki-filharmonia.jpg",
+  "credit": "Fot. M. P., CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kręgielnia i basen w Hotelu Kiston w Kistowie": {
+  "src": "rozrywka-hotel-kiston-kistowo.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Kąpielisko nad jeziorem Kłodno w Chmielnie": {
+  "src": "rozrywka-klodno-chmielno.jpg",
+  "credit": "Fot. Polimerek, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Plaża w Lubiatowie i Kopalinie (wejścia 38–39)": {
+  "src": "rozrywka-plaza-lubiatowo.jpg",
+  "credit": "Fot. Jan Jerszyński, CC BY-SA 2.5, Wikimedia Commons"
  }
 };
 
