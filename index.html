@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet.css?v=20261126a">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261125j">
 <style>
 /* ============ Koncepcja D „Portal regionu” ============ */
 :root{
@@ -700,15 +700,15 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 </nav>
 
-<script src="vendor/leaflet.js?v=20261126a"></script>
-<script src="config.js?v=20261126a"></script>
-<script src="dane.js?v=20261126a"></script>
-<script src="icons.js?v=20261126a"></script>
-<script src="foto/foto.js?v=20261126a" onerror="window.FOTO={}"></script>
-<script src="i18n.js?v=20261126a"></script>
-<script src="i18n-dane.js?v=20261126a"></script>
-<script src="szukaj-dane.js?v=20261126a"></script>
-<script src="app.js?v=20261126a"></script>
+<script src="vendor/leaflet.js?v=20261125j"></script>
+<script src="config.js?v=20261125j"></script>
+<script src="dane.js?v=20261125j"></script>
+<script src="icons.js?v=20261125j"></script>
+<script src="foto/foto.js?v=20261125j" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261125j"></script>
+<script src="i18n-dane.js?v=20261125j"></script>
+<script src="szukaj-dane.js?v=20261125j"></script>
+<script src="app.js?v=20261125j"></script>
 <script>
 /* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
 (function(){
@@ -737,7 +737,10 @@ function photo(el,k){var f=K[k]; if(!f)return;
   var tgt=el.querySelector(".tph")||el; tgt.style.backgroundImage='url("'+B+f.src+'")';
   var cr=document.createElement("small"); cr.className="cr"; cr.textContent=short(f.credit,el.classList.contains("tile")); el.appendChild(cr);}
 K=Object.assign({},K);var FF=window.FOTO||{};if(FF["Jezioro Jasień"])K.start=FF["Jezioro Jasień"]; /* kadr bez linii energetycznej */
-/* banery działów: tylko zdjęcia z okolicy (foto.js → FOTO_KAT); Sklepy i Info bez zdjęcia – sam kolorowy nagłówek */
+/* tylko kadry z okolicy i letnie: Łupawa (rozrywka/aktywnie), Sobótka nad Jasieniem (imprezy), kamienice przy wieży św. Katarzyny (sklepy) */
+if(FF["Szlak kajakowy Łupawy"])K.rozrywka=FF["Szlak kajakowy Łupawy"];
+if(FF["Sobótka w Jasieniu"])K.imprezy=FF["Sobótka w Jasieniu"];
+if(FF["Gotycka Wieża św. Katarzyny"])K.sklepy=FF["Gotycka Wieża św. Katarzyny"];
 document.querySelectorAll(".tiles .tile[data-go]").forEach(function(t){var s=document.createElement("span");s.className="tph";s.setAttribute("aria-hidden","true");t.insertBefore(s,t.firstChild);photo(t,t.dataset.go);});
 document.querySelectorAll("[data-ph]").forEach(function(el){photo(el,el.dataset.ph);});
 /* odznaka z piktogramem działu w banerze */
