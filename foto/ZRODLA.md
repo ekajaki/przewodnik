@@ -361,3 +361,10 @@ Wszystkie zdjęcia poglądowe (brak wolnych zdjęć dokładnie tych sklepów/sta
 | rozrywka-kapielisko-lubkowo.jpg | Kąpielisko i przystań w Lubkowie | https://commons.wikimedia.org/wiki/File:Nad_Jeziorem_%C5%BBarnowieckim_-_pomost_w_Lubkowie_-_panoramio.jpg | Fot. geo573, CC BY 3.0, Wikimedia Commons |
 | rozrywka-park-kultury-slupsk.jpg | Park Kultury i Wypoczynku w Słupsku | https://commons.wikimedia.org/wiki/File:Park_Kultury_i_Wypoczynku_IMG_0161.JPG | Fot. Michał Słupczewski, Attribution, Wikimedia Commons |
 | rozrywka-port-jachtowy-leba.jpg | Port jachtowy w Łebie | https://commons.wikimedia.org/wiki/File:Marina_w_%C5%81ebie_-_panoramio.jpg | Fot. tadeo5, CC BY 3.0, Wikimedia Commons |
+
+| atrakcje-kosciol-bukowina.jpg | Kościół Narodzenia NMP w Bukowinie | https://commons.wikimedia.org/wiki/File:Buckowin_15_Fachwerk-Kirche.jpg | Fot. Steinchen1971, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-kosciol-stare-polaszki-2.jpg | Kościół św. Mikołaja i dwór Skórzewskich w Starych Polaszkach | https://commons.wikimedia.org/wiki/File:Kościół_św._Mikołaja_w_Starych_Polaszkach.jpg | Fot. AsalmZNC, CC BY-SA 3.0, Wikimedia Commons |
+| atrakcje-rezerwat-staniszewskie-zdroje-2.jpg | Rezerwat Staniszewskie Zdroje | https://commons.wikimedia.org/wiki/File:Rezerwat_przyrody_Staniszewskie_Zdroje.jpg | Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons |
+| atrakcje-jezioro-rzuno-dziemiany.jpg | Ścieżka przyrodnicza wokół jeziora Rzuno w Dziemianach | https://commons.wikimedia.org/wiki/File:Jezioro_Rzujno_01.JPG | Fot. Leinad, CC BY-SA 3.0, Wikimedia Commons |
+| deszcz-muzeum-sierakowice.jpg | Ekspozycja muzealna „Z Kaszebsczi wse” w Sierakowicach | https://commons.wikimedia.org/wiki/File:Sierakowice_GOK_o6.07.10_p.jpg | Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons |
+| jedzenie-kiston-kistowo.jpg | Restauracja Hotelu Kiston w Kistowie | https://commons.wikimedia.org/wiki/File:Kistowo,_Kiston_(1).jpg | Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons |

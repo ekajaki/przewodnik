@@ -992,6 +992,30 @@ window.FOTO={
  "Port jachtowy w Łebie": {
   "src": "rozrywka-port-jachtowy-leba.jpg",
   "credit": "Fot. tadeo5, CC BY 3.0, Wikimedia Commons"
+ },
+ "Kościół Narodzenia NMP w Bukowinie": {
+  "src": "atrakcje-kosciol-bukowina.jpg",
+  "credit": "Fot. Steinchen1971, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Kościół św. Mikołaja i dwór Skórzewskich w Starych Polaszkach": {
+  "src": "atrakcje-kosciol-stare-polaszki-2.jpg",
+  "credit": "Fot. AsalmZNC, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Rezerwat Staniszewskie Zdroje": {
+  "src": "atrakcje-rezerwat-staniszewskie-zdroje-2.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+ },
+ "Ścieżka przyrodnicza wokół jeziora Rzuno w Dziemianach": {
+  "src": "atrakcje-jezioro-rzuno-dziemiany.jpg",
+  "credit": "Fot. Leinad, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Ekspozycja muzealna „Z Kaszebsczi wse” w Sierakowicach": {
+  "src": "deszcz-muzeum-sierakowice.jpg",
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Restauracja Hotelu Kiston w Kistowie": {
+  "src": "jedzenie-kiston-kistowo.jpg",
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
  }
 };
 
