@@ -3,7 +3,7 @@
    - zdjęcia i kafle mapy: osobna, trwała pamięć – NIE kasuje się przy aktualizacji przewodnika,
    - kafle mapy 9–11 (cały region) zapisują się same po instalacji; „Zapisz na offline” dociąga resztę (offline-lista.json),
    - pogoda, IMGW i baza wpisów: sieć z limitem czasu, a bez zasięgu ostatnia kopia. */
-var V="przewodnik-20261127g", MEDIA="przewodnik-media",
+var V="przewodnik-20261127h", MEDIA="przewodnik-media",
 CORE=["./","index.html","app.js","dane.js","i18n.js","i18n-dane.js","szukaj-dane.js","foto/foto.js","mapa/mapa-region-800.webp","mapa/mapa-region-1600.webp","icons.js","config.js","manifest.webmanifest","vendor/leaflet.js","rozeta.svg","haft.svg","ornament.svg","wzor.svg","rozeta-linia.svg","vendor/leaflet.css","vendor/images/layers.png","vendor/images/layers-2x.png"];
 var KEEP={"przewodnik-tiles":1,"przewodnik-ext":1};KEEP[MEDIA]=1;
 self.addEventListener("install",function(e){e.waitUntil(caches.open(V).then(function(c){return Promise.all(CORE.map(function(u){return c.add(new Request(u,{cache:"reload"})).catch(function(){})}))}).then(function(){return self.skipWaiting()}));});

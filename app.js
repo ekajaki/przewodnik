@@ -83,7 +83,7 @@ function card(o0,opts){
   if(o0.msze&&LANG==="pl")h+=mszeBox(o0.msze);
   if(o.cen&&o.cen.length)h+='<div class="cennik"><b>'+esc(T("cennik")||"Cennik")+'</b><ul>'+o.cen.map(function(r){return '<li><span class="cn">'+esc(r[0])+(r[2]?'<small>'+esc(r[2])+'</small>':'')+'</span><span class="cp">'+esc(r[1])+'</span></li>'}).join("")+'</ul></div>';
   h+='<div class="acts">'+(o0.acc==="zakaz"?'':'<a class="btn pri" target="_blank" rel="noopener" href="'+esc(mapsUrl(o0))+'">'+ic('route')+' '+esc(T("nav"))+'</a>');
-  if(o0.t)h+='<a class="btn" href="tel:'+o0.t.replace(/\s/g,"")+'">'+ic('phone')+' '+esc(telFmt(o0.t))+'</a>';
+  if(o0.t)h+='<a class="btn" href="tel:'+String(o0.t).replace(/[^\d+]/g,"")+'">'+ic('phone')+' '+esc(telFmt(o0.t))+'</a>';
   if(o0.w&&/^https?:\/\//i.test(o0.w))h+='<a class="btn" target="_blank" rel="noopener" href="'+esc(o0.w)+'">'+ic('web')+' '+esc(T("web"))+'</a>';
   if(!opts.noShare)h+='<button class="btn ghost" data-share="'+id+'" data-sec="'+sec+'" aria-label="'+esc(T("share"))+'">'+ic('share')+'</button>';
   h+='</div>';
@@ -164,7 +164,8 @@ function evCard(e){
     :'<span class="when soft">'+ic('calendar')+' '+esc(e.mies?T("usually")+MIESW[e.mies-1]:T("tbc"))+(L.ost?esc(T("last")+L.ost):'')+'</span>';
   return card(e,{sec:"imprezy",extra:when,tag:EVT[e.typ]?'<span class="tag">'+esc(EVT[e.typ])+'</span>':''});
 }
-function monthDiff(m){var cm=new Date().getMonth()+1;return (m-cm+12)%12;}
+/* bieżący miesiąc na końcu: te imprezy w tym roku już się odbyły (nadchodzące z datą są wyżej) */
+function monthDiff(m){var cm=new Date().getMonth()+1,d=(m-cm+12)%12;return d===0?12:d;}
 function renderEvents(){
   var types=["all"].concat(Object.keys(EVT).filter(function(k){return EVENTS.some(function(e){return e.typ===k})}));
   chipRow($("ev-chips"),types.map(function(k){return [k,k==="all"?T("allEv"):EVT[k]]}),evType,"t");
@@ -230,17 +231,22 @@ function wordHit(t,w){ /* 2 = pełne/odmiana, 1 = literówka, 0 = brak */
   var n=0,L=Math.min(t.length,w.length); while(n<L&&t[n]===w[n])n++;
   var mL=Math.min(t.length,w.length); if((n>=4&&n>=mL-1)||(n>=5&&n>=mL-2))return 2; /* odmiana: dzieci/dziecmi, zamek/zamku */
   if(t.length>=5&&lev1(t,w,t.length>=8?2:1)<=(t.length>=8?2:1))return 1; return 0;}
-var SZ_STOP_EXTRA=["robic","zrobic","jechac","pojechac","isc","pojsc","mozna","fajne","fajnego","fahren","tun","unternehmen","gibt","es","kann","man","things","thing","stuff","nice","fun stuff"];
+/* dopowiedzenia słownika: słowa, które inaczej łapią zły temat (pieszy ≠ pies) */
+var SZ_WORDS_EXTRA={pieszy:"spacer",piesza:"spacer",piesze:"spacer",pieszo:"spacer",pieszych:"spacer",msza:"kosciol",mszy:"kosciol",msze:"kosciol",nabozenstwo:"kosciol"};
+/* ogólne tematy, przy których „Poleca gospodarz” nie wskakuje na górę */
+var SZ_HOST_SKIP={aktywnie:1,sport:1,wieczor:1,nietypowe:1,lokalne:1,zima:1};
+var SZ_STOP_EXTRA=["godziny","godzina","otwarcia","robic","zrobic","jechac","pojechac","isc","pojsc","mozna","fajne","fajnego","fahren","tun","unternehmen","gibt","es","kann","man","things","thing","stuff","nice","fun stuff"];
 var szIdx=null;
 function szIndex(){
   if(szIdx&&szIdx.lang===LANG)return szIdx;
-  var words={},phrases=[],stop={},labels={};
+  var words={},phrases=[],stop={},labels={},own={};
   ["pl","en","de"].forEach(function(l){
-    (SZ.stop[l]||[]).forEach(function(w){stop[szn(w)]=1;});
+    if(l===LANG||l==="pl")(SZ.stop[l]||[]).forEach(function(w){stop[szn(w)]=1;}); /* puste słowa tylko z bieżącego języka (i PL) */
     var S=SZ.slownik[l]||{};
     Object.keys(S).forEach(function(tag){
       [S[tag].l].concat(S[tag].w||[]).forEach(function(w){w=szn(w);if(!w)return;
-        if(w.indexOf(" ")>0)phrases.push([w,tag]);else(words[w]=words[w]||{})[tag]=1;});});});
+        if(w.indexOf(" ")>0)phrases.push([w,tag]);else{(words[w]=words[w]||{})[tag]=1;if(l===LANG)own[w]=1;}});});});
+  Object.keys(SZ_WORDS_EXTRA).forEach(function(w){(words[w]=words[w]||{})[SZ_WORDS_EXTRA[w]]=1;own[w]=1;});
   SZ_STOP_EXTRA.forEach(function(w){stop[szn(w)]=1;});
   Object.keys(words).forEach(function(w){if(stop[w])delete stop[w];}); /* słowo-temat wygrywa z „pustym” (np. niem. See = jezioro) */
   var S=SZ.slownik[LANG]||SZ.slownik.pl||{}; Object.keys(S).forEach(function(t){labels[t]=S[t];});
@@ -260,20 +266,24 @@ function szIndex(){
   document.querySelectorAll("#v-info > .card").forEach(function(el){var h=el.querySelector("h2,h3");if(!h)return;
     var t=el.textContent||"";items.push({sec:"info",info:el,o:{n:h.textContent.trim()},tags:{informacja:1},
       nm:szn(h.textContent).split(" "),pl:[],ct:[],ds:szn(t).split(" ").filter(function(w){return w.length>2}),snip:t.replace(/\s+/g," ").trim().slice(h.textContent.trim().length,h.textContent.trim().length+150)});});
-  szIdx={lang:LANG,words:words,phrases:phrases,stop:stop,labels:labels,items:items}; return szIdx;}
+  /* nazwy miejscowości (Bytów, Łupawsko…) nigdy nie są „pustym” słowem */
+  var plStop={};(SZ.stop.pl||[]).forEach(function(w){plStop[szn(w)]=1;});SZ_STOP_EXTRA.forEach(function(w){plStop[szn(w)]=1;});
+  items.forEach(function(it){(it.tw||[]).concat(it.gw||[]).forEach(function(w){if(!plStop[w])delete stop[w];});});
+  szIdx={lang:LANG,words:words,own:own,phrases:phrases,stop:stop,labels:labels,items:items}; return szIdx;}
 function szParse(q){
   var X=szIndex(), s=" "+szn(q)+" ", tags={}, toks=[];
+  s=s.replace(/ wc /g," toaleta ");
   X.phrases.forEach(function(p){var k=" "+p[0]+" ";if(s.indexOf(k)>=0){tags[p[1]]=1;s=s.replace(k," ");}});
   s.split(" ").forEach(function(t){if(!t||X.stop[t]||t.length<2)return;
     var tt={},w; if(X.words[t])tt=X.words[t];
-    else if(t.length>=4)for(w in X.words){if(wordHit(t,w)===2){for(var k in X.words[w])tt[k]=1;}}
+    else if(t.length>=4)for(w in X.own){if(wordHit(t,w)===2){for(var k in X.words[w])tt[k]=1;}}
     toks.push({t:t,tags:Object.keys(tt)});});
   return {phraseTags:Object.keys(tags),toks:toks};}
 var SZ_PREF={dzieci:"rozrywka",kapiel:"rozrywka",aktywnie:"rozrywka",zima:"rozrywka",wieczor:"rozrywka",zwierzeta:"rozrywka",deszcz:"deszcz",jedzenie:"jedzenie",ryba:"jedzenie",pizza:"jedzenie",kawa:"jedzenie",zakupy:"sklepy",paliwo:"sklepy",niedziela:"sklepy",impreza:"imprezy",muzyka:"imprezy",kultura:"imprezy",nocleg:"jedzenie",informacja:"start"};
 function szScore(it,tok){
   var tg=0,tx=0,i,h;
-  for(i=0;i<tok.tags.length;i++){var w=it.tags[tok.tags[i]];if(w){tg=Math.max(tg,4*w+(SZ_PREF[tok.tags[i]]===it.sec?1:0));}}
-  if(tg>0)it._tq=1;
+  for(i=0;i<tok.tags.length;i++){var w=it.tags[tok.tags[i]];if(w){tg=Math.max(tg,4*w+(SZ_PREF[tok.tags[i]]===it.sec?1:0));if(w>=1.5&&!(it.host&&SZ_HOST_SKIP[tok.tags[i]]))it._tq=1;}}
+  if(tg>0&&!it.host)it._tq=1;
   function f(arr,wt){for(var j=0;j<arr.length;j++){h=wordHit(tok.t,arr[j]);if(h){tx=Math.max(tx,h===2?wt:wt/2);if(h===2)return;}}}
   f(it.nm,6); if(tx>=6&&!tok.town)it._tq=1; f(it.pl,3); f(it.ct,3); if(tx<2)f(it.ds,tg?0.5:1.5); /* temat już trafiony – słowo w opisie tylko lekko podbija */
   /* nazwa miejscowości wpisana dokładnie (np. „Kartuzy”, „Ustka”) wygrywa z luźnym dopasowaniem tematu */
@@ -283,12 +293,13 @@ function szSearch(q){
   var X=szIndex(),P=szParse(q),all=[],part=false;
   if(!X.town){X.town={};X.items.forEach(function(it){(it.tw||[]).concat(it.gw||[]).forEach(function(w){X.town[w]=1;});});X.townL=Object.keys(X.town);}
   P.toks.forEach(function(tk){tk.town=X.town[tk.t]||X.townL.some(function(w){return wordHit(tk.t,w)===2;});}); /* słowo = miejscowość, nie temat */
+  var wantSwim=P.phraseTags.indexOf("kapiel")>=0||P.toks.some(function(tk){return tk.tags.indexOf("kapiel")>=0;}); /* ktoś pyta o kąpiel – plaże normalnie, także poza sezonem */
   X.items.forEach(function(it){
     var tot=0,ok=true,hit=0;it._tq=0;
-    P.phraseTags.forEach(function(t){if(it.tags[t]){it._tq=1;tot+=4*it.tags[t]+(SZ_PREF[t]===it.sec?1:0);hit++;}else ok=false;});
+    P.phraseTags.forEach(function(t){if(it.tags[t]){if(!it.host||it.tags[t]>=1.5)it._tq=1;tot+=4*it.tags[t]+(SZ_PREF[t]===it.sec?1:0);hit++;}else ok=false;});
     P.toks.forEach(function(tk){var s=szScore(it,tk);if(s>0){tot+=s;if(s>=1.5)hit++;}else ok=false;}); /* literówka w samym opisie nie liczy się jako trafienie */
     if(it.sec==="imprezy"&&P.phraseTags.indexOf("impreza")<0&&!P.toks.some(function(tk){return tk.tags.indexOf("impreza")>=0}))tot*=0.8; /* imprezy niżej, chyba że ktoś ich szuka */
-    if(OFFSEASON&&summerOnly(it.o)&&P.phraseTags.indexOf("kapiel")<0)tot-=3; /* poza sezonem plaże i kąpieliska niżej */
+    if(OFFSEASON&&summerOnly(it.o)&&!wantSwim)tot-=3; /* poza sezonem plaże i kąpieliska niżej */
     it._s=tot;it._ok=ok;it._h=hit;});
   var need=P.phraseTags.length+P.toks.length; if(!need)return {res:[],P:P,part:false};
   X.items.forEach(function(it){if(it.host&&it._h>0&&it._tq)it._s+=6;});
@@ -530,7 +541,7 @@ function mfsNear(ll){
   /* minimalistyczne pinezki tylko dla miejsc z listy */
   if(!mfsPins)mfsPins=L.layerGroup().addTo(mapFS);mfsPins.clearLayers();
   list.slice(0,40).forEach(function(r){var L0=loc(r.x.o);
-    L.circleMarker(r.x.o.ll,{radius:6,color:"#fff",weight:2,fillColor:r.x.col,fillOpacity:1}).bindTooltip(L0.n||r.x.o.n,{direction:"top",offset:[0,-6]})
+    L.circleMarker(r.x.o.ll,{radius:6,color:"#fff",weight:2,fillColor:r.x.col,fillOpacity:1}).bindTooltip(esc(L0.n||r.x.o.n),{direction:"top",offset:[0,-6]})
      .on("click",function(ev){L.DomEvent.stopPropagation(ev);var row=document.querySelector('.mfs-row[data-mfsi="'+r.x.i+'"]');if(row){row.scrollIntoView({block:"nearest",behavior:"smooth"});row.classList.add("hl");setTimeout(function(){row.classList.remove("hl")},1600);}})
      .addTo(mfsPins);});}
 /* mapa bez pinezek na starcie: po dotknięciu mapy pojawia się lista „W pobliżu” i małe kropki tych miejsc */
@@ -642,7 +653,9 @@ function wmo(c){if(c===0)return "wx-sun";if(c<=2)return "wx-partly";if(c===3)ret
 var WX=null;
 function renderWeather(){
   var el=$("wx"); try{renderIdeas();}catch(e){} if(!WX||!WX.daily){el.hidden=true;return;}
-  var d=WX.daily, i=0; el.hidden=false;
+  /* prognoza z pamięci telefonu: „Dziś” tylko jeśli naprawdę jest na dziś (bez zasięgu nie pokazujemy wczorajszej) */
+  var d=WX.daily, now=new Date(), iso=now.getFullYear()+"-"+("0"+(now.getMonth()+1)).slice(-2)+"-"+("0"+now.getDate()).slice(-2), i=(d.time||[]).indexOf(iso);
+  if(i<0){el.hidden=true;return;} el.hidden=false;
   function day(j,lab){return '<div class="wxd"><span class="wxi">'+ic(wmo(d.weather_code[j]))+'</span><b>'+esc(lab)+'</b><span>'+Math.round(d.temperature_2m_max[j])+'° / '+Math.round(d.temperature_2m_min[j])+'°</span>'+
     '<span>'+ic('drop')+' '+(d.precipitation_probability_max[j]==null?"–":d.precipitation_probability_max[j])+'%</span><span>'+ic('wind')+' '+Math.round(d.wind_speed_10m_max[j])+' km/h</span></div>';}
   var sunset=(d.sunset[i]||"").slice(11,16), rain=d.precipitation_probability_max[i]>=60, wind=d.wind_gusts_10m_max[i]>=40;
@@ -650,12 +663,12 @@ function renderWeather(){
   if(rain)tips.push('<a href="#deszcz" data-go="deszcz">'+ic('rain')+' '+esc(T("wxRain"))+'</a>');
   if(wind)tips.push('<span>'+ic('warn')+' '+esc(T("wxWind"))+'</span>');
   if(d.uv_index_max[i]>=6)tips.push('<span>'+ic('uv')+' '+esc(T("wxUv"))+'</span>');
-  el.innerHTML='<h3>'+ic('weather')+' '+esc(T("wxH"))+'</h3><div class="wxrow">'+day(0,T("today"))+day(1,T("tomorrow"))+'</div>'+
+  el.innerHTML='<h3>'+ic('weather')+' '+esc(T("wxH"))+'</h3><div class="wxrow">'+day(i,T("today"))+(d.time[i+1]?day(i+1,T("tomorrow")):'')+'</div>'+
     '<p class="small">'+ic('sunset')+' '+esc(T("sunset"))+' '+sunset+' · '+esc(T("wxSrc"))+'</p>'+(tips.length?'<p class="wxtips">'+tips.join(" ")+'</p>':'');
 }
 (function loadWeather(){
   var c=store("przewodnik.pogoda"); if(c&&Date.now()-c.t<3*3600e3){WX=c.d;renderWeather();return;} if(c){WX=c.d;}
-  fetch("https://api.open-meteo.com/v1/forecast?latitude="+HOME[0]+"&longitude="+HOME[1]+"&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,uv_index_max,sunset&timezone=Europe%2FWarsaw&forecast_days=2")
+  fetch("https://api.open-meteo.com/v1/forecast?latitude="+HOME[0]+"&longitude="+HOME[1]+"&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,uv_index_max,sunset&timezone=Europe%2FWarsaw&forecast_days=3")
    .then(function(r){return r.json()}).then(function(j){if(j&&j.daily){WX=j;store("przewodnik.pogoda",{t:Date.now(),d:j});}renderWeather();})
    .catch(function(){renderWeather();});
 })();
@@ -788,7 +801,7 @@ function renderMsze(){
 /* ---------- Teksty nowych kart (PL/EN/DE) ---------- */
 var OXT={pl:{summer:"tylko latem",offH:"Bez zasięgu nad wodą?",offL:"Zapisz przewodnik w telefonie, póki masz Wi-Fi: mapę okolicy i zdjęcia (ok. 50 MB). Potem działa także w lesie i na jeziorze.",offB:"Zapisz na offline",offP:"Zapisuję… %n z %r",offK:"Gotowe – przewodnik działa bez zasięgu.",offE:"Nie udało się. Spróbuj ponownie na Wi-Fi.",offS:"Zapisane w telefonie: %n z %r plików.",inst:"Dodaj do ekranu głównego",ios:"Na iPhonie: przycisk Udostępnij, potem „Do ekranu początkowego”.",net:"Brak zasięgu – pokazujemy to, co zapisane w telefonie.",rzH:"Łupawa dziś",rzS:"stan wody w Obrowie",rzQ:"przepływ",rzL:"Ostrzeżenia IMGW dla powiatu bytowskiego",rzN:"Brak ostrzeżeń IMGW dla powiatu bytowskiego.",rzSrc:"Dane: IMGW-PIB, pomiar",rzT:"woda"},
  en:{summer:"summer only",offH:"No signal by the water?",offL:"Save the guide on your phone while you have Wi-Fi: the area map and photos (about 50 MB). Then it works in the forest and on the lake too.",offB:"Save for offline",offP:"Saving… %n of %r",offK:"Done – the guide works without signal.",offE:"That didn't work. Try again on Wi-Fi.",offS:"Saved on this phone: %n of %r files.",inst:"Add to home screen",ios:"On iPhone: tap Share, then “Add to Home Screen”.",net:"No signal – showing what is saved on your phone.",rzH:"The Łupawa today",rzS:"water level at Obrowo",rzQ:"flow",rzL:"IMGW weather warnings for Bytów county",rzN:"No IMGW warnings for Bytów county.",rzSrc:"Data: IMGW-PIB, measured",rzT:"water"},
- de:{summer:"nur im Sommer",offH:"Kein Netz am Wasser?",offL:"Speichere den Führer im WLAN auf dem Handy: Umgebungskarte und Fotos (ca. 50 MB). Dann funktioniert er auch im Wald und auf dem See.",offB:"Offline speichern",offP:"Speichere… %n von %r",offK:"Fertig – der Führer funktioniert ohne Netz.",offE:"Hat nicht geklappt. Bitte im WLAN erneut versuchen.",offS:"Auf dem Handy gespeichert: %n von %r Dateien.",inst:"Zum Startbildschirm hinzufügen",ios:"Auf dem iPhone: Teilen, dann „Zum Home-Bildschirm“.",net:"Kein Netz – wir zeigen, was auf dem Handy gespeichert ist.",rzH:"Die Łupawa heute",rzS:"Wasserstand in Obrowo",rzQ:"Abfluss",rzL:"IMGW-Wetterwarnungen für den Kreis Bytów",rzN:"Keine IMGW-Warnungen für den Kreis Bytów.",rzSrc:"Daten: IMGW-PIB, gemessen",rzT:"Wasser"}};
+ de:{summer:"nur im Sommer",offH:"Kein Netz am Wasser?",offL:"Speichern Sie den Führer im WLAN auf dem Handy: Umgebungskarte und Fotos (ca. 50 MB). Dann funktioniert er auch im Wald und auf dem See.",offB:"Offline speichern",offP:"Speichere… %n von %r",offK:"Fertig – der Führer funktioniert ohne Netz.",offE:"Hat nicht geklappt. Bitte im WLAN erneut versuchen.",offS:"Auf dem Handy gespeichert: %n von %r Dateien.",inst:"Zum Startbildschirm hinzufügen",ios:"Auf dem iPhone: Teilen, dann „Zum Home-Bildschirm“.",net:"Kein Netz – wir zeigen, was auf dem Handy gespeichert ist.",rzH:"Die Łupawa heute",rzS:"Wasserstand in Obrowo",rzQ:"Abfluss",rzL:"IMGW-Wetterwarnungen für den Kreis Bytów",rzN:"Keine IMGW-Warnungen für den Kreis Bytów.",rzSrc:"Daten: IMGW-PIB, gemessen",rzT:"Wasser"}};
 function OX(){return OXT[LANG]||OXT.pl;}
 
 /* ---------- Linki do ekajaki.pl, kaszubskierowery.pl, lupawsko.com: oznaczenie, że gość przyszedł z przewodnika ---------- */
