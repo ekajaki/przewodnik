@@ -24,6 +24,9 @@ const ctx = {
 };
 ctx.window = ctx; ctx.self = ctx;
 vm.createContext(ctx);
+/* najpierw zdjęcia: każde nowe/podmienione zdjęcie w foto/ dostaje wersje AVIF (i WebP jako zapas) */
+try { require("child_process").execFileSync("python3", [path.join(__dirname, "foto.py")], { stdio: "inherit" }); }
+catch (e) { console.error("UWAGA: konwersja zdjęć do AVIF nie powiodła się – sprawdź tools/foto.py"); process.exit(1); }
 for (const f of ["dane.js", "i18n.js", "i18n-dane.js", "foto/foto.js", "config.js"]) {
   vm.runInContext(fs.readFileSync(path.join(ROOT, f), "utf8"), ctx, { filename: f });
 }
@@ -150,7 +153,9 @@ function photoOf(o) {
   if (/^https:\/\//.test(F.src)) return { url: F.src, abs: F.src, credit: F.credit || "", size: null };
   const rel = "foto/" + F.src.replace(/^\/+/, "");
   if (!fs.existsSync(path.join(ROOT, rel))) return null;
-  return { url: "/" + rel.split("/").map(encodeURIComponent).join("/"), abs: SITE + "/" + rel.split("/").map(encodeURIComponent).join("/"), credit: F.credit || "", size: imgSize(path.join(ROOT, rel)) };
+  const relAvif = rel.replace(/\.(jpe?g|png)$/i, ".avif"); /* AVIF jak na ekajaki.pl (tools/foto.py) */
+  const avif = relAvif !== rel && fs.existsSync(path.join(ROOT, relAvif)) ? "/" + relAvif.split("/").map(encodeURIComponent).join("/") : null;
+  return { avif, url: "/" + rel.split("/").map(encodeURIComponent).join("/"), abs: SITE + "/" + rel.split("/").map(encodeURIComponent).join("/"), credit: F.credit || "", size: imgSize(path.join(ROOT, rel)) };
 }
 
 /* ---------- HTML ---------- */
@@ -275,7 +280,7 @@ function placePage(it, all) {
   /* treść */
   let b = cr.html + `\n<article>\n<h1>${esc(o.n)}</h1>\n`;
   if (o.p) b += `<p class="pl">${esc(o.p)}${o.ll ? " · " + esc(kmTxt(dist(o.ll, BASE_LL))) + " od Łupawska" : ""}</p>\n`;
-  if (ph) b += `<figure><img src="${esc(ph.url)}"${ph.size ? ` width="${ph.size.w}" height="${ph.size.h}"` : ""} alt="${esc(o.n)}" loading="eager" decoding="async">${ph.credit ? `<figcaption>${esc(ph.credit)}</figcaption>` : ""}</figure>\n`;
+  if (ph) b += `<figure>${ph.avif ? `<picture><source type="image/avif" srcset="${esc(ph.avif)}">` : ""}<img src="${esc(ph.url)}"${ph.size ? ` width="${ph.size.w}" height="${ph.size.h}"` : ""} alt="${esc(o.n)}" loading="eager" decoding="async">${ph.avif ? "</picture>" : ""}${ph.credit ? `<figcaption>${esc(ph.credit)}</figcaption>` : ""}</figure>\n`;
   const ch = placeChips(it);
   if (ch.length) b += '<ul class="chips">' + ch.map(c => `<li${c[0] ? ' class="w"' : ""}>${esc(c[1])}</li>`).join("") + "</ul>\n";
   if (it.base === "imprezy") b += `<p class="when">Termin: ${esc(whenTxt(o))}</p>\n`;

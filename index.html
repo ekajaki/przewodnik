@@ -18,8 +18,8 @@
 <meta property="og:image" content="https://przewodnik.lupawsko.com/og.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="foto/m/jezioro-jasien.webp" media="(max-width:700px)" fetchpriority="high">
-<link rel="preload" as="image" href="foto/jezioro-jasien.jpg" media="(min-width:701px)" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" href="foto/m/jezioro-jasien.avif" media="(max-width:700px)" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" href="foto/jezioro-jasien.avif" media="(min-width:701px)" fetchpriority="high">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="rozeta.svg" type="image/svg+xml">
@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet.css?v=20261127i">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261127j">
 <style>
 /* ============ Koncepcja D „Portal regionu” ============ */
 :root{
@@ -106,8 +106,8 @@ header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacin
 .shero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,16,34,.6) 0%,rgba(6,16,34,0) 26%,rgba(6,16,34,0) 42%,rgba(6,16,34,.55) 70%,rgba(6,16,34,.86) 100%)}
 .shero>*{position:relative}
 /* zdjęcie startowe od razu w CSS (nie czeka na skrypty): telefon – lekkie WebP, komputer – pełne */
-.shero[data-ph="start"]{background-image:url("foto/m/jezioro-jasien.webp")}
-@media (min-width:701px){.shero[data-ph="start"]{background-image:url("foto/jezioro-jasien.jpg")}}
+.shero[data-ph="start"]{background-image:url("foto/m/jezioro-jasien.webp");background-image:image-set(url("foto/m/jezioro-jasien.avif") type("image/avif"),url("foto/m/jezioro-jasien.webp") type("image/webp"))}
+@media (min-width:701px){.shero[data-ph="start"]{background-image:url("foto/jezioro-jasien.jpg");background-image:image-set(url("foto/jezioro-jasien.avif") type("image/avif"),url("foto/jezioro-jasien.jpg") type("image/jpeg"))}}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font:italic 500 1.05rem/1.2 var(--serif);color:#ffe28a;margin-bottom:8px}
 .eyebrow::before{content:"";width:22px;height:22px;background:url(rozeta.svg) center/contain no-repeat;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
 .shero h2{font-size:clamp(2.2rem,10.5vw,3.1rem);line-height:1.02;font-weight:600;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 18px rgba(0,0,0,.35);margin:0 0 14px;max-width:12ch}
@@ -161,7 +161,7 @@ header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacin
 .more .ic svg{width:18px;height:18px;transition:transform .2s}
 .card.open .more .ic svg{transform:rotate(180deg)}
 .has-ph .ph{margin:-14px -16px 12px;border-radius:18px 18px 0 0;overflow:hidden;position:relative;aspect-ratio:16/9;background:var(--bg2)}
-.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph picture{display:block;height:100%}.ph img{width:100%;height:100%;object-fit:cover;display:block}
 .ph figcaption{position:absolute;left:8px;bottom:6px;font-size:.6rem;line-height:1.3;color:#fff;background:rgba(6,16,34,.58);padding:2px 7px;border-radius:6px;max-width:calc(100% - 16px)}
 .has-ph>.ch .fav{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.94);border-color:transparent;box-shadow:0 2px 8px rgba(0,0,0,.2);color:#7d5700}
 .has-ph>.ch .fav.on{background:var(--ky);color:#3d2a00}
@@ -718,15 +718,15 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 </nav>
 
-<script src="vendor/leaflet.js?v=20261127i"></script>
-<script src="config.js?v=20261127i"></script>
-<script src="dane.js?v=20261127i"></script>
-<script src="icons.js?v=20261127i"></script>
-<script src="foto/foto.js?v=20261127i" onerror="window.FOTO={}"></script>
-<script src="i18n.js?v=20261127i"></script>
-<script>window.PRZ_V="20261127i";if(window.LANG!=="pl")document.write('<script src="i18n-dane.js?v=20261127i"><\/script>');</script>
-<script src="szukaj-dane.js?v=20261127i"></script>
-<script src="app.js?v=20261127i"></script>
+<script src="vendor/leaflet.js?v=20261127j"></script>
+<script src="config.js?v=20261127j"></script>
+<script src="dane.js?v=20261127j"></script>
+<script src="icons.js?v=20261127j"></script>
+<script src="foto/foto.js?v=20261127j" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261127j"></script>
+<script>window.PRZ_V="20261127j";if(window.LANG!=="pl")document.write('<script src="i18n-dane.js?v=20261127j"><\/script>');</script>
+<script src="szukaj-dane.js?v=20261127j"></script>
+<script src="app.js?v=20261127j"></script>
 <script>
 /* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
 (function(){
@@ -754,7 +754,7 @@ function short(c,t){c=String(c||"").replace(/,\s*Wikimedia Commons$/,"");return 
 function photo(el,k){var f=K[k]; if(!f)return;
   /* start: zdjęcie już jest w CSS; kafle i banery na telefonie – lekka wersja WebP */
   var tgt=el.querySelector(".tph")||el, small=el.classList.contains("tile")||window.innerWidth<=700;
-  if(k!=="start"||el.classList.contains("tile"))tgt.style.backgroundImage='url("'+(small&&window.fotoM?window.fotoM(f.src):B+f.src)+'")';
+  if(k!=="start"||el.classList.contains("tile")){tgt.style.backgroundImage='url("'+(small&&window.fotoM?window.fotoM(f.src):B+f.src)+'")';if(window.fotoBg)tgt.style.backgroundImage=window.fotoBg(f.src,!small);} /* AVIF, a gdy przeglądarka nie zna image-set – zostaje WebP/JPG */
   var cr=document.createElement("small"); cr.className="cr"; cr.textContent=short(f.credit,el.classList.contains("tile")); el.appendChild(cr);}
 K=Object.assign({},K);var FF=window.FOTO||{};if(FF["Jezioro Jasień"])K.start=FF["Jezioro Jasień"]; /* kadr bez linii energetycznej */
 /* tylko kadry z okolicy i letnie: Łupawa (rozrywka/aktywnie), Sobótka nad Jasieniem (imprezy), kamienice przy wieży św. Katarzyny (sklepy) */

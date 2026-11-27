@@ -3,7 +3,7 @@
    - zdjęcia i kafle mapy: osobna, trwała pamięć – NIE kasuje się przy aktualizacji przewodnika,
    - kafle mapy 9–11 (cały region) zapisują się po załadowaniu strony, gdy zasięg jest dobry (strona wysyła „kafle-start”); „Zapisz na offline” dociąga resztę (offline-lista.json),
    - pogoda, IMGW i baza wpisów: sieć z limitem czasu, a bez zasięgu ostatnia kopia. */
-var V="przewodnik-20261127i", MEDIA="przewodnik-media",
+var V="przewodnik-20261127j", MEDIA="przewodnik-media",
 CORE=["./","index.html","app.js","dane.js","i18n.js","i18n-dane.js","szukaj-dane.js","foto/foto.js","mapa/mapa-region-800.webp","mapa/mapa-region-1600.webp","icons.js","config.js","manifest.webmanifest","vendor/leaflet.js","rozeta.svg","haft.svg","ornament.svg","wzor.svg","rozeta-linia.svg","vendor/leaflet.css","vendor/images/layers.png","vendor/images/layers-2x.png"];
 var KEEP={"przewodnik-tiles":1,"przewodnik-ext":1};KEEP[MEDIA]=1;
 self.addEventListener("install",function(e){e.waitUntil(caches.open(V).then(function(c){return Promise.all(CORE.map(function(u){return c.add(new Request(u,{cache:"reload"})).catch(function(){})}))}).then(function(){return self.skipWaiting()}));});
@@ -11,7 +11,7 @@ self.addEventListener("activate",function(e){e.waitUntil(caches.keys().then(func
 
 function trim(name,max){caches.open(name).then(function(c){c.keys().then(function(k){if(k.length>max)Promise.all(k.slice(0,k.length-max).map(function(r){return c.delete(r)}));});});}
 function zTimeout(p,ms){return new Promise(function(ok,no){var t=setTimeout(function(){no(new Error("timeout"))},ms);p.then(function(v){clearTimeout(t);ok(v)},function(er){clearTimeout(t);no(er)});});}
-function isMedia(u){return u.origin===location.origin&&/\/(foto\/(m\/)?[^/]+\.(jpe?g|png|webp)|mapa\/kafle\/)/i.test(u.pathname);}
+function isMedia(u){return u.origin===location.origin&&/\/(foto\/(m\/)?[^/]+\.(jpe?g|png|webp|avif)|mapa\/kafle\/)/i.test(u.pathname);}
 
 /* „Zapisz na offline”: dociąga pliki z listy po kolei, raportuje postęp do strony */
 var zapisTrwa=false;
