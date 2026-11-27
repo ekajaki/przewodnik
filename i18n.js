@@ -156,7 +156,7 @@ window.loc=function(o){
   var L=window.LANG; if(L==="pl"||!o)return o;
   var tr=(o.i18n&&o.i18n[L])||(window.DANE_I18N&&window.DANE_I18N[L]&&window.DANE_I18N[L][o.n||o.t])||null;
   var c={};for(var k in o)c[k]=o[k];
-  if(tr){for(var j in tr)if(tr[j])c[j]=tr[j];}
+  if(tr){for(var j in tr){if(tr[j])c[j]=tr[j];else if(tr[j]==="")delete c[j];}} /* "" w tłumaczeniu = pole tylko po polsku (np. godziny mszy) */
   else if(o.d){c._onlyPl=true;}
   return c;
 };
