@@ -915,6 +915,10 @@ window.FOTO={
  "Kąpielisko nad jeziorem Kłodno w Chmielnie": {
   "src": "rozrywka-klodno-chmielno.jpg",
   "credit": "Fot. Polimerek, CC BY-SA 3.0, Wikimedia Commons"
+ },
+ "Wrak kutra na Jasieniu Południowym": {
+  "src": "atrakcje-wrak-kutra-jasien.jpg",
+  "credit": "Fot. eKajaki.pl"
  }
 };
 
