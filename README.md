@@ -3,6 +3,15 @@
 Strona: https://przewodnik.lupawsko.com/ (GitHub Pages, gałąź main, katalog główny).
 Panel redakcji: https://przewodnik.lupawsko.com/admin.html
 
+## Lista zadań – źródło prawdy
+
+Wszystkie propozycje, zmiany niezrealizowane i zadania cykliczne przewodnika są w jednym miejscu:
+**https://claude.ai/artifact/Aq3K5RzF6hr6FPkjVFBNks** (baza strony, kolekcja `pozycje`).
+
+- Przed pracą nad przewodnikiem: przeczytaj listę (otwarte pozycje, priorytety, kto).
+- Każda nowa propozycja (z audytu, rozmowy, raportu agenta) → nowa pozycja na liście.
+- Po wdrożeniu → status „zrobione” (+ data). Nic nie kasujemy; nieaktualne → „odłożone”.
+
 ## Zdjęcia: zawsze AVIF
 
 Każde zdjęcie wrzucane do `foto/` (JPG/PNG z `foto/foto.js`) przerabiamy na AVIF – tak jak na ekajaki.pl:
