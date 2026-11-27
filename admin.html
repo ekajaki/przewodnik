@@ -112,12 +112,12 @@ details summary{cursor:pointer;font-weight:600}
   <label for="l-email">E-mail</label><input id="l-email" type="email" autocomplete="username">
   <label for="l-pass">Hasło</label><input id="l-pass" type="password" autocomplete="current-password">
   <div class="acts"><button class="btn pri" id="l-go">Zaloguj</button><button class="btn" id="l-signup">Pierwszy raz? Załóż konto</button><button class="btn" id="l-forgot">Nie pamiętam hasła</button></div>
-  <p class="muted" id="signup-help" hidden>Wpisz e-mail, który podałeś administratorowi, i wymyśl hasło (min. 8 znaków), potem kliknij jeszcze raz „Załóż konto”. Supabase wyśle e-mail z linkiem potwierdzającym. Jeśli nie dotrze, poproś administratora o „Potwierdź konto”.</p>
+  <p class="muted" id="signup-help" hidden>Wpisz e-mail, który podałeś administratorowi, i wymyśl hasło (co najmniej 10 znaków, w tym mała i wielka litera oraz cyfra), potem kliknij jeszcze raz „Załóż konto”. Supabase wyśle e-mail z linkiem potwierdzającym. Jeśli nie dotrze, poproś administratora o „Potwierdź konto”.</p>
 </section>
 
 <section id="s-reset" class="card" hidden style="max-width:480px;margin:20px auto">
   <h2>Ustaw nowe hasło</h2>
-  <p class="muted" id="n-info">Wpisz nowe hasło (co najmniej 8 znaków). Zmieni się ono też w innych aplikacjach eKajaki, w których logujesz się tym samym kontem.</p>
+  <p class="muted" id="n-info">Wpisz nowe hasło: co najmniej 10 znaków, w tym mała i wielka litera oraz cyfra. Zmieni się ono też w innych aplikacjach eKajaki, w których logujesz się tym samym kontem.</p>
   <label for="n-pass">Nowe hasło</label><input id="n-pass" type="password" autocomplete="new-password">
   <label for="n-pass2">Powtórz hasło</label><input id="n-pass2" type="password" autocomplete="new-password">
   <div class="acts"><button class="btn pri" id="n-go">Zapisz hasło</button><button class="btn" id="n-cancel" hidden>Anuluj</button></div>
@@ -309,6 +309,8 @@ function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){retur
 function flash(t,ok){$("flash").innerHTML='<div class="msg '+(ok?"ok":"err")+'">'+esc(t)+'</div>';clearTimeout(flash._t);flash._t=setTimeout(function(){$("flash").innerHTML=""},ok?4000:9000);}
 function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||"null");if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v));}catch(e){return null}}
 function dt(s){try{return new Date(s).toLocaleString("pl-PL",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch(e){return s}}
+/* zasady haseł jak w Supabase (Authentication → Email): min. 10 znaków, mała i wielka litera, cyfra */
+function hasloOk(p){p=String(p||"");return p.length>=10&&/[a-ząćęłńóśźż]/.test(p)&&/[A-ZĄĆĘŁŃÓŚŹŻ]/.test(p)&&/\d/.test(p);}
 function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 function loadCfg(){var c=window.PRZEWODNIK_SUPABASE;if(c&&c.url&&c.key)return {url:c.url.replace(/\/+$/,""),key:c.key};var l=ls(CONFIG_KEY);return l&&l.url&&l.key?l:null;}
 
@@ -659,7 +661,7 @@ $("l-go").onclick=function(){
 $("l-pass").addEventListener("keydown",function(e){if(e.key==="Enter")$("l-go").click();});
 $("l-signup").onclick=function(){
   var em=$("l-email").value.trim(), pw=$("l-pass").value;
-  if(!em||pw.length<8){$("signup-help").hidden=false;return flash("Wpisz e-mail i hasło (co najmniej 8 znaków), potem kliknij „Załóż konto”.");}
+  if(!em||!hasloOk(pw)){$("signup-help").hidden=false;return flash("Wpisz e-mail i hasło: co najmniej 10 znaków, w tym mała i wielka litera oraz cyfra. Potem kliknij „Załóż konto”.");}
   fetch(cfg.url+"/auth/v1/signup?redirect_to="+encodeURIComponent(location.href.split(/[?#]/)[0]),{method:"POST",headers:{apikey:cfg.key,"Content-Type":"application/json"},body:JSON.stringify({email:em,password:pw})})
    .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.msg||j.error_description||j.message||("Błąd "+r.status));return j;});})
    .then(function(j){$("signup-help").hidden=false;
@@ -689,7 +691,7 @@ $("l-forgot").onclick=function(){
 };
 $("n-go").onclick=function(){
   var a=$("n-pass").value,b=$("n-pass2").value;
-  if(a.length<8)return flash("Hasło musi mieć co najmniej 8 znaków.");
+  if(!hasloOk(a))return flash("Hasło musi mieć co najmniej 10 znaków, w tym małą i wielką literę oraz cyfrę.");
   if(a!==b)return flash("Hasła się różnią.");
   var tk=REC?Promise.resolve(REC.access_token):token();
   tk.then(function(t){return fetch(cfg.url+"/auth/v1/user",{method:"PUT",headers:{apikey:cfg.key,Authorization:"Bearer "+t,"Content-Type":"application/json"},body:JSON.stringify({password:a})});})
