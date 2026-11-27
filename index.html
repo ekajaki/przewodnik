@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet.css?v=20261127d">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261127e">
 <style>
 /* ============ Koncepcja D „Portal regionu” ============ */
 :root{
@@ -236,6 +236,7 @@ header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacin
 #rzeka{padding:14px 16px}#rzeka h3{font:700 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}#rzeka h3 .ic{color:var(--k2)}.rzv{margin:10px 0 4px;font-size:1rem}.rzv b{font-size:1.25rem}.rzv span{color:var(--muted);font-size:.85rem}.rzw{margin:4px 0 8px;padding-left:18px;font-size:.88rem}.rzw span{color:var(--muted)}#offl{margin:14px 0 18px;padding:16px 18px;background:linear-gradient(135deg,#0f2a52,#1e4f96);color:#fff;border:0;box-shadow:0 10px 26px -12px rgba(15,42,82,.7)}#offl h3{display:flex;align-items:center;gap:10px;margin:0 0 6px;font:700 1.15rem/1.25 var(--serif,Georgia,serif);color:#fff}#offl h3 .ic{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#f2c230;color:#0f2a52;flex:0 0 auto}#offl h3 .ic svg{width:20px;height:20px}#offl .small{color:rgba(255,255,255,.88);margin:0 0 10px}#offl .acts{display:flex;flex-wrap:wrap;gap:8px}#offl .btn.pri{background:#f2c230;color:#0f2a52;border-color:#f2c230;font-weight:700;min-height:48px;padding:10px 18px;font-size:1rem}#offl .btn:not(.pri){background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}#offl .offst{font-weight:700;color:#f2c230;margin:10px 0 0}#offl.done{padding:12px 16px}#offl.done .small:not(.offst){display:none}
 #netbar{position:sticky;top:0;z-index:60;background:#b8860b;color:#fff;font:600 .85rem/1.3 var(--sans);text-align:center;padding:8px 12px}
 .tag.off{background:#ece6d6;color:#6b5a2b}
+.msze{margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:rgba(168,38,47,.07);border-left:4px solid #a8262f}.mszh{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:700 1rem/1.2 var(--sans);color:#a8262f}.mszh .ic svg{width:20px;height:20px}.mszh span{font:600 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:auto}.msze dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0}.msze dt{font-weight:600;color:var(--muted);font-size:.85rem;padding-top:2px}.msze dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}.msze dd small{font-weight:500;color:var(--muted)}.msze .small{margin:8px 0 0}.mszs{font-style:italic}.msze-info h3{display:flex;align-items:center;gap:8px;color:#a8262f}.mszl{list-style:none;margin:10px 0 0;padding:0}.mszl li{border-top:1px solid var(--line)}.mszl a{display:grid;grid-template-columns:7.2em 1fr;gap:2px 10px;padding:10px 2px;color:inherit;text-decoration:none}.mszl a:active{background:rgba(168,38,47,.07)}.mszt{grid-row:span 2;display:flex;flex-direction:column}.mszt b{font-size:.95rem}.mszt small{color:var(--muted);font-size:.78rem}.mszn{font-size:.78rem;color:var(--muted)}.mszg{display:flex;flex-direction:column;font-weight:700;font-size:.9rem;font-variant-numeric:tabular-nums}.mszcta{display:flex;align-items:center;gap:12px;margin:6px 0 12px;padding:12px 14px;border-radius:14px;background:#a8262f;color:#fff;text-decoration:none}.mszcta .ic svg{width:24px;height:24px;fill:currentColor}.mszcta span{display:flex;flex-direction:column}.mszcta small{opacity:.85}
 .wxtips{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.84rem;margin:8px 0 0}
 
 /* ---------- Twój pobyt / SOS ---------- */
@@ -476,7 +477,7 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
     <p data-i18n="st.l" class="lead">Mieszkasz nad Jeziorem Jasień, w granicach Parku Krajobrazowego „Dolina Słupi”. Poniżej masz to, co najważniejsze. Resztę znajdziesz w dolnym menu.</p>
     <input class="search gsearch" id="gsearch" type="search" placeholder="Czego szukasz? np. coś dla dzieci, zamek, gdy pada…" aria-label="Szukaj w całym przewodniku" data-i18n-ph="st.q">
     <div id="sz-ideas" class="szideas"></div>
-    <div class="quick"><a href="#start" data-jump="mapa-okolicy"><i data-ic="pin"></i> <span data-d="map">Mapa okolicy</span></a><a href="tel:112"><i data-ic="sos"></i> 112</a></div>
+    <div class="quick"><a href="#start" data-jump="mapa-okolicy"><i data-ic="pin"></i> <span data-d="map">Mapa okolicy</span></a><a href="#info/msze" data-go="info/msze" id="msze-quick" hidden><i data-ic="s-church"></i> Msze święte</a><a href="tel:112"><i data-ic="sos"></i> 112</a></div>
   </div>
   <div class="haft st" aria-hidden="true"></div>
   <div id="search-res" hidden aria-live="polite"></div>
@@ -643,6 +644,7 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
     <div class="posout" hidden aria-live="polite"></div>
   </div>
 
+  <div class="card msze-info" id="msze-info" data-id="msze" hidden></div>
   <div class="card open">
     <h3 data-i18n="in.hos">Szpital i policja</h3>
     <ul data-i18n="in.hosl" class="info">
@@ -706,15 +708,15 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 </nav>
 
-<script src="vendor/leaflet.js?v=20261127d"></script>
-<script src="config.js?v=20261127d"></script>
-<script src="dane.js?v=20261127d"></script>
-<script src="icons.js?v=20261127d"></script>
-<script src="foto/foto.js?v=20261127d" onerror="window.FOTO={}"></script>
-<script src="i18n.js?v=20261127d"></script>
-<script src="i18n-dane.js?v=20261127d"></script>
-<script src="szukaj-dane.js?v=20261127d"></script>
-<script src="app.js?v=20261127d"></script>
+<script src="vendor/leaflet.js?v=20261127e"></script>
+<script src="config.js?v=20261127e"></script>
+<script src="dane.js?v=20261127e"></script>
+<script src="icons.js?v=20261127e"></script>
+<script src="foto/foto.js?v=20261127e" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261127e"></script>
+<script src="i18n-dane.js?v=20261127e"></script>
+<script src="szukaj-dane.js?v=20261127e"></script>
+<script src="app.js?v=20261127e"></script>
 <script>
 /* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
 (function(){

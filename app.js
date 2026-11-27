@@ -80,6 +80,7 @@ function card(o0,opts){
   if(o.adr)li.push('<li><b>'+esc(T("adr"))+'</b> '+esc(o.adr)+'</li>');
   if(o.h)li.push('<li><b>'+esc(T("hrs"))+'</b> '+esc(o.h)+'</li>');
   if(li.length)h+='<ul class="info">'+li.join("")+'</ul>';
+  if(o0.msze&&LANG==="pl")h+=mszeBox(o0.msze);
   if(o.cen&&o.cen.length)h+='<div class="cennik"><b>'+esc(T("cennik")||"Cennik")+'</b><ul>'+o.cen.map(function(r){return '<li><span class="cn">'+esc(r[0])+(r[2]?'<small>'+esc(r[2])+'</small>':'')+'</span><span class="cp">'+esc(r[1])+'</span></li>'}).join("")+'</ul></div>';
   h+='<div class="acts">'+(o0.acc==="zakaz"?'':'<a class="btn pri" target="_blank" rel="noopener" href="'+esc(mapsUrl(o0))+'">'+ic('route')+' '+esc(T("nav"))+'</a>');
   if(o0.t)h+='<a class="btn" href="tel:'+o0.t.replace(/\s/g,"")+'">'+ic('phone')+' '+esc(telFmt(o0.t))+'</a>';
@@ -354,6 +355,7 @@ function renderSearch(){
   if(!R.res.length){
     html+='<p class="empty">'+esc(szt("none").replace("%q",q))+'</p><div class="szrow">'+SZ_IDEAS.map(function(t){return szChip(t,false)}).join("")+'</div>';
     box.hidden=false;box.innerHTML=html;return;}
+  if(LANG==="pl"&&(/\bmsz|nabożeńst|liturgi/i.test(q)||und.kosciol))html+='<a class="mszcta" href="#info/msze" data-go="info/msze">'+ic('s-church')+' <span><b>Godziny mszy w okolicy</b><small>wszystkie kościoły na jednej liście, od najbliższego</small></span></a>';
   if(R.part)html+='<p class="small">'+esc(szt("part"))+'</p>';
   html+='<p class="small">'+esc(szt("cnt"))+R.res.length+'</p>';
   var groups={};R.res.forEach(function(it){if(R.host&&R.host.indexOf(it)>=0)return;(groups[it.sec]=groups[it.sec]||[]).push(it);});
@@ -756,13 +758,32 @@ function go(hash,focus){
   if(VIEWS.indexOf(v)<0)v="start";
   VIEWS.forEach(function(x){$("v-"+x).classList.toggle("on",x===v)});
   document.querySelectorAll("nav.tabs button").forEach(function(b){var on=b.dataset.go===v;b.classList.toggle("on",on);if(on)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
-  if(id){var el=$("v-"+v).querySelector('[data-id="'+id.replace(/[^a-z0-9-]/g,"")+'"]'); if(el){el.scrollIntoView({block:"center"});el.classList.add("hl");setTimeout(function(){el.classList.remove("hl")},2500);return;}}
+  if(id){var el=$("v-"+v).querySelector('[data-id="'+id.replace(/[^a-z0-9-]/g,"")+'"]'); if(el){el.scrollIntoView({block:el.offsetHeight>innerHeight*0.8?"start":"center"});el.classList.add("hl");setTimeout(function(){el.classList.remove("hl")},2500);return;}}
   window.scrollTo(0,0);
   if(focus){var h=$("v-"+v).querySelector("h2");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}}
 }
 document.addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(!b)return;e.preventDefault();
   if(location.hash!=="#"+b.dataset.go)location.hash=b.dataset.go; else go(b.dataset.go,true);});
 window.addEventListener("hashchange",function(){go(location.hash.slice(1),true)});
+
+/* ---------- Msze święte (tylko wersja PL): ramka w karcie kościoła, zbiorcza lista w Info, skrót na starcie ---------- */
+function mszeBox(m){
+  var r=[];if(m.sob)r.push(['Sobota wieczorem',m.sob+' <small>(msza niedzielna)</small>']);if(m.nd)r.push(['Niedziela',esc(m.nd)]);if(m.tyg)r.push(['Dni powszednie',esc(m.tyg)]);
+  return '<div class="msze"><p class="mszh">'+ic('s-church')+' Msze święte <span>maj–sierpień</span></p><dl>'+r.map(function(x){return '<dt>'+x[0]+'</dt><dd>'+(x[0]==='Sobota wieczorem'?esc(m.sob)+' <small>(msza niedzielna)</small>':x[1])+'</dd>'}).join("")+'</dl>'+
+    (m.uw?'<p class="small">'+esc(m.uw)+'</p>':'')+'<p class="small mszs">Sprawdzone w listopadzie 2026. Godziny mogą się zmienić – przed przyjazdem zajrzyj do ogłoszeń parafii.</p></div>';}
+function mszeList(){return ATTR.filter(function(o){return o.msze}).map(function(o){return {o:o,d:dOf(o)}}).sort(function(a,b){return (a.d==null?999:a.d)-(b.d==null?999:b.d)});}
+function renderMsze(){
+  var el=$("msze-info");if(el){
+    if(LANG!=="pl"){el.hidden=true;}else{el.hidden=false;
+    el.innerHTML='<h3>'+ic('s-church')+' Msze święte w okolicy</h3><p class="small">Godziny w sezonie (maj–sierpień), od najbliższego kościoła. Dotknij kościoła, żeby zobaczyć adres, nawigację i szczegóły.</p><ul class="mszl">'+
+      mszeList().map(function(x){var o=x.o,m=o.msze,id="atrakcje/"+slug(o.n),k=x.d!=null?Math.round(x.d)+' km':'';
+        var nazwa=o.n.replace(/^(Kościół|Cerkiew)\s+/,function(a){return a}).replace(/ w ([A-ZŁŚŻŹĆ][^,]*)$/,"");
+        var miejsc=String(o.p||"").split(",")[0].replace(/\(.*?\)/g,"").replace(/\s+\d+[a-zA-Z]?\s*$/,"").trim();
+        return '<li><a href="#'+id+'" data-go="'+id+'"><span class="mszt"><b>'+esc(miejsc)+'</b><small>'+esc(k)+'</small></span><span class="mszn">'+esc(nazwa)+'</span>'+
+          '<span class="mszg">'+(m.sob?'<span>sob. '+esc(m.sob)+'</span>':'')+'<span>nd '+esc(m.nd)+'</span></span></a></li>';}).join("")+
+      '</ul><p class="small mszs">Sprawdzone w listopadzie 2026 na stronach parafii i diecezji. Godziny mogą się zmienić – przed przyjazdem zajrzyj do ogłoszeń parafii.</p>';}}
+  var q=$("msze-quick");if(q)q.hidden=LANG!=="pl";
+}
 
 /* ---------- Teksty nowych kart (PL/EN/DE) ---------- */
 var OXT={pl:{summer:"tylko latem",offH:"Bez zasięgu nad wodą?",offL:"Zapisz przewodnik w telefonie, póki masz Wi-Fi: mapę okolicy i zdjęcia (ok. 50 MB). Potem działa także w lesie i na jeziorze.",offB:"Zapisz na offline",offP:"Zapisuję… %n z %r",offK:"Gotowe – przewodnik działa bez zasięgu.",offE:"Nie udało się. Spróbuj ponownie na Wi-Fi.",offS:"Zapisane w telefonie: %n z %r plików.",inst:"Dodaj do ekranu głównego",ios:"Na iPhonie: przycisk Udostępnij, potem „Do ekranu początkowego”.",net:"Brak zasięgu – pokazujemy to, co zapisane w telefonie.",rzH:"Łupawa dziś",rzS:"stan wody w Obrowie",rzQ:"przepływ",rzL:"Ostrzeżenia IMGW dla powiatu bytowskiego",rzN:"Brak ostrzeżeń IMGW dla powiatu bytowskiego.",rzSrc:"Dane: IMGW-PIB, pomiar",rzT:"woda"},
@@ -818,11 +839,12 @@ function renderRiver(){var el=$("rzeka");if(!el)return;if(!RZ||!RZ.h){el.hidden=
 })();
 
 /* ---------- Start ---------- */
-window.rerenderAll=function(){renderOrigin();renderStatic();renderWeather();renderOffline();renderRiver();netBar();if(map){drawMarkers();}};
+window.rerenderAll=function(){renderMsze();renderOrigin();renderStatic();renderWeather();renderOffline();renderRiver();netBar();if(map){drawMarkers();}};
 applyIcons();
+renderMsze();
 applyLang(LANG);
 loadDb();
 go(location.hash.slice(1));
 if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(function(){});}
-renderOffline();netBar();
+renderOffline();netBar();renderMsze();
 })();
