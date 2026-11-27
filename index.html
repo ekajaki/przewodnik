@@ -7,7 +7,7 @@
 <meta name="description" content="Kieszonkowy przewodnik dla gości w Łupawsku: atrakcje Jeziora Jasień, doliny Łupawy i Bytowa, gdzie zjeść, co robić w deszczu, informacja turystyczna i numery alarmowe.">
 <meta name="theme-color" content="#0f2a52">
 <link rel="canonical" href="https://przewodnik.lupawsko.com/">
-<link rel="alternate" hreflang="pl" href="https://przewodnik.lupawsko.com/?lang=pl">
+<link rel="alternate" hreflang="pl" href="https://przewodnik.lupawsko.com/">
 <link rel="alternate" hreflang="en" href="https://przewodnik.lupawsko.com/?lang=en">
 <link rel="alternate" hreflang="de" href="https://przewodnik.lupawsko.com/?lang=de">
 <link rel="alternate" hreflang="x-default" href="https://przewodnik.lupawsko.com/">
@@ -18,6 +18,8 @@
 <meta property="og:image" content="https://przewodnik.lupawsko.com/og.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="foto/m/jezioro-jasien.webp" media="(max-width:700px)" fetchpriority="high">
+<link rel="preload" as="image" href="foto/jezioro-jasien.jpg" media="(min-width:701px)" fetchpriority="high">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="rozeta.svg" type="image/svg+xml">
@@ -25,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet.css?v=20261127h">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261127i">
 <style>
 /* ============ Koncepcja D „Portal regionu” ============ */
 :root{
@@ -103,6 +105,9 @@ header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacin
 .shero{position:relative;margin:0 -16px;min-height:min(70svh,600px);padding:110px 20px 24px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:#24476e center 60%/cover no-repeat}
 .shero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,16,34,.6) 0%,rgba(6,16,34,0) 26%,rgba(6,16,34,0) 42%,rgba(6,16,34,.55) 70%,rgba(6,16,34,.86) 100%)}
 .shero>*{position:relative}
+/* zdjęcie startowe od razu w CSS (nie czeka na skrypty): telefon – lekkie WebP, komputer – pełne */
+.shero[data-ph="start"]{background-image:url("foto/m/jezioro-jasien.webp")}
+@media (min-width:701px){.shero[data-ph="start"]{background-image:url("foto/jezioro-jasien.jpg")}}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font:italic 500 1.05rem/1.2 var(--serif);color:#ffe28a;margin-bottom:8px}
 .eyebrow::before{content:"";width:22px;height:22px;background:url(rozeta.svg) center/contain no-repeat;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
 .shero h2{font-size:clamp(2.2rem,10.5vw,3.1rem);line-height:1.02;font-weight:600;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 18px rgba(0,0,0,.35);margin:0 0 14px;max-width:12ch}
@@ -234,6 +239,7 @@ header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacin
 .ic-wx-sun,.ic-wx-partly{color:#d99a00} .ic-wx-cloud,.ic-wx-fog{color:#7f8ea6} .ic-wx-drizzle,.ic-wx-rain,.ic-wx-storm,.ic-drop{color:var(--k2)} .ic-wx-snow{color:#6aa9d8}
 #wx>.small{margin:8px 0 0}
 #rzeka{padding:14px 16px}#rzeka h3{font:700 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}#rzeka h3 .ic{color:var(--k2)}.rzv{margin:10px 0 4px;font-size:1rem}.rzv b{font-size:1.25rem}.rzv span{color:var(--muted);font-size:.85rem}.rzw{margin:4px 0 8px;padding-left:18px;font-size:.88rem}.rzw span{color:var(--muted)}#offl{margin:14px 0 18px;padding:16px 18px;background:linear-gradient(135deg,#0f2a52,#1e4f96);color:#fff;border:0;box-shadow:0 10px 26px -12px rgba(15,42,82,.7)}#offl h3{display:flex;align-items:center;gap:10px;margin:0 0 6px;font:700 1.15rem/1.25 var(--serif,Georgia,serif);color:#fff}#offl h3 .ic{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#f2c230;color:#0f2a52;flex:0 0 auto}#offl h3 .ic svg{width:20px;height:20px}#offl .small{color:rgba(255,255,255,.88);margin:0 0 10px}#offl .acts{display:flex;flex-wrap:wrap;gap:8px}#offl .btn.pri{background:#f2c230;color:#0f2a52;border-color:#f2c230;font-weight:700;min-height:48px;padding:10px 18px;font-size:1rem}#offl .btn:not(.pri){background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}#offl .offst{font-weight:700;color:#f2c230;margin:10px 0 0}#offl.done{padding:12px 16px}#offl.done .small:not(.offst){display:none}
+#langhint{position:sticky;top:0;z-index:59;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 12px;background:#0f2a52;color:#fff;font:600 .9rem/1.3 var(--sans);padding:9px 14px}#langhint button{font:700 .85rem var(--sans);border-radius:99px;border:0;padding:7px 14px;min-height:36px;cursor:pointer;background:#f2c230;color:#0f2a52}#langhint button.x{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
 #netbar{position:sticky;top:0;z-index:60;background:#b8860b;color:#fff;font:600 .85rem/1.3 var(--sans);text-align:center;padding:8px 12px}
 .tag.off{background:#ece6d6;color:#6b5a2b}
 .msze{margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:rgba(168,38,47,.07);border-left:4px solid var(--red)}.mszh{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:700 1rem/1.2 var(--sans);color:var(--red)}.mszh .ic svg{width:20px;height:20px}.mszh span{font:600 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:auto}.msze dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0}.msze dt{font-weight:600;color:var(--muted);font-size:.85rem;padding-top:2px}.msze dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}.msze dd small{font-weight:500;color:var(--muted)}.msze .small{margin:8px 0 0}.mszs{font-style:italic}.msze-info h3{display:flex;align-items:center;gap:8px;color:var(--red)}.mszl{list-style:none;margin:10px 0 0;padding:0}.mszl li{border-top:1px solid var(--line)}.mszl a{display:grid;grid-template-columns:7.2em 1fr;gap:2px 10px;padding:10px 2px;color:inherit;text-decoration:none}.mszl a:active{background:rgba(168,38,47,.07)}.mszt{grid-row:span 2;display:flex;flex-direction:column}.mszt b{font-size:.95rem}.mszt small{color:var(--muted);font-size:.78rem}.mszn{font-size:.78rem;color:var(--muted)}.mszg{display:flex;flex-direction:column;font-weight:700;font-size:.9rem;font-variant-numeric:tabular-nums}.mszcta{display:flex;align-items:center;gap:12px;margin:6px 0 12px;padding:12px 14px;border-radius:14px;background:#b81f2a;color:#fff;text-decoration:none}.mszcta .ic svg{width:24px;height:24px;fill:currentColor}.mszcta span{display:flex;flex-direction:column}.mszcta small{opacity:.85}
@@ -457,6 +463,7 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
 </head>
 <body>
 <div id="netbar" hidden role="status"></div>
+<div id="langhint" hidden role="region" aria-label="Language"></div>
 <header class="top">
   <div class="wrap">
     <div class="brand"><span class="mark" aria-hidden="true"></span><div class="bt">
@@ -711,15 +718,15 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 </nav>
 
-<script src="vendor/leaflet.js?v=20261127h"></script>
-<script src="config.js?v=20261127h"></script>
-<script src="dane.js?v=20261127h"></script>
-<script src="icons.js?v=20261127h"></script>
-<script src="foto/foto.js?v=20261127h" onerror="window.FOTO={}"></script>
-<script src="i18n.js?v=20261127h"></script>
-<script src="i18n-dane.js?v=20261127h"></script>
-<script src="szukaj-dane.js?v=20261127h"></script>
-<script src="app.js?v=20261127h"></script>
+<script src="vendor/leaflet.js?v=20261127i"></script>
+<script src="config.js?v=20261127i"></script>
+<script src="dane.js?v=20261127i"></script>
+<script src="icons.js?v=20261127i"></script>
+<script src="foto/foto.js?v=20261127i" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261127i"></script>
+<script>window.PRZ_V="20261127i";if(window.LANG!=="pl")document.write('<script src="i18n-dane.js?v=20261127i"><\/script>');</script>
+<script src="szukaj-dane.js?v=20261127i"></script>
+<script src="app.js?v=20261127i"></script>
 <script>
 /* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
 (function(){
@@ -745,7 +752,9 @@ window.applyLang=function(l){origApply(l);applyD();};
 var K=window.FOTO_KAT||{}, B=window.FOTO_BASE||"";
 function short(c,t){c=String(c||"").replace(/,\s*Wikimedia Commons$/,"");return t?c.replace(/^Fot\.\s*/,""):c;}
 function photo(el,k){var f=K[k]; if(!f)return;
-  var tgt=el.querySelector(".tph")||el; tgt.style.backgroundImage='url("'+B+f.src+'")';
+  /* start: zdjęcie już jest w CSS; kafle i banery na telefonie – lekka wersja WebP */
+  var tgt=el.querySelector(".tph")||el, small=el.classList.contains("tile")||window.innerWidth<=700;
+  if(k!=="start"||el.classList.contains("tile"))tgt.style.backgroundImage='url("'+(small&&window.fotoM?window.fotoM(f.src):B+f.src)+'")';
   var cr=document.createElement("small"); cr.className="cr"; cr.textContent=short(f.credit,el.classList.contains("tile")); el.appendChild(cr);}
 K=Object.assign({},K);var FF=window.FOTO||{};if(FF["Jezioro Jasień"])K.start=FF["Jezioro Jasień"]; /* kadr bez linii energetycznej */
 /* tylko kadry z okolicy i letnie: Łupawa (rozrywka/aktywnie), Sobótka nad Jasieniem (imprezy), kamienice przy wieży św. Katarzyny (sklepy) */

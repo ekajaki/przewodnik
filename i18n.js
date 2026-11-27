@@ -144,10 +144,21 @@ var SUP=["pl","en","de"], KEY="przewodnik.lang", PL_HTML={}, PL_PH={}, PL_MAPS=n
 function detect(){
   try{var q=new URLSearchParams(location.search).get("lang");if(q&&SUP.indexOf(q)>=0)return q;}catch(e){}
   try{var s=localStorage.getItem(KEY);if(s&&SUP.indexOf(s)>=0)return s;}catch(e){}
+  /* bez wyboru: zawsze PL (tak samo widzi to Google); język przeglądarki tylko podpowiadamy paskiem */
   var langs=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"pl"]);
-  for(var i=0;i<langs.length;i++){var l=String(langs[i]).toLowerCase().slice(0,2);if(SUP.indexOf(l)>=0)return l;}
-  return "en";
+  for(var i=0;i<langs.length;i++){var l=String(langs[i]).toLowerCase().slice(0,2);if(l==="pl")break;if(l==="en"||l==="de"){window.LANG_SUGGEST=l;break;}}
+  return "pl";
 }
+/* tłumaczenia danych (i18n-dane.js, ~170 kB) ładujemy tylko dla EN/DE */
+window.ensureDane=function(cb){if(window.DANE_I18N){cb();return;}var s=document.createElement("script");s.src="i18n-dane.js?v="+(window.PRZ_V||"");s.onload=cb;s.onerror=cb;document.head.appendChild(s);};
+var DESC={pl:"Kieszonkowy przewodnik dla gości w Łupawsku: atrakcje Jeziora Jasień, doliny Łupawy i Bytowa, gdzie zjeść, co robić w deszczu, imprezy, sklepy i numery alarmowe.",
+ en:"Pocket guide to Łupawsko and Lake Jasień in Kashubia, Poland: sights, the Łupawa valley and Bytów, where to eat, rainy-day ideas, events, shops and emergency numbers.",
+ de:"Taschen-Reiseführer für Łupawsko und den Jasień-See in der Kaschubei (Polen): Sehenswürdigkeiten, Łupawa-Tal und Bytów, Essen, Ideen für Regentage, Veranstaltungen, Läden und Notrufnummern."};
+function seoLang(l){var base="https://przewodnik.lupawsko.com/",u=l==="pl"?base:base+"?lang="+l;
+  var c=document.querySelector('link[rel="canonical"]');if(c)c.href=u;
+  var d=document.querySelector('meta[name="description"]');if(d)d.content=DESC[l];
+  var o=document.querySelector('meta[property="og:url"]');if(o)o.content=u;
+  var od=document.querySelector('meta[property="og:description"]');if(od)od.content=DESC[l];}
 window.LANG=detect();
 for(var _n in MAPS.pl)window[_n]=MAPS[window.LANG][_n]||MAPS.pl[_n];
 window.T=function(k){return (TXT[window.LANG]&&TXT[window.LANG][k]!=null)?TXT[window.LANG][k]:TXT.pl[k];};
@@ -162,7 +173,7 @@ window.loc=function(o){
 };
 window.applyLang=function(l){
   if(SUP.indexOf(l)<0)l="pl";
-  window.LANG=l; document.documentElement.lang=l;
+  window.LANG=l; document.documentElement.lang=l; seoLang(l);
   document.querySelectorAll("[data-i18n]").forEach(function(el){
     var k=el.getAttribute("data-i18n"); if(!(k in PL_HTML))PL_HTML[k]=el.innerHTML;
     el.innerHTML=(l!=="pl"&&UI[l]&&UI[l][k]!=null)?UI[l][k]:PL_HTML[k];if(window.applyIcons)window.applyIcons(el);
@@ -177,5 +188,6 @@ window.applyLang=function(l){
   if(typeof window.rerenderAll==="function")window.rerenderAll();
 };
 document.addEventListener("click",function(e){var b=e.target.closest(".langs button");if(!b)return;
-  try{localStorage.setItem(KEY,b.dataset.lang);}catch(err){} window.applyLang(b.dataset.lang);});
+  var l=b.dataset.lang;try{localStorage.setItem(KEY,l);}catch(err){} if(window.hideLangHint)window.hideLangHint();
+  if(l==="pl")window.applyLang(l);else window.ensureDane(function(){window.applyLang(l);});});
 })();

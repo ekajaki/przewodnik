@@ -15,6 +15,8 @@ function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return
 function telFmt(t){return t.replace(/^\+48\s?/,"");}
 function norm(s){return String(s||"").toLowerCase().replace(/ł/g,"l").normalize("NFD").replace(/[̀-ͯ]/g,"");}
 function slug(s){return norm(s).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);}
+/* lekka wersja zdjęcia (WebP 640 px, foto/m/) – karty i kafle; zdjęcia spoza serwisu bez zmian */
+window.fotoM=function(src){src=String(src||"");if(/^https?:/i.test(src))return src;return (window.FOTO_BASE||"")+"m/"+src.replace(/\.(jpe?g|png)$/i,".webp");};
 function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||"null");localStorage.setItem(k,JSON.stringify(v));}catch(e){return null;}}
 /* plaże i kąpieliska działają latem – poza sezonem (X–V) idą na koniec listy z dopiskiem */
 var OFFSEASON=(function(){var m=new Date().getMonth()+1;return m>=10||m<=5;})();
@@ -63,7 +65,7 @@ function card(o0,opts){
   var o=loc(o0), id=slug(o0.n||""), sec=opts.sec||"";
   var k=km(o0);
   var F=(window.FOTO||{})[o0.n];
-  var h='<article class="card'+(F?' has-ph':'')+((o0.pin&&(opts.sec==="rozrywka"||opts.sec==="deszcz"))||opts.feat?' feat':'')+'" data-id="'+id+'">'+(F&&!opts.noPhoto?'<figure class="ph"><img loading="lazy" decoding="async" src="'+esc((/^https:\/\//.test(F.src)?"":(window.FOTO_BASE||""))+F.src)+'" alt="'+esc(o.n)+'"><figcaption>'+esc(F.credit||"")+'</figcaption></figure>':'')+'<div class="ch"><h3>'+esc(o.n)+'</h3>'+
+  var h='<article class="card'+(F?' has-ph':'')+((o0.pin&&(opts.sec==="rozrywka"||opts.sec==="deszcz"))||opts.feat?' feat':'')+'" data-id="'+id+'">'+(F&&!opts.noPhoto?'<figure class="ph"><img loading="lazy" decoding="async" src="'+esc(window.fotoM(F.src))+'" alt="'+esc(o.n)+'"><figcaption>'+esc(F.credit||"")+'</figcaption></figure>':'')+'<div class="ch"><h3>'+esc(o.n)+'</h3>'+
     (opts.noFav?'':'<button class="fav'+(isFav(id)?' on':'')+'" data-fav="'+id+'" aria-pressed="'+isFav(id)+'" aria-label="'+esc(T("favA"))+'">'+(isFav(id)?ic('staron'):ic('star'))+'</button>')+'</div>'+
     '<p class="meta">'+ic('pin')+' '+esc(o.p)+(k&&!opts.noKm?' · '+k+(ORIGIN_ME?' '+T("fromMe"):''):'')+'</p>';
   if(opts.extra)h+=opts.extra;
@@ -799,9 +801,9 @@ function renderMsze(){
 }
 
 /* ---------- Teksty nowych kart (PL/EN/DE) ---------- */
-var OXT={pl:{summer:"tylko latem",offH:"Bez zasięgu nad wodą?",offL:"Zapisz przewodnik w telefonie, póki masz Wi-Fi: mapę okolicy i zdjęcia (ok. 50 MB). Potem działa także w lesie i na jeziorze.",offB:"Zapisz na offline",offP:"Zapisuję… %n z %r",offK:"Gotowe – przewodnik działa bez zasięgu.",offE:"Nie udało się. Spróbuj ponownie na Wi-Fi.",offS:"Zapisane w telefonie: %n z %r plików.",inst:"Dodaj do ekranu głównego",ios:"Na iPhonie: przycisk Udostępnij, potem „Do ekranu początkowego”.",net:"Brak zasięgu – pokazujemy to, co zapisane w telefonie.",rzH:"Łupawa dziś",rzS:"stan wody w Obrowie",rzQ:"przepływ",rzL:"Ostrzeżenia IMGW dla powiatu bytowskiego",rzN:"Brak ostrzeżeń IMGW dla powiatu bytowskiego.",rzSrc:"Dane: IMGW-PIB, pomiar",rzT:"woda"},
- en:{summer:"summer only",offH:"No signal by the water?",offL:"Save the guide on your phone while you have Wi-Fi: the area map and photos (about 50 MB). Then it works in the forest and on the lake too.",offB:"Save for offline",offP:"Saving… %n of %r",offK:"Done – the guide works without signal.",offE:"That didn't work. Try again on Wi-Fi.",offS:"Saved on this phone: %n of %r files.",inst:"Add to home screen",ios:"On iPhone: tap Share, then “Add to Home Screen”.",net:"No signal – showing what is saved on your phone.",rzH:"The Łupawa today",rzS:"water level at Obrowo",rzQ:"flow",rzL:"IMGW weather warnings for Bytów county",rzN:"No IMGW warnings for Bytów county.",rzSrc:"Data: IMGW-PIB, measured",rzT:"water"},
- de:{summer:"nur im Sommer",offH:"Kein Netz am Wasser?",offL:"Speichern Sie den Führer im WLAN auf dem Handy: Umgebungskarte und Fotos (ca. 50 MB). Dann funktioniert er auch im Wald und auf dem See.",offB:"Offline speichern",offP:"Speichere… %n von %r",offK:"Fertig – der Führer funktioniert ohne Netz.",offE:"Hat nicht geklappt. Bitte im WLAN erneut versuchen.",offS:"Auf dem Handy gespeichert: %n von %r Dateien.",inst:"Zum Startbildschirm hinzufügen",ios:"Auf dem iPhone: Teilen, dann „Zum Home-Bildschirm“.",net:"Kein Netz – wir zeigen, was auf dem Handy gespeichert ist.",rzH:"Die Łupawa heute",rzS:"Wasserstand in Obrowo",rzQ:"Abfluss",rzL:"IMGW-Wetterwarnungen für den Kreis Bytów",rzN:"Keine IMGW-Warnungen für den Kreis Bytów.",rzSrc:"Daten: IMGW-PIB, gemessen",rzT:"Wasser"}};
+var OXT={pl:{summer:"tylko latem",offH:"Bez zasięgu nad wodą?",offL:"Zapisz przewodnik w telefonie, póki masz Wi-Fi: mapę okolicy i zdjęcia (ok. 17 MB). Potem działa także w lesie i na jeziorze.",offB:"Zapisz na offline",offP:"Zapisuję… %n z %r",offK:"Gotowe – przewodnik działa bez zasięgu.",offE:"Nie udało się. Spróbuj ponownie na Wi-Fi.",offS:"Zapisane w telefonie: %n z %r plików.",inst:"Dodaj do ekranu głównego",ios:"Na iPhonie: przycisk Udostępnij, potem „Do ekranu początkowego”.",net:"Brak zasięgu – pokazujemy to, co zapisane w telefonie.",rzH:"Łupawa dziś",rzS:"stan wody w Obrowie",rzQ:"przepływ",rzL:"Ostrzeżenia IMGW dla powiatu bytowskiego",rzN:"Brak ostrzeżeń IMGW dla powiatu bytowskiego.",rzSrc:"Dane: IMGW-PIB, pomiar",rzT:"woda"},
+ en:{summer:"summer only",offH:"No signal by the water?",offL:"Save the guide on your phone while you have Wi-Fi: the area map and photos (about 17 MB). Then it works in the forest and on the lake too.",offB:"Save for offline",offP:"Saving… %n of %r",offK:"Done – the guide works without signal.",offE:"That didn't work. Try again on Wi-Fi.",offS:"Saved on this phone: %n of %r files.",inst:"Add to home screen",ios:"On iPhone: tap Share, then “Add to Home Screen”.",net:"No signal – showing what is saved on your phone.",rzH:"The Łupawa today",rzS:"water level at Obrowo",rzQ:"flow",rzL:"IMGW weather warnings for Bytów county",rzN:"No IMGW warnings for Bytów county.",rzSrc:"Data: IMGW-PIB, measured",rzT:"water"},
+ de:{summer:"nur im Sommer",offH:"Kein Netz am Wasser?",offL:"Speichern Sie den Führer im WLAN auf dem Handy: Umgebungskarte und Fotos (ca. 17 MB). Dann funktioniert er auch im Wald und auf dem See.",offB:"Offline speichern",offP:"Speichere… %n von %r",offK:"Fertig – der Führer funktioniert ohne Netz.",offE:"Hat nicht geklappt. Bitte im WLAN erneut versuchen.",offS:"Auf dem Handy gespeichert: %n von %r Dateien.",inst:"Zum Startbildschirm hinzufügen",ios:"Auf dem iPhone: Teilen, dann „Zum Home-Bildschirm“.",net:"Kein Netz – wir zeigen, was auf dem Handy gespeichert ist.",rzH:"Die Łupawa heute",rzS:"Wasserstand in Obrowo",rzQ:"Abfluss",rzL:"IMGW-Wetterwarnungen für den Kreis Bytów",rzN:"Keine IMGW-Warnungen für den Kreis Bytów.",rzSrc:"Daten: IMGW-PIB, gemessen",rzT:"Wasser"}};
 function OX(){return OXT[LANG]||OXT.pl;}
 
 /* ---------- Linki do ekajaki.pl, kaszubskierowery.pl, lupawsko.com: oznaczenie, że gość przyszedł z przewodnika ---------- */
@@ -826,12 +828,19 @@ function renderOffline(){var el=$("offl");if(!el)return;var O=OX();
     (instEv&&!sa?'<button type="button" class="btn" data-install>'+ic('star')+' '+esc(O.inst)+'</button>':'')+'</div>'+
     (st?'<p class="small offst" role="status">'+esc(st)+'</p>':'')+(ios?'<p class="small">'+esc(O.ios)+'</p>':'');}
 document.addEventListener("click",function(e){
-  if(e.target.closest("[data-offsave]")){if(!navigator.serviceWorker.controller){offSt={offline:"blad"};renderOffline();return;}offSt={offline:"postep",i:0,razem:"…"};renderOffline();swPost("zapisz-offline");return;}
+  if(e.target.closest("[data-offsave]")){try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(er){}if(!navigator.serviceWorker.controller){offSt={offline:"blad"};renderOffline();return;}offSt={offline:"postep",i:0,razem:"…"};renderOffline();swPost("zapisz-offline");return;}
   if(e.target.closest("[data-install]")&&instEv){instEv.prompt();instEv.userChoice.then(function(){instEv=null;renderOffline();});}
 });
 if(navigator.serviceWorker){navigator.serviceWorker.addEventListener("message",function(e){var d=e.data||{};if(!d.offline)return;
   if(d.offline==="koniec")d.offline=d.ok>=d.razem*0.9?"koniec":"blad";offSt=d;renderOffline();});
   navigator.serviceWorker.ready.then(function(){setTimeout(function(){swPost("stan-offline");},1500);});}
+/* gość z przeglądarką po angielsku/niemiecku: propozycja zmiany języka (strona domyślnie po polsku) */
+window.hideLangHint=function(){var h=$("langhint");if(h)h.hidden=true;try{localStorage.setItem("przewodnik.langhint","1");}catch(e){}};
+function langHint(){var h=$("langhint"),l=window.LANG_SUGGEST;if(!h||!l||LANG!=="pl")return;try{if(localStorage.getItem("przewodnik.langhint"))return;}catch(e){}
+  var t={en:["This guide is also available in English.","Switch to English","No, thanks"],de:["Dieser Reiseführer ist auch auf Deutsch verfügbar.","Auf Deutsch lesen","Nein, danke"]}[l];
+  h.innerHTML='<span>'+esc(t[0])+'</span><button type="button" data-lh="'+l+'">'+esc(t[1])+'</button><button type="button" class="x" data-lh="">'+esc(t[2])+'</button>';h.hidden=false;}
+document.addEventListener("click",function(e){var b=e.target.closest("[data-lh]");if(!b)return;var l=b.dataset.lh;window.hideLangHint();
+  if(l){try{localStorage.setItem("przewodnik.lang",l);}catch(er){}window.ensureDane(function(){window.applyLang(l);});}});
 function netBar(){var b=$("netbar");if(!b)return;b.textContent=OX().net;b.hidden=navigator.onLine!==false;}
 window.addEventListener("online",netBar);window.addEventListener("offline",netBar);
 
@@ -858,6 +867,17 @@ renderMsze();
 applyLang(LANG);
 loadDb();
 go(location.hash.slice(1));
-if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(function(){});}
-renderOffline();netBar();renderMsze();
+if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){
+  var hadSW=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register("sw.js",{scope:"./"}).then(function(reg){
+    /* nowa wersja przewodnika zainstalowana w tle → pasek „Odśwież” (tylko gdy strona działała już na starej) */
+    reg.addEventListener("updatefound",function(){var w=reg.installing;if(!w)return;w.addEventListener("statechange",function(){if(w.state==="activated"&&hadSW)updBar();});});
+  }).catch(function(){});
+  /* mapa regionu (1,4 MB) do pamięci dopiero po załadowaniu strony i nie przy oszczędzaniu danych / słabej sieci */
+  window.addEventListener("load",function(){setTimeout(function(){var c=navigator.connection||{};if(c.saveData||/(^|-)2g|3g/.test(c.effectiveType||""))return;
+    navigator.serviceWorker.ready.then(function(r){if(r.active)r.active.postMessage("kafle-start");});},5000);});
+}
+function updBar(){var b=$("netbar");if(!b||!b.hidden)return;var t={pl:["Jest nowa wersja przewodnika.","Odśwież"],en:["A new version of the guide is ready.","Reload"],de:["Eine neue Version des Reiseführers ist da.","Neu laden"]}[LANG]||["",""];
+  b.innerHTML='<span>'+esc(t[0])+'</span> <button type="button" onclick="location.reload()" style="margin-left:8px;font:700 .85rem var(--sans);border:0;border-radius:99px;padding:6px 14px;background:#fff;color:#0f2a52;cursor:pointer">'+esc(t[1])+'</button>';b.style.background="#0f2a52";b.hidden=false;}
+renderOffline();netBar();renderMsze();langHint();
 })();
