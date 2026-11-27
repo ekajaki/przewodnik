@@ -25,7 +25,8 @@ const ctx = {
 ctx.window = ctx; ctx.self = ctx;
 vm.createContext(ctx);
 /* najpierw zdjęcia: każde nowe/podmienione zdjęcie w foto/ dostaje wersje AVIF (i WebP jako zapas) */
-try { require("child_process").execFileSync("python3", [path.join(__dirname, "foto.py")], { stdio: "inherit" }); }
+/* BEZ_FOTO=1 (automat w GitHub): zdjęcia są już przerobione w repo, pomijamy konwersję */
+if (!process.env.BEZ_FOTO) try { require("child_process").execFileSync("python3", [path.join(__dirname, "foto.py")], { stdio: "inherit" }); }
 catch (e) { console.error("UWAGA: konwersja zdjęć do AVIF nie powiodła się – sprawdź tools/foto.py"); process.exit(1); }
 for (const f of ["dane.js", "i18n.js", "i18n-dane.js", "foto/foto.js", "config.js"]) {
   vm.runInContext(fs.readFileSync(path.join(ROOT, f), "utf8"), ctx, { filename: f });

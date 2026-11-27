@@ -1,0 +1,33 @@
+# Co tydzień (noc z niedzieli na poniedziałek) przebudowuje strony miejsc dla Google,
+# sitemap.xml i ukryte.json z aktualnymi wpisami z panelu (Supabase). Zapisuje tylko, gdy coś się zmieniło.
+# Ręcznie: GitHub → Actions → „Strony miejsc – przebudowa” → Run workflow.
+name: Strony miejsc – przebudowa
+on:
+  schedule:
+    - cron: "17 1 * * 1"   # poniedziałek 1:17 UTC (2:17 w zimie, 3:17 w lecie)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: strony-miejsc
+  cancel-in-progress: false
+jobs:
+  przebuduj:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Przebuduj strony miejsc
+        env:
+          BEZ_FOTO: "1"
+        run: node tools/build-miejsca.js
+      - name: Zapisz zmiany (jeśli są)
+        run: |
+          git add miejsca sitemap.xml ukryte.json
+          if git diff --cached --quiet; then echo "Bez zmian – nic do zapisania."; exit 0; fi
+          git -c user.name="przewodnik-automat" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "Automat: cotygodniowa przebudowa stron miejsc i sitemap"
+          git push
