@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet.css?v=20261127c">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261127d">
 <style>
 /* ============ Koncepcja D „Portal regionu” ============ */
 :root{
@@ -233,7 +233,7 @@ header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacin
 .wxd>span:nth-of-type(2){font:600 1.12rem var(--serif);color:var(--ink)}
 .ic-wx-sun,.ic-wx-partly{color:#d99a00} .ic-wx-cloud,.ic-wx-fog{color:#7f8ea6} .ic-wx-drizzle,.ic-wx-rain,.ic-wx-storm,.ic-drop{color:var(--k2)} .ic-wx-snow{color:#6aa9d8}
 #wx>.small{margin:8px 0 0}
-#rzeka,#offl{padding:14px 16px}#rzeka h3,#offl h3{font:700 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}#rzeka h3 .ic,#offl h3 .ic{color:var(--k2)}.rzv{margin:10px 0 4px;font-size:1rem}.rzv b{font-size:1.25rem}.rzv span{color:var(--muted);font-size:.85rem}.rzw{margin:4px 0 8px;padding-left:18px;font-size:.88rem}.rzw span{color:var(--muted)}.offst{font-weight:600;color:var(--blue)}
+#rzeka{padding:14px 16px}#rzeka h3{font:700 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}#rzeka h3 .ic{color:var(--k2)}.rzv{margin:10px 0 4px;font-size:1rem}.rzv b{font-size:1.25rem}.rzv span{color:var(--muted);font-size:.85rem}.rzw{margin:4px 0 8px;padding-left:18px;font-size:.88rem}.rzw span{color:var(--muted)}#offl{margin:14px 0 18px;padding:16px 18px;background:linear-gradient(135deg,#0f2a52,#1e4f96);color:#fff;border:0;box-shadow:0 10px 26px -12px rgba(15,42,82,.7)}#offl h3{display:flex;align-items:center;gap:10px;margin:0 0 6px;font:700 1.15rem/1.25 var(--serif,Georgia,serif);color:#fff}#offl h3 .ic{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#f2c230;color:#0f2a52;flex:0 0 auto}#offl h3 .ic svg{width:20px;height:20px}#offl .small{color:rgba(255,255,255,.88);margin:0 0 10px}#offl .acts{display:flex;flex-wrap:wrap;gap:8px}#offl .btn.pri{background:#f2c230;color:#0f2a52;border-color:#f2c230;font-weight:700;min-height:48px;padding:10px 18px;font-size:1rem}#offl .btn:not(.pri){background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}#offl .offst{font-weight:700;color:#f2c230;margin:10px 0 0}#offl.done{padding:12px 16px}#offl.done .small:not(.offst){display:none}
 #netbar{position:sticky;top:0;z-index:60;background:#b8860b;color:#fff;font:600 .85rem/1.3 var(--sans);text-align:center;padding:8px 12px}
 .tag.off{background:#ece6d6;color:#6b5a2b}
 .wxtips{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.84rem;margin:8px 0 0}
@@ -480,6 +480,7 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
   <div class="haft st" aria-hidden="true"></div>
   <div id="search-res" hidden aria-live="polite"></div>
+  <div class="card" id="offl" hidden></div>
 
   <span class="kick" data-d="kick1">Odkryj region</span>
   <div class="tiles hero">
@@ -494,7 +495,6 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
 
   <div class="card" id="wx" hidden aria-live="polite" style="margin-top:14px"></div>
   <div class="card" id="rzeka" hidden style="margin-top:14px"></div>
-  <div class="card" id="offl" hidden style="margin-top:14px"></div>
 
   <div id="fav-wrap" hidden>
     <h2 data-i18n="st.fav" class="sh">Mój plan</h2>
@@ -706,15 +706,15 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 </nav>
 
-<script src="vendor/leaflet.js?v=20261127c"></script>
-<script src="config.js?v=20261127c"></script>
-<script src="dane.js?v=20261127c"></script>
-<script src="icons.js?v=20261127c"></script>
-<script src="foto/foto.js?v=20261127c" onerror="window.FOTO={}"></script>
-<script src="i18n.js?v=20261127c"></script>
-<script src="i18n-dane.js?v=20261127c"></script>
-<script src="szukaj-dane.js?v=20261127c"></script>
-<script src="app.js?v=20261127c"></script>
+<script src="vendor/leaflet.js?v=20261127d"></script>
+<script src="config.js?v=20261127d"></script>
+<script src="dane.js?v=20261127d"></script>
+<script src="icons.js?v=20261127d"></script>
+<script src="foto/foto.js?v=20261127d" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261127d"></script>
+<script src="i18n-dane.js?v=20261127d"></script>
+<script src="szukaj-dane.js?v=20261127d"></script>
+<script src="app.js?v=20261127d"></script>
 <script>
 /* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
 (function(){

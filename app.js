@@ -783,9 +783,10 @@ function swPost(m){if(navigator.serviceWorker&&navigator.serviceWorker.controlle
 function renderOffline(){var el=$("offl");if(!el)return;var O=OX();
   var sa=window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches||navigator.standalone;
   var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!sa;
-  var st=offSt?(offSt.offline==="postep"?O.offP.replace("%n",offSt.i).replace("%r",offSt.razem):offSt.offline==="koniec"?O.offK:offSt.offline==="blad"?O.offE:offSt.offline==="stan"&&offSt.zapisane?O.offS.replace("%n",Math.min(offSt.zapisane,offSt.razem)).replace("%r",offSt.razem):""):"";
+  var st=offSt?(offSt.offline==="postep"?O.offP.replace("%n",offSt.i).replace("%r",offSt.razem):offSt.offline==="koniec"?O.offK:offSt.offline==="blad"?O.offE:offSt.offline==="stan"&&offSt.zapisane>=offSt.razem*0.9?O.offS.replace("%n",Math.min(offSt.zapisane,offSt.razem)).replace("%r",offSt.razem):""):"";
   var busy=offSt&&offSt.offline==="postep";
   el.hidden=!("serviceWorker" in navigator);
+  var done=offSt&&(offSt.offline==="koniec"||(offSt.offline==="stan"&&offSt.zapisane>=offSt.razem*0.9));el.classList.toggle("done",!!done);
   el.innerHTML='<h3>'+ic('wifi')+' '+esc(O.offH)+'</h3><p class="small">'+esc(O.offL)+'</p><div class="acts">'+
     '<button type="button" class="btn pri" data-offsave'+(busy?' disabled':'')+'>'+ic('wifi')+' '+esc(O.offB)+'</button>'+
     (instEv&&!sa?'<button type="button" class="btn" data-install>'+ic('star')+' '+esc(O.inst)+'</button>':'')+'</div>'+
