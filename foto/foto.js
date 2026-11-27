@@ -277,10 +277,6 @@ window.FOTO={
   "src": "atrakcje-jezioro-dolgie-male.jpg",
   "credit": "Fot. LoMit, CC BY 4.0, Wikimedia Commons"
  },
- "Kolegiata Świętej Trójcy w Wejherowie": {
-  "src": "atrakcje-kolegiata-wejherowo.jpg",
-  "credit": "Fot. geo573, CC BY 3.0, Wikimedia Commons"
- },
  "Kościół Matki Boskiej Królowej Polski w Sominach": {
   "src": "atrakcje-kosciol-sominy.jpg",
   "credit": "Fot. Bartosz Czarnecki, CC BY-SA 3.0 PL, Wikimedia Commons"
@@ -288,10 +284,6 @@ window.FOTO={
  "Kościół Najświętszego Serca Pana Jezusa w Kobylnicy": {
   "src": "atrakcje-kosciol-kobylnica.jpg",
   "credit": "Fot. Runita, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół Nawiedzenia NMP w Gardnej Wielkiej": {
-  "src": "atrakcje-kosciol-gardna-wielka.jpg",
-  "credit": "Fot. Wladyslaw Golinski, CC BY-SA 4.0, Wikimedia Commons"
  },
  "Kościół Świętych Apostołów Piotra i Pawła w Półcznie": {
   "src": "atrakcje-kosciol-polczno.jpg",
@@ -309,17 +301,9 @@ window.FOTO={
   "src": "atrakcje-kosciol-sw-katarzyny-bytow.jpg",
   "credit": "Fot. Poconaco, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Kościół św. Michała Archanioła i folwark w Starzynie": {
-  "src": "atrakcje-kosciol-starzyno.jpg",
-  "credit": "Fot. Piotr Widerski, CC BY-SA 3.0 PL, Wikimedia Commons"
- },
  "Kościół św. Stanisława Kostki w Czarnej Dąbrówce": {
   "src": "atrakcje-kosciol-czarna-dabrowka.jpg",
   "credit": "Fot. Gdaniec, CC BY 4.0, Wikimedia Commons"
- },
- "Miejsce Pamięci w Piaśnicy": {
-  "src": "atrakcje-piasnica.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
  },
  "Pałac w Charbrowie": {
   "src": "atrakcje-palac-charbrowo.jpg",
@@ -353,10 +337,6 @@ window.FOTO={
   "src": "atrakcje-staromiejska-lebork.jpg",
   "credit": "Fot. Tomasz Górny (Nemo5576), CC BY-SA 3.0, Wikimedia Commons"
  },
- "Zamek w Krokowej z parkiem": {
-  "src": "atrakcje-zamek-krokowa.jpg",
-  "credit": "Fot. Bazie, CC BY-SA 3.0 PL, Wikimedia Commons"
- },
  "Ścieżka „Gardnieńskie Łęgi” w Gardnej Wielkiej": {
   "src": "atrakcje-gardnienskie-legi.jpg",
   "credit": "Fot. Terrus38, CC0, Wikimedia Commons"
@@ -377,18 +357,6 @@ window.FOTO={
   "src": "rozrywka-plaza-czolpino.jpg",
   "credit": "Fot. Koefbac, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Groty Mechowskie w Mechowie": {
-  "src": "atrakcje-groty-mechowskie.jpg",
-  "credit": "Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
- "Kościół Apostołów Piotra i Pawła w Rowach": {
-  "src": "atrakcje-kosciol-rowy.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Kościół NMP Gwiazdy Morza w Osiekach Lęborskich": {
-  "src": "atrakcje-kosciol-osieki-leborskie.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Kościół Niepokalanego Serca NMP w Trzebielinie": {
   "src": "atrakcje-kosciol-trzebielino.jpg",
   "credit": "Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons"
@@ -401,14 +369,6 @@ window.FOTO={
   "src": "atrakcje-kosciol-pietrzykowo.jpg",
   "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Kościół św. Franciszka z Asyżu w Wytownie": {
-  "src": "atrakcje-kosciol-wytowno.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Kościół św. Józefa Oblubieńca w Charbrowie": {
-  "src": "atrakcje-kosciol-charbrowo.jpg",
-  "credit": "Fot. Ciacho5, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Kościół św. Marcina w Borzyszkowach": {
   "src": "atrakcje-kosciol-borzyszkowy.jpg",
   "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
@@ -416,10 +376,6 @@ window.FOTO={
  "Kościół św. Michała Archanioła w Lipuszu": {
   "src": "atrakcje-kosciol-lipusz.jpg",
   "credit": "Fot. Reptar, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Kościół św. Mikołaja w Szemudzie": {
-  "src": "atrakcje-kosciol-szemud.jpg",
-  "credit": "Fot. Gdaniec, CC BY 3.0, Wikimedia Commons"
  },
  "Kościół św. Stanisława w Dobieszewie": {
   "src": "atrakcje-kosciol-dobieszewo.jpg",
@@ -449,57 +405,21 @@ window.FOTO={
   "src": "atrakcje-zlota-gora-widok.jpg",
   "credit": "Fot. Hanc Tomasz, CC BY-SA 3.0, Wikimedia Commons"
  },
- "Rezerwat Darżlubskie Buki koło Mechowa": {
-  "src": "atrakcje-rezerwat-darzlubskie-buki.jpg",
-  "credit": "Fot. Piotr Widerski, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
- "Rezerwat Wydma Lubiatowska": {
-  "src": "atrakcje-wydma-lubiatowska.jpg",
-  "credit": "Fot. Lena Barańska, CC BY 3.0, Wikimedia Commons"
- },
- "Sanktuarium Królowej Kaszub w Sianowie": {
-  "src": "atrakcje-sanktuarium-sianowo.jpg",
-  "credit": "Fot. t.przechlewski, CC BY 3.0, Wikimedia Commons"
- },
  "Ścieżka edukacyjna przy zespole pałacowo-parkowym w Warcinie": {
   "src": "atrakcje-sciezka-warcino.jpg",
   "credit": "Fot. Fajna Asia, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
- "Muzeum Piśmiennictwa i Muzyki Kaszubsko-Pomorskiej w Wejherowie": {
-  "src": "deszcz-muzeum-pismiennictwa-wejherowo.jpg",
-  "credit": "Fot. Szczebel07, CC BY-SA 3.0 pl, Wikimedia Commons"
  },
  "Muzeum Wsi Słowińskiej w Klukach": {
   "src": "deszcz-muzeum-wsi-slowinskiej-kluki.jpg",
   "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
  },
- "Skansen Zagroda Gburska i Rybacka w Nadolu": {
-  "src": "deszcz-skansen-nadole.jpg",
-  "credit": "Fot. Paweł 'pbm' Szubert, CC BY-SA 4.0, Wikimedia Commons"
- },
  "Czarne Wesele w Klukach": {
   "src": "imprezy-czarne-wesele-kluki.jpg",
   "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
  },
- "Jezioro Sarbsko – windsurfing i kitesurfing": {
-  "src": "rozrywka-jezioro-sarbsko.jpg",
-  "credit": "Fot. Olek Remesz, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kąpielisko nad Jeziorem Wielkim w Strudze": {
-  "src": "rozrywka-kapielisko-struga.jpg",
-  "credit": "Fot. PiotrMig, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Plaża w Rowach": {
-  "src": "rozrywka-plaza-rowy.jpg",
-  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
- },
  "Cmentarz leśników na Bukowej Górze koło Pyszna": {
   "src": "atrakcje-cmentarz-lesnikow-bukowa-gora.jpg",
   "credit": "Fot. Singdrossel, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
- "Elektrownia Wodna Żarnowiec w Czymanowie": {
-  "src": "atrakcje-elektrownia-zarnowiec.jpg",
-  "credit": "Fot. Joanna Karnat, CC BY 3.0, Wikimedia Commons"
  },
  "Jezioro Dołgie Wielkie": {
   "src": "atrakcje-jezioro-dolgie-wielkie.jpg",
@@ -521,14 +441,6 @@ window.FOTO={
   "src": "atrakcje-kosciol-kwakowo.jpg",
   "credit": "Fot. Zentyg45, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Kościół Wniebowzięcia NMP w Łebie": {
-  "src": "atrakcje-kosciol-wniebowziecia-leba.jpg",
-  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół św. Andrzeja Apostoła w Garczynie": {
-  "src": "atrakcje-kosciol-garczyn.jpg",
-  "credit": "Fot. Gdaniec, CC BY 4.0, Wikimedia Commons"
- },
  "Kościół św. Apostołów Piotra i Pawła w Chmielnie": {
   "src": "atrakcje-kosciol-chmielno.jpg",
   "credit": "Fot. Polimerek, CC BY-SA 4.0, Wikimedia Commons"
@@ -540,10 +452,6 @@ window.FOTO={
  "Kościół św. Katarzyny Aleksandryjskiej w Stężycy": {
   "src": "atrakcje-kosciol-stezyca.jpg",
   "credit": "Fot. Łukasz Niemiec, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół św. Michała Archanioła w Kiełpinie": {
-  "src": "atrakcje-kosciol-kielpino.jpg",
-  "credit": "Fot. Yusek, CC BY-SA 3.0 pl, Wikimedia Commons"
  },
  "Kościół św. Mikołaja w Starznie": {
   "src": "atrakcje-kosciol-starzno.jpg",
@@ -557,10 +465,6 @@ window.FOTO={
   "src": "atrakcje-baszta-bluszczowa-lebork.jpg",
   "credit": "Fot. Tomasz Górny (Nemo5576), CC BY-SA 3.0 pl, Wikimedia Commons"
  },
- "Pałac w Ciekocinku": {
-  "src": "atrakcje-palac-ciekocinko.jpg",
-  "credit": "Fot. GringoPL, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Pomost widokowy nad Łebskiem w Gaci": {
   "src": "atrakcje-pomost-gac.jpg",
   "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
@@ -568,10 +472,6 @@ window.FOTO={
  "Rezerwat Jar Rzeki Raduni": {
   "src": "atrakcje-jar-raduni.jpg",
   "credit": "Fot. Jakub Miler, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
- "Rezerwat Mierzeja Sarbska": {
-  "src": "atrakcje-mierzeja-sarbska.jpg",
-  "credit": "Fot. Karel Frydrýšek (Fry72), CC BY-SA 4.0, Wikimedia Commons"
  },
  "Rezerwat „Jezioro Orle” koło Przęsina": {
   "src": "atrakcje-jezioro-orle.jpg",
@@ -601,17 +501,9 @@ window.FOTO={
   "src": "deszcz-muzeum-chleba-ustka.jpg",
   "credit": "Fot. Antekbojar, CC0, Wikimedia Commons"
  },
- "Muzeum Piaśnickie w Wejherowie": {
-  "src": "deszcz-muzeum-piasnickie.jpg",
-  "credit": "Fot. Bolszewski Wikipedysta, CC0, Wikimedia Commons"
- },
  "Dożynki Gminno-Parafialne w Lipuszu": {
   "src": "imprezy-dozynki-lipusz-kosciol.jpg",
   "credit": "Fot. Reptar, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Inscenizacja bitwy pod Świecinem": {
-  "src": "imprezy-bitwa-swiecino-pomnik.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
  },
  "Brama Młyńska w Słupsku": {
   "src": "atrakcje-brama-mlynska-slupsk.jpg",
@@ -632,14 +524,6 @@ window.FOTO={
  "Kościół Najświętszego Zbawiciela w Cetyniu": {
   "src": "atrakcje-kosciol-cetyn.jpg",
   "credit": "Fot. Asas22222, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Kościół Znalezienia Krzyża Świętego w Charnowie": {
-  "src": "atrakcje-kosciol-charnowo.jpg",
-  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół św. Anny i klasztor franciszkanów w Wejherowie": {
-  "src": "atrakcje-kosciol-sw-anny-wejherowo.jpg",
-  "credit": "Fot. Dawid Galus, CC BY-SA 3.0 pl, Wikimedia Commons"
  },
  "Kościół św. Jacka w Słupsku": {
   "src": "atrakcje-kosciol-sw-jacka-slupsk.jpg",
@@ -669,17 +553,9 @@ window.FOTO={
   "src": "atrakcje-palac-warcino.jpg",
   "credit": "Fot. Cezarde62, CC BY-SA 3.0 pl, Wikimedia Commons"
  },
- "Pałac w Kłaninie z parkiem": {
-  "src": "atrakcje-palac-klanino.jpg",
-  "credit": "Fot. Zala, CC BY-SA 4.0, Wikimedia Commons"
- },
  "Pomnik ks. Bernarda Sychty w Sierakowicach": {
   "src": "atrakcje-pomnik-sychty-sierakowice.jpg",
   "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Port rybacki w Rowach": {
-  "src": "atrakcje-port-rowy.jpg",
-  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
  },
  "Punkt widokowy nad Łebskiem w Rąbce": {
   "src": "atrakcje-punkt-widokowy-rabka.jpg",
@@ -693,14 +569,6 @@ window.FOTO={
   "src": "atrakcje-stary-cmentarz-slupsk.jpg",
   "credit": "Fot. Panek, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Wieża widokowa Kaszubskie Oko w Gniewinie": {
-  "src": "atrakcje-kaszubskie-oko-gniewino.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Wzgórze Kukówka i dawny kościół ewangelicki w Luzinie": {
-  "src": "atrakcje-kukowka-luzino.jpg",
-  "credit": "Fot. Tommy Jantarek, CC BY-SA 4.0, Wikimedia Commons"
- },
  "Źródło Brdy i rezerwat „Jezioro Smołowe” koło Przęsina": {
   "src": "atrakcje-zrodlo-brdy.jpg",
   "credit": "Fot. TGietkowski, CC BY-SA 4.0, Wikimedia Commons"
@@ -708,10 +576,6 @@ window.FOTO={
  "Kaszubski Park Etnograficzny we Wdzydzach Kiszewskich": {
   "src": "deszcz-skansen-wdzydze.jpg",
   "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Muzeum Regionalne w Krokowej": {
-  "src": "deszcz-muzeum-krokowa.jpg",
-  "credit": "Fot. Bazie, CC BY-SA 3.0 pl, Wikimedia Commons"
  },
  "Muzeum Wyrzutni Rakiet w Rąbce": {
   "src": "deszcz-wyrzutnia-rakiet-rabka.jpg",
@@ -721,10 +585,6 @@ window.FOTO={
   "src": "deszcz-spichlerz-richtera-slupsk.jpg",
   "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Plaża w Łebie": {
-  "src": "rozrywka-plaza-leba.jpg",
-  "credit": "Fot. MARELBU, CC BY 3.0, Wikimedia Commons"
- },
  "Stanica żeglarska w Gowidlinie": {
   "src": "rozrywka-stanica-gowidlino.jpg",
   "credit": "Fot. Gdaniec, CC BY 4.0, Wikimedia Commons"
@@ -732,14 +592,6 @@ window.FOTO={
  "Dąb Wybickiego w Będominie": {
   "src": "atrakcje-dab-wybickiego-bedomin.jpg",
   "credit": "Fot. Tomek Pikuła, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kalwaria Wejherowska": {
-  "src": "atrakcje-kalwaria-wejherowska.jpg",
-  "credit": "Fot. Zala, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Klasztor benedyktynek i kościół Zwiastowania Pańskiego w Żarnowcu": {
-  "src": "atrakcje-klasztor-zarnowiec.jpg",
-  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
  },
  "Kościół Mariacki w Słupsku": {
   "src": "atrakcje-kosciol-mariacki-slupsk.jpg",
@@ -753,10 +605,6 @@ window.FOTO={
   "src": "atrakcje-kosciol-zbawiciela-ustka.jpg",
   "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Kościół Trójcy Świętej i Wszystkich Świętych w Goręczynie": {
-  "src": "atrakcje-kosciol-goreczyno.jpg",
-  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Kościół św. Anny w Barcinie": {
   "src": "atrakcje-kosciol-barcino.jpg",
   "credit": "Fot. Matthias v.d. Elbe, CC BY-SA 4.0, Wikimedia Commons"
@@ -765,25 +613,9 @@ window.FOTO={
   "src": "atrakcje-kosciol-sw-jakuba-lebork.jpg",
   "credit": "Fot. Zala, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Kościół św. Józefa w Pomieczynie": {
-  "src": "atrakcje-kosciol-pomieczyno.jpg",
-  "credit": "Fot. Gdaniec, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Kościół św. Marii Magdaleny w Ugoszczy": {
   "src": "atrakcje-kosciol-ugoszcz.jpg",
   "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół św. Mikołaja w Zimowiskach": {
-  "src": "atrakcje-kosciol-zimowiska.jpg",
-  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół św. Wawrzyńca w Luzinie": {
-  "src": "atrakcje-kosciol-luzino.jpg",
-  "credit": "Fot. Bolszewski Wikipedysta, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Latarnia Morska Stilo w Osetniku": {
-  "src": "atrakcje-latarnia-stilo.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
  },
  "Młyn zamkowy i Spichrz solny w Lęborku": {
   "src": "atrakcje-mlyn-spichrz-lebork.jpg",
@@ -813,10 +645,6 @@ window.FOTO={
   "src": "atrakcje-rezerwat-orle.jpg",
   "credit": "Fot. Gdaniec, CC BY 3.0, Wikimedia Commons"
  },
- "Ruiny kościoła św. Mikołaja w Łebie": {
-  "src": "atrakcje-ruiny-kosciola-leba.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Syrenka i falochron wschodni w Ustce": {
   "src": "atrakcje-syrenka-ustka.jpg",
   "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
@@ -837,21 +665,9 @@ window.FOTO={
   "src": "deszcz-muzeum-ziemi-usteckiej.jpg",
   "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Jarmark Cysterski w Żarnowcu": {
-  "src": "imprezy-jarmark-cysterski-zarnowiec.jpg",
-  "credit": "Fot. Yarl, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Misterium Męki Pańskiej na Kalwarii Wejherowskiej": {
-  "src": "imprezy-misterium-kalwaria-wejherowo.jpg",
-  "credit": "Fot. Panek, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Ośrodek jeździecki Pałac Runowo": {
   "src": "rozrywka-palac-runowo.jpg",
   "credit": "Fot. Marek Zapart, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Plaża i ujście Orzechowej w Orzechowie": {
-  "src": "rozrywka-plaza-orzechowo.jpg",
-  "credit": "Fot. Antekbojar, CC0, Wikimedia Commons"
  },
  "Plaża wschodnia w Ustce": {
   "src": "rozrywka-plaza-wschodnia-ustka.jpg",
@@ -873,18 +689,6 @@ window.FOTO={
   "src": "atrakcje-kolegiata-kartuzy.jpg",
   "credit": "Fot. Krzysztof Rakowski, CC BY-SA 3.0, Wikimedia Commons"
  },
- "Kościół Matki Boskiej Częstochowskiej w Objeździe": {
-  "src": "atrakcje-kosciol-objazda.jpg",
-  "credit": "Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół Najświętszego Serca Pana Jezusa w Chocielewku": {
-  "src": "atrakcje-kosciol-chocielewko.jpg",
-  "credit": "Fot. Hyponos, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
- "Kościół Trójcy Świętej w Smołdzinie": {
-  "src": "atrakcje-kosciol-smoldzino.jpg",
-  "credit": "Fot. Henryk Bielamowicz, CC BY-SA 4.0, Wikimedia Commons"
- },
  "Kościół Świętej Trójcy w Sulęczynie": {
   "src": "atrakcje-kosciol-suleczyno.jpg",
   "credit": "Fot. Michał Winiarski, CC BY-SA 3.0 pl, Wikimedia Commons"
@@ -893,17 +697,9 @@ window.FOTO={
   "src": "atrakcje-kosciol-lubno.jpg",
   "credit": "Fot. Torrosbak, CC BY 3.0, Wikimedia Commons"
  },
- "Kościół św. Jakuba i św. Mikołaja w Mechowie": {
-  "src": "atrakcje-kosciol-mechowo.jpg",
-  "credit": "Fot. 1bumer, CC BY-SA 3.0 pl, Wikimedia Commons"
- },
  "Kościół św. Józefa w Wygodzie Łączyńskiej": {
   "src": "atrakcje-kosciol-wygoda-laczynska.jpg",
   "credit": "Fot. Mmotlaw, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Kościół św. Mateusza Apostoła w Górze": {
-  "src": "atrakcje-kosciol-gora.jpg",
-  "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons"
  },
  "Kościół św. Michała Archanioła w Łebuni": {
   "src": "atrakcje-kosciol-lebunia.jpg",
@@ -929,10 +725,6 @@ window.FOTO={
   "src": "atrakcje-palac-lebunia.jpg",
   "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Pałac w Sasinie": {
-  "src": "atrakcje-palac-sasino.jpg",
-  "credit": "Fot. ShaunTheSheep, CC BY-SA 3.0, Wikimedia Commons"
- },
  "Pomnik „Upokorzony” w Słupsku": {
   "src": "atrakcje-pomnik-upokorzony-slupsk.jpg",
   "credit": "Fot. Nemo5576, CC BY-SA 4.0, Wikimedia Commons"
@@ -940,10 +732,6 @@ window.FOTO={
  "Ratusz z wieżą widokową w Słupsku": {
   "src": "atrakcje-ratusz-slupsk.jpg",
   "credit": "Fot. Januszk57, CC BY-SA 4.0, Wikimedia Commons"
- },
- "Rezerwat przyrody Pełcznica": {
-  "src": "atrakcje-rezerwat-pelcznica.jpg",
-  "credit": "Fot. pzdziarski, CC BY-SA 3.0, Wikimedia Commons"
  },
  "Zamek krzyżacki w Lęborku": {
   "src": "atrakcje-zamek-lebork.jpg",
@@ -956,10 +744,6 @@ window.FOTO={
  "Galeria Refektarz w Kartuzach": {
   "src": "deszcz-galeria-refektarz-kartuzy.jpg",
   "credit": "Fot. Sławek Zawadzki, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Muzeum Motyli w Łebie": {
-  "src": "deszcz-muzeum-motyli-leba.jpg",
-  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
  },
  "Młyn Zamkowy w Słupsku": {
   "src": "deszcz-mlyn-zamkowy-slupsk.jpg",
@@ -977,17 +761,9 @@ window.FOTO={
   "src": "imprezy-spotkania-organowe-tuchomie.jpg",
   "credit": "Fot. Przykuta, CC BY-SA 4.0, Wikimedia Commons"
  },
- "Kąpielisko i przystań w Lubkowie": {
-  "src": "rozrywka-kapielisko-lubkowo.jpg",
-  "credit": "Fot. geo573, CC BY 3.0, Wikimedia Commons"
- },
  "Park Kultury i Wypoczynku w Słupsku": {
   "src": "rozrywka-park-kultury-slupsk.jpg",
   "credit": "Fot. Michał Słupczewski, Attribution, Wikimedia Commons"
- },
- "Port jachtowy w Łebie": {
-  "src": "rozrywka-port-jachtowy-leba.jpg",
-  "credit": "Fot. tadeo5, CC BY 3.0, Wikimedia Commons"
  },
  "Kościół Narodzenia NMP w Bukowinie": {
   "src": "atrakcje-kosciol-bukowina.jpg",
@@ -1120,10 +896,6 @@ window.FOTO={
  "Kąpielisko nad jeziorem Kłodno w Chmielnie": {
   "src": "rozrywka-klodno-chmielno.jpg",
   "credit": "Fot. Polimerek, CC BY-SA 3.0, Wikimedia Commons"
- },
- "Plaża w Lubiatowie i Kopalinie (wejścia 38–39)": {
-  "src": "rozrywka-plaza-lubiatowo.jpg",
-  "credit": "Fot. Jan Jerszyński, CC BY-SA 2.5, Wikimedia Commons"
  }
 };
 
