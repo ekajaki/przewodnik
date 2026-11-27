@@ -3,7 +3,8 @@ window.FOTO_BASE=(document.currentScript&&document.currentScript.src||"").replac
 window.FOTO={
  "Sauna fińska nad Jeziorem Jasień – eKajaki.pl": {
   "src": "deszcz-sauna-ekajaki.jpg",
-  "credit": "Fot. eKajaki.pl"
+  "credit": "Fot. eKajaki.pl",
+  "slabe": "mała rozdzielczość (800 px) – warto dać własne, większe zdjęcie sauny z jeziorem"
  },
  "Jezioro Jasień": {
   "src": "jezioro-jasien.jpg",
@@ -163,7 +164,8 @@ window.FOTO={
  },
  "Wyciąg narciarski Amalka": {
   "src": "rozrywka-amalka-stok.jpg",
-  "credit": "Fot. Almondox, CC BY 3.0, Wikimedia Commons"
+  "credit": "Fot. Almondox, CC BY 3.0, Wikimedia Commons",
+  "slabe": "szare, mało kontrastu, stok ledwo widoczny"
  },
  "Kąpielisko gminne w Sulęczynie": {
   "src": "rozrywka-jezioro-wegorzyno.jpg",
@@ -175,7 +177,8 @@ window.FOTO={
  },
  "Ośrodek narciarski Koszałkowo-Wieżyca": {
   "src": "rozrywka-koszalkowo-wiezyca.jpg",
-  "credit": "Fot. Almondox, CC BY 3.0, Wikimedia Commons"
+  "credit": "Fot. Almondox, CC BY 3.0, Wikimedia Commons",
+  "slabe": "szare, mało kontrastu"
  },
  "Kolej Drezynowa w Bytowie": {
   "src": "rozrywka-kolej-drezynowa-bytow.jpg",
@@ -223,7 +226,8 @@ window.FOTO={
  },
  "Jarmark Regionów – Kaszubska Sobota": {
   "src": "imprezy-rynek-bytow-zima.jpg",
-  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons"
+  "credit": "Fot. MOs810, CC BY-SA 4.0, Wikimedia Commons",
+  "slabe": "zimowe, szare zdjęcie do letniej imprezy"
  },
  "Bytów Musical Festival": {
   "src": "imprezy-musical-zamek-bytow.jpg",
@@ -243,15 +247,18 @@ window.FOTO={
  },
  "Mikołajki „Jak z bajki” w Parchowie": {
   "src": "imprezy-gckib-parchowo.jpg",
-  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "wąski pasek, budynek ucięty, płaskie światło"
  },
  "Zabawa andrzejkowa w Parchowie": {
   "src": "imprezy-gckib-parchowo.jpg",
-  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "wąski pasek, budynek ucięty, płaskie światło"
  },
  "Góra Siemierzycka": {
   "src": "atrakcje-gora-siemierzycka.jpg",
-  "credit": "Fot. Danka Agnieszka, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Danka Agnieszka, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "mała rozdzielczość (500 px)"
  },
  "Dożynki Gminy Kołczygłowy": {
   "src": "imprezy-dozynki-kolczyglowy-kosciol.jpg",
@@ -267,7 +274,8 @@ window.FOTO={
  },
  "Koncert kolęd i pastorałek w Parchowie": {
   "src": "imprezy-koledy-gok-parchowo.jpg",
-  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Przykuta, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "wąski pasek, budynek ucięty, płaskie światło"
  },
  "AQUA Centrum Kościerzyna": {
   "src": "rozrywka-aqua-centrum-koscierzyna.jpg",
@@ -339,7 +347,8 @@ window.FOTO={
  },
  "Ścieżka „Gardnieńskie Łęgi” w Gardnej Wielkiej": {
   "src": "atrakcje-gardnienskie-legi.jpg",
-  "credit": "Fot. Terrus38, CC0, Wikimedia Commons"
+  "credit": "Fot. Terrus38, CC0, Wikimedia Commons",
+  "slabe": "pod słońce, na zdjęciu głównie polna droga"
  },
  "Muzeum Ceramiki Kaszubskiej Neclów w Chmielnie": {
   "src": "deszcz-muzeum-neclow-chmielno.jpg",
@@ -351,7 +360,8 @@ window.FOTO={
  },
  "Kąpielisko nad jeziorem Lednik w Miastku": {
   "src": "rozrywka-kapielisko-lednik-miastko.jpg",
-  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "szare, płaskie światło; nie widać plaży"
  },
  "Plaża w Czołpinie przy Czerwonej Szopie": {
   "src": "rozrywka-plaza-czolpino.jpg",
@@ -403,7 +413,8 @@ window.FOTO={
  },
  "Punkt widokowy na Złotej Górze koło Brodnicy Górnej": {
   "src": "atrakcje-zlota-gora-widok.jpg",
-  "credit": "Fot. Hanc Tomasz, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Hanc Tomasz, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "bardzo wąska panorama (960×254) – w karcie prawie nic nie widać"
  },
  "Ścieżka edukacyjna przy zespole pałacowo-parkowym w Warcinie": {
   "src": "atrakcje-sciezka-warcino.jpg",
@@ -675,11 +686,13 @@ window.FOTO={
  },
  "Brzeg Łebska w Izbicy": {
   "src": "atrakcje-izbica-lebsko.jpg",
-  "credit": "Fot. Patrycja Makowska, CC BY-SA 3.0 pl, Wikimedia Commons"
+  "credit": "Fot. Patrycja Makowska, CC BY-SA 3.0 pl, Wikimedia Commons",
+  "slabe": "mała rozdzielczość (500 px)"
  },
  "Dąb Świętopełk koło Krępkowic": {
   "src": "atrakcje-dab-swietopelk.jpg",
-  "credit": "Fot. rpogrebniak, CC BY 3.0, Wikimedia Commons"
+  "credit": "Fot. rpogrebniak, CC BY 3.0, Wikimedia Commons",
+  "slabe": "mała rozdzielczość (500 px)"
  },
  "Kamienne Kręgi w Trątkownicy": {
   "src": "atrakcje-kregi-tratkownica.jpg",
@@ -711,7 +724,8 @@ window.FOTO={
  },
  "Kościół-pomnik i cmentarz ofiar marszu śmierci w Nawczu": {
   "src": "atrakcje-kosciol-pomnik-nawcz.jpg",
-  "credit": "Fot. SzymSzy, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. SzymSzy, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "mała rozdzielczość (500 px)"
  },
  "Latarnia morska w Ustce": {
   "src": "atrakcje-latarnia-ustka.jpg",
@@ -787,11 +801,13 @@ window.FOTO={
  },
  "Restauracja Hotelu Kiston w Kistowie": {
   "src": "jedzenie-kiston-kistowo.jpg",
-  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons",
+  "slabe": "szare niebo, na pierwszym planie podjazd; nie pokazuje restauracji"
  },
  "Ołtarz Papieski w Sierakowicach": {
   "src": "atrakcje-oltarz-papieski-sierakowice-2.jpg",
-  "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons"
+  "credit": "Fot. Michael Tav, CC BY-SA 4.0, Wikimedia Commons",
+  "slabe": "nie widać ołtarza – głównie krzewy i konstrukcja w tle"
  },
  "Dni Morza w Ustce": {
   "src": "atrakcje-promenada-ustka.jpg",
@@ -831,7 +847,8 @@ window.FOTO={
  },
  "Dzień Mieszkańca Gminy Redzikowo": {
   "src": "imprezy-dzien-mieszkanca-redzikowo.jpg",
-  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "szare, z daleka, na pierwszym planie płot"
  },
  "Festiwal Muzyki Organowej i Kameralnej w Ustce": {
   "src": "imprezy-festiwal-organowy-ustka-2.jpg",
@@ -839,7 +856,8 @@ window.FOTO={
  },
  "Strefa 360 Park Redzikowo": {
   "src": "rozrywka-strefa-360-redzikowo.jpg",
-  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons"
+  "credit": "Fot. Adam-dalekie-pole, CC BY-SA 3.0, Wikimedia Commons",
+  "slabe": "szare, z daleka, na pierwszym planie płot"
  },
  "Wydma Łącka w Słowińskim Parku Narodowym": {
   "src": "atrakcje-wydma-lacka.jpg",
@@ -891,7 +909,8 @@ window.FOTO={
  },
  "Kręgielnia i basen w Hotelu Kiston w Kistowie": {
   "src": "rozrywka-hotel-kiston-kistowo.jpg",
-  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons"
+  "credit": "Fot. Gdaniec, CC BY-SA 4.0, Wikimedia Commons",
+  "slabe": "to samo zdjęcie co restauracja – nie pokazuje kręgielni ani basenu"
  },
  "Kąpielisko nad jeziorem Kłodno w Chmielnie": {
   "src": "rozrywka-klodno-chmielno.jpg",

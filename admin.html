@@ -49,6 +49,7 @@ textarea{min-height:90px;resize:vertical}
 .badge{display:inline-block;font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--teal-soft);color:var(--teal);margin:0 0 0 6px;vertical-align:middle;white-space:nowrap}
 .badge.hid,.badge.warn{background:var(--warn-soft);color:var(--warn)}
 .badge.red{background:var(--red-soft);color:var(--red)}
+.badge.foto{background:rgba(224,165,38,.2);color:#9a6400}.stat.foto{border-color:#e0a526;background:rgba(224,165,38,.1)}.stat.foto b{color:#b07800}.fth{width:72px;height:54px;object-fit:cover;border-radius:8px;flex:0 0 auto;margin-right:10px}.fwhy{display:block;margin-top:2px;color:#b07800 !important;font-style:italic}
 .badge.ok{background:var(--ok-soft);color:var(--ok)}
 .muted{color:var(--muted);font-size:.88rem}
 .msg{padding:10px 12px;border-radius:10px;margin:10px 0;font-size:.9rem}
@@ -153,6 +154,8 @@ details summary{cursor:pointer;font-weight:600}
       <input id="q" type="search" placeholder="Szukaj: nazwa, miejscowość, opis…" aria-label="Szukaj">
       <select id="flt" aria-label="Filtr">
         <option value="">Wszystkie pozycje</option>
+        <option value="nofoto">📷 Bez zdjęcia</option>
+        <option value="slabe">📷 Słabe zdjęcie – do wymiany</option>
         <option value="chk">Sprawdź przed wizytą</option>
         <option value="mod">Poprawione w panelu</option>
         <option value="own">Dodane w panelu</option>
@@ -161,7 +164,6 @@ details summary{cursor:pointer;font-weight:600}
         <option value="nowe">Dodane w listopadzie 2026</option>
         <option value="noll">Bez położenia na mapie</option>
         <option value="noen">Bez tłumaczenia EN/DE</option>
-        <option value="nofoto">Bez zdjęcia</option>
       </select>
       <span class="muted" id="cnt"></span>
     </div>
@@ -373,8 +375,8 @@ function buildItems(){
 }
 function view(it){ /* aktualna postać pozycji (wpis z panelu ma pierwszeństwo) */
   var r=it.row,o=it.o||{};
-  if(!r)return {n:o.n||o.t,p:o.p||"",d:o.d||(o.steps?o.steps.join(" · "):""),ll:o.ll,chk:!!o.chk,en:!!tr("en",o.n||o.t),foto:!!(window.FOTO||{})[o.n],nowe:o.nowe,od:o.od,mies:o.mies,ost:o.ost,draft:false};
-  return {n:r.nazwa,p:r.miejsce||"",d:r.opis||r.kroki||"",ll:r.lat!=null?[r.lat,r.lng]:null,chk:!!r.sprawdz,en:!!(r.opis_en||tr("en",it.key)),foto:!!(r.zdjecie_url||(window.FOTO||{})[it.key]),nowe:o.nowe,od:r.data_od,mies:r.miesiac,ost:r.ostatnio||o.ost,draft:!!r.ukryty};
+  if(!r)return {n:o.n||o.t,p:o.p||"",d:o.d||(o.steps?o.steps.join(" · "):""),ll:o.ll,chk:!!o.chk,en:!!tr("en",o.n||o.t),foto:!!(window.FOTO||{})[o.n],slabe:((window.FOTO||{})[o.n]||{}).slabe||"",fsrc:((window.FOTO||{})[o.n]||{}).src||"",nowe:o.nowe,od:o.od,mies:o.mies,ost:o.ost,draft:false};
+  return {n:r.nazwa,p:r.miejsce||"",d:r.opis||r.kroki||"",ll:r.lat!=null?[r.lat,r.lng]:null,chk:!!r.sprawdz,en:!!(r.opis_en||tr("en",it.key)),foto:!!(r.zdjecie_url||(window.FOTO||{})[it.key]),slabe:r.zdjecie_url?"":(((window.FOTO||{})[it.key]||{}).slabe||""),fsrc:r.zdjecie_url||((window.FOTO||{})[it.key]||{}).src||"",nowe:o.nowe,od:r.data_od,mies:r.miesiac,ost:r.ostatnio||o.ost,draft:!!r.ukryty};
 }
 function status(it){
   if(it.hideRow)return '<span class="badge hid">ukryte</span>';
@@ -383,6 +385,8 @@ function status(it){
   if(v.draft)b+='<span class="badge hid">szkic</span>';
   if(v.chk)b+='<span class="badge warn">sprawdź</span>';
   if(!v.ll&&!SECN[it.sec].plan)b+='<span class="badge red">brak na mapie</span>';
+  if(!SECN[it.sec].plan&&!v.foto)b+='<span class="badge foto">bez zdjęcia</span>';
+  if(v.slabe)b+='<span class="badge foto">słabe zdjęcie</span>';
   return b;
 }
 
@@ -397,9 +401,10 @@ function renderStats(){
       draft=count(function(it){return !it.hideRow&&view(it).draft}),
       mod=count(function(it){return !!it.row&&!it.hideRow}),
       nowe=count(function(it){return view(it).nowe}),
-      nofoto=count(function(it){return !it.hideRow&&!SECN[it.sec].plan&&!view(it).foto});
-  var S=[[vis,"miejsc widocznych dla gości","",""],[nowe,"dodanych w listopadzie 2026","ok","nowe"],[mod,"poprawionych lub dodanych w panelu","","mod"],[chk,"z plakietką „sprawdź”","warn","chk"],
-         [noen,"bez tłumaczenia EN/DE","warn","noen"],[noll,"bez położenia na mapie","red","noll"],[nofoto,"bez zdjęcia","","nofoto"],[hid,"ukrytych","","hid"],[draft,"szkiców","","draft"]];
+      nofoto=count(function(it){return !it.hideRow&&!SECN[it.sec].plan&&!view(it).foto}),
+      slabe=count(function(it){return !it.hideRow&&!!view(it).slabe});
+  var S=[[nofoto,"📷 bez zdjęcia","foto","nofoto"],[slabe,"📷 słabych zdjęć do wymiany","foto","slabe"],[vis,"miejsc widocznych dla gości","",""],[nowe,"dodanych w listopadzie 2026","ok","nowe"],[mod,"poprawionych lub dodanych w panelu","","mod"],[chk,"z plakietką „sprawdź”","warn","chk"],
+         [noen,"bez tłumaczenia EN/DE","warn","noen"],[noll,"bez położenia na mapie","red","noll"],[hid,"ukrytych","","hid"],[draft,"szkiców","","draft"]];
   $("stats").innerHTML=S.map(function(s){return '<button type="button" class="stat '+s[2]+'" data-goflt="'+s[3]+'"><b>'+s[0]+'</b><span>'+s[1]+'</span></button>'}).join("");
   var t=today(), in30=new Date(Date.now()+30*864e5).toISOString().slice(0,10), m=(new Date().getMonth()+1)%12+1, m2=m%12+1; /* dwa najbliższe miesiące */
   var ev=ITEMS.filter(function(it){if(it.sec!=="imprezy"||it.hideRow)return false;var v=view(it);return v.od&&v.od<=in30&&(v.od>=t||(it.row?it.row.data_do:it.o.do)>=t);})
@@ -431,6 +436,7 @@ function filtered(){
     if(f==="noll"&&(plan||v.ll||it.hideRow))return false;
     if(f==="noen"&&(plan||v.en||it.hideRow))return false;
     if(f==="nofoto"&&(plan||v.foto||it.hideRow))return false;
+    if(f==="slabe"&&(!v.slabe||it.hideRow))return false;
     if(q&&norm(v.n+" "+v.p+" "+v.d).indexOf(q)<0)return false;
     return true;});
 }
@@ -444,7 +450,8 @@ function renderList(){
     else acts=(ok?'<button class="btn sm" data-edit="'+id+'">Edytuj</button>':'')+
       (ok&&it.builtin&&it.row?'<button class="btn sm" data-undo="'+esc(it.row.id)+'" title="Wróć do wersji z pliku dane.js">Cofnij poprawki</button>':'')+
       (ok?(it.builtin?'<button class="btn sm del" data-hide="'+id+'">Ukryj</button>':'<button class="btn sm del" data-del="'+esc(it.row.id)+'">Usuń</button>'):'');
-    return '<div class="item"><div style="min-width:0"><b>'+esc(v.n)+status(it)+'</b><small>'+esc(SECN[it.sec].name)+(v.p?' · '+esc(v.p):'')+'</small></div><div class="acts">'+acts+'</div></div>';
+    var th=v.slabe&&v.fsrc?'<img class="fth" loading="lazy" alt="" src="'+esc(/^https?:/.test(v.fsrc)?v.fsrc:"foto/"+v.fsrc)+'">':'';
+    return '<div class="item">'+th+'<div style="min-width:0;flex:1"><b>'+esc(v.n)+status(it)+'</b><small>'+esc(SECN[it.sec].name)+(v.p?' · '+esc(v.p):'')+'</small>'+(v.slabe?'<small class="fwhy">Dlaczego do wymiany: '+esc(v.slabe)+'</small>':'')+'</div><div class="acts">'+acts+'</div></div>';
   }).join(""):'<p class="muted">Nic nie pasuje do wyszukiwania i filtra.</p>';
   $("more").hidden=L.length<=shown.length;
 }
