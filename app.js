@@ -16,6 +16,9 @@ function telFmt(t){return t.replace(/^\+48\s?/,"");}
 function norm(s){return String(s||"").toLowerCase().replace(/ł/g,"l").normalize("NFD").replace(/[̀-ͯ]/g,"");}
 function slug(s){return norm(s).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);}
 function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||"null");localStorage.setItem(k,JSON.stringify(v));}catch(e){return null;}}
+/* plaże i kąpieliska działają latem – poza sezonem (X–V) idą na koniec listy z dopiskiem */
+var OFFSEASON=(function(){var m=new Date().getMonth()+1;return m>=10||m<=5;})();
+function summerOnly(o){return !!o&&!o.pin&&(/^(Kąpielisko|Plaża|Miejsce (do kąpieli|plażowania))/.test(o.n||"")||/sezon letni|tylko latem|^latem|VII–VIII|kąpielisko strzeżone/i.test(o.h||""))&&!/cały rok|całodobow/i.test(o.h||"");}
 function sortByDist(arr){return arr.slice().sort(function(a,b){var x=dOf(a),y=dOf(b);return (x==null?999:x)-(y==null?999:y)});}
 function mapsUrl(o){
   if(o.ll)return "https://www.google.com/maps/dir/?api=1&destination="+o.ll[0]+","+o.ll[1];
@@ -139,7 +142,8 @@ function renderFun(){
   chipRow($("fun-chips"),ks.map(function(k){return [k,k==="all"?T("all"):FUNK[k],k==="all"?"":"fun-"+k]}),funK,"k");
   var f=sortByDist(FUN).filter(function(o){return funK==="all"||funKat(o)===funK});
   f=f.filter(function(o){return o.pin}).concat(f.filter(function(o){return !o.pin})); /* wyróżnione zawsze na początku */
-  $("fun-list").innerHTML=f.length?f.map(function(o){var k=funKat(o);return card(o,{sec:"rozrywka",tag:k?'<span class="tag">'+ic('fun-'+k)+' '+esc(FUNK[k])+'</span>':''});}).join(""):'<p class="empty">'+esc(T("noItems"))+'</p>';
+  if(OFFSEASON)f=f.filter(function(o){return !summerOnly(o)}).concat(f.filter(summerOnly));
+  $("fun-list").innerHTML=f.length?f.map(function(o){var k=funKat(o);return card(o,{sec:"rozrywka",tag:(k?'<span class="tag">'+ic('fun-'+k)+' '+esc(FUNK[k])+'</span>':'')+(OFFSEASON&&summerOnly(o)?'<span class="tag off">'+esc(OX().summer)+'</span>':'')});}).join(""):'<p class="empty">'+esc(T("noItems"))+'</p>';
 }
 $("fun-chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;funK=b.dataset.k;renderFun();});
 /* Imprezy */
@@ -246,6 +250,7 @@ function szIndex(){
       (SZ.tagi[o.n]||[]).forEach(function(t,i){tg[t]=i<2?1.5:1;});
       (SZ_SRC_TAG[p[2]]||[]).forEach(function(t){tg[t]=tg[t]||1;});
       (o.c||[]).concat(o.kat?[o.kat]:[],o.typ?[o.typ]:[]).forEach(function(c){(SZ_CAT[c]||[]).forEach(function(t){tg[t]=Math.max(tg[t]||0,1.25);});});
+      if(p[0]==='atrakcje'&&/^(Kościół|Cerkiew|Kaplica|Sanktuarium)/.test(o.n))tg.kosciol=1.5; /* każdy kościół równo – o kolejności decyduje odległość */
       var cats=(o.c||[]).map(function(c){return CATN[c]||c}).concat([FUNK[o.kat]||"",EVT[o.typ]||""]).join(" ");
       items.push({sec:p[0],o:o,tags:tg,host:/ekajaki/i.test(o.n)||!!o.pin,
         nm:(szn(o.n)+" "+szn(L.n)).split(" "),pl:szn(o.p).split(" "),tw:szn(String(o.p||"").split(",")[0].replace(/\(.*?\)/g," ")).split(" ").filter(function(w){return w.length>2}),gw:szn((String(o.p||"").match(/gm\.\s*([^),]+)/)||["",""])[1]).split(" ").filter(function(w){return w.length>2}),ct:szn(cats).split(" "),
@@ -267,31 +272,41 @@ var SZ_PREF={dzieci:"rozrywka",kapiel:"rozrywka",aktywnie:"rozrywka",zima:"rozry
 function szScore(it,tok){
   var tg=0,tx=0,i,h;
   for(i=0;i<tok.tags.length;i++){var w=it.tags[tok.tags[i]];if(w){tg=Math.max(tg,4*w+(SZ_PREF[tok.tags[i]]===it.sec?1:0));}}
+  if(tg>0)it._tq=1;
   function f(arr,wt){for(var j=0;j<arr.length;j++){h=wordHit(tok.t,arr[j]);if(h){tx=Math.max(tx,h===2?wt:wt/2);if(h===2)return;}}}
-  f(it.nm,6); f(it.pl,3); f(it.ct,3); if(tx<2)f(it.ds,1.5);
+  f(it.nm,6); if(tx>=6&&!tok.town)it._tq=1; f(it.pl,3); f(it.ct,3); if(tx<2)f(it.ds,tg?0.5:1.5); /* temat już trafiony – słowo w opisie tylko lekko podbija */
   /* nazwa miejscowości wpisana dokładnie (np. „Kartuzy”, „Ustka”) wygrywa z luźnym dopasowaniem tematu */
   function tw(arr,v){for(var k=0;k<(arr||[]).length;k++){var pw=arr[k];if(pw===tok.t||(tok.t.length>=4&&pw.indexOf(tok.t)===0)){tx=Math.max(tx,v);return;}}} tw(it.tw,9); tw(it.gw,7);
   return tg+tx;}
 function szSearch(q){
   var X=szIndex(),P=szParse(q),all=[],part=false;
+  if(!X.town){X.town={};X.items.forEach(function(it){(it.tw||[]).concat(it.gw||[]).forEach(function(w){X.town[w]=1;});});X.townL=Object.keys(X.town);}
+  P.toks.forEach(function(tk){tk.town=X.town[tk.t]||X.townL.some(function(w){return wordHit(tk.t,w)===2;});}); /* słowo = miejscowość, nie temat */
   X.items.forEach(function(it){
-    var tot=0,ok=true,hit=0;
-    P.phraseTags.forEach(function(t){if(it.tags[t]){tot+=4*it.tags[t]+(SZ_PREF[t]===it.sec?1:0);hit++;}else ok=false;});
+    var tot=0,ok=true,hit=0;it._tq=0;
+    P.phraseTags.forEach(function(t){if(it.tags[t]){it._tq=1;tot+=4*it.tags[t]+(SZ_PREF[t]===it.sec?1:0);hit++;}else ok=false;});
     P.toks.forEach(function(tk){var s=szScore(it,tk);if(s>0){tot+=s;if(s>=1.5)hit++;}else ok=false;}); /* literówka w samym opisie nie liczy się jako trafienie */
     if(it.sec==="imprezy"&&P.phraseTags.indexOf("impreza")<0&&!P.toks.some(function(tk){return tk.tags.indexOf("impreza")>=0}))tot*=0.8; /* imprezy niżej, chyba że ktoś ich szuka */
+    if(OFFSEASON&&summerOnly(it.o)&&P.phraseTags.indexOf("kapiel")<0)tot-=3; /* poza sezonem plaże i kąpieliska niżej */
     it._s=tot;it._ok=ok;it._h=hit;});
   var need=P.phraseTags.length+P.toks.length; if(!need)return {res:[],P:P,part:false};
-  X.items.forEach(function(it){if(it.host&&it._h>0)it._s+=6;});
+  X.items.forEach(function(it){if(it.host&&it._h>0&&it._tq)it._s+=6;});
   var maxH=0;X.items.forEach(function(it){if(it._h>maxH)maxH=it._h;});
   if(!maxH)return {res:[],P:P,part:false};
   var full=X.items.some(function(it){return it._ok;}); part=!full;
-  var res=X.items.filter(function(it){return it._h>0&&it._h>=(maxH>=2?maxH-1:1);});
-  res.sort(function(a,b){return (b._h-a._h)||(b._s-a._s)||((dOf(a.o)==null?999:dOf(a.o))-(dOf(b.o)==null?999:dOf(b.o)));});
+  var top=X.items.filter(function(it){return it._h===maxH;});
+  /* kilka tematów naraz (np. „dzieci deszcz”) = wszystkie naraz; luźniej tylko gdy pełnych trafień jest bardzo mało */
+  var res=maxH>=2&&top.length>=3?top:X.items.filter(function(it){return it._h>0&&it._h>=(maxH>=2?maxH-1:1);});
+  function dd(o){var x=dOf(o);return x==null?999:x;}
+  /* podobny wynik (np. wszystkie kościoły przy „msza”) = najbliższe pierwsze */
+  /* bliżej = trochę wyżej (ok. 1 pkt na 20 km), żeby przy „msza” czy „kościół” najbliższe były pierwsze */
+  function key(it){var x=dd(it.o);return it._s-(x>=999?2:Math.min(x,120)/20);}
+  res.sort(function(a,b){return (b._h-a._h)||(key(b)-key(a));});
   /* kolejność grup = kolejność najlepszego wyniku w grupie; wynik płaski w tej samej kolejności co na ekranie */
   var gOrd=[];res.forEach(function(it){if(!it.host&&gOrd.indexOf(it.sec)<0)gOrd.push(it.sec);});res.forEach(function(it){if(gOrd.indexOf(it.sec)<0)gOrd.push(it.sec);}); /* grupa gospodarza i tak jest na górze */
   var flat=[];gOrd.forEach(function(sec){res.forEach(function(it){if(it.sec===sec)flat.push(it);});});
   /* baza eKajaki: każde dopasowanie trafia do grupy „Poleca gospodarz” na samej górze */
-  var host=X.items.filter(function(it){return it.host&&it._h>0}).sort(function(a,b){return b._s-a._s});
+  var host=X.items.filter(function(it){return it.host&&it._h>0&&it._tq&&res.indexOf(it)>=0}).sort(function(a,b){return b._s-a._s});
   flat=host.concat(flat.filter(function(it){return host.indexOf(it)<0}));
   return {res:flat,P:P,part:part,order:gOrd,host:host};}
 /* ikona i kolor tematu (zestaw ikon przewodnika zamiast emoji) */
@@ -351,6 +366,8 @@ function renderSearch(){
       (g.length>lim?'<button type="button" class="szmore" data-szmore="'+sec+'">'+esc(szt("more"))+' ('+(g.length-lim)+')</button>':'');});
   box.hidden=false;box.innerHTML=html;}
 $("gsearch").addEventListener("input",function(e){gq=e.target.value;szOpen={};renderSearch();});
+/* Enter / „Szukaj” na klawiaturze: chowamy klawiaturę i przewijamy do wyników */
+$("gsearch").addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();gq=e.target.value;renderSearch();e.target.blur();var r=$("search-res");if(r&&!r.hidden)setTimeout(function(){r.scrollIntoView({behavior:"smooth",block:"start"});},250);});
 document.addEventListener("click",function(e){
   var c=e.target.closest("[data-sz]");
   if(c){var L=szIndex().labels[c.dataset.sz];if(!L)return;var g=$("gsearch");g.value=L.l;gq=L.l;szOpen={};renderSearch();
@@ -747,11 +764,64 @@ document.addEventListener("click",function(e){var b=e.target.closest("[data-go]"
   if(location.hash!=="#"+b.dataset.go)location.hash=b.dataset.go; else go(b.dataset.go,true);});
 window.addEventListener("hashchange",function(){go(location.hash.slice(1),true)});
 
+/* ---------- Teksty nowych kart (PL/EN/DE) ---------- */
+var OXT={pl:{summer:"tylko latem",offH:"Bez zasięgu nad wodą?",offL:"Zapisz przewodnik w telefonie, póki masz Wi-Fi: mapę okolicy i zdjęcia (ok. 50 MB). Potem działa także w lesie i na jeziorze.",offB:"Zapisz na offline",offP:"Zapisuję… %n z %r",offK:"Gotowe – przewodnik działa bez zasięgu.",offE:"Nie udało się. Spróbuj ponownie na Wi-Fi.",offS:"Zapisane w telefonie: %n z %r plików.",inst:"Dodaj do ekranu głównego",ios:"Na iPhonie: przycisk Udostępnij, potem „Do ekranu początkowego”.",net:"Brak zasięgu – pokazujemy to, co zapisane w telefonie.",rzH:"Łupawa dziś",rzS:"stan wody w Obrowie",rzQ:"przepływ",rzL:"Ostrzeżenia IMGW dla powiatu bytowskiego",rzN:"Brak ostrzeżeń IMGW dla powiatu bytowskiego.",rzSrc:"Dane: IMGW-PIB, pomiar",rzT:"woda"},
+ en:{summer:"summer only",offH:"No signal by the water?",offL:"Save the guide on your phone while you have Wi-Fi: the area map and photos (about 50 MB). Then it works in the forest and on the lake too.",offB:"Save for offline",offP:"Saving… %n of %r",offK:"Done – the guide works without signal.",offE:"That didn't work. Try again on Wi-Fi.",offS:"Saved on this phone: %n of %r files.",inst:"Add to home screen",ios:"On iPhone: tap Share, then “Add to Home Screen”.",net:"No signal – showing what is saved on your phone.",rzH:"The Łupawa today",rzS:"water level at Obrowo",rzQ:"flow",rzL:"IMGW weather warnings for Bytów county",rzN:"No IMGW warnings for Bytów county.",rzSrc:"Data: IMGW-PIB, measured",rzT:"water"},
+ de:{summer:"nur im Sommer",offH:"Kein Netz am Wasser?",offL:"Speichere den Führer im WLAN auf dem Handy: Umgebungskarte und Fotos (ca. 50 MB). Dann funktioniert er auch im Wald und auf dem See.",offB:"Offline speichern",offP:"Speichere… %n von %r",offK:"Fertig – der Führer funktioniert ohne Netz.",offE:"Hat nicht geklappt. Bitte im WLAN erneut versuchen.",offS:"Auf dem Handy gespeichert: %n von %r Dateien.",inst:"Zum Startbildschirm hinzufügen",ios:"Auf dem iPhone: Teilen, dann „Zum Home-Bildschirm“.",net:"Kein Netz – wir zeigen, was auf dem Handy gespeichert ist.",rzH:"Die Łupawa heute",rzS:"Wasserstand in Obrowo",rzQ:"Abfluss",rzL:"IMGW-Wetterwarnungen für den Kreis Bytów",rzN:"Keine IMGW-Warnungen für den Kreis Bytów.",rzSrc:"Daten: IMGW-PIB, gemessen",rzT:"Wasser"}};
+function OX(){return OXT[LANG]||OXT.pl;}
+
+/* ---------- Linki do ekajaki.pl, kaszubskierowery.pl, lupawsko.com: oznaczenie, że gość przyszedł z przewodnika ---------- */
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;
+  var h=a.getAttribute("href");if(!/^https?:\/\/(www\.)?(ekajaki\.pl|kaszubskierowery\.pl|lupawsko\.com)(\/|$|\?|#)/i.test(h)||/utm_source=/.test(h))return;
+  try{var u=new URL(h);u.searchParams.set("utm_source","przewodnik");u.searchParams.set("utm_medium","referral");u.searchParams.set("utm_campaign","przewodnik-lupawsko");a.href=u.toString();}catch(er){}
+},true);
+
+/* ---------- Offline: przycisk „Zapisz na offline”, dodanie do ekranu, pasek „brak zasięgu” ---------- */
+var instEv=null, offSt=null;
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();instEv=e;renderOffline();});
+function swPost(m){if(navigator.serviceWorker&&navigator.serviceWorker.controller)navigator.serviceWorker.controller.postMessage(m);}
+function renderOffline(){var el=$("offl");if(!el)return;var O=OX();
+  var sa=window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!sa;
+  var st=offSt?(offSt.offline==="postep"?O.offP.replace("%n",offSt.i).replace("%r",offSt.razem):offSt.offline==="koniec"?O.offK:offSt.offline==="blad"?O.offE:offSt.offline==="stan"&&offSt.zapisane?O.offS.replace("%n",Math.min(offSt.zapisane,offSt.razem)).replace("%r",offSt.razem):""):"";
+  var busy=offSt&&offSt.offline==="postep";
+  el.hidden=!("serviceWorker" in navigator);
+  el.innerHTML='<h3>'+ic('wifi')+' '+esc(O.offH)+'</h3><p class="small">'+esc(O.offL)+'</p><div class="acts">'+
+    '<button type="button" class="btn pri" data-offsave'+(busy?' disabled':'')+'>'+ic('wifi')+' '+esc(O.offB)+'</button>'+
+    (instEv&&!sa?'<button type="button" class="btn" data-install>'+ic('star')+' '+esc(O.inst)+'</button>':'')+'</div>'+
+    (st?'<p class="small offst" role="status">'+esc(st)+'</p>':'')+(ios?'<p class="small">'+esc(O.ios)+'</p>':'');}
+document.addEventListener("click",function(e){
+  if(e.target.closest("[data-offsave]")){if(!navigator.serviceWorker.controller){offSt={offline:"blad"};renderOffline();return;}offSt={offline:"postep",i:0,razem:"…"};renderOffline();swPost("zapisz-offline");return;}
+  if(e.target.closest("[data-install]")&&instEv){instEv.prompt();instEv.userChoice.then(function(){instEv=null;renderOffline();});}
+});
+if(navigator.serviceWorker){navigator.serviceWorker.addEventListener("message",function(e){var d=e.data||{};if(!d.offline)return;
+  if(d.offline==="koniec")d.offline=d.ok>=d.razem*0.9?"koniec":"blad";offSt=d;renderOffline();});
+  navigator.serviceWorker.ready.then(function(){setTimeout(function(){swPost("stan-offline");},1500);});}
+function netBar(){var b=$("netbar");if(!b)return;b.textContent=OX().net;b.hidden=navigator.onLine!==false;}
+window.addEventListener("online",netBar);window.addEventListener("offline",netBar);
+
+/* ---------- Łupawa dziś: stan wody (IMGW, Obrowo – najbliższy wodowskaz) i ostrzeżenia dla powiatu bytowskiego ---------- */
+var RZ=null;
+function renderRiver(){var el=$("rzeka");if(!el)return;if(!RZ||!RZ.h){el.hidden=true;return;}var O=OX(),h=RZ.h;el.hidden=false;
+  var wl=(RZ.w||[]).map(function(w){return '<li><b>'+esc(w.nazwa_zdarzenia)+'</b> ('+esc(w.stopien)+'°) · '+esc(String(w.obowiazuje_od).slice(5,16))+' – '+esc(String(w.obowiazuje_do).slice(5,16))+'<br><span>'+esc(w.tresc)+'</span></li>';}).join("");
+  el.innerHTML='<h3>'+ic('drop')+' '+esc(O.rzH)+'</h3><p class="rzv"><b>'+esc(h.stan_wody)+' cm</b> <span>'+esc(O.rzS)+'</span>'+(h.przeplyw?' · <b>'+esc(String(h.przeplyw).replace(".",","))+' m³/s</b> <span>'+esc(O.rzQ)+'</span>':'')+'</p>'+
+    (wl?'<p class="small"><b>'+ic('warn')+' '+esc(O.rzL)+'</b></p><ul class="rzw">'+wl+'</ul>':'<p class="small">'+esc(O.rzN)+'</p>')+
+    '<p class="small">'+esc(O.rzSrc)+' '+esc(String(h.stan_wody_data_pomiaru||"").slice(0,16))+'</p>';}
+(function loadRiver(){
+  var c=store("przewodnik.rzeka");if(c){RZ=c.d;renderRiver();if(Date.now()-c.t<3600e3)return;}
+  var b="https://danepubliczne.imgw.pl/api/data/";
+  Promise.all([fetch(b+"hydro/id/154170230").then(function(r){return r.json()}),fetch(b+"warningsmeteo").then(function(r){return r.json()}).catch(function(){return []})])
+   .then(function(a){var h=Array.isArray(a[0])?a[0][0]:a[0];if(!h||!h.stan_wody)return;var now=new Date().toISOString().replace("T"," ").slice(0,19);
+     var w=(a[1]||[]).filter(function(x){return (x.teryt||[]).indexOf("2201")>=0&&String(x.obowiazuje_do)>=now;});
+     RZ={h:h,w:w};store("przewodnik.rzeka",{t:Date.now(),d:RZ});renderRiver();}).catch(function(){});
+})();
+
 /* ---------- Start ---------- */
-window.rerenderAll=function(){renderOrigin();renderStatic();renderWeather();if(map){drawMarkers();}};
+window.rerenderAll=function(){renderOrigin();renderStatic();renderWeather();renderOffline();renderRiver();netBar();if(map){drawMarkers();}};
 applyIcons();
 applyLang(LANG);
 loadDb();
 go(location.hash.slice(1));
 if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(function(){});}
+renderOffline();netBar();
 })();

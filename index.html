@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet.css?v=20261127a">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261127b">
 <style>
 /* ============ Koncepcja D „Portal regionu” ============ */
 :root{
@@ -233,6 +233,9 @@ header.top p{display:none;margin:0;font:600 .62rem/1.2 var(--sans);letter-spacin
 .wxd>span:nth-of-type(2){font:600 1.12rem var(--serif);color:var(--ink)}
 .ic-wx-sun,.ic-wx-partly{color:#d99a00} .ic-wx-cloud,.ic-wx-fog{color:#7f8ea6} .ic-wx-drizzle,.ic-wx-rain,.ic-wx-storm,.ic-drop{color:var(--k2)} .ic-wx-snow{color:#6aa9d8}
 #wx>.small{margin:8px 0 0}
+#rzeka,#offl{padding:14px 16px}#rzeka h3,#offl h3{font:700 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}#rzeka h3 .ic,#offl h3 .ic{color:var(--k2)}.rzv{margin:10px 0 4px;font-size:1rem}.rzv b{font-size:1.25rem}.rzv span{color:var(--muted);font-size:.85rem}.rzw{margin:4px 0 8px;padding-left:18px;font-size:.88rem}.rzw span{color:var(--muted)}.offst{font-weight:600;color:var(--blue)}
+#netbar{position:sticky;top:0;z-index:60;background:#b8860b;color:#fff;font:600 .85rem/1.3 var(--sans);text-align:center;padding:8px 12px}
+.tag.off{background:#ece6d6;color:#6b5a2b}
 .wxtips{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.84rem;margin:8px 0 0}
 
 /* ---------- Twój pobyt / SOS ---------- */
@@ -451,6 +454,7 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
 </script>
 </head>
 <body>
+<div id="netbar" hidden role="status"></div>
 <header class="top">
   <div class="wrap">
     <div class="brand"><span class="mark" aria-hidden="true"></span><div class="bt">
@@ -489,6 +493,8 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 
   <div class="card" id="wx" hidden aria-live="polite" style="margin-top:14px"></div>
+  <div class="card" id="rzeka" hidden style="margin-top:14px"></div>
+  <div class="card" id="offl" hidden style="margin-top:14px"></div>
 
   <div id="fav-wrap" hidden>
     <h2 data-i18n="st.fav" class="sh">Mój plan</h2>
@@ -700,15 +706,15 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 </nav>
 
-<script src="vendor/leaflet.js?v=20261127a"></script>
-<script src="config.js?v=20261127a"></script>
-<script src="dane.js?v=20261127a"></script>
-<script src="icons.js?v=20261127a"></script>
-<script src="foto/foto.js?v=20261127a" onerror="window.FOTO={}"></script>
-<script src="i18n.js?v=20261127a"></script>
-<script src="i18n-dane.js?v=20261127a"></script>
-<script src="szukaj-dane.js?v=20261127a"></script>
-<script src="app.js?v=20261127a"></script>
+<script src="vendor/leaflet.js?v=20261127b"></script>
+<script src="config.js?v=20261127b"></script>
+<script src="dane.js?v=20261127b"></script>
+<script src="icons.js?v=20261127b"></script>
+<script src="foto/foto.js?v=20261127b" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261127b"></script>
+<script src="i18n-dane.js?v=20261127b"></script>
+<script src="szukaj-dane.js?v=20261127b"></script>
+<script src="app.js?v=20261127b"></script>
 <script>
 /* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
 (function(){
@@ -799,7 +805,7 @@ function pick(D,t){if(!D)return null;for(var k in D)if(t.indexOf(k)===0)return D
 var KW=[[/zam(ek|ku)|castle|schloss|burg/i,"s-castle"],[/muze|museum/i,"s-museum"],[/kości|cerkiew|church|kirche/i,"s-church"],[/kajak|spływ|kayak|paddel/i,"s-kayak"],
  [/kaw|coffee|kaffee|café|cafe/i,"s-cafe"],[/basen|kąpiel|pool|swim|schwimm|bad\b|baden/i,"s-swim"],[/obiad|ryb|pierog|lunch|fish|fisch|mittag|restaur|essen|dinner/i,"s-food"],
  [/dąb|oak|eiche|las\b|forest|wald/i,"s-tree"],[/megalit|kamien|stone|stein|głaz/i,"s-stone"],[/szlak|ścież|pętl|trail|loop|wander|weg\b|rundweg/i,"s-hike"],[/zakup|shop|einkauf/i,"s-shop"],[/drezyn|rower|bike|rad/i,"bike"],[/wrak|żagl|wreck|wrack/i,"sail"]];
-function shortStep(t){var lab="",r=t;var m=/^([^:]{2,22}):\s*(.+)$/.exec(t)||/^(\d{1,2}[:.]\d{2})\s+(.+)$/.exec(t);if(m){lab=m[1];r=m[2];}
+function shortStep(t){var lab="",r=t;var m=/^(\d{1,2}[:.]\d{2})\s+(.+)$/.exec(t)||/^([^:]{2,22}):\s*(.+)$/.exec(t);if(m){lab=m[1];r=m[2];}
   r=r.split(/[,(;.–]| - /)[0].trim();if(r.length>28){var w=r.split(" "),o="";for(var i=0;i<w.length;i++){if((o+" "+w[i]).trim().length>28)break;o=(o+" "+w[i]).trim();}r=o.replace(/\s+(of|the|on|at|in|a|an|to|and|auf|der|des|die|das|von|im|am|zu|und|w|z|na|i|do|od)$/i,"");}
   var ic="pin";for(var j=0;j<KW.length;j++)if(KW[j][0].test(t)){ic=KW[j][1];break;}
   return [lab,r.charAt(0).toUpperCase()+r.slice(1),ic];}
