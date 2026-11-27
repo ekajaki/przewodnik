@@ -322,7 +322,7 @@ var SLEEP=[
  {"n":"ekajaki.pl – pole namiotowe i pokoje","p":"Łupawsko 12A","d":"Pole namiotowe, miejsca dla kamperów i przyczep, pokoje 2- i 4-osobowe. Na miejscu baza spływów kajakowych Łupawą i Słupią oraz wypożyczalnia rowerów.","t":"+48 510 808 333","w":"https://ekajaki.pl","ll":[54.27549,17.58905]},
  {"n":"Ośrodek Siedem Wysp","p":"Łupawsko 1","d":"Ośrodek wypoczynkowy w sosnowym lesie nad Jeziorem Jasień.","t":"+48 501 246 752","w":"https://7wysp.com.pl/","chk":true,"ll":[54.28018,17.59251]},
  {"n":"Ośrodek Wypoczynkowy Wrzos","p":"Łupawsko 14b","d":"Drewniane domki letniskowe nad Jeziorem Jasień, z domową kuchnią na miejscu.","t":"+48 785 085 890","w":"https://wrzos.com/","ll":[54.27376,17.58797]},
- {"n":"DZIK Łupawsko","p":"Łupawsko","d":"Obiekt noclegowy w Łupawsku, rezerwacja przez Booking.com.","chk":true}
+ {"n":"DZIK Łupawsko","p":"Łupawsko 6","d":"Drewniany domek Dzik (35 m² i taras) dla 4–6 osób w ośrodku „Łupawsko – domki na Kaszubach” przy Jeziorze Jasień. W środku salon z aneksem kuchennym i kozą, sypialnia, antresola i łazienka z prysznicem. Jest Wi-Fi, klimatyzacja, ogród z miejscem na ognisko, a za dopłatą sauna, bania opalana drewnem i balia. Zwierzęta są akceptowane. Ośrodek ma też domki Dora, Dziad i Pola oraz odkryty basen w lipcu i sierpniu. Rezerwacja przez stronę lub telefonicznie.","t":"+48 603 241 945","w":"http://lupawsko.pl"}
 ];
 var IT=[
  {"n":"Informacja Turystyczna ZAMEK","p":"Bytów, ul. Zamkowa 2 (w zamku)","d":"Główny punkt informacji turystycznej w Bytowie, czynny od 2025 r. Mapy, informatory i pamiątki.","h":"poniedziałek–piątek 8:00–16:00","oh":"Mo-Fr 08:00-16:00","t":"+48 59 822 55 12","w":"https://www.bytow.com.pl/Informacja_turystyczna,473","ll":[54.16855,17.49204]},
