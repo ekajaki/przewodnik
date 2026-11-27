@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vendor/leaflet.css?v=20261127e">
+<link rel="stylesheet" href="vendor/leaflet.css?v=20261127f">
 <style>
 /* ============ Koncepcja D „Portal regionu” ============ */
 :root{
@@ -483,6 +483,11 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   <div id="search-res" hidden aria-live="polite"></div>
   <div class="card" id="offl" hidden></div>
 
+  <span class="kick" data-d="kick2" id="mapa-okolicy">Jezioro Jasień · Łupawa · Bytów</span>
+  <h2 class="sh" data-d="map2">Odkryj okolicę</h2>
+  <button type="button" class="mapill" data-mapfs aria-label="Powiększ mapę okolicy"><img src="mapa/mapa-region-1600.webp" srcset="mapa/mapa-region-800.webp 800w, mapa/mapa-region-1600.webp 1600w" sizes="(min-width:1024px) 1116px, 100vw" width="1600" height="1582" loading="lazy" decoding="async" alt="Ilustrowana mapa regionu: Łupawsko, Bytów, Słupsk, Lębork, Łeba, Kartuzy, Kościerzyna i Miastko, z jeziorami, rzekami, lasami, drogami i szlakami"><span class="mapill-hint"><span class="mapill-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span><span data-d="mzoom">Otwórz mapę</span></span></button><div class="maphow"><span class="maphow-ic" aria-hidden="true">👆</span><p data-d="mhow"><b>Jak znaleźć miejsca na mapie?</b> Otwórz mapę i dotknij dowolnego miejsca, np. miejscowości albo jeziora. Pokażemy listę atrakcji, jedzenia, sklepów i innych ciekawych miejsc w promieniu kilku kilometrów, a na mapie zaznaczymy je małymi kropkami.</p></div><p class="mapcredit" data-d="mcred">Mapa: eKajaki.pl · dane © autorzy OpenStreetMap (ODbL), OpenMapTiles, OpenFreeMap</p><p class="gmeta"><a id="gmap-open" href="https://www.google.com/maps/search/?api=1&amp;query=54.2755,17.58905" target="_blank" rel="noopener" data-d="gopen">Otwórz w Google Maps</a></p>
+  
+
   <span class="kick" data-d="kick1">Odkryj region</span>
   <div class="tiles hero">
     <button class="tile" data-go="atrakcje"><span class="ico"><i data-ic="sights"></i></span><b data-i18n="t1.b">Co zobaczyć</b><span data-i18n="t1.s">Atrakcje według odległości</span></button>
@@ -503,10 +508,7 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
     <div id="fav-list" class="rail"></div>
   </div>
 
-  <span class="kick" data-d="kick2" id="mapa-okolicy">Jezioro Jasień · Łupawa · Bytów</span>
-  <h2 class="sh" data-d="map2">Odkryj okolicę</h2>
-  <button type="button" class="mapill" data-mapfs aria-label="Powiększ mapę okolicy"><img src="mapa/mapa-region-1600.webp" srcset="mapa/mapa-region-800.webp 800w, mapa/mapa-region-1600.webp 1600w" sizes="(min-width:1024px) 1116px, 100vw" width="1600" height="1582" loading="lazy" decoding="async" alt="Ilustrowana mapa regionu: Łupawsko, Bytów, Słupsk, Lębork, Łeba, Kartuzy, Kościerzyna i Miastko, z jeziorami, rzekami, lasami, drogami i szlakami"><span class="mapill-hint"><span class="mapill-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span><span data-d="mzoom">Otwórz mapę</span></span></button><div class="maphow"><span class="maphow-ic" aria-hidden="true">👆</span><p data-d="mhow"><b>Jak znaleźć miejsca na mapie?</b> Otwórz mapę i dotknij dowolnego miejsca, np. miejscowości albo jeziora. Pokażemy listę atrakcji, jedzenia, sklepów i innych ciekawych miejsc w promieniu kilku kilometrów, a na mapie zaznaczymy je małymi kropkami.</p></div><p class="mapcredit" data-d="mcred">Mapa: eKajaki.pl · dane © autorzy OpenStreetMap (ODbL), OpenMapTiles, OpenFreeMap</p><p class="gmeta"><a id="gmap-open" href="https://www.google.com/maps/search/?api=1&amp;query=54.2755,17.58905" target="_blank" rel="noopener" data-d="gopen">Otwórz w Google Maps</a></p><p class="gtitle" data-d="gplaces">Ciekawe miejsca w okolicy</p><div class="gchips"><a href="#atrakcje/zamek-krzyzacki-i-muzeum-zachodniokaszubskie" data-go="atrakcje/zamek-krzyzacki-i-muzeum-zachodniokaszubskie" class="gchip">Bytów – zamek krzyżacki</a><a href="#atrakcje/kosciol-bozego-ciala-w-jasieniu" data-go="atrakcje/kosciol-bozego-ciala-w-jasieniu" class="gchip">Jasień – kościół szachulcowy</a><a href="#atrakcje/ruiny-mostow-kolejowych-w-kozinie" data-go="atrakcje/ruiny-mostow-kolejowych-w-kozinie" class="gchip">Kozin – ruiny mostów kolejowych</a><a href="#atrakcje/jezioro-jasien" data-go="atrakcje/jezioro-jasien" class="gchip">Jezioro Jasień</a><a href="#rozrywka/splywy-kajakami-ekajaki-pl" data-go="rozrywka/splywy-kajakami-ekajaki-pl" class="gchip">Szlak kajakowy Łupawy</a><a href="#atrakcje/rezerwat-skotawskie-laki" data-go="atrakcje/rezerwat-skotawskie-laki" class="gchip">Rezerwat „Skotawskie Łąki”</a><a href="#atrakcje/rezerwat-jeziora-sitna" data-go="atrakcje/rezerwat-jeziora-sitna" class="gchip">Rezerwat „Jeziora Sitna”</a><a href="#atrakcje/kosciol-sw-antoniego-padewskiego-w-nozynie" data-go="atrakcje/kosciol-sw-antoniego-padewskiego-w-nozynie" class="gchip">Nożyno nad Skotawą</a><a href="#atrakcje/kosciol-niepokalanego-serca-nmp-w-pomysku-wielkim" data-go="atrakcje/kosciol-niepokalanego-serca-nmp-w-pomysku-wielkim" class="gchip">Kościół w Pomysku Wielkim</a><a href="#atrakcje/kosciol-sw-andrzeja-boboli-w-rokitach" data-go="atrakcje/kosciol-sw-andrzeja-boboli-w-rokitach" class="gchip">Rokity – kościół z 1908 r.</a><a href="#atrakcje/elektrownia-wodna-struga" data-go="atrakcje/elektrownia-wodna-struga" class="gchip">Elektrownia wodna Struga</a><a href="#atrakcje/palac-w-kartkowie" data-go="atrakcje/palac-w-kartkowie" class="gchip">Kartkowo – zespół pałacowo-parkowy</a></div>
-  
+  <p class="gtitle" data-d="gplaces">Ciekawe miejsca w okolicy</p><div class="gchips"><a href="#atrakcje/zamek-krzyzacki-i-muzeum-zachodniokaszubskie" data-go="atrakcje/zamek-krzyzacki-i-muzeum-zachodniokaszubskie" class="gchip">Bytów – zamek krzyżacki</a><a href="#atrakcje/kosciol-bozego-ciala-w-jasieniu" data-go="atrakcje/kosciol-bozego-ciala-w-jasieniu" class="gchip">Jasień – kościół szachulcowy</a><a href="#atrakcje/ruiny-mostow-kolejowych-w-kozinie" data-go="atrakcje/ruiny-mostow-kolejowych-w-kozinie" class="gchip">Kozin – ruiny mostów kolejowych</a><a href="#atrakcje/jezioro-jasien" data-go="atrakcje/jezioro-jasien" class="gchip">Jezioro Jasień</a><a href="#rozrywka/splywy-kajakami-ekajaki-pl" data-go="rozrywka/splywy-kajakami-ekajaki-pl" class="gchip">Szlak kajakowy Łupawy</a><a href="#atrakcje/rezerwat-skotawskie-laki" data-go="atrakcje/rezerwat-skotawskie-laki" class="gchip">Rezerwat „Skotawskie Łąki”</a><a href="#atrakcje/rezerwat-jeziora-sitna" data-go="atrakcje/rezerwat-jeziora-sitna" class="gchip">Rezerwat „Jeziora Sitna”</a><a href="#atrakcje/kosciol-sw-antoniego-padewskiego-w-nozynie" data-go="atrakcje/kosciol-sw-antoniego-padewskiego-w-nozynie" class="gchip">Nożyno nad Skotawą</a><a href="#atrakcje/kosciol-niepokalanego-serca-nmp-w-pomysku-wielkim" data-go="atrakcje/kosciol-niepokalanego-serca-nmp-w-pomysku-wielkim" class="gchip">Kościół w Pomysku Wielkim</a><a href="#atrakcje/kosciol-sw-andrzeja-boboli-w-rokitach" data-go="atrakcje/kosciol-sw-andrzeja-boboli-w-rokitach" class="gchip">Rokity – kościół z 1908 r.</a><a href="#atrakcje/elektrownia-wodna-struga" data-go="atrakcje/elektrownia-wodna-struga" class="gchip">Elektrownia wodna Struga</a><a href="#atrakcje/palac-w-kartkowie" data-go="atrakcje/palac-w-kartkowie" class="gchip">Kartkowo – zespół pałacowo-parkowy</a></div>
 
   <span class="kick" data-d="kick3">Kalendarz</span>
   <h2 data-i18n="st.ev" class="sh">Najbliższe imprezy</h2>
@@ -708,15 +710,15 @@ window.fetch=function(u){try{if(/api\.open-meteo\.com/.test(String(u&&u.url||u))
   </div>
 </nav>
 
-<script src="vendor/leaflet.js?v=20261127e"></script>
-<script src="config.js?v=20261127e"></script>
-<script src="dane.js?v=20261127e"></script>
-<script src="icons.js?v=20261127e"></script>
-<script src="foto/foto.js?v=20261127e" onerror="window.FOTO={}"></script>
-<script src="i18n.js?v=20261127e"></script>
-<script src="i18n-dane.js?v=20261127e"></script>
-<script src="szukaj-dane.js?v=20261127e"></script>
-<script src="app.js?v=20261127e"></script>
+<script src="vendor/leaflet.js?v=20261127f"></script>
+<script src="config.js?v=20261127f"></script>
+<script src="dane.js?v=20261127f"></script>
+<script src="icons.js?v=20261127f"></script>
+<script src="foto/foto.js?v=20261127f" onerror="window.FOTO={}"></script>
+<script src="i18n.js?v=20261127f"></script>
+<script src="i18n-dane.js?v=20261127f"></script>
+<script src="szukaj-dane.js?v=20261127f"></script>
+<script src="app.js?v=20261127f"></script>
 <script>
 /* Koncepcja D: zdjęcia kafli i banerów, teksty dekoracyjne PL/EN/DE, rozwijanie opisów kart. */
 (function(){
