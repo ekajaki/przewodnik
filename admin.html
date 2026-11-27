@@ -321,7 +321,8 @@ function authReq(grant,body){
 function token(){
   if(!sess)return Promise.reject(new Error("Nie zalogowano"));
   if(sess.expires_at-Date.now()>60000)return Promise.resolve(sess.access_token);
-  return authReq("refresh_token",{refresh_token:sess.refresh_token}).then(function(s){return s.access_token});
+  return authReq("refresh_token",{refresh_token:sess.refresh_token}).then(function(s){return s.access_token},function(){
+    ls(SESSION_KEY,null);sess=null;show();throw new Error("Sesja wygasła – zaloguj się ponownie. Niezapisane zmiany w formularzu trzeba wpisać jeszcze raz.");});
 }
 function api(method,path,body){
   return token().then(function(t){
@@ -330,6 +331,13 @@ function api(method,path,body){
     if(r.status===204)return null;
     return r.text().then(function(tx){var j=tx?JSON.parse(tx):null;if(!r.ok){var m=(j&&(j.message||j.hint))||("Błąd "+r.status);
       if(/row-level security/i.test(m))m="Brak uprawnień do tego działu. Poproś administratora o dostęp.";
+      else if(/przewodnik_wpisy_jedna_poprawka|duplicate key/i.test(m))m="To miejsce ma już poprawkę w panelu. Edytuj istniejącą poprawkę zamiast dodawać drugą.";
+      else if(/przewodnik_daty_ok/.test(m))m="Data „do” nie może być wcześniejsza niż data „od”.";
+      else if(/przewodnik_do_bez_od/.test(m))m="Podaj datę „od”, jeśli wpisujesz datę „do”.";
+      else if(/przewodnik_miesiac_ok/.test(m))m="Miesiąc musi być od 1 do 12.";
+      else if(/przewodnik_gps_ok/.test(m))m="Położenie poza Polską albo brak jednej ze współrzędnych. Zaznacz punkt na mapie jeszcze raz.";
+      else if(/przewodnik_tel_ok/.test(m))m="Telefon może zawierać tylko cyfry, spacje, +, - i nawiasy.";
+      else if(/przewodnik_nazwa_ok/.test(m))m="Nazwa nie może zawierać znaków < ani >.";
       throw new Error(m);}return j;});
   });
 }
@@ -558,16 +566,21 @@ function histRow(h){
   if(myRole==="admin"){
     if(h.akcja==="zmiana")act='<button class="btn sm" data-rev="'+h.id+'">Przywróć wersję sprzed zmiany</button>';
     else if(h.akcja==="usuniecie")act='<button class="btn sm" data-rev="'+h.id+'">Przywróć</button>';
+    else if(h.akcja==="dodanie")act='<button class="btn sm" data-rev="'+h.id+'">'+(hideOp?"Cofnij ukrycie":"Cofnij dodanie")+'</button>';
   }
   return '<div class="item"><div style="min-width:0"><b>'+esc(h.nazwa||"")+' <span class="badge">'+esc(SECN[h.sekcja]?SECN[h.sekcja].name:h.sekcja)+'</span></b><small>'+esc(dt(h.kiedy))+' · '+esc(h.kto||"")+' '+(hideOp?"ukrył(a) pozycję":lab)+'</small>'+diff+'</div><div class="acts">'+act+'</div></div>';
 }
 function renderHist(){$("hist").innerHTML=hist.length?hist.map(histRow).join(""):'<p class="muted">Jeszcze nic nie zmieniano w panelu.</p>';$("hist-more").hidden=hist.length<histOff||hist.length%50!==0||!hist.length;}
 $("hist-more").onclick=function(){api("GET","przewodnik_historia?select=*&order=kiedy.desc&limit=50&offset="+histOff).then(function(j){hist=hist.concat(j||[]);histOff+=(j||[]).length;renderHist();if(!(j||[]).length)$("hist-more").hidden=true;}).catch(function(e){flash(e.message)})};
 function revert(h){
+  function ok(j){if(!j||(Array.isArray(j)&&!j.length))throw new Error("Nic nie przywrócono – ten wpis został w międzyczasie usunięty albo zmieniony. Odśwież historię.");return j;}
+  /* cofnięcie dodania = usunięcie dodanego wiersza (zostaje w historii) */
+  if(h.akcja==="dodanie")return api("DELETE",TABLE+"?id=eq."+encodeURIComponent(h.wpis_id)).then(ok);
   var st=h.stare,body={};Object.keys(st).forEach(function(k){if(k!=="created_at"&&k!=="zmienil")body[k]=st[k];});
   body.updated_at=new Date().toISOString();
-  if(h.akcja==="zmiana"){delete body.id;return api("PATCH",TABLE+"?id=eq."+encodeURIComponent(h.wpis_id),body);}
-  return api("POST",TABLE,body);
+  if(h.akcja==="zmiana"){delete body.id;return api("PATCH",TABLE+"?id=eq."+encodeURIComponent(h.wpis_id),body).then(ok);}
+  /* usunięty wpis: jeśli już przywrócony (ten sam id), nie duplikujemy */
+  return api("GET",TABLE+"?select=id&id=eq."+encodeURIComponent(st.id)).then(function(j){if(j&&j.length)throw new Error("Ten wpis jest już przywrócony.");return api("POST",TABLE,body).then(ok);});
 }
 
 /* ---------- uprawnienia ---------- */
@@ -621,7 +634,7 @@ document.addEventListener("click",function(e){
     api("DELETE",TABLE+"?id=eq."+encodeURIComponent(d.undo)).then(function(){flash("Przywrócono wersję oryginalną.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
   if(d.del){if(!confirm("Usunąć ten wpis? Zostanie w historii zmian i administrator może go przywrócić."))return;
     api("DELETE",TABLE+"?id=eq."+encodeURIComponent(d.del)).then(function(){flash("Usunięto.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
-  if(d.rev){var h=hist.filter(function(x){return String(x.id)===d.rev})[0];if(!h||!confirm("Przywrócić „"+h.nazwa+"” do wersji sprzed tej zmiany?"))return;
+  if(d.rev){var h=hist.filter(function(x){return String(x.id)===d.rev})[0];if(!h||!confirm(h.akcja==="dodanie"?"Cofnąć dodanie „"+h.nazwa+"”? Wpis zniknie z przewodnika, zostanie w historii.":"Przywrócić „"+h.nazwa+"” do wersji sprzed tej zmiany?"))return;
     revert(h).then(function(){flash("Przywrócono.",true);loadAll();}).catch(function(er){flash(er.message)});return;}
   if(d.usave){var box=t.closest(".user"), rola=box.querySelector("[data-urola]").value;
     var sk=[].map.call(box.querySelectorAll("[data-usek] input:checked"),function(i){return i.value});
@@ -652,16 +665,20 @@ $("l-signup").onclick=function(){
    .then(function(j){$("signup-help").hidden=false;
      if(j&&j.access_token){authReq("password",{email:em,password:pw}).then(function(){$("l-pass").value="";show();});return;}
      flash("Konto założone. Kliknij link w e-mailu od Supabase, potem zaloguj się tutaj.",true);
-   }).catch(function(e){flash("Nie udało się założyć konta: "+e.message)});
+   }).catch(function(e){flash(/zaproszenie|Database error saving new user/i.test(e.message)?"Ten adres nie ma zaproszenia. Poproś administratora, żeby dodał Twój e-mail w zakładce Uprawnienia, potem załóż konto jeszcze raz.":"Nie udało się założyć konta: "+e.message)});
 };
-$("logout").onclick=function(){ls(SESSION_KEY,null);sess=null;show();};
+$("logout").onclick=function(){var t=sess&&sess.access_token;
+  if(t&&cfg)fetch(cfg.url+"/auth/v1/logout",{method:"POST",headers:{apikey:cfg.key,Authorization:"Bearer "+t}}).catch(function(){});
+  ls(SESSION_KEY,null);sess=null;show();};
 /* ---------- reset hasła: link z e-maila wraca tu z tokenem w adresie ---------- */
 var REC=null;
 (function(){var h=(location.hash||"").slice(1);if(!/access_token=|error_description=/.test(h))return;
   var q={};h.split("&").forEach(function(kv){var i=kv.indexOf("=");if(i>0)q[decodeURIComponent(kv.slice(0,i))]=decodeURIComponent(kv.slice(i+1).replace(/\+/g," "));});
   try{history.replaceState(null,"",location.pathname);}catch(e){}
   if(q.error_description){setTimeout(function(){flash("Link nie zadziałał: "+q.error_description+". Poproś o nowy przyciskiem „Nie pamiętam hasła”.");},50);return;}
-  REC=q;})();
+  if(q.type==="recovery"){REC=q;return;}
+  if(q.access_token){var s={access_token:q.access_token,refresh_token:q.refresh_token,expires_at:Date.now()+(+q.expires_in||3600)*1000,email:""};ls(SESSION_KEY,s);
+    setTimeout(function(){flash("Konto potwierdzone. Jesteś zalogowany.",true);},50);}})();
 $("l-forgot").onclick=function(){
   var em=$("l-email").value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))return flash("Wpisz najpierw swój e-mail w polu powyżej, potem kliknij „Nie pamiętam hasła”.");

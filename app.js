@@ -15,6 +15,8 @@ function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return
 function telFmt(t){return t.replace(/^\+48\s?/,"");}
 function norm(s){return String(s||"").toLowerCase().replace(/ł/g,"l").normalize("NFD").replace(/[̀-ͯ]/g,"");}
 function slug(s){return norm(s).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);}
+/* identyfikator karty z nazwy oryginalnej – zmiana nazwy w panelu nie psuje ulubionych, linków i wyszukiwarki */
+function oid(o){return slug((o&&(o._orig||o.n))||"");}
 /* lekka wersja zdjęcia (WebP 640 px, foto/m/) – karty i kafle; zdjęcia spoza serwisu bez zmian */
 /* zdjęcia jak na ekajaki.pl: AVIF (lżejszy), WebP jako zapas; foto/m/ = 640 px na telefon */
 window.fotoM=function(src,fmt){src=String(src||"");if(/^https?:/i.test(src))return src;return (window.FOTO_BASE||"")+"m/"+src.replace(/\.(jpe?g|png)$/i,"."+(fmt||"webp"));};
@@ -65,7 +67,7 @@ function toggleFav(id){var f=favs(),i=f.indexOf(id);if(i>=0)f.splice(i,1);else f
 /* ---------- Karta ---------- */
 function card(o0,opts){
   opts=opts||{};
-  var o=loc(o0), id=slug(o0.n||""), sec=opts.sec||"";
+  var o=loc(o0), id=oid(o0), sec=opts.sec||"";
   var k=km(o0);
   var F=(window.FOTO||{})[o0.n];
   var h='<article class="card'+(F?' has-ph':'')+((o0.pin&&(opts.sec==="rozrywka"||opts.sec==="deszcz"))||opts.feat?' feat':'')+'" data-id="'+id+'">'+(F&&!opts.noPhoto?'<figure class="ph"><picture>'+(/^https?:/i.test(F.src)?'':'<source type="image/avif" srcset="'+esc(window.fotoM(F.src,"avif"))+'">')+'<img loading="lazy" decoding="async" src="'+esc(window.fotoM(F.src))+'" alt="'+esc(o.n)+'"></picture><figcaption>'+esc(F.credit||"")+'</figcaption></figure>':'')+'<div class="ch"><h3>'+esc(o.n)+'</h3>'+
@@ -207,7 +209,7 @@ function allItems(){
 }
 function renderFavs(){
   var f=favs(), items=allItems(), seen={};
-  var list=f.map(function(id){for(var i=0;i<items.length;i++)if(slug(items[i].o.n||"")===id&&!seen[id]){seen[id]=1;return items[i];}return null;}).filter(Boolean);
+  var list=f.map(function(id){for(var i=0;i<items.length;i++)if(oid(items[i].o)===id&&!seen[id]){seen[id]=1;return items[i];}return null;}).filter(Boolean);
   $("fav-wrap").hidden=!list.length;
   $("fav-list").innerHTML=list.map(function(x){return card(x.o,{sec:x.sec,noReport:true})}).join("");
 }
@@ -259,7 +261,7 @@ function szIndex(){
   var items=[];
   [["atrakcje",ATTR,"ATTR"],["rozrywka",FUN,"FUN"],["jedzenie",FOOD,"FOOD"],["imprezy",EVENTS,"EVENTS"],["sklepy",SHOPS,"SHOPS"],["sklepy",FUEL,"FUEL"],["deszcz",RAIN,"RAIN"],["start",IT,"IT"],["jedzenie",SLEEP,"SLEEP"]].forEach(function(p){
     p[1].forEach(function(o){var L=loc(o),tg={};
-      (SZ.tagi[o.n]||[]).forEach(function(t,i){tg[t]=i<2?1.5:1;});
+      (SZ.tagi[o._orig||o.n]||[]).forEach(function(t,i){tg[t]=i<2?1.5:1;});
       (SZ_SRC_TAG[p[2]]||[]).forEach(function(t){tg[t]=tg[t]||1;});
       (o.c||[]).concat(o.kat?[o.kat]:[],o.typ?[o.typ]:[]).forEach(function(c){(SZ_CAT[c]||[]).forEach(function(t){tg[t]=Math.max(tg[t]||0,1.25);});});
       if(p[0]==='atrakcje'&&/^(Kościół|Cerkiew|Kaplica|Sanktuarium)/.test(o.n))tg.kosciol=1.5; /* każdy kościół równo – o kolejności decyduje odległość */
@@ -353,8 +355,8 @@ function nowChip(x){
   var NS=SZ_NOWSUB[LANG]||SZ_NOWSUB.pl;
   if(x.tag){var Lt=szIndex().labels[x.tag];if(!Lt)return "";
     return '<button type="button" class="sznow" data-sz="'+x.tag+'">'+szIco(x.tag)+'<span class="szt"><b>'+esc(Lt.l)+'</b><small>'+esc(NS.tag)+'</small></span></button>';}
-  var o=x.it.o,L=loc(o),id=x.it.sec+"/"+slug(o.n),ev=x.it.sec==="imprezy";
-  var tg=ev?"impreza":((SZ.tagi[o.n]||[])[0]||Object.keys(x.it.tags)[0]||"sights");
+  var o=x.it.o,L=loc(o),id=x.it.sec+"/"+oid(o),ev=x.it.sec==="imprezy";
+  var tg=ev?"impreza":((SZ.tagi[o._orig||o.n]||[])[0]||Object.keys(x.it.tags)[0]||"sights");
   return '<a class="sznow" href="#'+id+'" data-go="'+id+'">'+szIco(tg)+'<span class="szt"><b>'+esc(L.n||o.n)+'</b><small>'+esc(x.extra||(ev?NS.ev:NS.pl))+'</small></span></a>';}
 function renderIdeas(){var el=$("sz-ideas");if(!el)return;
   var N=szNow();
@@ -523,7 +525,7 @@ function mfsGo(x){
   closeMapFS(true);
   if(x.cat==="paliwo"){var t=document.querySelector('#shop-toggle [data-k="paliwo"]');if(t&&!t.classList.contains("on"))t.click();}
   else if(x.cat==="sklepy"){var t2=document.querySelector('#shop-toggle [data-k="sklepy"]');if(t2&&!t2.classList.contains("on"))t2.click();}
-  var h=x.view+"/"+slug(x.o.n);try{history.replaceState(null,"","#"+h);}catch(e){} go(h);}
+  var h=x.view+"/"+oid(x.o);try{history.replaceState(null,"","#"+h);}catch(e){} go(h);}
 function mfsTown(o){var t=String(o.p||"").split(/[,(]/)[0].replace(/^gm\.\s*/,"").trim();return /^[A-ZĄĆĘŁŃÓŚŹŻ]/.test(t)&&t.split(" ").length<=3&&!/\d/.test(t)?t:"";}
 function mfsRow(x,d){var L0=loc(x.o);
   return '<button type="button" class="mfs-row" data-mfsi="'+x.i+'"><span class="mfs-dot" style="background:'+x.col+'">'+ic(MFS_ICO[x.cat]||poiIco(x.cat,x.o))+'</span>'+
@@ -742,21 +744,28 @@ function rowToItem(r){
   var it={n:r.nazwa,p:r.miejsce||"",d:r.opis||"",c:(r.kategorie||[]).slice(),t:r.telefon||"",w:r.www||"",adr:r.adres||"",h:r.godziny||"",chk:!!r.sprawdz,pol:!!r.polecane,i18n:i18n};
   if(r.godziny_oh)it.oh=r.godziny_oh; if(r.dostep)it.acc=r.dostep;
   if(r.lat!=null&&r.lng!=null)it.ll=[+r.lat,+r.lng]; else if(r.km!=null)it.km=+r.km;
-  if(r.sekcja==="imprezy"){it.typ=r.typ||"inne";it.od=r.data_od||"";it.do=r.data_do||"";it.mies=r.miesiac||null;it.ost=r.ostatnio||"";}
+  if(r.sekcja==="imprezy"){it.typ=r.typ||null;it.od=r.data_od||"";it.do=r.data_do||"";it.mies=r.miesiac||null;it.ost=r.ostatnio||null;}
   if(r.sekcja==="rozrywka"&&it.c.length)it.kat=it.c[0];
   if(r.sekcja==="jedzenie"&&!it.c.length){var d=it.ll?dist(it.ll,HOME):it.km; if(d!=null&&d<=10)it.c.push("blisko");}
   return it;
 }
+/* poprawka z panelu nadpisuje tylko pola z panelu; to, czego panel nie edytuje (msze, cennik, sezon, wyróżnienie, ikony), zostaje z pliku */
+var KEEP_FIELDS=["msze","cen","sez","pin","ico","nowe","kat","typ","mies","ost","km","oh","acc"];
+function mergeRow(o,it){if(!it||it.steps)return it;KEEP_FIELDS.forEach(function(k){if(it[k]==null&&o[k]!=null)it[k]=o[k];});
+  if(!(it.c&&it.c.length)&&o.c)it.c=o.c.slice(); if(!it.ll&&o.ll&&it.km==null)it.ll=o.ll; it._orig=o.n||o.t; return it;}
+function fixEv(list){(list||[]).forEach(function(e){if(!e.typ)e.typ="inne";if(e.ost==null)e.ost="";});}
 function applyRows(rows){
   var out={};
   Object.keys(BASE).forEach(function(sec){
     var mine=rows.filter(function(r){return r.sekcja===sec}), hide={}, repl={};
-    mine.forEach(function(r){if(r.zastepuje){if(r.ukryty)hide[r.zastepuje]=1;else repl[r.zastepuje]=r;}});
+    /* ukrycie = wiersz bez treści; szkic poprawki (ukryty z treścią) nie zmienia strony */
+    mine.forEach(function(r){if(r.zastepuje){if(r.ukryty){if(!r.opis&&!r.miejsce)hide[r.zastepuje]=1;}else repl[r.zastepuje]=r;}});
     var list=[];
-    BASE[sec].forEach(function(o){var key=o.n||o.t; if(hide[key])return; list.push(repl[key]?rowToItem(repl[key]):o);});
+    BASE[sec].forEach(function(o){var key=o.n||o.t; if(hide[key])return; list.push(repl[key]?mergeRow(o,rowToItem(repl[key])):o);});
     mine.forEach(function(r){if(!r.zastepuje&&!r.ukryty)list.push(rowToItem(r));});
     out[sec]=list;
   });
+  fixEv(out.imprezy);
   ATTR=out.atrakcje;FOOD=out.jedzenie;SLEEP=out.noclegi;RAIN=out.deszcz;IT=out.it;PLANS=out.plany;RAINPLANS=out.plany_deszcz;SHOPS=out.sklepy;FUEL=out.paliwo;EVENTS=out.imprezy;FUN=out.rozrywka;
   renderStatic();
 }
@@ -766,7 +775,8 @@ function loadDb(){
   fetch(c.url.replace(/\/+$/,"")+"/rest/v1/przewodnik_wpisy?select=*&order=kolejnosc.asc,created_at.asc",{headers:{apikey:c.key,Authorization:"Bearer "+c.key}})
    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
    .then(function(rows){store(CK,rows);applyRows(rows);})
-   .catch(function(){});
+   .catch(function(){ /* baza niedostępna i brak kopii w telefonie: przynajmniej ukrycia z pliku (tools/build-miejsca.js) */
+     if(!cached)fetch("ukryte.json").then(function(r){return r.json()}).then(function(u){if(Array.isArray(u))applyRows(u);}).catch(function(){});});
 }
 
 /* ---------- Nawigacja zakładek, deep linki, dostępność ---------- */
@@ -794,7 +804,7 @@ function renderMsze(){
   var el=$("msze-info");if(el){
     if(LANG!=="pl"){el.hidden=true;}else{el.hidden=false;
     el.innerHTML='<h3>'+ic('s-church')+' Msze święte w okolicy</h3><p class="small">Godziny w sezonie (maj–sierpień), od najbliższego kościoła. Dotknij kościoła, żeby zobaczyć adres, nawigację i szczegóły.</p><ul class="mszl">'+
-      mszeList().map(function(x){var o=x.o,m=o.msze,id="atrakcje/"+slug(o.n),k=x.d!=null?Math.round(x.d)+' km':'';
+      mszeList().map(function(x){var o=x.o,m=o.msze,id="atrakcje/"+oid(o),k=x.d!=null?Math.round(x.d)+' km':'';
         var nazwa=o.n.replace(/^(Kościół|Cerkiew)\s+/,function(a){return a}).replace(/ w ([A-ZŁŚŻŹĆ][^,]*)$/,"");
         var miejsc=String(o.p||"").split(",")[0].replace(/\(.*?\)/g,"").replace(/\s+\d+[a-zA-Z]?\s*$/,"").trim();
         return '<li><a href="#'+id+'" data-go="'+id+'"><span class="mszt"><b>'+esc(miejsc)+'</b><small>'+esc(k)+'</small></span><span class="mszn">'+esc(nazwa)+'</span>'+

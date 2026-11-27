@@ -90,6 +90,15 @@ function imgSize(file) {
 }
 
 /* ---------- Wpisy z panelu (Supabase), jak applyRows() w app.js ---------- */
+/* poprawka z panelu = oryginał + pola z panelu (jak mergeRow w app.js) */
+const KEEP_FIELDS = ["msze", "cen", "sez", "pin", "ico", "nowe", "kat", "typ", "mies", "ost", "km", "oh", "acc"];
+function mergeRow(o, it) {
+  if (!it) return it;
+  for (const k of KEEP_FIELDS) if ((it[k] == null || it[k] === "") && o[k] != null) it[k] = o[k];
+  if (!(it.c && it.c.length) && o.c) it.c = o.c.slice();
+  if (!it.ll && o.ll && it.km == null) it.ll = o.ll;
+  it._orig = o.n; return it;
+}
 function rowToItem(r) {
   if (r.zdjecie_url && /^https:\/\//.test(r.zdjecie_url)) FOTO[r.nazwa] = { src: r.zdjecie_url, credit: r.zdjecie_autor || "" };
   else if (r.zastepuje && r.nazwa !== r.zastepuje && FOTO[r.zastepuje]) FOTO[r.nazwa] = FOTO[r.zastepuje];
@@ -294,7 +303,7 @@ function placePage(it, all) {
   if (o.cen && o.cen.length) b += '<section class="box"><h2>Cennik</h2>' + o.cen.map(r => `<p><b>${esc(r[0])}</b> – ${esc(r[1])}${r[2] ? `<br><span class="sm">${esc(r[2])}</span>` : ""}</p>`).join("") + "</section>\n";
   if (o.msze) b += mszeHtml(o.msze) + "\n";
   b += '<div class="acts">' + (o.acc === "zakaz" ? "" : `<a class="btn p" href="${esc(mapsUrl(o))}" target="_blank" rel="noopener">Prowadź</a>`) +
-    `<a class="btn" href="/#${esc(it.sec)}/${esc(slug(o.n))}">Otwórz w przewodniku</a></div>\n</article>\n`;
+    `<a class="btn" href="/#${esc(it.sec)}/${esc(slug(o._orig || o.n))}">Otwórz w przewodniku</a></div>\n</article>\n`;
   if (o.ll) {
     const near = all.filter(x => x !== it && x.o.ll && x.o.n !== o.n).map(x => ({ x, d: dist(o.ll, x.o.ll) })).sort((a, c) => a.d - c.d).slice(0, 6);
     if (near.length) b += '<section><h2>W pobliżu</h2><ul class="ls">' + near.map(n => `<li><a href="/miejsca/${esc(n.x.file)}.html"><span>${esc(n.x.o.n)}<small>${esc(SECTIONS[n.x.sec].name)}</small></span><small>${esc(kmTxt(n.d))}</small></a></li>`).join("") + "</ul></section>\n";
@@ -342,9 +351,9 @@ async function main() {
   const items = [], skipped = [], hidden = [];
   for (const [base, sec, arr] of SUBS) {
     const mine = rows.filter(r => r.sekcja === base), hide = {}, repl = {};
-    mine.forEach(r => { if (r.zastepuje) { if (r.ukryty) hide[r.zastepuje] = 1; else repl[r.zastepuje] = r; } });
+    mine.forEach(r => { if (r.zastepuje) { if (r.ukryty) { if (!r.opis && !r.miejsce) hide[r.zastepuje] = 1; } else repl[r.zastepuje] = r; } });
     const list = [];
-    (ctx[arr] || []).forEach(o => { if (hide[o.n]) { hidden.push(o.n); return; } list.push(repl[o.n] ? rowToItem(repl[o.n]) : o); });
+    (ctx[arr] || []).forEach(o => { if (hide[o.n]) { hidden.push(o.n); return; } list.push(repl[o.n] ? mergeRow(o, rowToItem(repl[o.n])) : o); });
     mine.forEach(r => { if (!r.zastepuje && !r.ukryty) list.push(rowToItem(r)); });
     for (const o of list) {
       if (!o || !o.n || o.ukryty) continue;
@@ -355,7 +364,7 @@ async function main() {
   /* nazwy plików: slug, przy kolizji z sufiksem działu */
   const used = new Set(SECTION_FILES);
   for (const it of items) {
-    let f = slug(it.o.n) || "miejsce";
+    let f = slug(it.o._orig || it.o.n) || "miejsce";
     if (used.has(f)) f = (f + "-" + it.base).slice(0, 72);
     let k = 2, f0 = f; while (used.has(f)) f = f0 + "-" + (k++);
     used.add(f); it.file = f;
@@ -376,6 +385,8 @@ async function main() {
   const urls = [u(SITE + "/", altXml, "1.0"), u(SITE + "/?lang=en", altXml, "0.8"), u(SITE + "/?lang=de", altXml, "0.8"), u(SITE + "/miejsca/index.html", "", "0.8")];
   Object.keys(bySec).forEach(s => urls.push(u(SITE + "/miejsca/" + s + ".html", "", "0.7")));
   items.forEach(it => urls.push(u(SITE + "/miejsca/" + it.file + ".html", "", "0.6")));
+  /* zapasowa lista ukryć dla aplikacji (gdy baza niedostępna) – tylko sekcja + nazwa */
+  fs.writeFileSync(path.join(ROOT, "ukryte.json"), JSON.stringify(rows.filter(r => r.zastepuje && r.ukryty && !r.opis && !r.miejsce).map(r => ({ sekcja: r.sekcja, nazwa: r.zastepuje, zastepuje: r.zastepuje, ukryty: true }))));
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join("\n")}\n</urlset>\n`);
 
   /* raport */
