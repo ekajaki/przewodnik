@@ -6,6 +6,11 @@
    Bez zależności npm, Node 18+ (globalny fetch). Gdy baza nie odpowie – przerywa (nie publikuje ukrytych miejsc). */
 "use strict";
 const fs = require("fs"), path = require("path"), vm = require("vm");
+const { drogi, key: drogaKey } = require("./drogi");
+let DROGI = {};
+/* ścieżki piesze i rowerowe: odległość w linii prostej (tak samo jak w app.js) */
+const isTrail = o => /(ścieżk|szlak|trasa rowerow|pętla|rowerem)/i.test(o.n || "") && !/kajak|spływ/i.test(o.n || "");
+function kmBaza(o) { if (!o.ll) return o.km == null ? null : o.km; const r = DROGI[drogaKey(o.ll)]; return (r && !isTrail(o)) ? r[0] : dist(o.ll, BASE_LL) * (isTrail(o) ? 1 : 1.3); }
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "miejsca");
@@ -289,7 +294,7 @@ function placePage(it, all) {
   ld.push(cr.ld);
   /* treść */
   let b = cr.html + `\n<article>\n<h1>${esc(o.n)}</h1>\n`;
-  if (o.p) b += `<p class="pl">${esc(o.p)}${o.ll ? " · " + esc(kmTxt(dist(o.ll, BASE_LL))) + " od Łupawska" : ""}</p>\n`;
+  if (o.p) b += `<p class="pl">${esc(o.p)}${o.ll ? " · " + esc(kmTxt(kmBaza(o))) + (isTrail(o) ? " od Łupawska" : " trasą z Łupawska") : ""}</p>\n`;
   if (ph) b += `<figure>${ph.avif ? `<picture><source type="image/avif" srcset="${esc(ph.avif)}">` : ""}<img src="${esc(ph.url)}"${ph.size ? ` width="${ph.size.w}" height="${ph.size.h}"` : ""} alt="${esc(o.n)}" loading="eager" decoding="async">${ph.avif ? "</picture>" : ""}${ph.credit ? `<figcaption>${esc(ph.credit)}</figcaption>` : ""}</figure>\n`;
   const ch = placeChips(it);
   if (ch.length) b += '<ul class="chips">' + ch.map(c => `<li${c[0] ? ' class="w"' : ""}>${esc(c[1])}</li>`).join("") + "</ul>\n";
@@ -313,9 +318,9 @@ function placePage(it, all) {
 }
 
 function listHtml(items) {
-  return '<ul class="ls">' + items.map(it => `<li><a href="/miejsca/${esc(it.file)}.html"><span>${esc(it.o.n)}<small>${esc(it.o.p || "")}${it.base === "imprezy" ? " · " + esc(whenTxt(it.o)) : ""}</small></span><small>${esc(it.o.ll ? kmTxt(dist(it.o.ll, BASE_LL)) : "")}</small></a></li>`).join("") + "</ul>";
+  return '<ul class="ls">' + items.map(it => `<li><a href="/miejsca/${esc(it.file)}.html"><span>${esc(it.o.n)}<small>${esc(it.o.p || "")}${it.base === "imprezy" ? " · " + esc(whenTxt(it.o)) : ""}</small></span><small>${esc(it.o.ll ? kmTxt(kmBaza(it.o)) : "")}</small></a></li>`).join("") + "</ul>";
 }
-const byDist = arr => arr.slice().sort((a, b) => (a.o.ll ? dist(a.o.ll, BASE_LL) : 1e9) - (b.o.ll ? dist(b.o.ll, BASE_LL) : 1e9));
+const byDist = arr => arr.slice().sort((a, b) => (kmBaza(a.o) ?? 1e9) - (kmBaza(b.o) ?? 1e9));
 
 function sectionPage(sec, items) {
   const S = SECTIONS[sec], url = SITE + "/miejsca/" + sec + ".html";
@@ -349,7 +354,7 @@ async function main() {
   let rows;
   try { rows = await loadRows(); } catch (e) { console.error("BŁĄD: nie udało się pobrać wpisów z Supabase (" + e.message + "). Przerywam – bez tego mogłyby się opublikować ukryte miejsca."); process.exit(1); }
 
-  const items = [], skipped = [], hidden = [];
+  const items = [], skipped = [], hidden = [], allLL = [];
   for (const [base, sec, arr] of SUBS) {
     const mine = rows.filter(r => r.sekcja === base), hide = {}, repl = {};
     mine.forEach(r => { if (r.zastepuje) { if (r.ukryty) { if (!r.opis && !r.miejsce) hide[r.zastepuje] = 1; } else repl[r.zastepuje] = r; } });
@@ -358,10 +363,15 @@ async function main() {
     mine.forEach(r => { if (!r.zastepuje && !r.ukryty) list.push(rowToItem(r)); });
     for (const o of list) {
       if (!o || !o.n || o.ukryty) continue;
+      if (o.ll) allLL.push(o.ll);
       if ((base === "sklepy" || base === "paliwo") && String(o.d || "").length <= 80) { skipped.push([base, o.n, "krótki opis"]); continue; }
       items.push({ o, base, sec });
     }
   }
+  /* odległości trasą samochodem z bazy (także punkty IT i noclegi z aplikacji) */
+  for (const a of ["IT", "SLEEP"]) (ctx[a] || []).forEach(o => { if (o && o.ll) allLL.push(o.ll); });
+  try { const r = await drogi(allLL); DROGI = r.out; console.log(`Trasy z bazy: ${r.razem} punktów (nowych zapytań: ${r.nowe})`); }
+  catch (e) { console.error("BŁĄD: nie udało się policzyć tras (" + e.message + "). Przerywam."); process.exit(1); }
   /* nazwy plików: slug, przy kolizji z sufiksem działu */
   const used = new Set(SECTION_FILES);
   for (const it of items) {

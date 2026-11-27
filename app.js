@@ -9,7 +9,12 @@ var ORIGIN=HOME, ORIGIN_ME=false;
 function dist(ll,from){from=from||ORIGIN;var R=6371,toR=Math.PI/180,dLa=(ll[0]-from[0])*toR,dLo=(ll[1]-from[1])*toR,
   a=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(from[0]*toR)*Math.cos(ll[0]*toR)*Math.sin(dLo/2)*Math.sin(dLo/2);
   return 2*R*Math.asin(Math.sqrt(a));}
-function dOf(o){return o.ll?dist(o.ll):(ORIGIN_ME?null:(o.km==null?null:o.km));}
+/* ZASADA PRZEWODNIKA: listy od najbliższego do najdalszego wg TRASY SAMOCHODEM z bazy eKajaki (drogi.js, OSRM).
+   Wyjątki: ścieżki piesze i rowerowe – linia prosta; „od mnie” (GPS) – linia prosta od telefonu;
+   miejsce bez policzonej trasy (np. świeżo dodane w panelu) – linia prosta × 1,3 do najbliższej przebudowy. */
+function isTrail(o){var n=String(o&&o.n||"");return /(ścieżk|szlak|trasa rowerow|pętla|rowerem)/i.test(n)&&!/kajak|spływ/i.test(n);}
+function roadKm(o){var D=window.DROGI;if(!D||!o.ll)return null;var r=D[(+o.ll[0]).toFixed(5)+","+(+o.ll[1]).toFixed(5)];return r?r[0]:null;}
+function dOf(o){if(!o.ll)return ORIGIN_ME?null:(o.km==null?null:o.km); if(ORIGIN_ME||isTrail(o))return dist(o.ll); var r=roadKm(o); return r!=null?r:dist(o.ll)*1.3;}
 function km(o){var k=dOf(o); if(k==null)return null; return k<1.5?T("lt2"):T("ok")+Math.round(k)+" km";}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]});}
 function telFmt(t){return t.replace(/^\+48\s?/,"");}
@@ -104,8 +109,8 @@ function chipRow(el,items,cur,attr){el.innerHTML=items.map(function(c){return '<
 function renderStatic(){
   $("plans").innerHTML=PLANS.map(function(p){return planCard(p)}).join("");
   $("rain-plans").innerHTML=RAINPLANS.map(function(p){return planCard(p,true)}).join("");
-  $("it-list").innerHTML=IT.map(function(o){return card(o,{noKm:false,sec:"start"})}).join("");
-  $("sleep-list").innerHTML=SLEEP.map(function(o){return card(o,{noKm:true,sec:"jedzenie"})}).join("");
+  $("it-list").innerHTML=sortByDist(IT).map(function(o){return card(o,{noKm:false,sec:"start"})}).join("");
+  $("sleep-list").innerHTML=sortByDist(SLEEP).map(function(o){return card(o,{noKm:true,sec:"jedzenie"})}).join("");
   $("rain-list").innerHTML=(function(a){return a.filter(function(o){return o.pin}).concat(a.filter(function(o){return !o.pin}))})(sortByDist(RAIN)).map(function(o){return card(o,{sec:"deszcz"})}).join("");
   renderEvents(); renderShops(); renderFun(); renderAttr(); renderFood(); renderFavs(); renderStay(); renderBike(); szIdx=null; renderIdeas(); renderSearch(); mapAria();
 }
@@ -124,9 +129,9 @@ function renderAttr(){
   if(!f.length){$("attr-list").innerHTML='<p class="empty">'+esc(T("none"))+'</p>';}
   else if(cat==="all"&&!query&&!ORIGIN_ME){
     /* grupy według okolicy: Nad Jasieniem, Okolice Łupawska, Bytów, Dalsze wycieczki */
-    var BYT=[54.1706,17.4919], G={jasien:[],okolice:[],bytow:[],dalej:[]};
-    f.forEach(function(o){var d=dOf(o),db=o.ll?dist(o.ll,BYT):99;
-      var z=(d!=null&&d<=5)?"jasien":(db<=4||/^Bytów/.test(o.p||""))?"bytow":(d!=null&&d<=15)?"okolice":"dalej"; G[z].push(o);});
+    /* strefy = pasma odległości trasą z bazy, więc kolejność zawsze od najbliższego */
+    var G={jasien:[],okolice:[],bytow:[],dalej:[]};
+    f.forEach(function(o){var d=dOf(o);var z=d==null?"dalej":d<=5?"jasien":d<=15?"okolice":d<=25?"bytow":"dalej"; G[z].push(o);});
     $("attr-list").innerHTML=["jasien","okolice","bytow","dalej"].filter(function(z){return G[z].length}).map(function(z){
       return '<h3 class="zone">'+esc(T("zone_"+z))+' <span class="zn">'+G[z].length+'</span></h3><p class="zone-l">'+esc(T("zoneL_"+z))+'</p>'+G[z].map(function(o){return card(o,{sec:"atrakcje"})}).join("");}).join("");
   } else $("attr-list").innerHTML=f.map(function(o){return card(o,{sec:"atrakcje"})}).join("");
@@ -150,7 +155,7 @@ function renderFun(){
   chipRow($("fun-chips"),ks.map(function(k){return [k,k==="all"?T("all"):FUNK[k],k==="all"?"":"fun-"+k]}),funK,"k");
   var f=sortByDist(FUN).filter(function(o){return funK==="all"||funKat(o)===funK});
   f=f.filter(function(o){return o.pin}).concat(f.filter(function(o){return !o.pin})); /* wyróżnione zawsze na początku */
-  if(OFFSEASON)f=f.filter(function(o){return !summerOnly(o)}).concat(f.filter(summerOnly));
+  /* poza sezonem plaże zostają na swoim miejscu (zasada: od najbliższego), dostają tylko dopisek „tylko latem” */
   $("fun-list").innerHTML=f.length?f.map(function(o){var k=funKat(o);return card(o,{sec:"rozrywka",tag:(k?'<span class="tag">'+ic('fun-'+k)+' '+esc(FUNK[k])+'</span>':'')+(OFFSEASON&&summerOnly(o)?'<span class="tag off">'+esc(OX().summer)+'</span>':'')});}).join(""):'<p class="empty">'+esc(T("noItems"))+'</p>';
 }
 $("fun-chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;funK=b.dataset.k;renderFun();});
@@ -394,7 +399,7 @@ document.addEventListener("click",function(e){
     var r=$("search-res");if(r&&!r.hidden)r.scrollIntoView({behavior:"smooth",block:"start"});return;}
   var m=e.target.closest("[data-szmore]"); if(m){szOpen[m.dataset.szmore]=1;renderSearch();}
 });
-window.__szSearch=szSearch;
+window.__szSearch=szSearch;window.__dOf=dOf;
 
 /* ---------- Twój pobyt ---------- */
 function renderStay(){
