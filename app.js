@@ -685,6 +685,49 @@ function renderWeather(){
    .catch(function(){renderWeather();});
 })();
 
+/* ---------- Teraz nad Jasieniem: stacja meteo eKajaki (to samo źródło co wypozyczalnia.lupawsko.com) ----------
+   Pasek na zdjęciu strony głównej. Ładowany po wczytaniu strony; chowa się bez zasięgu
+   albo gdy pomiar jest starszy niż 75 min – nieaktualna liczba szkodzi bardziej niż żadna. */
+var MT=null, MT_URL="https://wypozyczalnia.lupawsko.com/api/weather.php";
+var MT_LINE={"temperatura-powietrza":"temp","temperatura-wody":"drop","wiatr":"wind","opad":"rain"};
+function mtPic(k){return '<span class="mtl" aria-hidden="true">'+ic(MT_LINE[k])+'</span>';}
+function renderMeteo(){
+  var el=$("meteo"); if(!el)return;
+  var d=MT, ts=d&&+(d.station_ts||d.fetched_at), now=Date.now()/1000;
+  if(!d||!d.ok||!ts||now-ts>75*60||!navigator.onLine||!d.air||d.air.temp==null){el.hidden=true;return;}
+  var a=d.air, w=d.wind||{}, r=d.rain||{}, wa=d.water||{}, chips=[];
+  function num(v){return (Math.round(v*10)/10).toLocaleString(LANG==="en"?"en-GB":LANG==="de"?"de-DE":"pl-PL");}
+  chips.push('<div class="mtc">'+mtPic("temperatura-powietrza",T("mtAir"))+'<b>'+num(a.temp)+'°C</b><span>'+esc(T("mtAir"))+'</span></div>');
+  /* woda z IMGW Jasień: tylko w sezonie i gdy pomiar ma najwyżej 3 dni */
+  var wt=wa.temp!=null&&!wa.poza_sezonem&&wa.pomiar&&(Date.now()-new Date(String(wa.pomiar).replace(" ","T"))<3*864e5);
+  if(wt)chips.push('<div class="mtc">'+mtPic("temperatura-wody",T("mtWater"))+'<b>'+num(wa.temp)+'°C</b><span>'+esc(T("mtWater"))+'</span></div>');
+  if(w.speed!=null){
+    var dir=String(w.dirStr||""); if(LANG==="de")dir=dir.replace(/E/g,"O");
+    var arr=w.dir!=null?'<i class="mta" style="transform:rotate('+((+w.dir+180)%360)+'deg)" aria-hidden="true">↑</i>':'';
+    chips.push('<div class="mtc">'+mtPic("wiatr",T("mtWind"))+'<b>'+Math.round(w.speed)+' km/h</b><span>'+arr+esc(dir||T("mtWind"))+(w.gust>=w.speed+10?' · '+esc(T("mtGust"))+' '+Math.round(w.gust):'')+'</span></div>');
+  }
+  if(r.rate>0||r.day>0)chips.push('<div class="mtc">'+mtPic("opad",T("mtRain"))+'<b>'+num(r.day||0)+' mm</b><span>'+esc(r.rate>0?T("mtRainNow"):T("mtRain"))+'</span></div>');
+  var hh=new Date(ts*1000).toLocaleTimeString(LANG==="en"?"en-GB":LANG==="de"?"de-DE":"pl-PL",{hour:"2-digit",minute:"2-digit",timeZone:"Europe/Warsaw"});
+  el.innerHTML='<p class="mth"><i class="mtdot" aria-hidden="true"></i>'+esc(T("mtH"))+' · '+esc(T("mtSt"))+' · '+hh+'</p><div class="mtrow">'+chips.join("")+'</div>';
+  el.hidden=false;
+}
+function mtOff(){MT=null;var el=$("meteo");if(el)el.hidden=true;}
+function loadMeteo(){
+  /* Bezpiecznik: brak zasięgu, błąd serwera, zły JSON, brak odpowiedzi w 8 s albo błąd w rysowaniu
+     → pasek znika od razu (nie pokazujemy ostatniego odczytu). Następna próba za 5 min. */
+  if(!navigator.onLine){mtOff();return;}
+  var ac=window.AbortController?new AbortController():null, t=setTimeout(function(){if(ac)ac.abort();mtOff();},8000);
+  fetch(MT_URL,{cache:"no-store",signal:ac?ac.signal:undefined}).then(function(r){if(!r.ok)throw 0;return r.json();})
+   .then(function(j){clearTimeout(t);if(!j||!j.ok||!j.air){mtOff();return;}MT=j;try{renderMeteo();}catch(e){mtOff();}})
+   .catch(function(){clearTimeout(t);mtOff();});
+}
+(function(){
+  function start(){setTimeout(loadMeteo,800);setInterval(function(){if(!document.hidden)loadMeteo();},5*60e3);}
+  if(document.readyState==="complete")start();else window.addEventListener("load",start);
+  document.addEventListener("visibilitychange",function(){if(!document.hidden&&MT&&Date.now()/1000-MT.fetched_at>240)loadMeteo();});
+  window.addEventListener("offline",mtOff);window.addEventListener("online",loadMeteo);
+})();
+
 /* ---------- Mapa: wszystkie kategorie ---------- */
 var map=null, layers={}, meMark=null;
 var LAY=[["atrakcje","#1e4f96",function(){return filtered()}],["rozrywka","#3f9a45",function(){return FUN}],["jedzenie","#d8333f",function(){return FOOD}],
@@ -879,7 +922,7 @@ function renderRiver(){var el=$("rzeka");if(!el)return;if(!RZ||!RZ.h){el.hidden=
 })();
 
 /* ---------- Start ---------- */
-window.rerenderAll=function(){renderMsze();renderOrigin();renderStatic();renderWeather();renderOffline();renderRiver();netBar();if(map){drawMarkers();}};
+window.rerenderAll=function(){renderMsze();renderOrigin();renderStatic();renderWeather();try{renderMeteo();}catch(e){mtOff();}renderOffline();renderRiver();netBar();if(map){drawMarkers();}};
 applyIcons();
 renderMsze();
 applyLang(LANG);
