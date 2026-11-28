@@ -286,7 +286,6 @@ var FUN=[
 ];
 var FOOD=[
  {"n":"Smażalnia Ryb „Rybakówka”","p":"Jasień 25","ll":[54.29008,17.61404],"c":["blisko"],"d":"Ryby z Jeziora Jasień (m.in. lin, szczupak, okoń, sielawa) i pstrąg z własnej wędzarni, także na wynos. Stoliki z widokiem na jezioro.","h":"w sezonie codziennie 12:00–20:00, jesienią tylko w weekendy","t":"+48 783 681 825","w":"https://rybakowka.wczasynadjeziorem.com/"},
- {"n":"Bar Jasień – Przystań Turystyczna","p":"Jasień","ll":[54.2861,17.6286],"c":["blisko"],"chk":true,"d":"Rodzinny bar przy przystani w Jasieniu.","t":"+48 724 567 002","w":"https://www.facebook.com/p/Bar-Jasie%C5%84-Przysta%C5%84-Turystyczna-61577310435717/"},
  {"n":"Grubo Krojone","p":"Czarna Dąbrówka, ul. Słupska 1","ll":[54.35653,17.56434],"c":["blisko"],"d":"Restauracja z kuchnią polską w centrum Czarnej Dąbrówki, ok. 9 km na północ od Łupawska. Bardzo dobrze oceniana.","t":"+48 601 912 502","w":"https://www.facebook.com/grubokrojone1/","chk":true},
  {"n":"Restauracja Zamek Bytów","p":"Bytów, ul. Zamkowa 2","ll":[54.16855,17.49203],"c":["bytow","deszcz"],"d":"Kuchnia polska w średniowiecznym zamku krzyżackim. Dobrze połączyć z wizytą w muzeum.","t":"+48 690 909 144","w":"https://zamek-bytow.pl/"},
  {"n":"Jaś Kowalski","p":"Bytów, Zaułek Drozdowy 3","ll":[54.16912,17.48563],"c":["bytow"],"d":"Restauracja i klub koncertowy przy rynku, bardzo dobrze oceniany przez gości.","t":"+48 59 822 55 04"},
