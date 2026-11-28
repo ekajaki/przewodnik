@@ -388,6 +388,13 @@ async function main() {
   for (const it of items) { (bySec[it.sec] = bySec[it.sec] || []).push(it); fs.writeFileSync(path.join(OUT, it.file + ".html"), placePage(it, items)); }
   for (const s of Object.keys(bySec)) fs.writeFileSync(path.join(OUT, s + ".html"), sectionPage(s, bySec[s]));
   fs.writeFileSync(path.join(OUT, "index.html"), indexPage(bySec));
+  /* stare adresy po zmianie nazwy → przekierowanie na nową stronę (Google i zapisane linki nie trafiają w 404) */
+  const PRZEKIEROWANIA = { "dzik-lupawsko": "stolica-relaxu-lupawsko" };
+  for (const [stary, nowy] of Object.entries(PRZEKIEROWANIA)) {
+    if (used.has(stary) || !used.has(nowy)) continue;
+    const cel = SITE + "/miejsca/" + nowy + ".html";
+    fs.writeFileSync(path.join(OUT, stary + ".html"), `<!doctype html><html lang="pl"><head><meta charset="utf-8"><title>Przeniesiono</title><meta name="robots" content="noindex"><link rel="canonical" href="${cel}"><meta http-equiv="refresh" content="0; url=${nowy}.html"><script>location.replace("${nowy}.html"+location.hash)</script></head><body><p>Ta strona ma nowy adres: <a href="${nowy}.html">${cel}</a></p></body></html>\n`);
+  }
 
   /* sitemap.xml */
   const u = (loc, extra = "", pr = "") => `  <url>\n    <loc>${xesc(loc)}</loc>\n    <lastmod>${today}</lastmod>${pr ? `\n    <priority>${pr}</priority>` : ""}${extra}\n  </url>`;
