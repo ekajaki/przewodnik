@@ -689,7 +689,7 @@ function renderWeather(){
    Pasek na zdjęciu strony głównej. Ładowany po wczytaniu strony; chowa się bez zasięgu
    albo gdy pomiar jest starszy niż 75 min – nieaktualna liczba szkodzi bardziej niż żadna. */
 var MT=null, MT_URL="https://wypozyczalnia.lupawsko.com/api/weather.php";
-var MT_LINE={"temperatura-powietrza":"temp","temperatura-wody":"drop","wiatr":"wind","opad":"rain"};
+var MT_LINE={"temperatura-powietrza":"temp","temperatura-wody":"drop","wiatr":"wind","opad":"rain","cisnienie":"gauge"};
 function mtPic(k){return '<span class="mtl" aria-hidden="true">'+ic(MT_LINE[k])+'</span>';}
 function renderMeteo(){
   var el=$("meteo"); if(!el)return;
@@ -706,7 +706,8 @@ function renderMeteo(){
     var arr=w.dir!=null?'<i class="mta" style="transform:rotate('+((+w.dir+180)%360)+'deg)" aria-hidden="true">↑</i>':'';
     chips.push('<div class="mtc">'+mtPic("wiatr",T("mtWind"))+'<b>'+Math.round(w.speed)+' km/h</b><span>'+arr+esc(dir||T("mtWind"))+(w.gust>=w.speed+10?' · '+esc(T("mtGust"))+' '+Math.round(w.gust):'')+'</span></div>');
   }
-  if(r.rate>0||r.day>0)chips.push('<div class="mtc">'+mtPic("opad",T("mtRain"))+'<b>'+num(r.day||0)+' mm</b><span>'+esc(r.rate>0?T("mtRainNow"):T("mtRain"))+'</span></div>');
+  if(r.day!=null||r.rate!=null)chips.push('<div class="mtc">'+mtPic("opad")+'<b>'+num(r.day||0)+' mm</b><span>'+esc(r.rate>0?T("mtRainNow"):T("mtRain"))+'</span></div>');
+  if(d.pressure!=null)chips.push('<div class="mtc">'+mtPic("cisnienie")+'<b>'+Math.round(d.pressure)+' hPa</b><span>'+esc(T("mtPres"))+'</span></div>');
   var hh=new Date(ts*1000).toLocaleTimeString(LANG==="en"?"en-GB":LANG==="de"?"de-DE":"pl-PL",{hour:"2-digit",minute:"2-digit",timeZone:"Europe/Warsaw"});
   el.innerHTML='<p class="mth"><i class="mtdot" aria-hidden="true"></i>'+esc(T("mtH"))+' · '+esc(T("mtSt"))+' · '+hh+'</p><div class="mtrow">'+chips.join("")+'</div>';
   el.hidden=false;
